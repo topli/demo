@@ -17,6 +17,8 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 import '@/components' // global components
+import '@/libs/directive' // directive
+import * as filters from './libs/filters' // global filters
 /**
  * This project originally used easy-mock to simulate data,
  * but its official service is very unstable,
@@ -26,6 +28,10 @@ import '@/components' // global components
  * If you remove `../mock` it will automatically request easy-mock data.
  */
 import '../mock' // simulation data
+import './localInit'
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 Vue.use(ElementUI, {
   size: 'small', // set element-ui default size ['small', 'medium']

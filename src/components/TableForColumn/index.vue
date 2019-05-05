@@ -1,9 +1,8 @@
 <template>
   <transition name="fade">
     <el-table
-      v-loading="loading"
+      v-loading="tableLoading"
       :data="data"
-      :height="'calc(100% - 40px)'"
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
@@ -19,8 +18,9 @@
         type="index"
         align="center"
         width="70"/>
-      <template v-for.="col, index in columnsTitle">
+      <template v-for="col in columnsTitle">
         <el-table-column
+          :key="col.key"
           :prop="col.key"
           :fixed="col.fixed || null"
           :align="col.align || 'left'"
@@ -56,6 +56,7 @@ export default {
     index: { type: Boolean, default: false },
     data: { type: Array, required: true },
     columnsTitle: { type: Array, required: true },
+    loading: { type: Boolean, default: false },
     sortChange: { type: Function, default: function() {} }
   },
   data() {
@@ -64,8 +65,8 @@ export default {
     }
   },
   computed: {
-    loading() {
-      return !this.data.length
+    tableLoading() {
+      return this.loading
     },
     height() {
       if (this.tableHeight < 220) {

@@ -12,6 +12,7 @@ export default {
     'Menu1-2': 'Menu1-2',
     'Menu1-3': 'Menu1-3',
     'Menu1-2-1': 'Menu1-2-1',
-    'Menu1-2-2': 'Menu1-2-2'
+    'Menu1-2-2': 'Menu1-2-2',
+    user: 'user'
   }
 }

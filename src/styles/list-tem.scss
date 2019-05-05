@@ -1,0 +1,27 @@
+// 列表样式
+.list-template {
+  margin: 20px;
+  position: relative;
+  .table {
+    padding-bottom: 30px;
+  }
+  .btns {
+    margin-bottom: 10px; 
+  }
+  .pages {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    z-index: 99;
+    .el-pagination{
+      padding: 10px;
+    }
+  }
+}
+// 新增、修改弹出层样式
+.aou-template {
+  .aou-footer{
+    text-align: right;
+  }
+}

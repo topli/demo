@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from '@/libs/utils/request'
 
 export function login(username, password) {
   return request({

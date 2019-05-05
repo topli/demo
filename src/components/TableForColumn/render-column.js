@@ -12,7 +12,14 @@ export default {
     let v = null
     if (this.filters) {
       const test = Vue.filter(this.filters)
-      v = test(scope.row[prop])
+      if (test) {
+        v = test(scope.row[prop])
+        if (this.renderContent) {
+          this.$set(scope.row, '_f_' + prop, v)
+        }
+      } else {
+        console.error('not define filters: ' + this.filters)
+      }
     } else {
       v = scope.row[prop]
     }

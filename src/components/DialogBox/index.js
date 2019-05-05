@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Main from './index.vue'
+import { isNumber } from 'util'
 const Dialog = Vue.extend(Main)
 
 let instance
 const instances = []
 let seed = 1
-
+// onSub、onClose 弹出层内置方法
+// onSub 执行$dialog 参数中的 onSub 方法 执行完成后立即关闭弹出层
+// onClose 关闭弹出层
 const DialogBox = function(options) {
   options = options || {}
   const userOnSub = options.onSub
@@ -18,6 +21,9 @@ const DialogBox = function(options) {
   options.onSub = function() {
     userOnSub && userOnSub()
     DialogBox.close(id)
+  }
+  if (options.width && isNumber(options.width)) {
+    options.width = options.width + 'px'
   }
   instance = new Dialog({
     data: options,

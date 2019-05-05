@@ -3,15 +3,21 @@ import VueI18n from 'vue-i18n'
 import Cookies from 'js-cookie'
 import elementEnLocale from 'element-ui/lib/locale/lang/en' // element-ui lang
 import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN' // element-ui lang
-import enLocale from './en'
+// import enLocale from './en'
 // import zhLocale from './zh';
 
 // loading zh lang
 const requireAll = requireContext => requireContext.keys().map(requireContext)
-const req = requireAll(require.context('./zh', false, /\.js$/))
+const reqZh = requireAll(require.context('./zh', false, /\.js$/))
 let zhLocale = {}
-req.map(r => {
+reqZh.map(r => {
   zhLocale = Object.assign(zhLocale, r.default)
+})
+// loading en lang
+const reqEn = requireAll(require.context('./en', false, /\.js$/))
+let enLocale = {}
+reqEn.map(r => {
+  enLocale = Object.assign(enLocale, r.default)
 })
 Vue.use(VueI18n)
 

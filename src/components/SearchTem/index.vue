@@ -10,7 +10,7 @@
           <el-button v-if="showMore" :icon="toggleFromIcon" type="text" @click="openSearchFun">{{ text }}</el-button>
           <el-button class="sub-btn" type="primary" round @click="onSearch">
             <svg-icon icon-class="search"/>
-            <span>搜索</span>
+            <span> {{ $t('table.search') }}</span>
           </el-button>
         </div>
       </slot>
@@ -112,10 +112,10 @@ export default {
     }
     .sub-btn {
       span {
-        transition: width 0.3s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1);
-        -moz-transition: width 0.3s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1); /* Firefox 4 */
-        -webkit-transition: width 0.3s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1); /* Safari 和 Chrome */
-        -o-transition: width 0.3s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1); /* Opera */
+        transition: width 0.6s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1);
+        -moz-transition: width 0.6s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1); /* Firefox 4 */
+        -webkit-transition: width 0.6s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1); /* Safari 和 Chrome */
+        -o-transition: width 0.6s ease, opacity 0.6s cubic-bezier(0.42, 0, 0, 1); /* Opera */
         display: inline-block;
         width: 0px;
         opacity: 0;

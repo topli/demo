@@ -1,0 +1,61 @@
+.menu-tree {
+  margin: 10px;
+  overflow: auto;
+}
+.menu-tree .custom-tree-container {
+  display:-ms-flexbox;
+  display:flex;
+  font-size: 14px;
+  padding-right: 8px;
+  min-width: 600px;
+}
+.menu-tree .block {
+  -ms-flex:1;
+  flex:1;
+  padding:8px 10px 24px
+}
+.menu-tree .block>p {
+  text-align:center;
+  margin:0;
+  line-height:4
+}
+.menu-tree .block:first-child {
+  border-right:1px solid #eff2f6
+}
+.icons-container {
+  overflow: hidden;
+  .icons-wrapper {
+    margin: 0 auto;
+  }
+  .icon-item {
+    height: 70px;
+    text-align: center;
+    width: 50px;
+    float: left;
+    font-size: 30px;
+    color: #24292e;
+    cursor: pointer;
+  }
+  span {
+    display: block;
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  .disabled{
+    pointer-events: none;
+  }
+}
+.el-tree-node__content {
+  .custom_content {
+    width: 100%;
+    text-align: right;
+    position: relative;
+    height: 24px;
+    .title {
+      position: absolute;
+      left: 0;
+      top: 4px;
+    }
+    .btns {}
+  }
+}
