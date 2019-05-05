@@ -113,7 +113,8 @@ export function confirm(submitFun, cancelFun) {
   this.$confirm(this.$t('app.delTips'), this.$t('app.delete'), {
     confirmButtonText: this.$t('app.submit'),
     cancelButtonText: this.$t('app.cancel'),
-    type: 'warning'
+    type: 'warning',
+    confirmButtonClass: 'show-del-submit'
   }).then(() => {
     submitFun && submitFun()
   }).catch(() => {

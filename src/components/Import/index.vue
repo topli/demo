@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="actionLoading" class="import-template">
+  <div v-loading="loading" class="import-template">
     <div class="import-body">
       <el-input
         v-model="file.name"
@@ -27,10 +27,8 @@
 </template>
 
 <script>
-import loading from '@/libs/mixins/loading'
 
 export default {
-  mixins: [loading],
   props: {
     fileType: {
       type: String,
@@ -39,7 +37,8 @@ export default {
   },
   data() {
     return {
-      file: {}
+      file: {},
+      loading: false
     }
   },
   computed: {},
@@ -59,16 +58,18 @@ export default {
     },
     // 提交按钮
     submit() {
-      console.log(this.file)
-      this.$store.dispatch('setAL', true)
+      if (!this.file.uid) {
+        return
+      }
+      this.loading = true
       setTimeout(() => {
         this.$message.success('成功')
         setTimeout(() => {
-          this.$store.dispatch('setAL', false)
+          this.loading = false
           // 执行操作后隐藏弹出框
           this.onSub()
         }, 300)
-      }, 3000)
+      }, 2000)
     }
   }
 }

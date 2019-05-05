@@ -17,8 +17,8 @@ export default {
   methods: {
     importFun() {
       if (!this.fileType) {
-        console.log(this.$t('consoleError.fileTypeNullError'))
-        this.$message.error(this.$t('consoleError.fileTypeNullError'))
+        console.log(this.$t('app.fileTypeNullError'))
+        this.$message.error(this.$t('app.fileTypeNullError'))
         return
       }
       this.$dialogBox({ components: importTemplate, title: '导入', width: '400px', propsData: { fileType: this.fileType }})

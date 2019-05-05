@@ -41,7 +41,7 @@ export default {
       this.multipleSelection = selection
     },
     onSearch() {
-      if (!this.loading) return
+      if (this.loading) return
       this.searchData = Object.assign(this.searchData, this.searchFrom)
       this.searchData.pageNo = 1
       // 删除查询条件中为空的值  包括值为0的

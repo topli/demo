@@ -107,6 +107,30 @@ export default {
       data: null
     }
   },
+  del: (param) => {
+    const localData = JSON.parse(getStorage('localData'))
+    const list = localData['user'].list
+    const data = JSON.parse(param.body)
+    let index = null
+    const find = list.find((item, i) => {
+      if (item.id === data.id) {
+        index = i
+        return item.id === data.id
+      }
+    })
+    if (!find) {
+      return {
+        code: 500,
+        message: '未找到数据'
+      }
+    }
+    list.splice(index, 1)
+    setStorage('localData', localData)
+    return {
+      code: 200,
+      data: null
+    }
+  },
   list: (param) => {
     // 获取参数
     const p = getQueryString(param.url)

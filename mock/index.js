@@ -25,5 +25,6 @@ Mock.mock(/\/table\/list/, 'get', tableAPI.list)
 Mock.mock(/\/user\/add/, 'post', userAPI.add)
 Mock.mock(/\/user\/list/, 'get', userAPI.list)
 Mock.mock(/\/user\/edit/, 'put', userAPI.edit)
+Mock.mock(/\/user\/del/, 'delete', userAPI.del)
 
 export default Mock

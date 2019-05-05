@@ -45,7 +45,7 @@
 import add from './add'
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
-import { fetchList } from './service'
+import { fetchList, delData } from './service'
 
 export default {
   mixins: [list, dialog],
@@ -183,9 +183,21 @@ export default {
     },
     deleteItem(row) {
       this.confirm((success) => {
-        this.$message({
-          type: 'success',
-          message: this.$t('app.delete') + this.$t('app.success')
+        delData(row).then((res) => {
+          console.log(res)
+          if (res.code === 200) {
+            this.$message({
+              type: 'success',
+              message: this.$t('app.delete') + this.$t('app.success')
+            })
+          } else {
+            this.$message({
+              type: 'error',
+              message: res.message
+            })
+            return
+          }
+          this._getList()
         })
       })
     }
