@@ -17,7 +17,8 @@ export default {
     return {
       visible: true,
       title: '',
-      width: '50%'
+      width: '50%',
+      doms: null
     }
   },
   created() {},
@@ -29,12 +30,13 @@ export default {
       }
       // 挂载内容
       const Components = Vue.extend(this.components)
-      const vm = new Components({ propsData: this.props, data: { onSub: this.onSub, onClose: this.onClose }, store: this.$store, router: this.$router })
-      vm.$mount('#dialog-box')
+      this.doms = new Components({ propsData: this.props, data: { onSub: this.onSub, onClose: this.onClose }, store: this.$store, router: this.$router })
+      this.doms.$mount('#dialog-box')
     })
   },
   beforeDestroy() {
-    console.log('beforeDestroy')
+    // 销毁挂载的内容
+    this.doms.$destroy()
   },
   methods: {}
 }

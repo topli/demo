@@ -1,6 +1,4 @@
-import { param2Obj } from './utils'
-import { getStorage, getQueryString } from '@/libs/utils'
-import { setStorage } from '../src/libs/utils'
+import { param2Obj, getLocalList, addLocalData, editLocalData, delLocalData } from './utils'
 const tokens = {
   admin: {
     token: 'admin-token'
@@ -63,89 +61,19 @@ export default {
     }
   },
   add: (param) => {
-    const localData = JSON.parse(getStorage('localData'))
-    const list = localData['user'].list
-    const data = JSON.parse(param.body)
-    const find = list.find((item) => {
-      return item.username === data.username
-    })
-    if (find) {
-      return {
-        code: 500,
-        data: null,
-        message: '姓名重复'
-      }
-    }
-    localData['user'].list.push(data)
-    setStorage('localData', localData)
-    return {
-      code: 200,
-      data: null
-    }
+    const data = addLocalData(param, 'user')
+    return data
   },
   edit: (param) => {
-    const localData = JSON.parse(getStorage('localData'))
-    const list = localData['user'].list
-    const data = JSON.parse(param.body)
-    let index = null
-    const find = list.find((item, i) => {
-      if (item.username === data.username) {
-        index = i
-        return item.username === data.username
-      }
-    })
-    if (!find) {
-      return {
-        code: 500,
-        message: '未找到数据'
-      }
-    }
-    list[index] = data
-    setStorage('localData', localData)
-    return {
-      code: 200,
-      data: null
-    }
+    const data = editLocalData(param, 'user')
+    return data
   },
   del: (param) => {
-    const localData = JSON.parse(getStorage('localData'))
-    const list = localData['user'].list
-    const data = JSON.parse(param.body)
-    let index = null
-    const find = list.find((item, i) => {
-      if (item.id === data.id) {
-        index = i
-        return item.id === data.id
-      }
-    })
-    if (!find) {
-      return {
-        code: 500,
-        message: '未找到数据'
-      }
-    }
-    list.splice(index, 1)
-    setStorage('localData', localData)
-    return {
-      code: 200,
-      data: null
-    }
+    const data = delLocalData(param, 'user')
+    return data
   },
   list: (param) => {
-    // 获取参数
-    const p = getQueryString(param.url)
-    const localData = JSON.parse(getStorage('localData'))
-    let list = localData['user'].list
-    if (p) {
-      list = list.slice((p.pageNo - 1) * p.pageSize, (p.pageNo * p.pageSize) > list.length ? list.length : p.pageNo * p.pageSize)
-    }
-    return {
-      code: 200,
-      data: {
-        list: list,
-        total: list.length,
-        message: 'success'
-      }
-    }
+    const data = getLocalList(param, 'user')
+    return data
   }
 }

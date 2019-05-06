@@ -8,7 +8,10 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
-
+const routes = {
+  user: () => import('@/views/page/user/index')
+  // test: () => import('@/views/page/test/index')
+}
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
 * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
@@ -46,7 +49,7 @@ export const constantRouterMap = [
       {
         path: 'user',
         name: 'user',
-        component: () => import('@/views/page/user/index'),
+        component: routes['user'],
         meta: { title: 'user', icon: 'user' }
       }
     ]

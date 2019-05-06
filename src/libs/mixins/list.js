@@ -2,13 +2,11 @@
  *  混合列表模板
  */
 import { mapActions, mapGetters } from 'vuex'
-import loading from './loading'
 import { iconBtn } from '@/libs/utils/table'
 import { confirm } from '@/libs/utils'
 import '@/styles/list-tem.scss' // 列表样式
 
 export default {
-  mixins: [loading],
   data() {
     return {
       list: [],
