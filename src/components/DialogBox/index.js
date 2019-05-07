@@ -27,8 +27,7 @@ const DialogBox = function(options) {
   }
   instance = new Dialog({
     data: options,
-    store: this.$store, // 手动继承store
-    router: this.$router // 手动继承router
+    parent: this.$root
   })
   instance.vm = instance.$mount()
   instance.id = id

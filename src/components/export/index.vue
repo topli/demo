@@ -1,12 +1,12 @@
 <template>
   <div class="export-template">
     <div class="export-body">
-      <el-radio v-model="radio" label="1">当前页导出</el-radio>
-      <el-radio v-model="radio" label="2">按条件导出</el-radio>
+      <el-radio v-model="radio" label="1">{{ $t('app.currentPageExport') }}</el-radio>
+      <el-radio v-model="radio" label="2">{{ $t('app.conditionExport') }}</el-radio>
     </div>
     <div class="export-footer">
-      <el-button type="primary" @click="submit">确定</el-button>
-      <el-button type="ghost" @click="onClose">取消</el-button> <!-- onClose 内置关闭弹出层方法 -->
+      <el-button type="primary" @click="submit">{{ $t('app.submit') }}</el-button>
+      <el-button type="ghost" @click="onClose">{{ $t('app.cancel') }}</el-button> <!-- onClose 内置关闭弹出层方法 -->
     </div>
   </div>
 </template>

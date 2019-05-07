@@ -14,9 +14,9 @@
       </el-form>
     </search-tem>
     <div class="btns">
-      <icon-btn :content="$t('table.add')" auth-code="add" icon="add" @click="addData"/>
-      <icon-btn :content="$t('table.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('table.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
+      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
+      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
     </div>
     <div class="table">
       <t-for-col
@@ -118,13 +118,13 @@ export default {
           }
         },
         {
-          title: this.$t('user.table.buttons'),
+          title: this.$t('app.buttons'),
           width: '100',
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'table.edit', handler: this.editData, color: '#F6BD30' },
-              { icon: 'delete', t: 'table.dele', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
+              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }

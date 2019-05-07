@@ -10,7 +10,7 @@
           <el-button v-if="showMore" :icon="toggleFromIcon" type="text" @click="openSearchFun">{{ text }}</el-button>
           <el-button class="sub-btn" type="primary" round @click="onSearch">
             <svg-icon icon-class="search"/>
-            <span> {{ $t('table.search') }}</span>
+            <span> {{ $t('app.search') }}</span>
           </el-button>
         </div>
       </slot>

@@ -8,6 +8,13 @@ export default {
     success: '成功',
     modify: '修改',
     add: '新增',
-    reset: '重置'
+    reset: '重置',
+    selectFile: '选取文件',
+    currentPageExport: '当前页导出',
+    conditionExport: '按条件导出',
+    search: '搜索',
+    import: '导入',
+    export: '导出',
+    buttons: '操作'
   }
 }

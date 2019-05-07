@@ -15,13 +15,13 @@
           :auto-upload="false"
           :multiple="false"
           action="#">
-          <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+          <el-button slot="trigger" size="small" type="primary">{{ $t('app.selectFile') }}</el-button>
         </el-upload>
       </el-input>
     </div>
     <div class="import-footer">
-      <el-button type="primary" @click="submit">确定</el-button>
-      <el-button @click="onClose">取消</el-button>
+      <el-button type="primary" @click="submit">{{ $t('app.submit') }}</el-button>
+      <el-button @click="onClose">{{ $t('app.cancel') }}</el-button>
     </div>
   </div>
 </template>
@@ -63,7 +63,7 @@ export default {
       }
       this.loading = true
       setTimeout(() => {
-        this.$message.success('成功')
+        this.$message.success(this.$t('app.import') + this.$t('app.success'))
         setTimeout(() => {
           this.loading = false
           // 执行操作后隐藏弹出框

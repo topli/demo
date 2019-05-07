@@ -30,7 +30,7 @@ export default {
       }
       // 挂载内容
       const Components = Vue.extend(this.components)
-      this.doms = new Components({ propsData: this.props, data: { onSub: this.onSub, onClose: this.onClose }, store: this.$store, router: this.$router })
+      this.doms = new Components({ propsData: this.props, data: { onSub: this.onSub, onClose: this.onClose }, parent: this })
       this.doms.$mount('#dialog-box')
     })
   },

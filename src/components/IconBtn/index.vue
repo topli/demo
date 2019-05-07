@@ -7,7 +7,7 @@
       <el-tooltip
         :content="content"
         :open-delay="500"
-        placement="bottom">
+        placement="top">
         <div
           :class="classs"
           :style="styles"
