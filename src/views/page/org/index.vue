@@ -17,29 +17,29 @@
       </div>
       <div class="block">
         <el-form ref="form" :model="form" :rules="rules" label-width="100px">
-          <el-form-item :label="$t('org.fromTitle.orgName')" prop="orgName">
+          <el-form-item :label="$t('org.form.orgName')" prop="orgName">
             <el-input v-model="form.orgName"/>
           </el-form-item>
-          <el-form-item :label="$t('org.fromTitle.code')" prop="code">
+          <el-form-item :label="$t('org.form.code')" prop="code">
             <el-input v-model="form.code"/>
           </el-form-item>
-          <el-form-item :label="$t('org.fromTitle.linkman')" prop="linkman">
+          <el-form-item :label="$t('org.form.linkman')" prop="linkman">
             <el-input v-model="form.linkman"/>
           </el-form-item>
-          <el-form-item :label="$t('org.fromTitle.phone')" prop="phone">
+          <el-form-item :label="$t('org.form.phone')" prop="phone">
             <el-input v-model="form.phone"/>
           </el-form-item>
-          <el-form-item :label="$t('org.fromTitle.parent')" prop="parentName">
+          <el-form-item :label="$t('org.form.parent')" prop="parentName">
             <el-input v-model="form.parentName" disabled/>
-            <el-input v-show="false" v-model="form.parenId"/>
+            <el-input v-show="false" v-model="form.parentId"/>
           </el-form-item>
-          <el-form-item :label="$t('org.fromTitle.state')" prop="state">
+          <el-form-item :label="$t('org.form.state')" prop="state">
             <el-switch v-model="form.state"/>
           </el-form-item>
           <el-form-item>
-            <el-button v-if="form.id" type="primary" @click="submitForm('form')">{{ $t('org.fromTitle.edit') }}</el-button>
-            <el-button v-else type="primary" @click="submitForm('form')">{{ $t('org.fromTitle.add') }}</el-button>
-            <el-button @click="resetForm('form')">{{ $t('org.fromTitle.reset') }}</el-button>
+            <el-button v-if="form.id" type="primary" @click="submitForm('form')">{{ $t('app.modify') }}</el-button>
+            <el-button v-else type="primary" @click="submitForm('form')">{{ $t('app.add') }}</el-button>
+            <el-button @click="resetForm('form')">{{ $t('app.reset') }}</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -47,69 +47,20 @@
   </div>
 </template>
 <script>
-import { deepClone } from '@/libs/utils'
+import { deepClone, confirm } from '@/libs/utils'
+import { getList, editData } from './service'
 
 export default {
   data() {
-    const data = [
-      {
-        id: 9999,
-        orgName: '顶级机构',
-        type: 'org',
-        children: [
-          {
-            id: 1,
-            orgName: '部门1',
-            state: true,
-            code: 'BM1',
-            linkman: '张三',
-            phone: '13211111111',
-            parentId: 9999,
-            parentName: '顶级机构',
-            parentType: 'org'
-          },
-          {
-            id: 2,
-            orgName: '部门2',
-            state: true,
-            code: 'BM2',
-            linkman: '李四',
-            phone: '1322222222',
-            parentId: 9999,
-            parentName: '顶级机构',
-            parentType: 'org',
-            children: [
-              {
-                id: 5,
-                orgName: '子部门1',
-                state: true,
-                code: 'ZBM1',
-                linkman: '王五',
-                phone: '1313333333',
-                parentId: 2,
-                parentName: '部门2'
-              }, {
-                id: 6,
-                orgName: '子部门2',
-                state: true,
-                code: 'ZBM2',
-                linkman: '赵六',
-                phone: '1511111111',
-                parentId: 2,
-                parentName: '部门2'
-              }
-            ]
-          }]
-      }]
     return {
       dialogBox: false,
       iconsMap: [],
-      treeData: JSON.parse(JSON.stringify(data)),
+      treeData: [],
       form: {
         type: '1',
         name: '',
         parentName: '',
-        parenId: '',
+        parentId: '',
         parentType: '',
         show: true,
         code: '',
@@ -117,7 +68,10 @@ export default {
       },
       rules: {
         orgName: [
-          { required: true, message: this.$t('org.errorTip.orgName'), trigger: 'blur' }
+          { required: true, message: this.$t('org.formError.orgName'), trigger: 'blur' }
+        ],
+        parentName: [
+          { required: true, message: this.$t('org.formError.parentName') }
         ]
       }
     }
@@ -125,8 +79,14 @@ export default {
   computed: {
   },
   mounted() {
+    this.getData()
   },
   methods: {
+    getData() {
+      getList().then((res) => {
+        this.treeData = res.data.list
+      })
+    },
     handleClipboard(text, event) {
       this.form.icon = text
       this.handleClose()
@@ -134,7 +94,36 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          const handle = (array, data) => {
+            array && array.forEach((d, i) => {
+              if (data.id) {
+                if (d.id === data.id) {
+                  Object.keys(data).forEach((k) => {
+                    if (d[k] !== data[k] && k !== 'children') {
+                      d[k] = data[k]
+                    }
+                  })
+                } else {
+                  handle(d.children, data)
+                }
+              } else {
+                if (data.parentId === d.id) {
+                  if (!d.children) {
+                    this.$set(d, 'children', [])
+                  }
+                  d.children.push(data)
+                } else {
+                  handle(d.children, data)
+                }
+              }
+            })
+          }
+          handle(this.treeData, this.form)
+          editData({ list: this.treeData }).then((res) => {
+            if (res.code === 200) {
+              this.$message.success((this.form.id ? this.$t('app.modify') : this.$t('app.add')) + this.$t('app.success'))
+            }
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -145,7 +134,7 @@ export default {
       this.$refs[formName].resetFields()
     },
     append(item) {
-      console.log(item)
+      this.form = {}
       // todo 右侧显示新增页面
       this.form.parentName = item.data.orgName
       this.form.parentId = item.data.id
@@ -157,24 +146,20 @@ export default {
     },
     remove(item) {
       if (item.data && item.data.children && item.data.children.length > 0) {
-        this.$message.error({ message: '该节点存在子级不能删除' })
+        this.$message.error({ message: this.$t('org.formError.deleteError') })
         return
       }
       const parent = item.node.parent
       const children = parent.data.children || parent.data
       const index = children.findIndex(d => d.id === item.data.id)
-      this.$confirm('确定要删除该节点吗？', '温馨提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
+      confirm.call(this, () => {
         // todo 调用后台删除菜单api
         children.splice(index, 1)
         this.treeData = Object.assign([], this.treeData)
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
+        editData({ list: this.treeData }).then((res) => {
+          if (res.code === 200) {
+            this.$message.success(this.$t('app.delete') + this.$t('app.success'))
+          }
         })
       })
     },
@@ -194,9 +179,9 @@ export default {
         [
           h('span', { class: { 'title': true }}, data.orgName),
           h('span', [
-            this.renderIconBtn(h, { node, data, store }, { icon: 'add', content: '新增' }, this.append),
-            this.renderIconBtn(h, { node, data, store }, { icon: 'edit', content: '编辑' }, this.edit, data.type === 'org'),
-            this.renderIconBtn(h, { node, data, store }, { icon: 'delete', content: '删除' }, this.remove, data.type === 'org')
+            this.renderIconBtn(h, { node, data, store }, { icon: 'add', content: this.$t('app.add') }, this.append),
+            this.renderIconBtn(h, { node, data, store }, { icon: 'edit', content: this.$t('app.modify') }, this.edit, data.type === 'org'),
+            this.renderIconBtn(h, { node, data, store }, { icon: 'delete', content: this.$t('app.delete') }, this.remove, data.type === 'org')
           ])
         ])
     },

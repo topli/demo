@@ -11,9 +11,8 @@ export function iconBtn(h, params, iconBtns) {
     if (!item.hide) {
       btns.push(h('icon-btn', {
         props: {
-          icon: item.icon,
           content: this.$t(item.t),
-          authCode: item.authCode || ''
+          ...item
         },
         on: {
           click() {

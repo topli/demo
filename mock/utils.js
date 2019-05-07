@@ -19,7 +19,7 @@ export function getLocalList(param, type) {
   const p = getQueryString(param.url)
   const localData = JSON.parse(getStorage('localData'))
   let list = localData[type].list
-  if (p) {
+  if (p.pageNo && p.pageSize) {
     list = list.slice((p.pageNo - 1) * p.pageSize, (p.pageNo * p.pageSize) > list.length ? list.length : p.pageNo * p.pageSize)
   }
   return {

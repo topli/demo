@@ -5,6 +5,9 @@ export default {
     delete: '删除',
     submit: '确定',
     cancel: '取消',
-    success: '成功'
+    success: '成功',
+    modify: '修改',
+    add: '新增',
+    reset: '重置'
   }
 }

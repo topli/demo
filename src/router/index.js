@@ -9,7 +9,8 @@ Vue.use(Router)
 /* Layout */
 import Layout from '../views/layout/Layout'
 const routes = {
-  user: () => import('@/views/page/user/index')
+  user: () => import('@/views/page/user/index'),
+  org: () => import('@/views/page/org/index')
   // test: () => import('@/views/page/test/index')
 }
 /**
@@ -44,13 +45,21 @@ export const constantRouterMap = [
   {
     path: '/userM',
     component: Layout,
+    name: 'userM',
     redirect: 'noredirect',
+    meta: { title: 'userM', icon: 'user' },
     children: [
       {
         path: 'user',
         name: 'user',
         component: routes['user'],
-        meta: { title: 'user', icon: 'user' }
+        meta: { title: 'user' }
+      },
+      {
+        path: 'org',
+        name: 'org',
+        component: routes['org'],
+        meta: { title: 'org' }
       }
     ]
   },

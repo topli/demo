@@ -123,8 +123,8 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'table.edit', handler: this.editData }, // this.addOrUpdate 引用 list.js 方法 此方法为新增时显示窗口用
-              { icon: 'delete', t: 'table.dele', handler: this.deleteItem } // this.deleteItem 引用 list.js 方法 此方法为删除数据时提示窗口
+              { icon: 'edit', t: 'table.edit', handler: this.editData, color: '#F6BD30' },
+              { icon: 'delete', t: 'table.dele', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }

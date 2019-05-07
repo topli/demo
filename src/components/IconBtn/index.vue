@@ -35,7 +35,7 @@ export default {
     },
     size: {
       type: String,
-      default: '16'
+      default: '14'
     },
     color: {
       type: String,
@@ -57,7 +57,7 @@ export default {
       return ''
     },
     styles() {
-      var style = { fontSize: this.size + 'px' }
+      var style = { fontSize: this.size + 'px', background: this.color, color: this.color ? 'white' : '' }
       return style
     }
   },
@@ -82,6 +82,7 @@ export default {
 }
 
 .newIconBtn {
+  background: #E8EAE8;
   margin-left: 5px;
   display: inline-block;
   margin-bottom: 0;
