@@ -1,21 +1,13 @@
 export default {
   route: {
     Dashboard: '首页',
-    Example: '样例',
-    Form: '表单',
-    Nested: '菜单',
-    Table: '表格',
-    Tree: '树',
-    Menu1: '菜单1',
-    menu2: '菜单2',
-    'Menu1-1': '菜单1-1',
-    'Menu1-2': '菜单1-2',
-    'Menu1-3': '菜单1-3',
-    'Menu1-2-1': '菜单1-2-1',
-    'Menu1-2-2': '菜单1-2-2',
-    userM: '用户中心',
+    userM: '系统管理',
     user: '用户管理',
     test: '测试',
-    org: '组织管理'
+    org: '组织管理',
+    role: '角色管理',
+    sys: '系统管理',
+    menu: '菜单管理',
+    pages: '页面管理'
   }
 }

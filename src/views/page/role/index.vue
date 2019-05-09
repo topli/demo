@@ -3,25 +3,18 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchFrom">
         <el-form-item>
-          <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
+          <el-input v-model="searchFrom.roleName" :placeholder="$t('role.roleName')" clearable/>
         </el-form-item>
-        <!-- <el-form-item>
-          <el-select v-model="searchFrom.region" :placeholder="$t('user.region')" clearable>
-            <el-option label="区域一" value="shanghai"/>
-            <el-option label="区域二" value="beijing"/>
-          </el-select>
-        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">
       <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
+      <!-- <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
     <div class="table">
       <t-for-col
         :data="list"
-        :sort-change="sortChange"
         :columns-title="columnsTitle"
         :loading="loading"
         selection
@@ -43,6 +36,7 @@
 
 <script>
 import add from './add'
+import addPerson from './addPerson'
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
@@ -53,69 +47,8 @@ export default {
     return {
       columnsTitle: [
         {
-          key: 'username',
-          title: this.$t('user.username'),
-          width: '180'
-        },
-        {
-          key: 'age',
-          title: this.$t('user.age'),
-          width: '180',
-          unit: this.$t('user.ageUnit')
-          // searchFilters: [
-          //   { text: '> 20', value: 20 },
-          //   { text: '> 50', value: 50 }
-          // ],
-          // sortable: 'custom' // 对应列是否可以排序，如果设置为 'custom'，则代表用户希望远程排序，需要监听 Table 的 sort-change 事件
-        },
-        // renderHeader 用法
-        // renderContent 用法
-        // {
-        //   key: 'age',
-        //   title: 'test',
-        //   width: '180',
-        //   searchFilters: [
-        //     { text: 'test1', value: 11 },
-        //     { text: 'test2', value: 22 }
-        //   ],
-        //   renderHeader: (h, params) => {
-        //     return h('span', [h('span', params.column.label), iconTooltip(h, '提示')]);
-        //   },
-        //   render: (h, params) => {
-        //     return h('div', [
-        //       h('el-input', {
-        //         props: { value: params.row.age },
-        //         on: {
-        //           input: (val) => {
-        //             // 通过index找到对应的值 并改变输入值
-        //             this.$set(this.list[params.$index], 'age', val);
-        //           }
-        //         }
-        //       })]);
-        //   }
-        // },
-        {
-          key: 'sex',
-          title: this.$t('user.sex'),
-          filters: 'sex'
-        },
-        {
-          key: 'createTime',
-          title: this.$t('user.createTime'),
-          filters: 'parseTime'
-        },
-        {
-          key: 'delivery',
-          title: this.$t('user.delivery'),
-          filters: 'delivery', // 带过滤器的项 取值是时前面加上 _f_
-          render: (h, params) => {
-            return h('el-tag', {
-              props: {
-                type: params.row.delivery ? 'success' : 'danger'
-              }
-            },
-            params.row['_f_delivery'])
-          }
+          key: 'roleName',
+          title: this.$t('role.roleName')
         },
         {
           title: this.$t('app.buttons'),
@@ -123,21 +56,19 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
+              { icon: 'addperson', t: 'role.addPerson', handler: this.addPerson },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
               { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
       ],
-      fileType: 'user'
+      fileType: 'role'
     }
   },
   mounted() {
   },
   methods: {
-    sortChange(data) {
-      console.log(data)
-    },
     _getList() {
       this.loading = true
       getList(this.searchData).then(res => {
@@ -160,7 +91,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.modify'),
         components: add,
-        width: 650,
+        width: 400,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
@@ -173,7 +104,20 @@ export default {
       this.$dialogBox({
         title: this.$t('app.add'),
         components: add,
+        width: 400,
+        onSub: (el) => {
+          // 新增完成后执行操作
+          // todo 刷新列表
+          this._getList()
+        }
+      })
+    },
+    addPerson(row) {
+      this.$dialogBox({
+        title: this.$t('role.addPerson'),
+        components: addPerson,
         width: 650,
+        props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
           // todo 刷新列表

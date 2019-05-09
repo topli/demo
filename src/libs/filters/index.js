@@ -1,6 +1,8 @@
 // set function parseTime,formatTime to filter
 export { parseTime, formatTime } from '@/libs/utils'
 
+import store from '@/store'
+
 function pluralize(time, label) {
   if (time === 1) {
     return time + label
@@ -55,4 +57,17 @@ export function delivery(val) {
     true: '启用'
   }
   return data[!!val]
+}
+function getDictDataByType(type) {
+  let data = []
+  if (store.state.app.dictData) {
+    data = store.state.app.dictData[type] || []
+  }
+  return data || []
+}
+export function getDictDatas(val, type) {
+  const findData = getDictDataByType(type).find((item) => {
+    return item.value === val
+  })
+  return findData
 }

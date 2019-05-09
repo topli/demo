@@ -36,13 +36,13 @@ export function addLocalData(param, type) {
   const list = localData[type].list
   const data = JSON.parse(param.body)
   const find = list.find((item) => {
-    return item.username === data.username
+    return item.id === data.id
   })
   if (find) {
     return {
       code: 500,
       data: null,
-      message: '姓名重复'
+      message: '数据重复'
     }
   }
   localData[type].list.push(data)

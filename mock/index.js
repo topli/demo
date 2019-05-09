@@ -2,6 +2,8 @@ import Mock from 'mockjs'
 import userAPI from './user'
 import tableAPI from './table'
 import orgAPI from './org'
+import roleAPI from './role'
+import dictAPI from './dict'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -33,4 +35,14 @@ Mock.mock(/\/org\/add/, 'post', orgAPI.add)
 Mock.mock(/\/org\/list/, 'get', orgAPI.list)
 Mock.mock(/\/org\/edit/, 'put', orgAPI.edit)
 Mock.mock(/\/org\/del/, 'delete', orgAPI.del)
+// role
+Mock.mock(/\/role\/add/, 'post', roleAPI.add)
+Mock.mock(/\/role\/list/, 'get', roleAPI.list)
+Mock.mock(/\/role\/edit/, 'put', roleAPI.edit)
+Mock.mock(/\/role\/del/, 'delete', roleAPI.del)
+// dict
+Mock.mock(/\/dict\/add/, 'post', dictAPI.add)
+Mock.mock(/\/dict\/list/, 'get', dictAPI.list)
+Mock.mock(/\/dict\/edit/, 'put', dictAPI.edit)
+Mock.mock(/\/dict\/del/, 'delete', dictAPI.del)
 export default Mock

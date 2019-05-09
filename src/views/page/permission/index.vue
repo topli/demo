@@ -3,14 +3,8 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchFrom">
         <el-form-item>
-          <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
+          <el-input v-model="searchFrom.name" :placeholder="$t('permission.name')" clearable/>
         </el-form-item>
-        <!-- <el-form-item>
-          <el-select v-model="searchFrom.region" :placeholder="$t('user.region')" clearable>
-            <el-option label="区域一" value="shanghai"/>
-            <el-option label="区域二" value="beijing"/>
-          </el-select>
-        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">
@@ -21,7 +15,6 @@
     <div class="table">
       <t-for-col
         :data="list"
-        :sort-change="sortChange"
         :columns-title="columnsTitle"
         :loading="loading"
         selection
@@ -53,69 +46,9 @@ export default {
     return {
       columnsTitle: [
         {
-          key: 'username',
-          title: this.$t('user.username'),
+          key: 'name',
+          title: this.$t('permission.name'),
           width: '180'
-        },
-        {
-          key: 'age',
-          title: this.$t('user.age'),
-          width: '180',
-          unit: this.$t('user.ageUnit')
-          // searchFilters: [
-          //   { text: '> 20', value: 20 },
-          //   { text: '> 50', value: 50 }
-          // ],
-          // sortable: 'custom' // 对应列是否可以排序，如果设置为 'custom'，则代表用户希望远程排序，需要监听 Table 的 sort-change 事件
-        },
-        // renderHeader 用法
-        // renderContent 用法
-        // {
-        //   key: 'age',
-        //   title: 'test',
-        //   width: '180',
-        //   searchFilters: [
-        //     { text: 'test1', value: 11 },
-        //     { text: 'test2', value: 22 }
-        //   ],
-        //   renderHeader: (h, params) => {
-        //     return h('span', [h('span', params.column.label), iconTooltip(h, '提示')]);
-        //   },
-        //   render: (h, params) => {
-        //     return h('div', [
-        //       h('el-input', {
-        //         props: { value: params.row.age },
-        //         on: {
-        //           input: (val) => {
-        //             // 通过index找到对应的值 并改变输入值
-        //             this.$set(this.list[params.$index], 'age', val);
-        //           }
-        //         }
-        //       })]);
-        //   }
-        // },
-        {
-          key: 'sex',
-          title: this.$t('user.sex'),
-          filters: 'sex'
-        },
-        {
-          key: 'createTime',
-          title: this.$t('user.createTime'),
-          filters: 'parseTime'
-        },
-        {
-          key: 'delivery',
-          title: this.$t('user.delivery'),
-          filters: 'delivery', // 带过滤器的项 取值是时前面加上 _f_
-          render: (h, params) => {
-            return h('el-tag', {
-              props: {
-                type: params.row.delivery ? 'success' : 'danger'
-              }
-            },
-            params.row['_f_delivery'])
-          }
         },
         {
           title: this.$t('app.buttons'),
@@ -129,15 +62,12 @@ export default {
           }
         }
       ],
-      fileType: 'user'
+      fileType: 'permission'
     }
   },
   mounted() {
   },
   methods: {
-    sortChange(data) {
-      console.log(data)
-    },
     _getList() {
       this.loading = true
       getList(this.searchData).then(res => {

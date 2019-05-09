@@ -59,6 +59,42 @@ const data = {
             ]
           }]
       }]
+  },
+  role: {
+    list: [
+      { id: 1, roleName: '系统管理员', roles: '11,12,13', users: [1, 2] },
+      { id: 2, roleName: '财务', roles: '', users: [] },
+      { id: 3, roleName: '设备管理员', roles: '', users: [] },
+      { id: 4, roleName: '调度员', roles: '', users: [] }
+    ]
+  },
+  dict: {
+    // list: [
+    //   { id: 1, value: 1, label: '菜单类型', code: 'menuType', parentId: 0, orgName: '系统管理', orgId: 1 },
+    //   { id: 2, value: 2, label: '目录', parentId: 1 },
+    //   { id: 3, value: 3, label: '菜单', parentId: 2 },
+    //   { id: 4, value: 3, label: '按钮', parentId: 3 },
+    //   { id: 5, value: 3, label: '菜单状态', code: 'menuStatus', parentId: 0, orgName: '系统管理', orgId: 1 },
+    //   { id: 6, value: true, label: '可见', parentId: 5 },
+    //   { id: 7, value: false, label: '不可见', parentId: 5 }
+    // ],
+    list: {
+      menuType: [
+        { id: 2, value: 1, label: '目录', color: '#409EFF' },
+        { id: 3, value: 2, label: '菜单', color: '#67C23A' },
+        { id: 4, value: 3, label: '按钮', color: '#E6A23C' }
+      ],
+      menuStatus: [
+        { id: 6, value: true, label: '可见', color: '#67C23A', parentId: 5 },
+        { id: 7, value: false, label: '不可见', color: '#F56C6C', parentId: 5 }
+      ],
+      linkType: [
+        { id: 8, value: 1, label: '当前窗口', parentId: 5 },
+        { id: 9, value: 2, label: '弹出窗口', parentId: 5 },
+        { id: 10, value: 3, label: '弹出浏览器', parentId: 5 },
+        { id: 11, value: 4, label: '新窗口/新标签', parentId: 5 }
+      ]
+    }
   }
 }
 setStorage('localData', data)

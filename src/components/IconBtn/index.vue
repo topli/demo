@@ -77,7 +77,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .btn-is-focus {
-  color: #409eff !important;
+  // color: #409eff !important;
   border: 1px solid #409eff !important;
 }
 

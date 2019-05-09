@@ -3,6 +3,7 @@ import IconBtn from './IconBtn'
 import SearchTem from './SearchTem'
 import TableForColumn from './TableForColumn'
 import OrgTree from './OrgTree'
+import TreeTable from './TreeTable'
 
 import DialogBox from './DialogBox/index.js'
 
@@ -15,6 +16,7 @@ const install = function(Vue, options = {}) {
   Vue.component('SearchTem', SearchTem)
   Vue.component('TForCol', TableForColumn)
   Vue.component('OrgTree', OrgTree)
+  Vue.component('TreeTable', TreeTable)
   // 调用组件
   Vue.prototype.$dialogBox = DialogBox
 }

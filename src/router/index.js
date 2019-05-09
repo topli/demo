@@ -10,7 +10,10 @@ Vue.use(Router)
 import Layout from '../views/layout/Layout'
 const routes = {
   user: () => import('@/views/page/user/index'),
-  org: () => import('@/views/page/org/index')
+  org: () => import('@/views/page/org/index'),
+  role: () => import('@/views/page/role/index'),
+  permission: () => import('@/views/page/permission/index'),
+  menu: () => import('@/views/page/menu/index')
   // test: () => import('@/views/page/test/index')
 }
 /**
@@ -60,6 +63,39 @@ export const constantRouterMap = [
         name: 'org',
         component: routes['org'],
         meta: { title: 'org' }
+      },
+      {
+        path: 'role',
+        name: 'role',
+        component: routes['role'],
+        meta: { title: 'role' }
+      },
+      {
+        path: 'permission',
+        name: 'permission',
+        component: routes['permission'],
+        meta: { title: 'permission' }
+      }
+    ]
+  },
+  {
+    path: '/sys',
+    component: Layout,
+    name: 'sys',
+    redirect: 'noredirect',
+    meta: { title: 'sys', icon: 'sys' },
+    children: [
+      {
+        path: 'menu',
+        name: 'menu',
+        component: routes['menu'],
+        meta: { title: 'menu' }
+      },
+      {
+        path: 'pages',
+        name: 'pages',
+        component: routes['menu'],
+        meta: { title: 'pages' }
       }
     ]
   },

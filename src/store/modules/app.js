@@ -1,12 +1,13 @@
 import Cookies from 'js-cookie'
-
+import { getList } from '@/api/dict'
 const app = {
   state: {
     sidebar: {
       opened: !+Cookies.get('sidebarStatus'),
       withoutAnimation: false
     },
-    device: 'desktop'
+    device: 'desktop',
+    dictData: null
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {
@@ -25,6 +26,9 @@ const app = {
     },
     TOGGLE_DEVICE: (state, device) => {
       state.device = device
+    },
+    DICT_DATA: (state, dictData) => {
+      state.dictData = dictData
     }
   },
   actions: {
@@ -36,6 +40,11 @@ const app = {
     },
     ToggleDevice({ commit }, device) {
       commit('TOGGLE_DEVICE', device)
+    },
+    SetDictData({ commit }) {
+      getList().then((res) => {
+        commit('DICT_DATA', res.data.list || null)
+      })
     }
   }
 }

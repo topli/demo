@@ -17,23 +17,23 @@
       </div>
       <div class="block">
         <el-form ref="form" :model="form" :rules="rules" label-width="100px">
-          <el-form-item :label="$t('org.form.orgName')" prop="orgName">
+          <el-form-item :label="$t('org.orgName')" prop="orgName">
             <el-input v-model="form.orgName"/>
           </el-form-item>
-          <el-form-item :label="$t('org.form.code')" prop="code">
+          <el-form-item :label="$t('org.code')" prop="code">
             <el-input v-model="form.code"/>
           </el-form-item>
-          <el-form-item :label="$t('org.form.linkman')" prop="linkman">
+          <el-form-item :label="$t('org.linkman')" prop="linkman">
             <el-input v-model="form.linkman"/>
           </el-form-item>
-          <el-form-item :label="$t('org.form.phone')" prop="phone">
+          <el-form-item :label="$t('org.phone')" prop="phone">
             <el-input v-model="form.phone"/>
           </el-form-item>
-          <el-form-item :label="$t('org.form.parent')" prop="parentName">
+          <el-form-item :label="$t('org.parent')" prop="parentName">
             <el-input v-model="form.parentName" disabled/>
             <el-input v-show="false" v-model="form.parentId"/>
           </el-form-item>
-          <el-form-item :label="$t('org.form.state')" prop="state">
+          <el-form-item :label="$t('org.state')" prop="state">
             <el-switch v-model="form.state"/>
           </el-form-item>
           <el-form-item>
@@ -68,10 +68,10 @@ export default {
       },
       rules: {
         orgName: [
-          { required: true, message: this.$t('org.formError.orgName'), trigger: 'blur' }
+          { required: true, message: this.$t('org.orgNameRequired'), trigger: 'blur' }
         ],
         parentName: [
-          { required: true, message: this.$t('org.formError.parentName') }
+          { required: true, message: this.$t('org.parentNameRequired') }
         ]
       }
     }
@@ -146,7 +146,7 @@ export default {
     },
     remove(item) {
       if (item.data && item.data.children && item.data.children.length > 0) {
-        this.$message.error({ message: this.$t('org.formError.deleteError') })
+        this.$message.error({ message: this.$t('org.deleteError') })
         return
       }
       const parent = item.node.parent
