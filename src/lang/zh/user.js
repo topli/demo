@@ -5,7 +5,9 @@ export default {
     ageUnit: '岁',
     sex: '性别',
     createTime: '创建时间',
-    delivery: '状态',
-    buttons: '操作'
+    status: '状态',
+    usernameError: '姓名不能为空',
+    ageError: '年龄不能为空',
+    ageNumberError: '年龄不能为空'
   }
 }

@@ -2,13 +2,13 @@
   <div v-loading="loading" class="aou-template">
     <div class="aou-body">
       <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="姓名" prop="username">
+        <el-form-item :label="$t('user.username')" prop="username">
           <el-input v-model="form.username"/>
         </el-form-item>
-        <el-form-item label="年龄" prop="age">
+        <el-form-item :label="$t('user.age')" prop="age">
           <el-input v-model.number="form.age"/>
         </el-form-item>
-        <el-form-item label="性别">
+        <el-form-item :label="$t('user.sex')">
           <el-select v-model="form.sex">
             <el-option :value="1" label="男"/>
             <el-option :value="2" label="女"/>
@@ -17,14 +17,14 @@
         <!-- <el-form-item label="所属组织">
           <org-tree v-model="form.org"/>
         </el-form-item> -->
-        <el-form-item label="启用/禁用">
-          <el-switch v-model="form.delivery"/>
+        <el-form-item :label="$t('user.status')">
+          <el-switch v-model="form.status"/>
         </el-form-item>
       </el-form>
     </div>
     <div class="aou-footer">
-      <el-button type="primary" @click="submit">确定</el-button>
-      <el-button @click="onClose">取消</el-button>
+      <el-button type="primary" @click="submit">{{ $t('app.submit') }}</el-button>
+      <el-button @click="onClose">{{ $t('app.cancel') }}</el-button>
     </div>
   </div>
 </template>
@@ -41,11 +41,11 @@ export default {
       loading: false,
       rules: {
         username: [
-          { required: true, message: '姓名不能为空' }
+          { required: true, message: this.$t('user.usernameError') }
         ],
         age: [
-          { required: true, message: '年龄不能为空' },
-          { type: 'number', message: '年龄必须为数字值' }
+          { required: true, message: this.$t('user.ageError') },
+          { type: 'number', message: this.$t('user.ageNumberError') }
         ]
       }
     }
@@ -73,7 +73,7 @@ export default {
       addData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
-          this.$message.success('成功')
+          this.$message.success(this.$t('app.submit') + this.$t('app.success'))
           // 执行操作后隐藏弹出框
           this.onSub()
         }, 1000)
@@ -89,7 +89,7 @@ export default {
       editData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
-          this.$message.success('成功')
+          this.$message.success(this.$t('app.modify') + this.$t('app.success'))
           // 执行操作后隐藏弹出框
           this.onSub()
         }, 1000)

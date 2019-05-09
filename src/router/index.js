@@ -8,13 +8,25 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
+import routeView from '@/routeView'
 const routes = {
   user: () => import('@/views/page/user/index'),
   org: () => import('@/views/page/org/index'),
   role: () => import('@/views/page/role/index'),
   dict: () => import('@/views/page/dict/index'),
-  menu: () => import('@/views/page/menu/index')
-  // test: () => import('@/views/page/test/index')
+  menu: () => import('@/views/page/menu/index'),
+  driverTask: () => import('@/views/page/driverTask/index'),
+  deviceAttrM: () => import('@/views/page/deviceAttrM/index'),
+  deviceReport: () => import('@/views/page/deviceReport/index'),
+  monitorDevice: () => import('@/views/page/monitorDevice/index'),
+  realWorking: () => import('@/views/page/realWorking/index'),
+  videoDaily: () => import('@/views/page/videoDaily/index'),
+  deviceStatus: () => import('@/views/page/deviceStatus/index'),
+  deviceError: () => import('@/views/page/deviceError/index'),
+  enclosure: () => import('@/views/page/enclosure/index'),
+  tasks: () => import('@/views/page/tasks/index'),
+  tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
+  currentTaskReport: () => import('@/views/page/currentTaskReport/index')
 }
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -44,46 +56,150 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index')
     }]
   },
-
   {
-    path: '/userM',
+    path: '/sysInfoM',
     component: Layout,
-    name: 'userM',
+    name: 'sysInfoM',
     redirect: 'noredirect',
-    meta: { title: 'userM', icon: 'user' },
+    meta: { title: 'sysInfoM', icon: 'account' },
     children: [
       {
-        path: 'user',
-        name: 'user',
-        component: routes['user'],
-        meta: { title: 'user' }
+        path: 'userM',
+        name: 'userM',
+        component: routeView,
+        redirect: 'noredirect',
+        meta: { title: 'userM' },
+        children: [
+          {
+            path: 'user',
+            name: 'user',
+            component: routes['user'],
+            meta: { title: 'user' }
+          },
+          {
+            path: 'org',
+            name: 'org',
+            component: routes['org'],
+            meta: { title: 'org' }
+          },
+          {
+            path: 'role',
+            name: 'role',
+            component: routes['role'],
+            meta: { title: 'role' }
+          },
+          {
+            path: 'driverTask',
+            name: 'driverTask',
+            component: routes['driverTask'],
+            meta: { title: 'driverTask' }
+          }
+        ]
       },
       {
-        path: 'org',
-        name: 'org',
-        component: routes['org'],
-        meta: { title: 'org' }
-      },
-      {
-        path: 'role',
-        name: 'role',
-        component: routes['role'],
-        meta: { title: 'role' }
-      },
-      {
-        path: 'dict',
-        name: 'dict',
-        component: routes['dict'],
-        meta: { title: 'dict' }
+        path: 'deviceM',
+        name: 'deviceM',
+        component: routeView,
+        redirect: 'noredirect',
+        meta: { title: 'deviceM' },
+        children: [
+          {
+            path: 'deviceAttrM',
+            name: 'deviceAttrM',
+            component: routes['deviceAttrM'],
+            meta: { title: 'deviceAttrM' }
+          },
+          {
+            path: 'deviceReport',
+            name: 'deviceReport',
+            component: routes['deviceReport'],
+            meta: { title: 'deviceReport' }
+          }
+        ]
       }
     ]
+  },
+  {
+    path: '/monitorM',
+    component: Layout,
+    name: 'monitorM',
+    redirect: 'noredirect',
+    meta: { title: 'monitorM', icon: 'browse' },
+    children: [
+      {
+        path: 'monitorDevice',
+        name: 'monitorDevice',
+        component: routeView,
+        redirect: 'noredirect',
+        meta: { title: 'monitorDevice' },
+        children: [
+          {
+            path: 'realWorking',
+            name: 'realWorking',
+            component: routes['realWorking'],
+            meta: { title: 'realWorking' }
+          },
+          {
+            path: 'realWorkingMap',
+            name: 'realWorkingMap',
+            component: routes['realWorkingMap'],
+            meta: { title: 'realWorkingMap' }
+          }
+        ]
+      },
+      {
+        path: 'videoDaily',
+        name: 'videoDaily',
+        component: routes['videoDaily'],
+        meta: { title: 'videoDaily' }
+      },
+      {
+        path: 'deviceError',
+        name: 'deviceError',
+        component: routes['deviceError'],
+        meta: { title: 'deviceError' }
+      },
+      {
+        path: 'enclosure',
+        name: 'enclosure',
+        component: routes['enclosure'],
+        meta: { title: 'enclosure' }
+      }
+    ]
+  },
+  {
+    path: '/taskM',
+    component: Layout,
+    name: 'taskM',
+    redirect: 'noredirect',
+    meta: { title: 'taskM', icon: 'taskManagement' },
+    children: [
+      {
+        path: 'tasks',
+        name: 'tasks',
+        component: routes['tasks'],
+        meta: { title: 'tasks' }
+      },
+      {
+        path: 'tasksDispatch',
+        name: 'tasksDispatch',
+        component: routes['tasksDispatch'],
+        meta: { title: 'tasksDispatch' }
+      }
+    ]
+  },
+  {
+    path: 'currentTaskReport',
+    name: 'currentTaskReport',
+    component: routes['currentTaskReport'],
+    meta: { title: 'currentTaskReport' }
   },
   {
     path: '/sys',
     component: Layout,
     name: 'sys',
     redirect: 'noredirect',
-    meta: { title: 'sys', icon: 'sys' },
+    meta: { title: 'sys', icon: 'toolsHardware' },
     children: [
       {
         path: 'menu',
@@ -96,6 +212,12 @@ export const constantRouterMap = [
         name: 'pages',
         component: routes['menu'],
         meta: { title: 'pages' }
+      },
+      {
+        path: 'dict',
+        name: 'dict',
+        component: routes['dict'],
+        meta: { title: 'dict' }
       }
     ]
   },

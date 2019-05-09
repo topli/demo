@@ -15,7 +15,7 @@
         {{ scope.$index }}
       </template>
     </el-table-column>
-    <el-table-column v-for="(column, index) in columns" v-else :key="column.key" :label="column.label" :width="column.width">
+    <el-table-column v-for="(column, index) in columns" v-else :key="column.key" :label="column.title" :width="column.width">
       <template slot-scope="scope">
         <!-- Todo -->
         <!-- eslint-disable-next-line vue/no-confusing-v-for-v-if -->

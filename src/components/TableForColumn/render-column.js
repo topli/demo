@@ -4,21 +4,27 @@ export default {
     renderContent: Function,
     scope: Object,
     prop: String,
-    filters: String
+    filters: String,
+    dictType: String
   },
   render(h) {
     const prop = this.prop
     const scope = this.scope
+    let filters = this.filters
+    const dictType = this.dictType
     let v = null
-    if (this.filters) {
-      const test = Vue.filter(this.filters)
+    if (filters || dictType) {
+      if (dictType) {
+        filters = 'getDictDatas'
+      }
+      const test = Vue.filter(filters)
       if (test) {
-        v = test(scope.row[prop])
+        v = test(scope.row[prop], dictType || '')
         if (this.renderContent) {
           this.$set(scope.row, '_f_' + prop, v)
         }
       } else {
-        console.error('not define filters: ' + this.filters)
+        console.error('not define filters: ' + filters)
       }
     } else {
       v = scope.row[prop]

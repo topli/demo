@@ -70,6 +70,7 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.$message.success('成功')
+          this.$store.dispatch('SetDictData')
           // 执行操作后隐藏弹出框
           this.onSub()
         }, 1000)
@@ -86,6 +87,7 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.$message.success('成功')
+          this.$store.dispatch('SetDictData')
           // 执行操作后隐藏弹出框
           this.onSub()
         }, 1000)

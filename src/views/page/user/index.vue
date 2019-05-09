@@ -97,7 +97,12 @@ export default {
         {
           key: 'sex',
           title: this.$t('user.sex'),
-          filters: 'sex'
+          dictType: 'sex',
+          render: (h, params) => {
+            const f = params.row['_f_sex']
+            if (!f) return
+            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          }
         },
         {
           key: 'createTime',

@@ -3,7 +3,7 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchFrom">
         <el-form-item>
-          <el-input v-model="searchFrom.name" :placeholder="$t('permission.name')" clearable/>
+          <el-input v-model="searchFrom.name" :placeholder="$t('menu.name')" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -40,19 +40,19 @@ export default {
     return {
       columns: [
         {
-          label: '菜单名称',
+          title: this.$t('menu.name'),
           key: 'name'
         },
         {
-          label: '层级',
+          title: this.$t('menu.level'),
           key: 'level'
         },
         {
-          label: '排序',
+          title: this.$t('menu.order'),
           key: 'order'
         },
         {
-          label: '类型',
+          title: this.$t('menu.type'),
           key: 'type',
           dictType: 'menuType',
           render: (h, params) => {
@@ -62,15 +62,15 @@ export default {
           }
         },
         {
-          label: '请求地址',
+          title: this.$t('menu.path'),
           key: 'path'
         },
         {
-          label: '权限标识',
+          title: this.$t('menu.identification'),
           key: 'identification'
         },
         {
-          label: '状态',
+          title: this.$t('menu.status'),
           key: 'status',
           dictType: 'menuStatus',
           render: (h, params) => {
@@ -80,7 +80,7 @@ export default {
           }
         },
         {
-          label: '连接目标',
+          title: this.$t('menu.linkType'),
           key: 'linkType',
           dictType: 'linkType',
           render: (h, params) => {
@@ -90,7 +90,7 @@ export default {
           }
         },
         {
-          label: '备注',
+          title: this.$t('menu.remark'),
           key: 'remark'
         }
       ],
