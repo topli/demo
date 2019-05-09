@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { getList } from '@/api/dict'
+import { getData } from '@/api/dict'
 const app = {
   state: {
     sidebar: {
@@ -42,7 +42,8 @@ const app = {
       commit('TOGGLE_DEVICE', device)
     },
     SetDictData({ commit }) {
-      getList().then((res) => {
+      getData().then((res) => {
+        console.log(res)
         commit('DICT_DATA', res.data.list || null)
       })
     }

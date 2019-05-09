@@ -2,10 +2,10 @@ import { setStorage } from '@/libs/utils'
 const data = {
   user: {
     list: [
-      { id: 1, username: 'Tony', age: 20, sex: 1, createTime: new Date(), delivery: true },
-      { id: 2, username: 'Lisa', age: 25, sex: 2, createTime: new Date(), delivery: true },
-      { id: 3, username: 'Dan', age: 21, sex: 1, createTime: new Date(), delivery: true },
-      { id: 4, username: 'Kim', age: 23, sex: 2, createTime: new Date(), delivery: true }
+      { id: 1, username: 'Tony', age: 20, sex: 1, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', age: 25, sex: 2, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', age: 21, sex: 1, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', age: 23, sex: 2, createTime: new Date(), status: true }
     ]
   },
   org: {
@@ -69,16 +69,14 @@ const data = {
     ]
   },
   dict: {
-    // list: [
-    //   { id: 1, value: 1, label: '菜单类型', code: 'menuType', parentId: 0, orgName: '系统管理', orgId: 1 },
-    //   { id: 2, value: 2, label: '目录', parentId: 1 },
-    //   { id: 3, value: 3, label: '菜单', parentId: 2 },
-    //   { id: 4, value: 3, label: '按钮', parentId: 3 },
-    //   { id: 5, value: 3, label: '菜单状态', code: 'menuStatus', parentId: 0, orgName: '系统管理', orgId: 1 },
-    //   { id: 6, value: true, label: '可见', parentId: 5 },
-    //   { id: 7, value: false, label: '不可见', parentId: 5 }
-    // ],
-    list: {
+    list: [
+      { id: 2, value: '2', label: '目录', group: 'menuType', color: '#409EFF', orgName: '系统管理', status: true },
+      { id: 3, value: '3', label: '菜单', group: 'menuType', color: '#67C23A', orgName: '系统管理', status: true },
+      { id: 4, value: '3', label: '按钮', group: 'menuType', color: '#E6A23C', orgName: '系统管理', status: true },
+      { id: 6, value: 'true', label: '可见', group: 'menuStatus', color: '#67C23A', orgName: '系统管理', status: true },
+      { id: 7, value: 'false', label: '不可见', group: 'menuStatus', color: '#F56C6C', orgName: '系统管理', status: true }
+    ],
+    data: {
       menuType: [
         { id: 2, value: 1, label: '目录', color: '#409EFF' },
         { id: 3, value: 2, label: '菜单', color: '#67C23A' },

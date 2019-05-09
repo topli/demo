@@ -45,4 +45,5 @@ Mock.mock(/\/dict\/add/, 'post', dictAPI.add)
 Mock.mock(/\/dict\/list/, 'get', dictAPI.list)
 Mock.mock(/\/dict\/edit/, 'put', dictAPI.edit)
 Mock.mock(/\/dict\/del/, 'delete', dictAPI.del)
+Mock.mock(/\/dict\/data/, 'get', dictAPI.list2)
 export default Mock

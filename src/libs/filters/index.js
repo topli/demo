@@ -51,7 +51,7 @@ export function sex(val) {
   return data[val]
 }
 
-export function delivery(val) {
+export function status(val) {
   const data = {
     false: '禁用',
     true: '启用'

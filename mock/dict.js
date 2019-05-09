@@ -1,5 +1,5 @@
 import { getLocalList, addLocalData, editLocalData, delLocalData } from './utils'
-
+import { getStorage } from '@/libs/utils'
 export default {
   add: (param) => {
     const data = addLocalData(param, 'dict')
@@ -16,5 +16,17 @@ export default {
   list: (param) => {
     const data = getLocalList(param, 'dict')
     return data
+  },
+  list2: (param) => {
+    const localData = JSON.parse(getStorage('localData'))
+    const list = localData['dict'].data
+    return {
+      code: 200,
+      data: {
+        list: list,
+        total: list.length,
+        message: 'success'
+      }
+    }
   }
 }

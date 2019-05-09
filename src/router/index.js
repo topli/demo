@@ -12,7 +12,7 @@ const routes = {
   user: () => import('@/views/page/user/index'),
   org: () => import('@/views/page/org/index'),
   role: () => import('@/views/page/role/index'),
-  permission: () => import('@/views/page/permission/index'),
+  dict: () => import('@/views/page/dict/index'),
   menu: () => import('@/views/page/menu/index')
   // test: () => import('@/views/page/test/index')
 }
@@ -71,10 +71,10 @@ export const constantRouterMap = [
         meta: { title: 'role' }
       },
       {
-        path: 'permission',
-        name: 'permission',
-        component: routes['permission'],
-        meta: { title: 'permission' }
+        path: 'dict',
+        name: 'dict',
+        component: routes['dict'],
+        meta: { title: 'dict' }
       }
     ]
   },
