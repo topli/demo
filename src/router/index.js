@@ -26,7 +26,8 @@ const routes = {
   enclosure: () => import('@/views/page/enclosure/index'),
   tasks: () => import('@/views/page/tasks/index'),
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
-  currentTaskReport: () => import('@/views/page/currentTaskReport/index')
+  currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
+  map: () => import('@/views/page/map/index')
 }
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -185,14 +186,28 @@ export const constantRouterMap = [
         name: 'tasksDispatch',
         component: routes['tasksDispatch'],
         meta: { title: 'tasksDispatch' }
+      },
+      {
+        path: 'currentTaskReport',
+        name: 'currentTaskReport',
+        component: routes['currentTaskReport'],
+        meta: { title: 'currentTaskReport' }
       }
     ]
   },
   {
-    path: 'currentTaskReport',
-    name: 'currentTaskReport',
-    component: routes['currentTaskReport'],
-    meta: { title: 'currentTaskReport' }
+    path: '/map1',
+    name: 'map1',
+    component: Layout,
+    meta: { title: 'map' },
+    children: [
+      {
+        path: 'map',
+        name: 'map',
+        component: routes['map'],
+        meta: { title: 'map' }
+      }
+    ]
   },
   {
     path: '/sys',
