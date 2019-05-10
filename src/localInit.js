@@ -99,6 +99,15 @@ const data = {
         { id: 9, value: 2, label: '女', color: '#67C23A' }
       ]
     }
-  }
+  },
+  enclosure: {
+    list: [
+      { id: 1, status: true, enclosureName: '循环取货测试渝北工厂', enclosureType: '中转站', createTime: new Date(), org: '整车事业部', province: '重庆市', city: '重庆市', adress: '重庆市渝北区创新路长安汽车渝北工厂内,阳光百曌重庆汽车服务有限公司西北263米', enclosureRange: '100' },
+      { id: 2, status: true, enclosureName: '哈尔滨基地运力电子围栏', enclosureType: '仓库', createTime: new Date(), org: '整车事业部', province: '重庆市', city: '重庆市', adress: '重庆市渝北区创新路长安汽车渝北工厂内,阳光百曌重庆汽车服务有限公司西北263米', enclosureRange: '300' },
+      { id: 3, status: true, enclosureName: '46686民生二中储', enclosureType: '仓库', createTime: new Date(), org: '整车事业部', province: '黑龙江省', city: '哈尔滨市', adress: '黑龙江省哈尔滨市香坊区新疆东路东安汽车发动机制造公司北568米', enclosureRange: '300' },
+      { id: 4, status: true, enclosureName: '昆明中转站运力围栏', enclosureType: '仓库', createTime: new Date(), org: '零部件事业部', province: '云南省', city: '昆明市', adress: '云南省昆明市西山区明河碧波苑东521米', enclosureRange: '200' },
+      { id: 4, status: false, enclosureName: '广州中转站运力围栏', enclosureType: '仓库', createTime: new Date(), org: '零部件事业部', province: '广东省', city: '广州市', adress: '广东省广州市花都区竹洞村南568米', enclosureRange: '200' }
+    ]
+  },
 }
 setStorage('localData', data)
