@@ -84,23 +84,24 @@ export default {
   watch: {
     value: function(val) {
       this.$emit('input', val)
+    },
+    dictData: function() {
+      this.getOptions()
     }
   },
   mounted() {
-    let data = []
-    // 先到本地数据中查询字典值
-    if (this.dictData && this.dictData[this.dataType]) {
-      data = this.dictData[this.dataType]
-    }
-    // 如果不存在查询公用字典方法
-    if (!data.length) {
-      // 调用字典方法
-    }
-    this.options = data
+    this.getOptions()
   },
   methods: {
+    getOptions() {
+      let data = []
+      // 本地数据中查询字典值
+      if (this.dictData && this.dictData[this.dataType]) {
+        data = this.dictData[this.dataType]
+      }
+      this.options = data
+    },
     remoteMethod(query) {
-      console.log(query)
       if (query !== '') {
         this.loading = true
         setTimeout(() => {
