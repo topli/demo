@@ -5,12 +5,9 @@
         <el-form-item>
           <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
         </el-form-item>
-        <!-- <el-form-item>
-          <el-select v-model="searchFrom.region" :placeholder="$t('user.region')" clearable>
-            <el-option label="区域一" value="shanghai"/>
-            <el-option label="区域二" value="beijing"/>
-          </el-select>
-        </el-form-item> -->
+        <el-form-item>
+          <select-remote v-model="searchFrom.sex" :placeholder="$t('user.sex')" filterable data-type="sex"/>
+        </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">
@@ -145,6 +142,7 @@ export default {
     },
     _getList() {
       this.loading = true
+      console.log(this.searchData)
       getList(this.searchData).then(res => {
         setTimeout(() => {
           this.loading = false
