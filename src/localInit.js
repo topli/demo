@@ -76,7 +76,9 @@ const data = {
       { id: 6, value: 'true', label: '可见', group: 'menuStatus', color: '#67C23A', orgName: '系统管理', status: true },
       { id: 7, value: 'false', label: '不可见', group: 'menuStatus', color: '#F56C6C', orgName: '系统管理', status: true },
       { id: 8, value: '1', label: '男', group: 'sex', color: '#409EFF', orgName: '系统管理', status: true },
-      { id: 9, value: '2', label: '女', group: 'sex', color: '#67C23A', orgName: '系统管理', status: true }
+      { id: 9, value: '2', label: '女', group: 'sex', color: '#67C23A', orgName: '系统管理', status: true },
+      { id: 10, value: 'true', label: '启用', group: 'status', color: '#67C23A', orgName: '系统管理', status: true },
+      { id: 11, value: 'false', label: '禁用', group: 'status', color: '#F56C6C', orgName: '系统管理', status: true }
     ],
     data: {
       menuType: [
@@ -97,6 +99,10 @@ const data = {
       sex: [
         { id: 8, value: 1, label: '男', color: '#409EFF' },
         { id: 9, value: 2, label: '女', color: '#67C23A' }
+      ],
+      status: [
+        { id: 10, value: true, label: '启用', color: '#67C23A' },
+        { id: 11, value: false, label: '禁用', color: '#F56C6C' }
       ]
     }
   },

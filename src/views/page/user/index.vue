@@ -5,12 +5,9 @@
         <el-form-item>
           <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
         </el-form-item>
-        <!-- <el-form-item>
-          <el-select v-model="searchFrom.region" :placeholder="$t('user.region')" clearable>
-            <el-option label="区域一" value="shanghai"/>
-            <el-option label="区域二" value="beijing"/>
-          </el-select>
-        </el-form-item> -->
+        <el-form-item>
+          <select-remote v-model="searchFrom.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
+        </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">
@@ -48,6 +45,7 @@ import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
 
 export default {
+  name: 'User',
   mixins: [list, dialog],
   data() {
     return {
@@ -112,14 +110,11 @@ export default {
         {
           key: 'status',
           title: this.$t('user.status'),
-          filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
+          dictType: 'status',
           render: (h, params) => {
-            return h('el-tag', {
-              props: {
-                type: params.row.status ? 'success' : 'danger'
-              }
-            },
-            params.row['_f_status'])
+            const f = params.row['_f_status']
+            if (!f) return
+            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
           }
         },
         {
@@ -137,14 +132,13 @@ export default {
       fileType: 'user'
     }
   },
-  mounted() {
-  },
   methods: {
     sortChange(data) {
       console.log(data)
     },
     _getList() {
       this.loading = true
+      console.log(this.searchData)
       getList(this.searchData).then(res => {
         setTimeout(() => {
           this.loading = false
