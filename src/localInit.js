@@ -122,6 +122,245 @@ const data = {
         { id: 13, value: 4, label: '统计专员', color: '#F56C6C' }
       ]
     }
+  },
+  menu: {
+    data: [
+      {
+        id: 1,
+        name: '系统信息管理',
+        order: 1,
+        type: 1,
+        path: 'sys',
+        identification: '',
+        status: true,
+        linkType: 0,
+        child: [
+          {
+            id: 2,
+            name: '用户中心',
+            order: 1,
+            type: 1,
+            status: true,
+            child: [
+              {
+                id: 3,
+                name: '用户管理',
+                order: 1,
+                type: 2,
+                identification: 'user',
+                status: true,
+                linkType: 1,
+                child: []
+              },
+              {
+                id: 4,
+                name: '组织部门',
+                order: 1,
+                type: 2,
+                identification: 'org',
+                status: true,
+                linkType: 1,
+                child: []
+              },
+              {
+                id: 5,
+                name: '角色权限',
+                order: 1,
+                type: 2,
+                identification: 'role',
+                status: true,
+                linkType: 1,
+                child: []
+              },
+              {
+                id: 6,
+                name: '司机排班',
+                order: 1,
+                type: 2,
+                identification: 'driverTask',
+                status: true,
+                linkType: 1,
+                child: []
+              }
+            ]
+          },
+          {
+            id: 7,
+            name: '设备管理',
+            order: 1,
+            type: 1,
+            status: true,
+            child: [
+              {
+                id: 8,
+                name: '设备属性管理',
+                order: 1,
+                linkType: 3,
+                type: 2,
+                identification: 'deviceAttrM',
+                status: true,
+                child: []
+              },
+              {
+                id: 9,
+                name: '图形化显示设备健康信息',
+                order: 1,
+                linkType: 3,
+                type: 2,
+                identification: 'deviceReport',
+                status: true,
+                child: []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 10,
+        name: '监控平台',
+        order: 1,
+        type: 1,
+        status: true,
+        child: [
+          {
+            id: 11,
+            name: '设备监控',
+            order: 1,
+            type: 1,
+            status: true,
+            child: [
+              {
+                id: 12,
+                name: '实时工作状态查询',
+                order: 1,
+                type: 2,
+                identification: 'realWorking',
+                status: true,
+                linkType: 1,
+                child: []
+              },
+              {
+                id: 13,
+                name: '实时工作范围+地图',
+                order: 1,
+                type: 2,
+                identification: 'realWorkingMap',
+                status: true,
+                linkType: 1,
+                child: []
+              }
+            ]
+          },
+          {
+            id: 14,
+            name: '日常监控',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'videoDaily',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 15,
+            name: '设备故障报警',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'deviceError',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 16,
+            name: '电子围栏',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'enclosure',
+            linkType: 1,
+            child: []
+          }
+        ]
+      },
+      {
+        id: 17,
+        name: '任务管理',
+        order: 1,
+        type: 1,
+        status: true,
+        child: [
+          {
+            id: 18,
+            name: '任务列表',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'tasks',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 19,
+            name: '调度任务',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'tasksDispatch',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 20,
+            name: '当前任务进度统计',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'currentTaskReport',
+            linkType: 1,
+            child: []
+          }
+        ]
+      },
+      {
+        id: 7,
+        name: '后台配置',
+        order: 2,
+        type: 1,
+        child: [
+          {
+            id: 20,
+            name: '菜单管理',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'menu',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 20,
+            name: '页面管理',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'pages',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 20,
+            name: '字典管理',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'dict',
+            linkType: 1,
+            child: []
+          }
+        ]
+      }
+    ]
   }
 }
 setStorage('localData', data)

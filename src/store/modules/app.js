@@ -43,7 +43,6 @@ const app = {
     },
     SetDictData({ commit }) {
       getData().then((res) => {
-        console.log(res)
         // 模拟请求延迟
         setTimeout(() => {
           commit('DICT_DATA', res.data.list || null)

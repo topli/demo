@@ -4,6 +4,7 @@ import tableAPI from './table'
 import orgAPI from './org'
 import roleAPI from './role'
 import dictAPI from './dict'
+import menuAPI from './menu'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -46,4 +47,10 @@ Mock.mock(/\/dict\/list/, 'get', dictAPI.list)
 Mock.mock(/\/dict\/edit/, 'put', dictAPI.edit)
 Mock.mock(/\/dict\/del/, 'delete', dictAPI.del)
 Mock.mock(/\/dict\/data/, 'get', dictAPI.list2)
+// menu
+Mock.mock(/\/menu\/add/, 'post', menuAPI.add)
+Mock.mock(/\/menu\/list/, 'get', menuAPI.list)
+Mock.mock(/\/menu\/edit/, 'put', menuAPI.edit)
+Mock.mock(/\/menu\/del/, 'delete', menuAPI.del)
+Mock.mock(/\/menu\/data/, 'get', menuAPI.data)
 export default Mock

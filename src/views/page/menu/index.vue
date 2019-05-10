@@ -32,7 +32,7 @@
 import add from './add'
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
-import { getList, delData } from './service'
+import { getList, delData, getData } from './service'
 
 export default {
   mixins: [list, dialog],
@@ -41,6 +41,7 @@ export default {
       columns: [
         {
           title: this.$t('menu.name'),
+          width: '300',
           key: 'name'
         },
         {
@@ -92,88 +93,33 @@ export default {
         {
           title: this.$t('menu.remark'),
           key: 'remark'
+        },
+        {
+          title: this.$t('app.buttons'),
+          width: '100',
+          align: 'center',
+          fixed: 'right',
+          render: (h, params) => {
+            return h('div', this.iconBtn(h, params, [
+              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
+              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+            ]))
+          }
         }
       ],
       data: [
-        {
-          id: 1,
-          name: '系统管理',
-          order: 1,
-          type: 1,
-          path: '',
-          identification: '',
-          status: true,
-          linkType: 0,
-          child: [
-            {
-              id: 2,
-              name: '用户管理',
-              order: 1,
-              type: 2,
-              path: 'userM/user',
-              identification: 'user',
-              status: true,
-              linkType: 1,
-              child: []
-            },
-            {
-              id: 3,
-              name: '组织架构',
-              order: 1,
-              type: 2,
-              path: 'userM/org',
-              identification: 'org',
-              status: true,
-              linkType: 2,
-              child: [
-                {
-                  id: 4,
-                  name: '新增',
-                  order: 1,
-                  linkType: 3,
-                  type: 3
-                },
-                {
-                  id: 5,
-                  name: '编辑',
-                  order: 2,
-                  linkType: 3,
-                  type: 3
-                },
-                {
-                  id: 6,
-                  name: '删除',
-                  order: 3,
-                  linkType: 3,
-                  type: 3
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 7,
-          name: '后台配置',
-          order: 2,
-          type: 1,
-          child: [
-            {
-              id: 8,
-              name: '菜单管理'
-            },
-            {
-              id: 9,
-              name: '页面管理',
-              child: []
-            }
-          ]
-        }
       ]
     }
   },
   mounted() {
+    this.getData()
   },
   methods: {
+    getData() {
+      getData().then((res) => {
+        this.data = res.data.list
+      })
+    },
     _getList() {
       this.loading = true
       getList(this.searchData).then(res => {

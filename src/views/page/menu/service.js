@@ -1,9 +1,11 @@
 import http from '@/libs/utils/http'
 
-export const getList = (query) => http('get /user/list', { params: query })
+export const getList = (query) => http('get /menu/list', { params: query })
 
-export const addData = (data) => http('post /user/add', { data: data })
+export const getData = (query) => http('get /menu/data', { params: query })
 
-export const editData = (data) => http('put /user/edit', { data: data })
+export const addData = (data) => http('post /menu/add', { data: data })
 
-export const delData = (data) => http('delete /user/del', { data: data })
+export const editData = (data) => http('put /menu/edit', { data: data })
+
+export const delData = (data) => http('delete /menu/del', { data: data })

@@ -37,11 +37,15 @@ export default {
         ]
       },
       menuList: [
-        { label: '用户中心', id: 1, children: [
-          { label: '用户管理', id: 11 },
-          { label: '组织管理', id: 12 },
-          { label: '角色管理', id: 13 }
-        ] }
+        {
+          label: '用户中心',
+          id: 1,
+          children: [
+            { label: '用户管理', id: 11 },
+            { label: '组织管理', id: 12 },
+            { label: '角色管理', id: 13 }
+          ]
+        }
       ]
     }
   },
