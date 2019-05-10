@@ -196,10 +196,11 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/map1',
-    name: 'map1',
+    path: '/map',
+    name: 'map',
     component: Layout,
     meta: { title: 'map' },
+    hidden: true,
     children: [
       {
         path: 'map',

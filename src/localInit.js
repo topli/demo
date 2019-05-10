@@ -2,22 +2,33 @@ import { setStorage } from '@/libs/utils'
 const data = {
   user: {
     list: [
-      { id: 1, username: 'Tony', age: 20, sex: 1, createTime: new Date(), status: true },
-      { id: 2, username: 'Lisa', age: 25, sex: 2, createTime: new Date(), status: true },
-      { id: 3, username: 'Dan', age: 21, sex: 1, createTime: new Date(), status: true },
-      { id: 4, username: 'Kim', age: 23, sex: 2, createTime: new Date(), status: true }
+      { id: 1, username: 'Tony', orgName: '总公司', roleName: '管理员', jobName: '管理员', jobLevel: '0', age: 20, sex: 1, isWork: false, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', age: 25, sex: 2, isWork: false, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', age: 21, sex: 1, isWork: false, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', age: 23, sex: 2, isWork: true, createTime: new Date(), status: true }
     ]
   },
   org: {
     list: [
       {
         id: 9999,
-        orgName: '顶级机构',
+        orgName: '总公司',
         type: 'org',
         children: [
           {
             id: 1,
-            orgName: '部门1',
+            orgName: '分公司',
+            state: true,
+            code: 'BM1',
+            linkman: '张三',
+            phone: '13211111111',
+            parentId: 9999,
+            parentName: '顶级机构',
+            parentType: 'org'
+          },
+          {
+            id: 3,
+            orgName: '分公司1',
             state: true,
             code: 'BM1',
             linkman: '张三',
@@ -28,7 +39,7 @@ const data = {
           },
           {
             id: 2,
-            orgName: '部门2',
+            orgName: '分公司2',
             state: true,
             code: 'BM2',
             linkman: '李四',
@@ -39,7 +50,7 @@ const data = {
             children: [
               {
                 id: 5,
-                orgName: '子部门1',
+                orgName: '财务',
                 state: true,
                 code: 'ZBM1',
                 linkman: '王五',
@@ -48,7 +59,7 @@ const data = {
                 parentName: '部门2'
               }, {
                 id: 6,
-                orgName: '子部门2',
+                orgName: '调度',
                 state: true,
                 code: 'ZBM2',
                 linkman: '赵六',
@@ -103,6 +114,12 @@ const data = {
       status: [
         { id: 10, value: true, label: '启用', color: '#67C23A' },
         { id: 11, value: false, label: '禁用', color: '#F56C6C' }
+      ],
+      userType: [
+        { id: 12, value: 1, label: '司机', color: '#67C23A' },
+        { id: 13, value: 2, label: '管理员', color: '#F56C6C' },
+        { id: 13, value: 3, label: '任务调度员', color: '#F56C6C' },
+        { id: 13, value: 4, label: '统计专员', color: '#F56C6C' }
       ]
     }
   }
