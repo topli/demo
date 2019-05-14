@@ -104,7 +104,10 @@ const data = {
       { id: 8, value: '1', label: '男', group: 'sex', color: '#409EFF', orgName: '系统管理', status: true },
       { id: 9, value: '2', label: '女', group: 'sex', color: '#67C23A', orgName: '系统管理', status: true },
       { id: 10, value: 'true', label: '启用', group: 'status', color: '#67C23A', orgName: '系统管理', status: true },
-      { id: 11, value: 'false', label: '禁用', group: 'status', color: '#F56C6C', orgName: '系统管理', status: true }
+      { id: 11, value: 'false', label: '禁用', group: 'status', color: '#F56C6C', orgName: '系统管理', status: true },
+      { id: 12, value: 1, label: '早班', group: 'taskType', color: '#04b669', orgName: '系统管理', status: true },
+      { id: 13, value: 2, label: '晚班', group: 'taskType', color: '#6b89aa', orgName: '系统管理', status: true },
+      { id: 14, value: 3, label: '休息', group: 'taskType', color: '#a8a8a8', orgName: '系统管理', status: true }
     ],
     data: {
       menuType: [
@@ -135,6 +138,11 @@ const data = {
         { id: 13, value: 2, label: '管理员', color: '#F56C6C' },
         { id: 13, value: 3, label: '任务调度员', color: '#F56C6C' },
         { id: 13, value: 4, label: '统计专员', color: '#F56C6C' }
+      ],
+      taskType: [
+        { id: 14, value: 1, label: '早班', color: '#04b669' },
+        { id: 15, value: 2, label: '晚班', color: '#6b89aa' },
+        { id: 16, value: 3, label: '休息', color: '#a8a8a8' }
       ]
     }
   },
@@ -398,6 +406,16 @@ const data = {
       { id: 2, useStatus: '报废', orgName: '分公司', model: '推土机', number: 'NO17', status: '可用', usePerson: '李四', createTime: new Date(), available: true },
       { id: 3, useStatus: '闲置中', orgName: '分公司', model: '调度员', number: 'NO18', status: '可用', usePerson: '张三', createTime: new Date(), available: true },
       { id: 4, useStatus: '使用中', orgName: '分公司', model: '推土机', number: 'NO19', status: '可用', usePerson: '张三', createTime: new Date(), available: true }
+    ]
+  },
+  driverTask: {
+    list: [
+      { deviceNo: '鄂A12345', driverName: '张三' },
+      { deviceNo: '鄂A12346', driverName: '李四' },
+      { deviceNo: '鄂A12347', driverName: '王五' },
+      { deviceNo: '鄂A12348', driverName: '张二毛' },
+      { deviceNo: '鄂A12349', driverName: '李三毛' },
+      { deviceNo: '鄂A12350', driverName: '王小胖' }
     ]
   }
 }

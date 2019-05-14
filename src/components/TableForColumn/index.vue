@@ -7,7 +7,8 @@
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
-      @sort-change="sortChange">
+      @sort-change="sortChange"
+      @row-dblclick="rowDblclick">
       <el-table-column
         v-if="selection"
         fixed
@@ -88,6 +89,9 @@ export default {
     handleSelectionChange(selection) {
       if (!this.selection) return
       this.$emit('select-change', selection)
+    },
+    rowDblclick() {
+      this.$emit('row-dblclick', ...arguments)
     },
     setTableHeight() {
       // document.body.clientHeight 窗口大小
