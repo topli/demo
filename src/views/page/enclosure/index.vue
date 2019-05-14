@@ -154,17 +154,8 @@ export default {
       }, 1000)
     },
     editData(row) {
-      this.$dialogBox({
-        title: this.$t('app.modify'),
-        components: add,
-        width: 650,
-        props: { data: row },
-        onSub: (el) => {
-          // 新增完成后执行操作
-          // todo 刷新列表
-          this._getList()
-        }
-      })
+      console.log(row)
+      this.$router.push({name: 'enclosureEdit', query: {id: row.id}})
     },
     addData() {
       this.$dialogBox({

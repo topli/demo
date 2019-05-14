@@ -42,6 +42,16 @@ const routes = {
     breadcrumb: false            if false, the item will hidden in breadcrumb(default is true)
   }
 **/
+
+export const childRouterMap = {
+  path: '',
+  component: Layout,
+  redirect: '/dashboard',
+  name: 'childRouter',
+  children: [
+    {path: 'monitorM/enclosure/edit', name: 'enclosureEdit', component: ()=> import('@/views/page/enclosure/add') }
+  ]
+}
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
@@ -253,5 +263,5 @@ export const constantRouterMap = [
 export default new Router({
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  routes: [...constantRouterMap, childRouterMap]
 })
