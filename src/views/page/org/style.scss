@@ -35,7 +35,6 @@
   }
 }
 .org-tree {
-  padding: 10px;
   overflow: auto;
   .custom-tree-container {
     display: -webkit-box;
@@ -54,9 +53,6 @@
     text-align:center;
     margin:0;
     line-height:4
-  }
-  .table-block {
-    padding:8px 10px 24px
   }
   .table-block {
     width: calc(100% - 450px);

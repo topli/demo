@@ -3,6 +3,7 @@
     <el-table
       v-loading="tableLoading"
       :data="data"
+      :height="tableHeight"
       border
       style="width: 100%"
       @selection-change="handleSelectionChange"
@@ -68,16 +69,17 @@ export default {
   computed: {
     tableLoading() {
       return this.loading
-    },
-    height() {
-      if (this.tableHeight < 220) {
-        return 220
-      }
-      return this.tableHeight
     }
+  },
+  watch: {
   },
   created() {},
   mounted() {
+    window.addEventListener('resize', this.setTableHeight)
+    this.setTableHeight()
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.setTableHeight)
   },
   methods: {
     label(col) {
@@ -86,6 +88,15 @@ export default {
     handleSelectionChange(selection) {
       if (!this.selection) return
       this.$emit('select-change', selection)
+    },
+    setTableHeight() {
+      // document.body.clientHeight 窗口大小
+      // 50 右侧头部高度
+      // this.$el.offsetTop 表格距离父级窗口的距离
+      // 70 分页部分高度
+      this.$nextTick(() => {
+        this.tableHeight = document.body.clientHeight - 50 - this.$el.offsetTop - 70
+      })
     }
   }
 }

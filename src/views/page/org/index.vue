@@ -17,7 +17,7 @@
           @node-contextmenu="showMenu"/>
       </div>
       <div class="table-block">
-        <div>
+        <!-- <div>
           <el-form :model="form" inline label-width="100px">
             <el-form-item :label="$t('org.orgName')">
               {{ form.orgName }}
@@ -35,7 +35,7 @@
               {{ form.parentName }}
             </el-form-item>
           </el-form>
-        </div>
+        </div> -->
         <div class="list-template">
           <search-tem class="list-search" @on-search="onSearch">
             <el-form :inline="true" :model="searchFrom">

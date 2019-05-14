@@ -2,10 +2,25 @@ import { setStorage } from '@/libs/utils'
 const data = {
   user: {
     list: [
-      { id: 1, username: 'Tony', orgName: '总公司', roleName: '管理员', jobName: '管理员', jobLevel: '0', age: 20, sex: 1, isWork: false, createTime: new Date(), status: true },
-      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', age: 25, sex: 2, isWork: false, createTime: new Date(), status: true },
-      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', age: 21, sex: 1, isWork: false, createTime: new Date(), status: true },
-      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', age: 23, sex: 2, isWork: true, createTime: new Date(), status: true }
+      { id: 1, username: 'Tony', orgName: '总公司', roleName: '管理员', jobName: '管理员', jobLevel: '0', sex: 1, age: 20, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', sex: 2, age: 25, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', sex: 2, age: 25, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', sex: 2, age: 21, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', sex: 1, age: 23, createTime: new Date(), status: true },
+      { id: 2, username: 'Lisa', orgName: '分公司', roleName: '财务', jobName: '财务', jobLevel: '1', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 3, username: 'Dan', orgName: '分公司', roleName: '调度员', jobName: '调度员', jobLevel: '1', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 4, username: 'Kim', orgName: '分公司', roleName: '司机', jobName: '司机', jobLevel: '2', sex: 2, age: 23, createTime: new Date(), status: true }
     ]
   },
   org: {
@@ -360,6 +375,29 @@ const data = {
           }
         ]
       }
+    ]
+  },
+  device: {
+    list: [
+      { id: 1, useStatus: '使用中', orgName: '总公司', model: '运输车', number: 'NO1', status: '可用', usePerson: '张三', createTime: new Date(), available: true },
+      { id: 2, useStatus: '使用中', orgName: '分公司', model: '起重机', number: 'NO2', status: '可用', usePerson: '李四', createTime: new Date(), available: true },
+      { id: 3, useStatus: '闲置中', orgName: '分公司', model: '运输车', number: 'NO3', status: '可用', usePerson: '王五', createTime: new Date(), available: true },
+      { id: 4, useStatus: '使用中', orgName: '分公司', model: '运输车', number: 'NO4', status: '可用', usePerson: '二麻子', createTime: new Date(), available: true },
+      { id: 2, useStatus: '使用中', orgName: '分公司', model: '起重机', number: 'NO5', status: '可用', usePerson: '三毛', createTime: new Date(), available: true },
+      { id: 3, useStatus: '闲置中', orgName: '分公司', model: '挖掘机', number: 'NO6', status: '可用', usePerson: '张三', createTime: new Date(), available: true },
+      { id: 4, useStatus: '使用中', orgName: '分公司', model: '运输车', number: 'NO7', status: '可用', usePerson: '王五', createTime: new Date(), available: true },
+      { id: 2, useStatus: '使用中', orgName: '分公司', model: '运输车', number: 'NO8', status: '可用', usePerson: '二麻子', createTime: new Date(), available: true },
+      { id: 3, useStatus: '闲置中', orgName: '分公司', model: '挖掘机', number: 'NO9', status: '可用', usePerson: '三毛', createTime: new Date(), available: true },
+      { id: 4, useStatus: '使用中', orgName: '分公司', model: '挖掘机', number: 'NO10', status: '可用', usePerson: '张三', createTime: new Date(), available: true },
+      { id: 2, useStatus: '使用中', orgName: '分公司', model: '推土机', number: 'NO11', status: '可用', usePerson: '三毛', createTime: new Date(), available: true },
+      { id: 3, useStatus: '闲置中', orgName: '分公司', model: '推土机', number: 'NO12', status: '可用', usePerson: '王五', createTime: new Date(), available: true },
+      { id: 4, useStatus: '报废', orgName: '分公司', model: '运输车', number: 'NO13', status: '可用', usePerson: '张三', createTime: new Date(), available: true },
+      { id: 2, useStatus: '使用中', orgName: '分公司', model: '推土机', number: 'NO14', status: '可用', usePerson: '王五', createTime: new Date(), available: true },
+      { id: 3, useStatus: '使用中', orgName: '分公司', model: '运输车', number: 'NO15', status: '可用', usePerson: '三毛', createTime: new Date(), available: true },
+      { id: 4, useStatus: '使用中', orgName: '分公司', model: '推土机', number: 'NO16', status: '可用', usePerson: '二麻子', createTime: new Date(), available: true },
+      { id: 2, useStatus: '报废', orgName: '分公司', model: '推土机', number: 'NO17', status: '可用', usePerson: '李四', createTime: new Date(), available: true },
+      { id: 3, useStatus: '闲置中', orgName: '分公司', model: '调度员', number: 'NO18', status: '可用', usePerson: '张三', createTime: new Date(), available: true },
+      { id: 4, useStatus: '使用中', orgName: '分公司', model: '推土机', number: 'NO19', status: '可用', usePerson: '张三', createTime: new Date(), available: true }
     ]
   }
 }
