@@ -78,15 +78,14 @@
           </div>
         </div>
       </div>
-
     </div>
     <div id="map" class="map"/>
   </div>
 </template>
 <script>
-import $ from 'jquery'
 import BMap from 'BMap'
 import BMapLib from 'BMapLib'
+import mapTool from '@/libs/utils/map'
 export default {
   data() {
     return {
@@ -200,20 +199,23 @@ export default {
         this.map.addOverlay(this.circle)
         await this.showDraggingInfo(markers)
         if (this.newMarker && this.newMarker.lat && this.newMarker.lng) {
-          const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${this.newMarker.lat},${this.newMarker.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-          $.ajax({
-            url: url,
-            dataType: 'jsonp',
-            xhrFields: {
-              withCredentials: true // 设置运行跨域操作
-            },
-            success: data => {
-              this.$set(this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-              let labelgg = new BMap.Label(this.formData.address, { offset: new BMap.Size(0, -20) })
-              if (this.drawType * 1 === 3) labelgg = new BMap.Label(this.formData.districts, { offset: new BMap.Size(0, -20) })
-              markers.setLabel(labelgg)
-            }
+          mapTool.getAddress(this.newMarker).then((res) => {
+            console.log(res)
           })
+          // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${this.newMarker.lat},${this.newMarker.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
+          // $.ajax({
+          //   url: url,
+          //   dataType: 'jsonp',
+          //   xhrFields: {
+          //     withCredentials: true // 设置运行跨域操作
+          //   },
+          //   success: data => {
+          //     this.$set(this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
+          //     let labelgg = new BMap.Label(this.formData.address, { offset: new BMap.Size(0, -20) })
+          //     if (this.drawType * 1 === 3) labelgg = new BMap.Label(this.formData.districts, { offset: new BMap.Size(0, -20) })
+          //     markers.setLabel(labelgg)
+          //   }
+          // })
         }
       } else {
         const polygon = new BMap.Polygon(this.drawPoints, { strokeColor: this.formData.color, fillColor: this.formData.color, strokeWeight: 3, strokeOpacity: 0.8, fillOpacity: 0.7 })
@@ -243,20 +245,23 @@ export default {
         this.map.addOverlay(markers)
         if (!x || !y) return
         if (x && y) {
-          const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${x},${y}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-          $.ajax({
-            url: url,
-            dataType: 'jsonp',
-            xhrFields: {
-              withCredentials: true // 设置运行跨域操作
-            },
-            success: data => {
-              this.$set(this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-              let labelgg = new BMap.Label(this.formData.address, { offset: new BMap.Size(0, -20) })
-              if (this.drawType * 1 === 3) labelgg = new BMap.Label(this.formData.districts, { offset: new BMap.Size(0, -20) })
-              markers.setLabel(labelgg)
-            }
+          mapTool.getAddress({ lng: x, lat: y }).then((res) => {
+            console.log(res)
           })
+          // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${x},${y}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
+          // $.ajax({
+          //   url: url,
+          //   dataType: 'jsonp',
+          //   xhrFields: {
+          //     withCredentials: true // 设置运行跨域操作
+          //   },
+          //   success: data => {
+          //     this.$set(this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
+          //     let labelgg = new BMap.Label(this.formData.address, { offset: new BMap.Size(0, -20) })
+          //     if (this.drawType * 1 === 3) labelgg = new BMap.Label(this.formData.districts, { offset: new BMap.Size(0, -20) })
+          //     markers.setLabel(labelgg)
+          //   }
+          // })
         }
       }
     },
@@ -288,21 +293,24 @@ export default {
             fillOpacity: 0.2
           })
           ___this.map.addOverlay(__this.circle)
-          const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${e.point.lat},${e.point.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-          $.ajax({
-            url: url,
-            dataType: 'jsonp',
-            xhrFields: {
-              withCredentials: true // 设置运行跨域操作
-            },
-            success: data => {
-              ___this.formData.address = ''
-              ___this.$set(___this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-              let labelgg = new BMap.Label(___this.formData.address, { offset: new BMap.Size(0, -20) })
-              if (___this.drawType * 1 === 3) labelgg = new BMap.Label(___this.formData.districts, { offset: new BMap.Size(0, -20) })
-              markers.setLabel(labelgg)
-            }
+          mapTool.getAddress(e.point).then((res) => {
+            console.log(res)
           })
+          // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${e.point.lat},${e.point.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
+          // $.ajax({
+          //   url: url,
+          //   dataType: 'jsonp',
+          //   xhrFields: {
+          //     withCredentials: true // 设置运行跨域操作
+          //   },
+          //   success: data => {
+          //     ___this.formData.address = ''
+          //     ___this.$set(___this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
+          //     let labelgg = new BMap.Label(___this.formData.address, { offset: new BMap.Size(0, -20) })
+          //     if (___this.drawType * 1 === 3) labelgg = new BMap.Label(___this.formData.districts, { offset: new BMap.Size(0, -20) })
+          //     markers.setLabel(labelgg)
+          //   }
+          // })
         })
       })
       markers.enableDragging()
@@ -391,7 +399,9 @@ export default {
               // })
             }
             // this._hyTool.cal(false);
-          } catch (e) {}
+          } catch (e) {
+            console.log(e)
+          }
         }
       })
     },
@@ -480,19 +490,22 @@ export default {
           _this.map.addOverlay(markers)
           _this.formData.point = marker.lng + ',' + marker.lat
           if (marker.lat && marker.lng) {
-            const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${marker.lat},${marker.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-            $.ajax({
-              url: url,
-              dataType: 'jsonp',
-              xhrFields: {
-                withCredentials: true // 设置运行跨域操作
-              },
-              success: data => {
-                _this.$set(_this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-                const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
-                markers.setLabel(labelgg)
-              }
+            mapTool.getAddress(marker).then((res) => {
+              console.log(res)
             })
+            // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${marker.lat},${marker.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
+            // $.ajax({
+            //   url: url,
+            //   dataType: 'jsonp',
+            //   xhrFields: {
+            //     withCredentials: true // 设置运行跨域操作
+            //   },
+            //   success: data => {
+            //     _this.$set(_this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
+            //     const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
+            //     markers.setLabel(labelgg)
+            //   }
+            // })
           }
           _this.myGeo.getLocation(_this.newMarker, function(rs) {
             // _this.formData.address = rs.address;
@@ -539,19 +552,22 @@ export default {
           const markers = new BMap.Marker(mPoint, { icon: myIcon })
           _this.map.addOverlay(markers)
           if (x && y) {
-            const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${y},${x}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-            $.ajax({
-              url: url,
-              dataType: 'jsonp',
-              xhrFields: {
-                withCredentials: true // 设置运行跨域操作
-              },
-              success: data => {
-                _this.$set(_this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-                const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
-                markers.setLabel(labelgg)
-              }
+            mapTool.getAddress({ lng: x, lat: y }).then((res) => {
+              console.log(res)
             })
+            // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${y},${x}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
+            // $.ajax({
+            //   url: url,
+            //   dataType: 'jsonp',
+            //   xhrFields: {
+            //     withCredentials: true // 设置运行跨域操作
+            //   },
+            //   success: data => {
+            //     _this.$set(_this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
+            //     const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
+            //     markers.setLabel(labelgg)
+            //   }
+            // })
           }
           _this.myGeo.getLocation(mPoint, function(rs) {
             // _this.formData.address = rs.address;
