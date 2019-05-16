@@ -29,9 +29,12 @@ import * as filters from './libs/filters' // global filters
  */
 import '../mock' // simulation data
 import './localInit'
+import echarts from 'echarts'
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
+
+Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI, {
   size: 'small', // set element-ui default size ['small', 'medium']
