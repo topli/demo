@@ -52,6 +52,7 @@
     </el-table>
   </div>
 </template>
+
 <script>
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
@@ -105,3 +106,6 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+</style>
