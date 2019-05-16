@@ -61,9 +61,10 @@ export const constantRouterMap = [
     component: Layout,
     redirect: '/dashboard',
     name: 'Dashboard',
-    hidden: true,
+    // hidden: true,
     children: [{
       path: 'dashboard',
+      meta: { title: 'Dashboard', icon: 'home' },
       component: () => import('@/views/dashboard/index')
     }]
   },
@@ -206,10 +207,11 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/map1',
-    name: 'map1',
+    path: '/map',
+    name: 'map',
     component: Layout,
     meta: { title: 'map' },
+    hidden: true,
     children: [
       {
         path: 'map',

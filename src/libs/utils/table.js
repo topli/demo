@@ -15,8 +15,8 @@ export function iconBtn(h, params, iconBtns) {
           ...item
         },
         on: {
-          click() {
-            item.handler && item.handler(params.row)
+          click(e) {
+            item.handler && item.handler(params.row, e)
           }
         }
       }))

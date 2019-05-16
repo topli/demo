@@ -1,36 +1,18 @@
 <template>
   <div v-loading="loading" class="aou-template">
     <div class="aou-body">
-      <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="120px">
-        <el-form-item :label="$t('user.username')" prop="username">
-          <el-input v-model="form.username"/>
+      <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="80px">
+        <el-form-item :label="$t('driverTask.deviceNo')">
+          <el-input v-model="form.deviceNo"/>
         </el-form-item>
-        <el-form-item :label="$t('user.age')">
-          <el-input v-model.number="form.age"/>
+        <el-form-item :label="$t('driverTask.driverName')">
+          <el-input v-model.number="form.driverName"/>
         </el-form-item>
-        <el-form-item :label="$t('user.sex')">
-          <select-remote v-model="form.sex" filterable clearable data-type="sex"/>
+        <el-form-item :label="$t('driverTask.time')">
+          <el-input v-model="form.time"/>
         </el-form-item>
-        <el-form-item :label="$t('user.orgName')" prop="orgName">
-          <el-input v-model="form.orgName"/>
-        </el-form-item>
-        <el-form-item :label="$t('user.roleName')" prop="roleName">
-          <el-input v-model="form.roleName"/>
-        </el-form-item>
-        <el-form-item :label="$t('user.jobName')" prop="jobName">
-          <el-input v-model="form.jobName"/>
-        </el-form-item>
-        <el-form-item :label="$t('user.jobLevel')" prop="jobLevel">
-          <el-input v-model="form.jobLevel"/>
-        </el-form-item>
-        <el-form-item :label="$t('user.isWork')" prop="isWork">
-          <el-switch v-model="form.isWork"/>
-        </el-form-item>
-        <!-- <el-form-item label="所属组织">
-          <org-tree v-model="form.org"/>
-        </el-form-item> -->
-        <el-form-item :label="$t('user.status')">
-          <el-switch v-model="form.status"/>
+        <el-form-item :label="$t('driverTask.taskType')">
+          <select-remote v-model="form.taskType" filterable clearable data-type="taskType"/>
         </el-form-item>
       </el-form>
     </div>
@@ -52,17 +34,13 @@ export default {
       form: this.data ? Object.assign({}, this.data) : {},
       loading: false,
       rules: {
-        username: [
-          { required: true, message: this.$t('user.usernameError') }
-        ],
-        age: [
-          { required: true, message: this.$t('user.ageError') },
-          { type: 'number', message: this.$t('user.ageNumberError') }
-        ]
       }
     }
   },
   computed: {
+  },
+  created() {
+    console.log(this.data)
   },
   methods: {
     // 提交按钮

@@ -1,7 +1,6 @@
 /**
  *  混合列表模板
  */
-// import 'static/styles/aou.scss' // 新增弹窗样式
 import importTemplate from '@/components/Import/index'
 import exportTemplate from '@/components/export/index'
 

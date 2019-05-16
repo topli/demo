@@ -15,6 +15,10 @@ export default {
     search: '搜索',
     import: '导入',
     export: '导出',
-    buttons: '操作'
+    buttons: '操作',
+    addUser: '添加人员',
+    day: '日',
+    week: '周',
+    month: '月'
   }
 }

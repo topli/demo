@@ -5,6 +5,9 @@ import orgAPI from './org'
 import roleAPI from './role'
 import dictAPI from './dict'
 import enclosureAPI from './enclosure'
+import menuAPI from './menu'
+import deviceAPI from './device'
+import driverTaskAPI from './driverTask'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -52,4 +55,20 @@ Mock.mock(/\/enclosure\/add/, 'post', enclosureAPI.add)
 Mock.mock(/\/enclosure\/list/, 'get', enclosureAPI.list)
 Mock.mock(/\/enclosure\/edit/, 'put', enclosureAPI.edit)
 Mock.mock(/\/enclosure\/del/, 'delete', enclosureAPI.del)
+// menu
+Mock.mock(/\/menu\/add/, 'post', menuAPI.add)
+Mock.mock(/\/menu\/list/, 'get', menuAPI.list)
+Mock.mock(/\/menu\/edit/, 'put', menuAPI.edit)
+Mock.mock(/\/menu\/del/, 'delete', menuAPI.del)
+Mock.mock(/\/menu\/data/, 'get', menuAPI.data)
+// menu
+Mock.mock(/\/device\/add/, 'post', deviceAPI.add)
+Mock.mock(/\/device\/list/, 'get', deviceAPI.list)
+Mock.mock(/\/device\/edit/, 'put', deviceAPI.edit)
+Mock.mock(/\/device\/del/, 'delete', deviceAPI.del)
+// menu
+Mock.mock(/\/driverTask\/add/, 'post', driverTaskAPI.add)
+Mock.mock(/\/driverTask\/list/, 'get', driverTaskAPI.list)
+Mock.mock(/\/driverTask\/edit/, 'put', driverTaskAPI.edit)
+Mock.mock(/\/driverTask\/del/, 'delete', driverTaskAPI.del)
 export default Mock

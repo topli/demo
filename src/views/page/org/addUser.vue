@@ -1,52 +1,51 @@
 <template>
-  <div class="list-template">
-    <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
-        <el-form-item>
-          <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchFrom.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
-        </el-form-item>
-      </el-form>
-    </search-tem>
-    <div class="btns">
-      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+  <div v-loading="loading" class="aou-template">
+    <div class="aou-body">
+      <div class="list-template">
+        <search-tem class="list-search" @on-search="onSearch">
+          <el-form :inline="true" :model="searchFrom">
+            <el-form-item>
+              <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
+            </el-form-item>
+            <el-form-item>
+              <select-remote v-model="searchFrom.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
+            </el-form-item>
+          </el-form>
+        </search-tem>
+        <div class="table">
+          <t-for-col
+            :data="list"
+            :columns-title="columnsTitle"
+            :loading="loading"
+            selection
+            index
+            @select-change="handleSelectionChange"/>
+        </div>
+        <div>
+          <el-pagination
+            :current-page="searchData.pageNo"
+            :page-sizes="pageSizeOpts"
+            :page-size="searchData.pageSize"
+            :total="totalElement"
+            layout="total, sizes, prev, pager, next, jumper"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"/>
+        </div>
+      </div>
     </div>
-    <div class="table">
-      <t-for-col
-        :data="list"
-        :sort-change="sortChange"
-        :columns-title="columnsTitle"
-        :loading="loading"
-        selection
-        index
-        @select-change="handleSelectionChange"/>
-    </div>
-    <div class="pages">
-      <el-pagination
-        :current-page="searchData.pageNo"
-        :page-sizes="pageSizeOpts"
-        :page-size="searchData.pageSize"
-        :total="totalElement"
-        layout="total, sizes, prev, pager, next, jumper"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"/>
+    <div class="aou-footer">
+      <el-button type="primary" @click="submit">{{ $t('app.submit') }}</el-button>
+      <el-button @click="onClose">{{ $t('app.cancel') }}</el-button>
     </div>
   </div>
 </template>
 
 <script>
-import add from './add'
 import list from '@/libs/mixins/list'
-import dialog from '@/libs/mixins/dialog'
-import { getList, delData } from './service'
+import { getList } from '@/views/page/user/service'
 
 export default {
-  name: 'User',
-  mixins: [list, dialog],
+  mixins: [list],
   data() {
     return {
       columnsTitle: [
@@ -159,14 +158,10 @@ export default {
             ]))
           }
         }
-      ],
-      fileType: 'user'
+      ]
     }
   },
   methods: {
-    sortChange(data) {
-      console.log(data)
-    },
     _getList() {
       this.loading = true
       console.log(this.searchData)
@@ -178,57 +173,16 @@ export default {
         }, 1000)
       })
     },
-    // 在编辑时获取当前数据
-    getFormById(id) {
-      setTimeout(() => {
-        this.list.forEach((item) => {
-          if (item.id === id) this.dialogData = item
-        })
-      }, 1000)
-    },
-    editData(row) {
-      this.$dialogBox({
-        title: this.$t('app.modify'),
-        components: add,
-        width: 700,
-        props: { data: row },
-        onSub: (el) => {
-          // 新增完成后执行操作
-          // todo 刷新列表
-          this._getList()
-        }
-      })
-    },
-    addData() {
-      this.$dialogBox({
-        title: this.$t('app.add'),
-        components: add,
-        width: 700,
-        onSub: (el) => {
-          // 新增完成后执行操作
-          // todo 刷新列表
-          this._getList()
-        }
-      })
-    },
-    deleteItem(row) {
-      this.confirm((success) => {
-        delData(row).then((res) => {
-          console.log(res)
-          if (res.code === 200) {
-            this.$message({
-              type: 'success',
-              message: this.$t('app.delete') + this.$t('app.success')
-            })
+    // 提交按钮
+    submit() {
+      this.$refs['form'].validate((valid) => {
+        if (valid) { // 验证通过
+          if (this.form.id) {
+            this.edit()
           } else {
-            this.$message({
-              type: 'error',
-              message: res.message
-            })
-            return
+            this.add()
           }
-          this._getList()
-        })
+        }
       })
     }
   }

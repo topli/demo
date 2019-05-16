@@ -19,7 +19,7 @@
     </el-select>
     <el-select
       v-else
-      v-model="value"
+      v-model="selectValue"
       :loading="loading"
       :placeholder="placeholder"
       :filterable="filterable"
@@ -40,6 +40,10 @@ import { mapGetters } from 'vuex'
 export default {
   props: {
     // 查询数据类型
+    value: {
+      type: [Object, String, Number, Array, Boolean],
+      default: function() {}
+    },
     dataType: {
       type: String,
       default: ''
@@ -74,7 +78,7 @@ export default {
   data() {
     return {
       options: [],
-      value: [],
+      selectValue: 0,
       loading: false
     }
   },
@@ -91,6 +95,7 @@ export default {
   },
   mounted() {
     this.getOptions()
+    this.selectValue = this.value
   },
   methods: {
     getOptions() {

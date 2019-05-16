@@ -1,36 +1,23 @@
 <template>
+
   <div v-loading="loading" class="aou-template">
     <div class="aou-body">
-      <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="120px">
-        <el-form-item :label="$t('user.username')" prop="username">
-          <el-input v-model="form.username"/>
-        </el-form-item>
-        <el-form-item :label="$t('user.age')">
-          <el-input v-model.number="form.age"/>
-        </el-form-item>
-        <el-form-item :label="$t('user.sex')">
-          <select-remote v-model="form.sex" filterable clearable data-type="sex"/>
-        </el-form-item>
-        <el-form-item :label="$t('user.orgName')" prop="orgName">
+      <el-form ref="form" :model="form" :rules="rules" :inline="true" label-width="100px">
+        <el-form-item :label="$t('org.orgName')" prop="orgName">
           <el-input v-model="form.orgName"/>
         </el-form-item>
-        <el-form-item :label="$t('user.roleName')" prop="roleName">
-          <el-input v-model="form.roleName"/>
+        <el-form-item :label="$t('org.code')" prop="code">
+          <el-input v-model="form.code"/>
         </el-form-item>
-        <el-form-item :label="$t('user.jobName')" prop="jobName">
-          <el-input v-model="form.jobName"/>
+        <el-form-item :label="$t('org.linkman')" prop="linkman">
+          <el-input v-model="form.linkman"/>
         </el-form-item>
-        <el-form-item :label="$t('user.jobLevel')" prop="jobLevel">
-          <el-input v-model="form.jobLevel"/>
+        <el-form-item :label="$t('org.phone')" prop="phone">
+          <el-input v-model="form.phone"/>
         </el-form-item>
-        <el-form-item :label="$t('user.isWork')" prop="isWork">
-          <el-switch v-model="form.isWork"/>
-        </el-form-item>
-        <!-- <el-form-item label="所属组织">
-          <org-tree v-model="form.org"/>
-        </el-form-item> -->
-        <el-form-item :label="$t('user.status')">
-          <el-switch v-model="form.status"/>
+        <el-form-item :label="$t('org.parent')" prop="parentName">
+          <el-input v-model="form.parentName" disabled/>
+          <el-input v-show="false" v-model="form.parentId"/>
         </el-form-item>
       </el-form>
     </div>
@@ -40,8 +27,8 @@
     </div>
   </div>
 </template>
-
 <script>
+
 import { addData, editData } from './service'
 export default {
   props: {
@@ -115,7 +102,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>
