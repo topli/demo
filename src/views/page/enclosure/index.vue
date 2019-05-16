@@ -137,7 +137,6 @@ export default {
     _getList() {
       this.loading = true
       getList(this.searchData).then(res => {
-        console.log(res.data)
         setTimeout(() => {
           this.loading = false
           this.list = res.data.list
