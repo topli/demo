@@ -73,7 +73,7 @@ export default {
         {
           key: 'enclosureType',
           title: this.$t('enclosure.enclosureType'),
-          width: '120',
+          width: '120'
         },
         {
           key: 'org',
@@ -154,7 +154,7 @@ export default {
     },
     editData(row) {
       console.log(row)
-      this.$router.push({name: 'enclosureEdit', query: {id: row.id}})
+      this.$router.push({ name: 'enclosureEdit', query: { id: row.id }})
     },
     addData() {
       this.$dialogBox({
