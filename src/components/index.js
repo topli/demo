@@ -6,6 +6,7 @@ import OrgTree from './OrgTree'
 import TreeTable from './TreeTable'
 import SelectRemote from './SelectRemote'
 import Echarts from './Echarts'
+import TaskCol from './TaskCol'
 
 import DialogBox from './DialogBox/index.js'
 
@@ -21,6 +22,7 @@ const install = function(Vue, options = {}) {
   Vue.component('TreeTable', TreeTable)
   Vue.component('SelectRemote', SelectRemote)
   Vue.component('Echarts', Echarts)
+  Vue.component('TaskCol', TaskCol)
   // 调用组件
   Vue.prototype.$dialogBox = DialogBox
 }

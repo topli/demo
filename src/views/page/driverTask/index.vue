@@ -57,13 +57,13 @@ export default {
           title: this.$t('driverTask.deviceNo'),
           minWidth: '120',
           fixed: 'left'
-        },
-        {
-          key: 'driverName',
-          title: this.$t('driverTask.driverName'),
-          minWidth: '120',
-          fixed: 'left'
         }
+        // {
+        //   key: 'driverName',
+        //   title: this.$t('driverTask.driverName'),
+        //   minWidth: '120',
+        //   fixed: 'left'
+        // }
       ],
       showType: 'week', // day week month
       fileType: 'driverTask'
@@ -95,17 +95,33 @@ export default {
       }
       for (let i = 0; i < num; i++) {
         const dateStr = parseTime(new Date().getTime() + 86400000 * i, '{y}-{m}-{d}')
-        this.columnsTitle.push({
+        // this.columnsTitle.push({
+        //   key: dateStr,
+        //   title: dateStr,
+        //   width: '120',
+        //   dictType: 'taskType',
+        //   render: (h, params) => {
+        //     const f = params.row['_f_' + dateStr]
+        //     if (!f) return
+        //     return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+        //   }
+        // })
+        const dateCol = {
           key: dateStr,
           title: dateStr,
-          width: '120',
-          dictType: 'taskType',
+          minWidth: 200,
           render: (h, params) => {
-            const f = params.row['_f_' + dateStr]
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+            const list = [
+              { driverName: '张三', taskType: 1, taskStatus: 2 },
+              { driverName: '李四', taskType: 2, taskStatus: 2 },
+              { driverName: '王五', taskType: 1, taskStatus: 1 }
+            ]
+            return h('div', list.map(item => {
+              return h('task-col', { props: { dirverTaskInfo: item }})
+            }))
           }
-        })
+        }
+        this.columnsTitle.push(dateCol)
         this.list.forEach((item) => {
           this.$set(item, dateStr, Math.ceil(Math.random() * 3))
         })

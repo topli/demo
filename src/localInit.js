@@ -143,6 +143,10 @@ const data = {
         { id: 14, value: 1, label: '早班', color: '#04b669' },
         { id: 15, value: 2, label: '晚班', color: '#6b89aa' },
         { id: 16, value: 3, label: '休息', color: '#a8a8a8' }
+      ],
+      taskStatus: [
+        { id: 17, value: 1, label: '未调度', color: '#b03e32' },
+        { id: 18, value: 2, label: '已调度', color: '#409EFF' }
       ]
     }
   },
