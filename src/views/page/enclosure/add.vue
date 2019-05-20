@@ -19,14 +19,14 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="省份" prop="province" class="l-form-input form-mini" style="width:180px;">
-                  <el-select ref="province" v-model="formData.province" placeholder="请输入搜索">
+                  <el-select ref="province" :disabled="prDisabled" v-model="formData.province" placeholder="请输入搜索">
                     <el-option v-for="(item, index) in provinceList" :key="index" :value="item">{{ item }}</el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
                 <el-form-item label="城市" prop="city" class="l-form-input form-mini" style="width:180px;">
-                  <el-select ref="city" v-model="formData.city" placeholder="请输入搜索">
+                  <el-select ref="city" v-model="formData.city" placeholder="请输入搜索" @change="changeSelect">
                     <el-option v-for="(item, index) in cityList" :key="index" :value="item" :label="item"/>
                   </el-select>
                 </el-form-item>
@@ -49,7 +49,7 @@
               </el-col>
               <el-col :span="12">
                 <el-form-item label="类型" prop="labelState" class="l-form-input form-mini">
-                  <el-select ref="labelState" v-model="formData.labelState" placeholder="类型">
+                  <el-select ref="labelState" v-model="formData.labelState" placeholder="类型" @change="changeSelect">
                     <el-option v-for="(item, index) in typeArray" :value="item" :key="index">{{ item }}</el-option>
                   </el-select>
                 </el-form-item>
@@ -58,14 +58,14 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="监控类型" prop="monitoringType" class="l-form-input form-mini">
-                  <el-select ref="monitoringType" v-model="formData.monitoringType" placeholder="监控类型">
-                    <el-option v-for="(item, index) in monitoringTypeArray" :value="item.id" :key="index">{{ item.name }}</el-option>
+                  <el-select ref="monitoringType" v-model="formData.monitoringType" placeholder="监控类型" @change="changeSelect">
+                    <el-option v-for="(item, index) in monitoringTypeArray" :value="item.id" :key="index" :label="item.name"/>
                   </el-select>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
                 <el-form-item label="范围" prop="scope" class="l-form-input form-mini">
-                  <el-select ref="scope" v-model="formData.scope" placeholder="范围">
+                  <el-select ref="scope" v-model="formData.scope" placeholder="范围" @change="changeScope">
                     <el-option v-for="(item, index) in scopeArray" :value="item.value" :key="index">{{ item.label }}</el-option>
                   </el-select>
                 </el-form-item>
@@ -86,14 +86,20 @@
 import BMap from 'BMap'
 import BMapLib from 'BMapLib'
 import mapTool from '@/libs/utils/map'
+// import axios from 'axios'
 export default {
   data() {
     return {
       map: null,
       formData: {
         province: null,
-        city: null
+        city: '',
+        name: null,
+        labelState: null,
+        monitoringType: null,
+        scope: 500
       },
+      prDisabled: true,
       provinceList: [],
       cityList: [],
       typeArray: [],
@@ -109,16 +115,18 @@ export default {
   },
   created() {
     this.initJson()
+    this.initPage()
   },
   mounted() {
     this.init()
   },
   methods: {
-    initMap() {
-      this.map = new BMap.Map('map')
-      const point = new BMap.Point(116.404, 39.915)
-      this.map.centerAndZoom(point, 15)
-      this.map.enableScrollWheelZoom(true)
+    initPage() {
+      // const id = this.$route.query.id
+      // if (id) this.prDisabled = true
+    },
+    changeSelect() {
+      this.$forceUpdate()
     },
     cancel() {
       this.addMarkerModal = false
@@ -176,6 +184,7 @@ export default {
       iconUrl = '/static/images/bz0' + type + '.png'
       this.clearMap()
       if (this.drawType * 1 === 1) {
+        console.log(888)
         const iconSize = new BMap.Size(26, 48)
         const myIcon = new BMap.Icon(iconUrl, iconSize, {
           anchor: new BMap.Size(13, 48)
@@ -218,6 +227,7 @@ export default {
           // })
         }
       } else {
+        console.log(333)
         const polygon = new BMap.Polygon(this.drawPoints, { strokeColor: this.formData.color, fillColor: this.formData.color, strokeWeight: 3, strokeOpacity: 0.8, fillOpacity: 0.7 })
         this.map.addOverlay(polygon)
         this.showDraggingInfoFang(polygon)
@@ -265,6 +275,9 @@ export default {
         }
       }
     },
+    changeScope() {
+      this.selectYs(this.colorType)
+    },
     // 拖拽 -圆
     showDraggingInfo(markers) {
       const _this = this
@@ -294,23 +307,9 @@ export default {
           })
           ___this.map.addOverlay(__this.circle)
           mapTool.getAddress(e.point).then((res) => {
-            console.log(res)
+            const labelgg = new BMap.Label(res.result.formatted_address, { offset: new BMap.Size(0, -20) })
+            markers.setLabel(labelgg)
           })
-          // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${e.point.lat},${e.point.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-          // $.ajax({
-          //   url: url,
-          //   dataType: 'jsonp',
-          //   xhrFields: {
-          //     withCredentials: true // 设置运行跨域操作
-          //   },
-          //   success: data => {
-          //     ___this.formData.address = ''
-          //     ___this.$set(___this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-          //     let labelgg = new BMap.Label(___this.formData.address, { offset: new BMap.Size(0, -20) })
-          //     if (___this.drawType * 1 === 3) labelgg = new BMap.Label(___this.formData.districts, { offset: new BMap.Size(0, -20) })
-          //     markers.setLabel(labelgg)
-          //   }
-          // })
         })
       })
       markers.enableDragging()
@@ -408,9 +407,9 @@ export default {
     // 初始化地图
     async init() {
       this.map = new BMap.Map('map', { enableMapClick: false })
-      this.map.centerAndZoom(new BMap.Point(106.530635013, 29.5446061089), 15) // 初始化重庆地图
-      this.sCity = '重庆' // 选择城市
-      this.map.setCurrentCity('重庆')
+      this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 15) // 初始化北京地图
+      this.sCity = '北京' // 选择城市
+      this.map.setCurrentCity('北京')
       this.map.enableScrollWheelZoom(true)
       this.map.addControl(new BMap.NavigationControl({
         offset: new BMap.Size(5, 80)
@@ -453,6 +452,7 @@ export default {
       }
       // 编辑
       this.formData.id = this.$route.query.id
+      console.log(this.formData.id, 'id')
       if (this.formData.id !== undefined && this.formData.id !== '') {
         // await this.getById(this.formData.id);
         if (this.formData.color) {
@@ -491,25 +491,12 @@ export default {
           _this.formData.point = marker.lng + ',' + marker.lat
           if (marker.lat && marker.lng) {
             mapTool.getAddress(marker).then((res) => {
-              console.log(res)
+              const labelgg = new BMap.Label(res.result.formatted_address, { offset: new BMap.Size(0, -20) })
+              markers.setLabel(labelgg)
             })
-            // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${marker.lat},${marker.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-            // $.ajax({
-            //   url: url,
-            //   dataType: 'jsonp',
-            //   xhrFields: {
-            //     withCredentials: true // 设置运行跨域操作
-            //   },
-            //   success: data => {
-            //     _this.$set(_this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-            //     const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
-            //     markers.setLabel(labelgg)
-            //   }
-            // })
           }
           _this.myGeo.getLocation(_this.newMarker, function(rs) {
-            // _this.formData.address = rs.address;
-            console.log(rs.addressComponents.province)
+            _this.formData.address = rs.address
             // _this.formData.province = rs.addressComponents.province;
             _this.$set(_this.formData, 'province', rs.addressComponents.province)
             _this.formData.city = rs.addressComponents.city
@@ -553,7 +540,7 @@ export default {
           _this.map.addOverlay(markers)
           if (x && y) {
             mapTool.getAddress({ lng: x, lat: y }).then((res) => {
-              console.log(res)
+              console.log(res, 2)
             })
             // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${y},${x}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
             // $.ajax({
@@ -590,6 +577,23 @@ export default {
     // 清除地图
     clearMap() {
       this.map.clearOverlays()
+    },
+    // 处理搜索地址的问题
+    getId(id) {
+      return document.getElementById(id)
+    },
+    setPlace(myValue) {
+      this.map.clearOverlays() // 清除地图上所有覆盖物
+      const _this = this
+      function myFun() {
+        const pp = local.getResults().getPoi(0).point // 获取第一个智能搜索的结果
+        _this.map.centerAndZoom(pp, 18)
+        _this.map.addOverlay(new BMap.Marker(pp)) // 添加标注
+      }
+      const local = new BMap.LocalSearch(this.map, { // 智能搜索
+        onSearchComplete: myFun
+      })
+      local.search(myValue)
     },
     searchAddress() {
       if (this.addressOption) {

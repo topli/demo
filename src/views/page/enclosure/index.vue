@@ -5,16 +5,10 @@
         <el-form-item>
           <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
         </el-form-item>
-        <!-- <el-form-item>
-          <el-select v-model="searchFrom.region" :placeholder="$t('user.region')" clearable>
-            <el-option label="区域一" value="shanghai"/>
-            <el-option label="区域二" value="beijing"/>
-          </el-select>
-        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">
-      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
+      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="editData"/>
       <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
     </div>
@@ -56,13 +50,13 @@ export default {
           key: 'status',
           title: this.$t('enclosure.status'),
           filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
+          width: '120',
           render: (h, params) => {
             return h('el-tag', {
-              props: {
-                type: params.row.status ? 'success' : 'danger'
-              }
+              props: { color: params.row.status ? '#52c08e' : '#EE3B3B', type: 'text' },
+              style: { color: 'white' }
             },
-            params.row['_f_status'])
+            params.row.status ? '启用' : '禁用')
           }
         },
         {
@@ -79,12 +73,6 @@ export default {
           key: 'org',
           title: this.$t('enclosure.org'),
           width: '150'
-          // dictType: 'sex',
-          // render: (h, params) => {
-          //   const f = params.row['_f_sex']
-          //   if (!f) return
-          //   return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
-          // }
         },
         {
           key: 'province',
@@ -154,7 +142,7 @@ export default {
     },
     editData(row) {
       console.log(row)
-      this.$router.push({ name: 'enclosureEdit', query: { id: row.id }})
+      this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange }})
     },
     addData() {
       this.$dialogBox({

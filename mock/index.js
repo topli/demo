@@ -8,6 +8,8 @@ import enclosureAPI from './enclosure'
 import menuAPI from './menu'
 import deviceAPI from './device'
 import driverTaskAPI from './driverTask'
+import deviceErrorAPI from './deviceError'
+import realWorkingAPI from './realWorking'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -55,6 +57,10 @@ Mock.mock(/\/enclosure\/add/, 'post', enclosureAPI.add)
 Mock.mock(/\/enclosure\/list/, 'get', enclosureAPI.list)
 Mock.mock(/\/enclosure\/edit/, 'put', enclosureAPI.edit)
 Mock.mock(/\/enclosure\/del/, 'delete', enclosureAPI.del)
+// deviceError
+Mock.mock(/\/deviceError\/list/, 'get', deviceErrorAPI.list)
+// realWorking
+Mock.mock(/\/realWorking\/list/, 'get', realWorkingAPI.list)
 // menu
 Mock.mock(/\/menu\/add/, 'post', menuAPI.add)
 Mock.mock(/\/menu\/list/, 'get', menuAPI.list)

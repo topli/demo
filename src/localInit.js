@@ -155,6 +155,24 @@ const data = {
       { id: 4, status: false, enclosureName: '广州中转站运力围栏', enclosureType: '仓库', createTime: new Date(), org: '零部件事业部', province: '广东省', city: '广州市', adress: '广东省广州市花都区竹洞村南568米', enclosureRange: '200' }
     ]
   },
+  deviceError: {
+    list: [
+      { id: 1, status: 0, alarmType: '燃油不足', principal: '刘明', createTime: new Date() },
+      { id: 2, status: 1, alarmType: '胎压不足', principal: '韩雪', createTime: new Date() },
+      { id: 3, status: 1, alarmType: '温度过高', principal: '陈启', createTime: new Date() },
+      { id: 4, status: 1, alarmType: '胎压不足', principal: '王志', createTime: new Date() },
+      { id: 4, status: 0, alarmType: '燃油不足', principal: '张红', createTime: new Date() }
+    ]
+  },
+  realWorking: {
+    list: [
+      { id: 1, gpsNo: '0819BA2F', oilConsumption: '1828L', timeCount: '821小时', loadCount: '34', maintenanceTime: '56小时', oilRate: '78%', createTime: new Date() },
+      { id: 2, gpsNo: '0819333F', oilConsumption: '1927L', timeCount: '825小时', loadCount: '23', maintenanceTime: '55小时', oilRate: '43%', createTime: new Date() },
+      { id: 3, gpsNo: '0329BA2F', oilConsumption: '1887L', timeCount: '315小时', loadCount: '45', maintenanceTime: '44小时', oilRate: '44%', createTime: new Date() },
+      { id: 4, gpsNo: '08143A2F', oilConsumption: '1298L', timeCount: '515小时', loadCount: '55', maintenanceTime: '35小时', oilRate: '79%', createTime: new Date() },
+      { id: 4, gpsNo: '0219BA2F', oilConsumption: '1398L', timeCount: '715小时', loadCount: '28', maintenanceTime: '85小时', oilRate: '91%', createTime: new Date() }
+    ]
+  },
   menu: {
     data: [
       {
