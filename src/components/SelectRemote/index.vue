@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="select-remote">
     <el-select
       v-if="remote"
       v-model="value"
@@ -126,4 +126,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+.select-remote{
+  width: 100%
+}
 </style>

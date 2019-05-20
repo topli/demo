@@ -6,7 +6,7 @@
           <el-input v-model="searchFrom.name" :placeholder="$t('tasks.name')" clearable/>
         </el-form-item>
         <el-form-item>
-          <select-remote v-model="searchFrom.status" :placeholder="$t('tasks.status')" filterable clearable data-type="sex"/>
+          <select-remote v-model="searchFrom.status" :placeholder="$t('tasks.status')" filterable clearable data-type="taskStatus"/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -39,6 +39,8 @@
 
 <script>
 import add from './add'
+import review from './review'
+import push from './push'
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
@@ -49,78 +51,53 @@ export default {
     return {
       columnsTitle: [
         {
-          key: 'username',
-          title: this.$t('user.username'),
+          key: 'no',
+          title: this.$t('tasks.no'),
           width: '100'
         },
         {
-          key: 'orgName',
-          title: this.$t('user.orgName'),
-          width: '120'
-        },
-        {
-          key: 'roleName',
-          title: this.$t('user.roleName'),
-          width: '120'
-        },
-        {
-          key: 'jobName',
-          title: this.$t('user.jobName'),
-          width: '100'
-        },
-        {
-          key: 'jobLevel',
-          title: this.$t('user.jobLevel'),
-          width: '80'
-        },
-        {
-          key: 'age',
-          title: this.$t('user.age'),
-          width: '80',
-          unit: this.$t('user.ageUnit')
-        },
-        {
-          key: 'sex',
-          title: this.$t('user.sex'),
-          dictType: 'sex',
-          width: '80',
-          render: (h, params) => {
-            const f = params.row['_f_sex']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
-          }
-        },
-        {
-          key: 'isWork',
-          title: this.$t('user.isWork'),
-          width: '100',
-          render: (h, params) => {
-            return h('span', params.row.isWork ? '否' : '是')
-          }
-        },
-        {
-          key: 'createTime',
-          title: this.$t('user.createTime'),
-          filters: 'parseTime',
-          width: '180'
+          key: 'name',
+          title: this.$t('tasks.name')
         },
         {
           key: 'status',
-          title: this.$t('user.status'),
-          dictType: 'status',
+          title: this.$t('tasks.status')
+        },
+        {
+          key: 'executor',
+          title: this.$t('tasks.executor')
+        },
+        {
+          key: 'line',
+          title: this.$t('tasks.line')
+        },
+        {
+          key: 'describe',
+          title: this.$t('tasks.describe')
+        },
+        {
+          key: 'org',
+          title: this.$t('tasks.org')
+        },
+        {
+          key: 'level',
+          title: this.$t('tasks.level'),
+          dictType: 'taskLevel',
           render: (h, params) => {
-            const f = params.row['_f_status']
+            const f = params.row['_f_level']
             if (!f) return
             return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
           }
         },
         {
           title: this.$t('app.buttons'),
-          width: '100',
+          width: '160',
           align: 'center',
           fixed: 'right',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
+              { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6' },
+              { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6' },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
               { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
             ]))
@@ -192,6 +169,32 @@ export default {
           }
           this._getList()
         })
+      })
+    },
+    reviewData(row) {
+      this.$dialogBox({
+        title: this.$t('app.review'),
+        components: review,
+        width: 700,
+        props: { data: row },
+        onSub: (el) => {
+          // 新增完成后执行操作
+          // todo 刷新列表
+          this._getList()
+        }
+      })
+    },
+    pushData(row) {
+      this.$dialogBox({
+        title: this.$t('app.push'),
+        components: push,
+        width: 700,
+        props: { data: row },
+        onSub: (el) => {
+          // 新增完成后执行操作
+          // todo 刷新列表
+          this._getList()
+        }
       })
     }
   }
