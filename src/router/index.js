@@ -20,6 +20,7 @@ const routes = {
   deviceReport: () => import('@/views/page/deviceReport/index'),
   monitorDevice: () => import('@/views/page/monitorDevice/index'),
   realWorking: () => import('@/views/page/realWorking/index'),
+  realWorkingMap: () => import('@/views/page/realWorkingMap/index'),
   videoDaily: () => import('@/views/page/videoDaily/index'),
   deviceStatus: () => import('@/views/page/deviceStatus/index'),
   deviceError: () => import('@/views/page/deviceError/index'),
