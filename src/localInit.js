@@ -143,6 +143,15 @@ const data = {
         { id: 14, value: 1, label: '早班', color: '#04b669' },
         { id: 15, value: 2, label: '晚班', color: '#6b89aa' },
         { id: 16, value: 3, label: '休息', color: '#a8a8a8' }
+      ],
+      taskStatus: [
+        { id: 17, value: 1, label: '未调度', color: '#b03e32' },
+        { id: 18, value: 2, label: '已调度', color: '#409EFF' }
+      ],
+      taskLevel: [
+        { id: 19, value: 1, label: '高', color: '#b03e32' },
+        { id: 20, value: 2, label: '中', color: '#409EFF' },
+        { id: 20, value: 3, label: '低', color: '#409EFF' }
       ]
     }
   },
@@ -443,6 +452,12 @@ const data = {
       { deviceNo: '鄂A12348', driverName: '张二毛' },
       { deviceNo: '鄂A12349', driverName: '李三毛' },
       { deviceNo: '鄂A12350', driverName: '王小胖' }
+    ]
+  },
+  tasks: {
+    list: [
+      { no: 'NO1', name: '工程1', status: '未调度', executor: '张三', line: '光谷-江夏', describe: '挖掘', org: '分公司1', enclosure: '朝阳区附近', level: 1 },
+      { no: 'NO2', name: '工程2', status: '已调度', executor: '李四', line: '天安门-中关村', describe: '运输', org: '分公司2', enclosure: '中关村附近', level: 2 }
     ]
   }
 }

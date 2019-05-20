@@ -19,6 +19,8 @@ export default {
     addUser: '添加人员',
     day: '日',
     week: '周',
-    month: '月'
+    month: '月',
+    review: '审核',
+    push: '发布'
   }
 }
