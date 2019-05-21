@@ -7,13 +7,13 @@
           {{ form.name }}
         </el-form-item>
         <el-form-item :label="$t('tasks.examine')">
-          <select-remote v-model="form.level" filterable clearable data-type="examineType"/>
+          <select-remote v-model="form.examine" filterable clearable data-type="examineType"/>
         </el-form-item>
         <el-form-item :label="$t('tasks.isRemind')">
-          <select-remote v-model="form.level" filterable clearable data-type="isRemindType"/>
+          <select-remote v-model="form.isRemind" filterable clearable data-type="isRemindType"/>
         </el-form-item>
         <el-form-item :label="$t('tasks.pushDate')">
-          <select-remote v-model="form.level" filterable clearable data-type="pushDateType"/>
+          <select-remote v-model="form.pushDate" filterable clearable data-type="pushDateType"/>
         </el-form-item>
       </el-form>
     </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import dispatch from './dispatch'
 import { addData, editData } from './service'
 export default {
   props: {
@@ -40,16 +41,32 @@ export default {
   },
   computed: {
   },
+  mounted() {
+    this.$set(this.form, 'examine', 1)
+    this.$set(this.form, 'isRemind', 1)
+    this.$set(this.form, 'pushDate', 1)
+  },
   methods: {
     // 提交按钮
     submit() {
       this.$refs['form'].validate((valid) => {
         if (valid) { // 验证通过
-          if (this.form.id) {
-            this.edit()
-          } else {
-            this.add()
-          }
+          this.$dialogBox({
+            title: this.$t('app.dispatch'),
+            components: dispatch,
+            width: 750,
+            props: { data: this.form },
+            onSub: (el) => {
+              // 新增完成后执行操作
+              // todo 刷新列表
+              this.onSub()
+            }
+          })
+          // if (this.form.id) {
+          //   this.edit()
+          // } else {
+          //   this.add()
+          // }
         }
       })
     },

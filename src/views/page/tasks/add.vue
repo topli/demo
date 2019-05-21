@@ -85,10 +85,10 @@ export default {
   computed: {
   },
   mounted() {
-    console.log(this.data)
-    if (this.data.no) {
-      this.deviceList = this.form.deviceList || []
-    }
+    // console.log(this.data)
+    // if (this.data.no) {
+    //   this.deviceList = this.form.deviceList || []
+    // }
   },
   methods: {
     // 提交按钮
