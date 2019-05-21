@@ -15,7 +15,11 @@ export default {
     receivingPerson: '接收方联系人',
     receivingPhone: '接收方联系电话',
     expiryDate: '有效期',
+    selectDevice: '选择设备',
+    deviceType: '设备类型',
     number: '数量',
-    isRemind: '是否提醒审批'
+    isRemind: '是否提醒审批',
+    examine: '审核结果',
+    pushDate: '发布时间'
   }
 }

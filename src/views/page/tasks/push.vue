@@ -6,6 +6,9 @@
           <!-- <el-input v-model="form.name"/> -->
           {{ form.name }}
         </el-form-item>
+        <el-form-item :label="$t('tasks.pushDate')">
+          <select-remote v-model="form.level" filterable clearable data-type="pushDateType"/>
+        </el-form-item>
       </el-form>
     </div>
     <div class="aou-footer">

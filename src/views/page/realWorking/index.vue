@@ -21,41 +21,33 @@
       <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
     </div>
-    <el-table
-      :data="tableData"
-      stripe
-      style="width: 100%">
-      <el-table-column
-        prop="Time"
-        label="日期"
-        width="180"/>
-      <el-table-column
-        prop="GpsID"
-        label="GPS编号"
-        width="180"/>
-      <el-table-column
-        prop="RD_FloatResv5"
-        label="总油耗"/>
-      <el-table-column
-        prop="RD_TotalWKTime"
-        label="总工作时间"/>
-      <el-table-column
-        prop="RD_FloatResv8"
-        label="总装车次数"/>
-      <el-table-column
-        prop="RD_FloatResv28"
-        label="保养确认时工作时间"/>
-      <el-table-column
-        prop="RD_FloatResv29"
-        label="燃油利用率"/>
-
-    </el-table>
+    <div class="table">
+      <t-for-col
+        :data="list"
+        :sort-change="sortChange"
+        :columns-title="columnsTitle"
+        :loading="loading"
+        selection
+        index
+        @select-change="handleSelectionChange"/>
+    </div>
+    <div class="pages">
+      <el-pagination
+        :current-page="searchData.pageNo"
+        :page-sizes="pageSizeOpts"
+        :page-size="searchData.pageSize"
+        :total="totalElement"
+        layout="total, sizes, prev, pager, next, jumper"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"/>
+    </div>
   </div>
 </template>
 
 <script>
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
+import { getList } from './service'
 
 export default {
   mixins: [list, dialog],
@@ -63,45 +55,64 @@ export default {
     return {
       pageName: this.$t('route.' + this.$route.meta.title),
       gpsID: '',
-      tableData: [{
-        Time: '2016-05-02',
-        GpsID: '0819BA2F',
-        RD_FloatResv5: '18987L',
-        RD_TotalWKTime: '815小时',
-        RD_FloatResv8: '23',
-        RD_FloatResv28: '80小时',
-        RD_FloatResv29: '78%'
-      }, {
-        Time: '2016-05-02',
-        GpsID: '0819BA2F',
-        RD_FloatResv5: '18987L',
-        RD_TotalWKTime: '815小时',
-        RD_FloatResv8: '23',
-        RD_FloatResv28: '80小时',
-        RD_FloatResv29: '78%'
-      }, {
-        Time: '2016-05-02',
-        GpsID: '0819BA2F',
-        RD_FloatResv5: '18987L',
-        RD_TotalWKTime: '815小时',
-        RD_FloatResv8: '23',
-        RD_FloatResv28: '80小时',
-        RD_FloatResv29: '78%'
-      }, {
-        Time: '2016-05-02',
-        GpsID: '0819BA2F',
-        RD_FloatResv5: '18987L',
-        RD_TotalWKTime: '815小时',
-        RD_FloatResv8: '23',
-        RD_FloatResv28: '80小时',
-        RD_FloatResv29: '78%'
-      }],
+      columnsTitle: [
+        {
+          key: 'gpsNo',
+          title: this.$t('realWorking.gpsNo'),
+          minWidth: '120'
+        },
+        {
+          key: 'oilConsumption',
+          title: this.$t('realWorking.oilConsumption'),
+          minWidth: '180'
+        },
+        {
+          key: 'timeCount',
+          title: this.$t('realWorking.timeCount'),
+          minWidth: '120'
+        },
+        {
+          key: 'loadCount',
+          title: this.$t('realWorking.loadCount'),
+          minWidth: '150'
+        },
+        {
+          key: 'maintenanceTime',
+          title: this.$t('realWorking.maintenanceTime'),
+          minWidth: '130'
+        },
+        {
+          key: 'oilRate',
+          title: this.$t('realWorking.oilRate'),
+          wiminWidthdth: '130'
+        },
+        {
+          key: 'createTime',
+          title: this.$t('realWorking.createTime'),
+          minWidth: '250'
+        }
+      ],
       ruleForm: {
         GpsID: '',
         StartTime: '',
         EndTime: '',
         TargetResv: ''
       }
+    }
+  },
+  methods: {
+    sortChange(data) {
+      console.log(data)
+    },
+    _getList() {
+      this.loading = true
+      getList(this.searchData).then(res => {
+        setTimeout(() => {
+          this.loading = false
+          this.list = res.data.list
+          this.totalElement = res.data.total
+        }, 1000)
+      })
     }
   }
 }

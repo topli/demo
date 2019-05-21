@@ -152,6 +152,25 @@ const data = {
         { id: 19, value: 1, label: '高', color: '#b03e32' },
         { id: 20, value: 2, label: '中', color: '#409EFF' },
         { id: 20, value: 3, label: '低', color: '#409EFF' }
+      ],
+      deviceType: [
+        { id: 21, value: 1, label: '运输车', color: '#b03e32' },
+        { id: 22, value: 2, label: '起重机', color: '#409EFF' },
+        { id: 23, value: 3, label: '挖掘机', color: '#409EFF' }
+      ],
+      examineType: [
+        { id: 24, value: 1, label: '通过', color: '#b03e32' },
+        { id: 25, value: 2, label: '拒绝', color: '#409EFF' }
+      ],
+      isRemindType: [
+        { id: 27, value: 1, label: '短信和APP提醒', color: '#b03e32' },
+        { id: 28, value: 2, label: '短信提醒', color: '#409EFF' },
+        { id: 29, value: 3, label: 'APP提醒', color: '#409EFF' }
+      ],
+      pushDateType: [
+        { id: 30, value: 1, label: '立即', color: '#b03e32' },
+        { id: 31, value: 2, label: '1小时后', color: '#409EFF' },
+        { id: 32, value: 3, label: '2小时后', color: '#409EFF' }
       ]
     }
   },
@@ -162,6 +181,24 @@ const data = {
       { id: 3, status: true, enclosureName: '46686民生二中储', enclosureType: '仓库', createTime: new Date(), org: '整车事业部', province: '黑龙江省', city: '哈尔滨市', adress: '黑龙江省哈尔滨市香坊区新疆东路东安汽车发动机制造公司北568米', enclosureRange: '300' },
       { id: 4, status: true, enclosureName: '昆明中转站运力围栏', enclosureType: '仓库', createTime: new Date(), org: '零部件事业部', province: '云南省', city: '昆明市', adress: '云南省昆明市西山区明河碧波苑东521米', enclosureRange: '200' },
       { id: 4, status: false, enclosureName: '广州中转站运力围栏', enclosureType: '仓库', createTime: new Date(), org: '零部件事业部', province: '广东省', city: '广州市', adress: '广东省广州市花都区竹洞村南568米', enclosureRange: '200' }
+    ]
+  },
+  deviceError: {
+    list: [
+      { id: 1, status: 0, alarmType: '燃油不足', principal: '刘明', createTime: new Date() },
+      { id: 2, status: 1, alarmType: '胎压不足', principal: '韩雪', createTime: new Date() },
+      { id: 3, status: 1, alarmType: '温度过高', principal: '陈启', createTime: new Date() },
+      { id: 4, status: 1, alarmType: '胎压不足', principal: '王志', createTime: new Date() },
+      { id: 4, status: 0, alarmType: '燃油不足', principal: '张红', createTime: new Date() }
+    ]
+  },
+  realWorking: {
+    list: [
+      { id: 1, gpsNo: '0819BA2F', oilConsumption: '1828L', timeCount: '821小时', loadCount: '34', maintenanceTime: '56小时', oilRate: '78%', createTime: new Date() },
+      { id: 2, gpsNo: '0819333F', oilConsumption: '1927L', timeCount: '825小时', loadCount: '23', maintenanceTime: '55小时', oilRate: '43%', createTime: new Date() },
+      { id: 3, gpsNo: '0329BA2F', oilConsumption: '1887L', timeCount: '315小时', loadCount: '45', maintenanceTime: '44小时', oilRate: '44%', createTime: new Date() },
+      { id: 4, gpsNo: '08143A2F', oilConsumption: '1298L', timeCount: '515小时', loadCount: '55', maintenanceTime: '35小时', oilRate: '79%', createTime: new Date() },
+      { id: 4, gpsNo: '0219BA2F', oilConsumption: '1398L', timeCount: '715小时', loadCount: '28', maintenanceTime: '85小时', oilRate: '91%', createTime: new Date() }
     ]
   },
   menu: {

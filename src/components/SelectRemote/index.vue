@@ -87,6 +87,7 @@ export default {
   },
   watch: {
     value: function(val) {
+      this.selectValue = this.value
       this.$emit('input', val)
     },
     dictData: function() {

@@ -21,6 +21,7 @@ export default {
     week: '周',
     month: '月',
     review: '审核',
-    push: '发布'
+    push: '发布',
+    dispatch: '智能调度'
   }
 }
