@@ -3,178 +3,179 @@
     <el-button type="text" style="position:absolute; right: 20px; top: 20px" @click="screenfull">
       {{ !isScreenfull ? '全屏显示' : '退出全屏' }}
     </el-button>
-    <div class="title">
-      <span>挖机健康监控大屏</span>
-    </div>
-    <div class="body">
-      <div class="total">
-        <div class="total-title">
-          设备统计
-        </div>
-        <el-row :gutter="10">
-          <el-col :span="6">
-            <div class="total-child">
-              <div class="split-line"/>
-              <countTo :start-val="0" :end-val="120" :duration="2000"/>
-              <div class="total-child-title">监控设备总数</div>
-            </div>
-          </el-col>
-          <el-col :span="6">
-            <div class="total-child">
-              <div class="split-line"/>
-              <countTo :start-val="0" :end-val="12" :duration="2000"/>
-              <div class="total-child-title">在线设备数</div>
-            </div>
-          </el-col>
-          <el-col :span="6">
-            <div class="total-child">
-              <div class="split-line"/>
-              <countTo :start-val="0" :end-val="3" :duration="2000"/>
-              <div class="total-child-title">亚健康设备数</div>
-            </div>
-          </el-col>
-          <el-col :span="6">
-            <div class="total-child">
-              <countTo :start-val="0" :end-val="1" :duration="2000"/>
-              <div class="total-child-title">问题设备数</div>
-            </div>
-          </el-col>
-        </el-row>
+    <div style="width:100%;">
+      <div class="title">
+        <span>挖机健康监控大屏</span>
       </div>
-      <div class="device">
-        <el-carousel indicator-position="none" height="40vw" loop>
-          <el-carousel-item :key="1">
-            <div class="device-list">
-              <el-row :gutter="10">
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE21392</span>
+      <div class="body">
+        <div class="total">
+          <div class="total-title">
+            设备统计
+          </div>
+          <el-row :gutter="10">
+            <el-col :span="6">
+              <div class="total-child">
+                <div class="split-line"/>
+                <countTo :start-val="0" :end-val="120" :duration="2000"/>
+                <div class="total-child-title">监控设备总数</div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="total-child">
+                <div class="split-line"/>
+                <countTo :start-val="0" :end-val="12" :duration="2000"/>
+                <div class="total-child-title">在线设备数</div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="total-child">
+                <div class="split-line"/>
+                <countTo :start-val="0" :end-val="3" :duration="2000"/>
+                <div class="total-child-title">亚健康设备数</div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="total-child">
+                <countTo :start-val="0" :end-val="1" :duration="2000"/>
+                <div class="total-child-title">问题设备数</div>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="device">
+          <el-carousel indicator-position="none" height="40vw" loop>
+            <el-carousel-item :key="1">
+              <div class="device-list">
+                <el-row :gutter="10">
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SE21392</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg1.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg1.png') no-repeat;background-size: 100% 100%"/>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SE21291</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg2.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE21291</span>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SE20597</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg3.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg2.png') no-repeat;background-size: 100% 100%"/>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">AC11302</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg4.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE20597</span>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SU25298</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg5.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg3.png') no-repeat;background-size: 100% 100%"/>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: red">AD20577</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg6.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">AC11302</span>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-carousel-item>
+            <el-carousel-item :key="2">
+              <div class="device-list">
+                <el-row :gutter="10">
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SE56468</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg7.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg4.png') no-repeat;background-size: 100% 100%"/>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SE21881</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg8.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SU25298</span>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SE36541</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg9.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg5.png') no-repeat;background-size: 100% 100%"/>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">AC98721</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg10.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: red">AD20577</span>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">SU15248</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg11.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg6.png') no-repeat;background-size: 100% 100%"/>
+                  </el-col>
+                  <el-col :span="8">
+                    <div class="device-info">
+                      <div class="device-info-title">
+                        <span>设备编号:</span> <span style="color: white">AD93157</span>
+                      </div>
+                      <div class="device-info-body">
+                        <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg12.png') no-repeat;background-size: 100% 100%"/>
+                      </div>
                     </div>
-                  </div>
-                </el-col>
-              </el-row>
-            </div>
-          </el-carousel-item>
-          <el-carousel-item :key="2">
-            <div class="device-list">
-              <el-row :gutter="10">
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE56468</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg7.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE21881</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg8.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE36541</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg9.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">AC98721</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg10.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SU15248</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg11.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">AD93157</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg12.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-              </el-row>
-            </div>
-          </el-carousel-item>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-carousel-item>
           <!-- <el-carousel-item :key="3">
             <div class="device-list">
               <el-row :gutter="10">
@@ -241,7 +242,8 @@
               </el-row>
             </div>
           </el-carousel-item> -->
-        </el-carousel>
+          </el-carousel>
+        </div>
       </div>
     </div>
   </div>
@@ -276,6 +278,7 @@ export default {
     height: calc(100vh - 50px);
     background: url('#{$image-url}/bg.png') no-repeat;
     background-size: 100% 100%;
+    overflow: auto;
     .title {
       height: 3vw;
       background: url('#{$image-url}/top.png') no-repeat;
@@ -336,7 +339,7 @@ export default {
           padding-top: 2vw;
         }
         &-info {
-          height: 16vw;
+          height: 18vw;
           background: url('#{$image-url}/info.png') no-repeat;
           background-size: 100% 100%;
           margin-bottom: 2vw;
@@ -348,9 +351,9 @@ export default {
             color: aqua;
           }
           &-body {
-            height:13.7vw;
+            height:15.7vw;
             background-size: 100% 100%;
-            padding: 1.5vw 2.5vw;
+            padding: 2.5vw 2.5vw;
           }
         }
       }
