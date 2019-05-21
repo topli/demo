@@ -143,22 +143,21 @@
       <div class="inner-font">
         <p style="margin:0px">
           <b class="pwCarnum">京A12345</b>
-          (设备<span class="pwGpsNum">41086682)</span>
         </p>
         <p style="margin-top:0px;">打卡司机：<span class="pwCurrentDriver">{{ '张三' }}</span></p>
       </div>
     </div>
     <table>
       <tbody>
-        <tr><td>所属机构 :</td><td>{{ '无数据' }}</td></tr>
-        <!-- <tr><td>GPS状态 : </td><td>静止/ACC关，停车2分</td></tr> -->
-        <tr><td>离线时间 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>ACC状态 : </td><td>{{ 'Acc关' }}</td></tr>
-        <tr><td>车速 : </td><td>{{ 0 }}km/h</td></tr>
-        <tr><td>当前位置 : </td><td>{{ '北京市通州区' }}</td></tr>
-        <tr><td/><td/></tr>
-        <tr><td/><td/></tr>
-        <tr><td/><td/></tr>
+        <tr><td>设备编号 :</td><td>{{ '无数据' }}</td></tr>
+        <tr><td>设备类型 : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>实时状态 : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>所属组织 : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>设备地址 : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>工作模式 : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>发动机转速 : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>实时油耗 : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>GPS : </td><td>{{ '无数据' }}</td></tr>
       </tbody>
     </table>
     <ul class="fn clearfix">

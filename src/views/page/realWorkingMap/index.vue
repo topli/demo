@@ -44,7 +44,7 @@ export default {
         fillOpacity: 0.1 // 填充的透明度，取值范围0 - 1。
       },
       // mapPointOne: '116.720204, 39.849445', // 中心点
-      rangeRadius: 10200, // 圆半径
+      rangeRadius: 11000, // 圆半径
       showInfoBox: false,
       infoBoxDom: null
     }
