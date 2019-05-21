@@ -1,10 +1,19 @@
 <template>
   <div v-loading="loading" class="aou-template">
     <div class="aou-body">
-      <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="120px">
-        <el-form-item :label="$t('tasks.name')">
+      <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="100px">
+        <el-form-item :label="$t('tasks.name')" style="width: 100%">
           <!-- <el-input v-model="form.name"/> -->
           {{ form.name }}
+        </el-form-item>
+        <el-form-item :label="$t('tasks.examine')">
+          <select-remote v-model="form.level" filterable clearable data-type="examineType"/>
+        </el-form-item>
+        <el-form-item :label="$t('tasks.isRemind')">
+          <select-remote v-model="form.level" filterable clearable data-type="isRemindType"/>
+        </el-form-item>
+        <el-form-item :label="$t('tasks.pushDate')">
+          <select-remote v-model="form.level" filterable clearable data-type="pushDateType"/>
         </el-form-item>
       </el-form>
     </div>
