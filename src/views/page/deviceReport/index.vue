@@ -353,7 +353,7 @@ export default {
           &-body {
             height:15.7vw;
             background-size: 100% 100%;
-            padding: 2.5vw 3vw;
+            padding: 2.5vw 3.5vw;
           }
         }
       }
