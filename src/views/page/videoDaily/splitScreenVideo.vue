@@ -64,26 +64,26 @@
 </style>
 <template>
   <div class="screen-main" style="height: calc(100%)">
-    <fullscreen ref="fullscreen" @change="fullscreenChange">
-      <div class="screen-video">
+    <div ref="fullscreen" @change="fullscreenChange">
+      <div id="fullVideo" class="screen-video">
         <el-row id="row">
           <div style="height: calc(100%);width: calc(100%);position: absolute" @click="clickCol($event)">
             <el-col v-for="(item, index) in playList" :span="item.span" :key="index" :id="index" :style="{height: item.height + 'px'}" class="video-col">
-              <fullscreen :ref="'fullscreen_' + index" style="background-color: #b5d3e8;" @change="fullscreenItemChange($event, item, index)">
+              <div :ref="'fullscreen_' + index" style="height:100%" @change="fullscreenItemChange($event, item, index)">
                 <div v-if="!videoItemShow" style="width: 100%;height: 100%">
                   <Icon v-if="item.show" type="close" size="16" class="close" @click.native.stop="closeVideo(item, index)"/>
                   <Icon v-if="item.show" :type="expand ? 'arrow-shrink' : 'arrow-expand'" size="26" class="expand" @click.native.stop="toggleItem(index)"/>
                   <!-- <hy-video-flv v-if="item.show" :ref="'video_' + index" :options="item.data" :ratio="ratio" :video-height="item.height"/> -->
-                  <video v-show="index<3" id="video1" :ref="'video' + index" class="video" autoplay="autoplay" loop="loop" style="opacity:0;width: 100%;height:100%;object-fit: fill;">
+                  <video v-show="index<3" id="video1" :ref="'video' + index" class="video" muted="false" autoplay="autoplay" loop="loop" style="opacity:0;width: 100%;height:100%;object-fit: fill;">
                     <source :src="videoList[index]">
                   </video>
                 </div>
-              </fullscreen>
+              </div>
             </el-col>
           </div>
         </el-row>
       </div>
-    </fullscreen>
+    </div>
     <div class="screen-tool">
       <div class="screen-tool-bar">
         <el-button-group>
@@ -97,7 +97,7 @@
 </template>
 <script>
 // import hyVideoFlv from './videoFlv'
-import { mapState, mapGetters } from 'vuex'
+import screenfull from 'screenfull'
 
 export default {
   name: 'SplitScreenVideo',
@@ -124,10 +124,10 @@ export default {
       videoItemShow: false,
       //
       playList: [
-        { label: 0, span: 12, height: 325, show: false, data: {}},
-        { label: 1, span: 12, height: 325, show: false, data: {}},
-        { label: 2, span: 12, height: 325, show: false, data: {}},
-        { label: 3, span: 12, height: 325, show: false, data: {}}
+        { label: 0, span: 12, height: this.inteHeight / 2, show: false, data: {}},
+        { label: 1, span: 12, height: this.inteHeight / 2, show: false, data: {}},
+        { label: 2, span: 12, height: this.inteHeight / 2, show: false, data: {}},
+        { label: 3, span: 12, height: this.inteHeight / 2, show: false, data: {}}
       ], // 视频数组
       videoList: [
         '../../../../static/video/2A7DC1AD96A9D5D4FD7C368F6733E395.mp4',
@@ -145,55 +145,48 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'isFullScreen'
-    ]),
-    ...mapGetters(['videoSrc'])
-    // videoList() {
-    //   console.log(this.videoSrc)
-    //   return this.videoSrc
-    // }
+
   },
   watch: {
-    isFullScreen: function(newValue, oldValue) {
-      setTimeout(() => {
-        if (!this.isFull) {
-          // 单个全屏
-          this.expand = !!newValue
-          if (newValue) this.screenHeight = document.getElementsByClassName('screen-video')[0].offsetHeight - 41
-          // else this.screenHeight = this._hyTool.deepCopy(this.originHeight)
-          this.split(this.splitNum)
-        }
-      }, 300)
-    }
+
   },
   created() {
-
+    // this.inteHeight = document.getElementsByClassName('app-main')[0].offsetHeight - 111
+    // cons
   },
   mounted() {
     this.screenHeight = document.getElementsByClassName('screen-video')[0].offsetHeight - 41
-    // this.originHeight = this._hyTool.deepCopy(this.screenHeight)
-    console.log(this.screenHeight)
-    // 默认4个分屏
-    // this.playList = [
-    //   { label: 0, span: 12, height: this.screenHeight / 2, show: false, data: {}},
-    //   { label: 1, span: 12, height: this.screenHeight / 2, show: false, data: {}},
-    //   { label: 2, span: 12, height: this.screenHeight / 2, show: false, data: {}},
-    //   { label: 3, span: 12, height: this.screenHeight / 2, show: false, data: {}}
-    // ]
-    // this.playList.push([
-    //   { label: 0, span: 12, height: 360, show: false, data: {}},
-    //   { label: 1, span: 12, height: this.screenHeight / 2, show: false, data: {}},
-    //   { label: 2, span: 12, height: this.screenHeight / 2, show: false, data: {}},
-    //   { label: 3, span: 12, height: this.screenHeight / 2, show: false, data: {}}
-    // ])
+    setTimeout(() => {
+      this.playList.forEach(item => {
+        this.$set(item, 'height', (this.screenHeight / Math.sqrt(this.splitNum)))
+      })
+    }, 100)
     this.pageInte()
+    window.onresize = () => {
+      // 全屏下监控是否按键了ESC
+      if (!this.checkFull()) {
+        // 全屏下按键esc后要执行的动作
+        const screenHeight = document.getElementsByClassName('screen-video')[0].offsetHeight - 41
+        this.playList.forEach(item => {
+          this.$set(item, 'height', (screenHeight / Math.sqrt(this.splitNum)))
+        })
+      }
+    }
   },
   methods: {
+    /**
+     * 是否全屏并按键ESC键的方法
+     */
+    checkFull() {
+      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
+      // to fix : false || undefined == undefined
+      if (isFull === undefined) {
+        isFull = false
+      }
+      return isFull
+    },
     // 初始化
     pageInte() {
-      const myvideo1 = document.getElementById('video1')
-      myvideo1.muted = true
     },
     // 视频宽度
     spanSize(length) {
@@ -210,6 +203,7 @@ export default {
     // 视频高度
     videoHeight(length) {
       const screenHeight = this.screenHeight
+      console.log(screenHeight)
       if (length === 1) {
         return [screenHeight]
       } else if (length === 4) {
@@ -224,7 +218,6 @@ export default {
     },
     // 分屏
     split(flag, data, mark) {
-      console.log(flag, data, mark)
       this.curDivNum = null // 默认不选择div
       this.splitNum = flag
       const span = this.spanSize(flag)
@@ -284,64 +277,40 @@ export default {
     },
     // 选中要播放的框
     clickCol(event) {
-      this.curDivNum = Number(event.target.id)
-      window.$(event.target).addClass('active').siblings().removeClass('active')
+      // this.curDivNum = Number(event.target.id)
+      // window.$(event.target).addClass('active').siblings().removeClass('active')
     },
     // 关闭视频
     closeVideo(item, index) {
       this.$refs['video_' + index][0].closed()
       this.split(this.splitNum, item, '-')
     },
-    // 添加视频
-    addVideoData(data) {
-      // 设置默打开窗口
-      const len = data.length
-      // 打开窗口数
-      const openNum = this.splitArray.filter(item => item >= len)[0]
-      this.split(openNum)
-      // 当前的播放的列表
-      const pl = this.playList.map(item => item.show ? item.data.plateNum + item.data.passageway : null)
-      let list = []
-      for (const li of data) {
-        // 获取没有在播放的视频列表
-        if (pl.indexOf(li.plateNum + li.passageway) === -1) list.push(li)
-      }
-      // 默认分屏
-      list = list.slice(0, this.splitNum) // 符合当前分屏数的列表
-      for (let i = 0; i < list.length; i++) {
-        if (this.divNum < this.splitNum) { // div的编号 在当前分屏的div中
-          if (!this.curDivNum) this.divNum = pl.indexOf(null) // 当前没有选择div,默认为第一个空白的视频框
-          else {
-            this.divNum = this.curDivNum
-            this.curDivNum = null
-            window.$('.video-col').removeClass('active')
-          }
-          pl[this.divNum] = list[i].plateNum + list[i].passageway
-          this.split(this.splitNum, list[i], '+')
-        } else {
-          this.divNum = pl.indexOf(null)
-          this.split(this.splitNum, list[i], '+')
-        }
-      }
-    },
     // 关闭全部视频
     closeVideoAll() {
-      // if (Object.keys(this.fleetTreeRef).length === 0) return;
-      this.split(this.splitNum, 'all', '--')
-      for (let i = 0; i < this.splitNum; i++) {
-        if (this.$refs['video_' + i] && this.$refs['video_' + i].length > 0) {
-          this.$refs['video_' + i][0].closed()
-        }
+      // this.split(this.splitNum, 'all', '--')
+      // for (let i = 0; i < this.splitNum; i++) {
+      //   if (this.$refs['video_' + i] && this.$refs['video_' + i].length > 0) {
+      //     this.$refs['video_' + i][0].closed()
+      //   }
+      // }
+      const videos = document.getElementsByClassName('video')
+      for (var i = 0; i < videos.length; i++) {
+        videos[i].style.opacity = 0
       }
-    },
-    // 选择视频比例
-    ratioChange(value) {
-      this.ratio = ''
-      this.ratio = value
+      this.$store.dispatch('VideoCount')
     },
     // 全屏
     toggle() {
-      this.$refs['fullscreen'].toggle() // recommended
+      const realvideo = document.getElementById('fullVideo')
+      if (screenfull.enabled) {
+        screenfull.request(realvideo)
+      }
+      setTimeout(() => {
+        const screenHeight = document.getElementsByClassName('screen-video')[0].offsetHeight
+        this.playList.forEach(item => {
+          this.$set(item, 'height', (screenHeight / Math.sqrt(this.splitNum)))
+        })
+      }, 100)
     },
     fullscreenChange(fullscreen) {
       // this.videoShow = false;

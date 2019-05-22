@@ -143,27 +143,25 @@
         </div>
       </div>
       <div v-if="!searchShow" slot="right-top-panel">
-        <Spin v-show="loadingSpin" fix style="z-index: 100;"/>
+        <!-- <Spin v-show="loadingSpin" fix style="z-index: 100;"/> -->
         <split-screen-video ref="splitScreen" :fleet-tree-ref="$refs.fleetTree"/>
       </div>
       <div v-else slot="right-top-panel" class="right-top-panel-content video-col">
-        <fullscreen ref="fullscreen" style="background-color: #b5d3e8;" @change="fullscreenChange">
+        <div ref="fullscreen" style="background-color: #b5d3e8;" @change="fullscreenChange">
           <Icon v-if="videoShow" type="close" size="16" class="close" @click.native.stop="closeVideo('video')"/>
           <Icon v-if="videoShow" :type="expand ? 'arrow-shrink' : 'arrow-expand'" size="26" class="expand" @click.native.stop="toggle"/>
           <hy-video-flv v-if="videoShow" ref="video" :options="replayData" :radio="all" :video-height="rightTopHeight"/>
-        </fullscreen>
+        </div>
       </div>
       <div slot="right-bottom-panel" class="right-bottom-panel-content">
         <!-- <Table ref="table" :highlight-row="true" :columns="columnsTitle" :loading="loading" :data="list" size="small" border style="height: 100%"/> -->
         <div class="table" style="height: 100%">
           <t-for-col
             :data="list"
-            :sort-change="sortChange"
             :columns-title="columnsTitle"
             :loading="loading"
             selection
-            index
-            @select-change="handleSelectionChange"/>
+            index/>
         </div>
       </div>
     </panel-ext>
@@ -172,16 +170,12 @@
 <script>
 import panelExt from './panelExt'
 import splitScreenVideo from './splitScreenVideo.vue'
-// import hyVideoFlv from './videoFlv'
 import fleetTreeVideo from './fleetTreeVideo'
-// import { mapState } from 'vuex'
-// import { queryHistoryVideo } from '@/service/video'
 
 export default {
   components: {
     panelExt,
     splitScreenVideo,
-    // hyVideoFlv,
     fleetTreeVideo
   },
   mixins: [],
@@ -282,24 +276,10 @@ export default {
     }
   },
   computed: {
-    // ...mapState([
-    //   'isFullScreen'
-    // ])
+
   },
   watch: {
-    isFullScreen: function(newValue) {
-      setTimeout(() => {
-        if (!this.isFull) {
-          // 单个全屏
-          this.expand = !!newValue
-          if (this.replayData) {
-            setTimeout(() => {
-              this.rightTopHeight = document.getElementsByClassName('right-top-panel')[0].offsetHeight
-            }, 100)
-          } else this.rightTopHeight = document.getElementsByClassName('tem-div')[0].offsetHeight * 0.7 - 25
-        }
-      }, 300)
-    }
+
   },
   mounted() {
     this.screenHeight = document.getElementsByClassName('tem-div')[0].offsetHeight - 20
@@ -310,22 +290,6 @@ export default {
       if (Number(opt.channel) > 8 || Number(opt.channel) < 1) {
         return []
       }
-      // const params = {
-      //   sim: opt.sim,
-      //   channel: opt.channel, // 1-8
-      //   fromTime: opt.timeFrom, // 时间范围应当介于 30-3600 秒
-      //   toTime: opt.timeTo
-      // }
-      // const query = await queryHistoryVideo(params)
-      // if (query.code === '0') {
-      //   return query.data
-      // } else {
-      //   let msg = query.message
-      //   const channelStatus = '通道' + this._hyTool.sectionToChinese(Number(opt.channel))
-      //   msg = `${channelStatus + '未查找到视频记录'}`
-      //   this.$Notice.warning({ title: msg })
-      //   return []
-      // }
     },
     // ------------------左侧树形结构-----------------------------
     // 选择树 获取视频通道数据
@@ -361,7 +325,7 @@ export default {
     },
     // 实时视频 / 录像回放
     changeView(bool) {
-      this.$refs['fleetTree'].videoCount = 0
+      this.$store.dispatch('VideoCount')
       this.videoData = []
       this.searchShow = bool
       this.fleetTreeShow = false
@@ -414,62 +378,9 @@ export default {
         } else this.rightTopHeight = document.getElementsByClassName('tem-div')[0].offsetHeight * 0.7 - 25
       }
     },
-    // 录像回放查询
     // 获取列表
     async _getList() {
-      this.rightTopHeight = document.getElementsByClassName('right-top-panel')[0].offsetHeight
-      const endTime = new Date(this._hyTool.DateFormat(this.searchData.endTime, 'yyyy-MM-dd hh:mm:ss')).getTime()
-      const startTime = new Date(this._hyTool.DateFormat(this.searchData.startTime, 'yyyy-MM-dd hh:mm:ss')).getTime()
-      if (startTime === '' || endTime === '') {
-        this.$Notice.warning({ title: '请选择查询时间' })
-        return
-      }
-      if (startTime > endTime) {
-        this.$Notice.warning({
-          title: '开始时间不能大于结束时间'
-        })
-        return
-      }
-      if ((endTime - startTime) > 3600000 && (endTime - startTime) > 30000) {
-        this.$Notice.warning({ title: '选择的时间跨度为30秒到1个小时' })
-        return
-      }
-      const channelNo = []
-      if (this.videoData.length > 0) {
-        for (const it of this.videoData) {
-          channelNo.push(it.channelNo)
-        }
-      } else return
-      this.loading = true
-      let list = []
-      this.list = []
-      for (const no of channelNo) {
-        const opt = {
-          sim: this.videoData[0].terminalNumber,
-          channel: no,
-          timeFrom: this._hyTool.DateFormat(startTime, 'yyyyMMddhhmmss'),
-          timeTo: this._hyTool.DateFormat(endTime, 'yyyyMMddhhmmss')
-        }
-        list = await this.getVPlaybackQuery(opt)
-        this.list = this.list.concat(list)
-      }
-      this.list.forEach(item => {
-        item.plateNum = this.videoData[0].plateNum
-        item.channelNo = '通道' + this._hyTool.sectionToChinese(Number(item['channel_no']))
-        item.src = item['flv_url']
-        item.startTime = item['time_from']
-        item.endTime = item['time_to']
-        item.vehicleId = this.videoData[0].vehicleId
-        item.size = item['file_size']
-        //
-        item.time = 0 // 录像时长
-        item.mediaType = '1' // 资源类型
-        item.streamType = '1' // 码流类型
-        item.storageType = '1' // 存储类型
-        item.source = '设备' // 视频来源
-        if (!item.alarmName) item.alarmName = '无' // 报警标志
-      })
-      this.loading = false
+
     },
     // 播放
     async play(videoData) {

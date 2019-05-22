@@ -81,8 +81,7 @@
   </div>
 </template>
 <script>
-// import { gradeList } from '@/service/equipmentManage/vehicleService'
-// import { queryRealVideo } from '@/service/video'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'FleetTreeVideoVideo',
@@ -269,11 +268,11 @@ export default {
       pathName: '', // 当前页面名称
       placeholder: '搜索、车牌、SIM卡、终端号', // 搜索框提示内容
       setPassagewayList: [], // 变为播放图标的通道号
-      fleetGradeList: [],
-      videoCount: 0
+      fleetGradeList: []
     }
   },
   computed: {
+    ...mapGetters(['videoCount']),
     style() {
       return {
         paddingTop: this.paddingTop + 'px',
@@ -302,14 +301,13 @@ export default {
 
     },
     handleNodeClick(params) {
-      console.log(params.$treeNodeId, this.videoCount)
       const videos = document.getElementsByClassName('video')
       if (params.video === 'video1' && this.videoCount < 3) {
         videos[this.videoCount].style.opacity = 1
-        this.videoCount++
+        this.$store.dispatch('VideoCountAdd')
       } else if (params.video === 'video2' && this.videoCount < 3) {
         videos[this.videoCount].style.opacity = 1
-        this.videoCount++
+        this.$store.dispatch('VideoCountAdd')
       } else if (params.falge === 'noTip') {
         console.log('noTip')
       } else {
@@ -327,19 +325,7 @@ export default {
       this.spinShow = true
       // 获取车队车辆树形结构
       try {
-        // const res = await gradeList({ state: 1 })
-        // if (res.data) {
-        //   this.fleetGradeList = res.data
-        //   // 展开顶级节点
-        //   this.fleetGradeList[0].open = true
-        //   // 处理成树数据
-        //   await this.handleData(this.fleetGradeList)
-        //   // 填充树数据
-        //   this.treeData = this.fleetGradeList
-        //   // 初始化树
-        //   this.initTree()
-        // }
-        // this.spinShow = false
+        console.log()
       } catch (error) {
         this.spinShow = false
         console.log('车队树查询异常', error)
@@ -479,19 +465,7 @@ export default {
     },
     // 摄像机查询
     async getVCamQuery(sim) {
-      // if (!sim) return
-      // const payload = {
-      //   sim: sim
-      // }
-      // const query = await queryRealVideo(payload)
-      // if (query.code === '0' && query.data.length > 0) {
-      //   return query
-      // } else {
-      //   let msg = query.message
-      //   if (msg === '' || msg === 'null') msg = '未查找到视频记录'
-      //   this.$Notice.warning({ title: msg })
-      //   return []
-      // }
+
     },
     // 节点异步加载返回数据处理
     filter(treeId, parentNode, res) {
