@@ -114,7 +114,7 @@
                   <div style="display: inline-block">
                     <div style="color:blue;font-size: 30px">10 ℃</div>
                     <div style="font-size: 12px;color: #515a6e">
-                      <div>最高温度</div>
+                      <div>最低温度</div>
                       <div>探针：0</div>
                     </div>
                   </div>
@@ -256,8 +256,8 @@ export default {
           type: 'value',
           name: '℃',
           min: 0,
-          max: 25,
-          interval: 5,
+          max: 125,
+          interval: 25,
           axisLabel: {
             formatter: ''
           }
@@ -267,7 +267,7 @@ export default {
         {
           name: '温度',
           type: 'line',
-          data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          data: [10, 31, 33, 45, 60, 10, 20, 23, 23, 16, 12.0, 21]
         }
       ]
     }

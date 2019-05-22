@@ -6,7 +6,7 @@
         <div class="play-device-tree-title">
           设备列表
         </div>
-        <el-tree :data="data" :props="defaultProps" default-expand-all @node-click="handleNodeClick"/>
+        <el-tree :data="data" :props="defaultProps" default-expand-all/>
       </div>
     </div>
   </div>
