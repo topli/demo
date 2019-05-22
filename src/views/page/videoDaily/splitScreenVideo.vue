@@ -74,7 +74,7 @@
                   <Icon v-if="item.show" type="close" size="16" class="close" @click.native.stop="closeVideo(item, index)"/>
                   <Icon v-if="item.show" :type="expand ? 'arrow-shrink' : 'arrow-expand'" size="26" class="expand" @click.native.stop="toggleItem(index)"/>
                   <!-- <hy-video-flv v-if="item.show" :ref="'video_' + index" :options="item.data" :ratio="ratio" :video-height="item.height"/> -->
-                  <video v-show="index<3" id="video1" :ref="'video' + index" class="video" autoplay="autoplay" loop="loop" style="opacity:0;width: 100%;height:100%;object-fit: fill;">
+                  <video v-show="index<3" id="video1" :ref="'video' + index" muted="false" class="video" autoplay="autoplay" loop="loop" style="opacity:0;width: 100%;height:100%;object-fit: fill;">
                     <source :src="videoList[index]">
                   </video>
                 </div>
