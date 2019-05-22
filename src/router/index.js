@@ -74,7 +74,7 @@ export const constantRouterMap = [
     component: Layout,
     name: 'sysInfoM',
     redirect: 'noredirect',
-    meta: { title: 'sysInfoM', icon: 'account' },
+    meta: { title: 'sysInfoM', icon: 'siji' },
     children: [
       {
         path: 'userM',
@@ -137,7 +137,7 @@ export const constantRouterMap = [
     component: Layout,
     name: 'monitorM',
     redirect: 'noredirect',
-    meta: { title: 'monitorM', icon: 'browse' },
+    meta: { title: 'monitorM', icon: 'jiankong' },
     children: [
       {
         path: 'monitorDevice',
@@ -185,7 +185,7 @@ export const constantRouterMap = [
     component: Layout,
     name: 'taskM',
     redirect: 'noredirect',
-    meta: { title: 'taskM', icon: 'taskManagement' },
+    meta: { title: 'taskM', icon: 'shebei' },
     children: [
       {
         path: 'tasks',
@@ -227,7 +227,7 @@ export const constantRouterMap = [
     component: Layout,
     name: 'sys',
     redirect: 'noredirect',
-    meta: { title: 'sys', icon: 'toolsHardware' },
+    meta: { title: 'sys', icon: 'zuzhi' },
     children: [
       {
         path: 'menu',
