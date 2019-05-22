@@ -152,6 +152,25 @@ const data = {
         { id: 19, value: 1, label: '高', color: '#b03e32' },
         { id: 20, value: 2, label: '中', color: '#409EFF' },
         { id: 20, value: 3, label: '低', color: '#409EFF' }
+      ],
+      deviceType: [
+        { id: 21, value: 1, label: '运输车', color: '#b03e32' },
+        { id: 22, value: 2, label: '起重机', color: '#409EFF' },
+        { id: 23, value: 3, label: '挖掘机', color: '#409EFF' }
+      ],
+      examineType: [
+        { id: 24, value: 1, label: '通过', color: '#b03e32' },
+        { id: 25, value: 2, label: '拒绝', color: '#409EFF' }
+      ],
+      isRemindType: [
+        { id: 27, value: 1, label: '短信和APP提醒', color: '#b03e32' },
+        { id: 28, value: 2, label: '短信提醒', color: '#409EFF' },
+        { id: 29, value: 3, label: 'APP提醒', color: '#409EFF' }
+      ],
+      pushDateType: [
+        { id: 30, value: 1, label: '立即', color: '#b03e32' },
+        { id: 31, value: 2, label: '1小时后', color: '#409EFF' },
+        { id: 32, value: 3, label: '2小时后', color: '#409EFF' }
       ]
     }
   },

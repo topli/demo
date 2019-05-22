@@ -1,23 +1,23 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">vue-admin-template</h3>
-      <el-form-item prop="username">
+      <h3 class="title"> {{ $t('app.appTitle') }}</h3>
+      <el-form-item prop="username" style="background: white">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
+        <el-input v-model="loginForm.username" :placeholder="$t('app.username')" name="username" type="text" auto-complete="on" />
       </el-form-item>
-      <el-form-item prop="password">
+      <el-form-item prop="password" style="background: white">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
         <el-input
           :type="pwdType"
           v-model="loginForm.password"
+          :placeholder="$t('app.password')"
           name="password"
           auto-complete="on"
-          placeholder="password"
           @keyup.enter.native="handleLogin" />
         <span class="show-pwd" @click="showPwd">
           <svg-icon :icon-class="pwdType === 'password' ? 'eye' : 'eye-open'" />
@@ -25,13 +25,9 @@
       </el-form-item>
       <el-form-item>
         <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          Sign in
+          {{ $t('app.login') }}
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div>
     </el-form>
   </div>
 </template>
@@ -107,8 +103,8 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-$bg:#2d3a4b;
-$light_gray:#eee;
+$bg:#1b5086;
+$light_gray:black;
 
 /* reset element-ui css */
 .login-container {
@@ -132,17 +128,17 @@ $light_gray:#eee;
   }
   .el-form-item {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
+    // background: white;
     border-radius: 5px;
-    color: #454545;
+    color: black;
   }
 }
 
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$bg:#2d3a4b;
-$dark_gray:#889aa4;
+$bg:#1b5086;
+$dark_gray:black;
 $light_gray:#eee;
 .login-container {
   position: fixed;

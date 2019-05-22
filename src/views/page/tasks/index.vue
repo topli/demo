@@ -97,7 +97,7 @@ export default {
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
               { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6' },
-              { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6' },
+              // { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6' },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
               { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
             ]))
@@ -131,7 +131,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.modify'),
         components: add,
-        width: 700,
+        width: 750,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
@@ -144,7 +144,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.add'),
         components: add,
-        width: 700,
+        width: 750,
         onSub: (el) => {
           // 新增完成后执行操作
           // todo 刷新列表
@@ -175,7 +175,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.review'),
         components: review,
-        width: 700,
+        width: 380,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
@@ -188,7 +188,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.push'),
         components: push,
-        width: 700,
+        width: 380,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
