@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="aou-footer">
-      <el-button :loading="deviceLoading" type="primary" @click="submit">{{ $t('app.push') }}</el-button>
+      <!-- <el-button :loading="deviceLoading" type="primary" @click="submit">{{ $t('app.push') }}</el-button> -->
       <el-button @click="onClose">{{ $t('app.cancel') }}</el-button>
     </div>
   </div>
@@ -76,6 +76,7 @@ export default {
     const interval = setInterval(() => {
       if (index >= data.length - 1) {
         this.deviceLoading = false
+        this.onSub()
         clearInterval(interval)
       }
       this.deviceList.push(data[index])

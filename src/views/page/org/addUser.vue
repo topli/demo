@@ -145,18 +145,6 @@ export default {
             if (!f) return
             return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
           }
-        },
-        {
-          title: this.$t('app.buttons'),
-          width: '100',
-          align: 'center',
-          fixed: 'right',
-          render: (h, params) => {
-            return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
-            ]))
-          }
         }
       ]
     }
