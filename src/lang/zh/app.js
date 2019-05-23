@@ -1,9 +1,11 @@
 export default {
   app: {
     login: '登录',
+    logout: '登出',
     appTitle: '三一智矿监控平台',
     username: '用户名',
     password: '密码',
+    roles: '角色权限',
     fileTypeNullError: '未设置文件类型，请联系管理员。',
     delTips: '此操作将永久删除该数据, 是否继续?',
     delete: '删除',

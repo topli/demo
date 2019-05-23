@@ -145,8 +145,9 @@ const data = {
         { id: 16, value: 3, label: '休息', color: '#a8a8a8' }
       ],
       taskStatus: [
-        { id: 17, value: 1, label: '未调度', color: '#b03e32' },
-        { id: 18, value: 2, label: '已调度', color: '#409EFF' }
+        { id: 17, value: 1, label: '待审核', color: '#b03e32' },
+        { id: 18, value: 2, label: '已调度', color: '#409EFF' },
+        { id: 33, value: 3, label: '未调度', color: '#409EFF' }
       ],
       taskLevel: [
         { id: 19, value: 1, label: '高', color: '#b03e32' },
@@ -475,8 +476,9 @@ const data = {
   },
   tasks: {
     list: [
-      { no: 'NO1', name: '工程1', status: '未调度', executor: '张三', line: '光谷-江夏', describe: '挖掘', org: '分公司1', enclosure: '朝阳区附近', level: 1 },
-      { no: 'NO2', name: '工程2', status: '已调度', executor: '李四', line: '天安门-中关村', describe: '运输', org: '分公司2', enclosure: '中关村附近', level: 2 }
+      { no: 'NO1', name: '工程1', status: '待审核', executor: '张三', line: '光谷-江夏', describe: '挖掘', org: '分公司1', enclosure: '朝阳区附近', level: 1 },
+      { no: 'NO2', name: '工程2', status: '已调度', executor: '李四', line: '天安门-中关村', describe: '运输', org: '分公司2', enclosure: '中关村附近', level: 2 },
+      { no: 'NO3', name: '工程3', status: '未调度', executor: '李四', line: '朝阳区-中关村', describe: '运输', org: '分公司3', enclosure: '中关村附近', level: 3 }
     ]
   }
 }

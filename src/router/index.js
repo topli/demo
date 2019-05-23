@@ -235,12 +235,12 @@ export const constantRouterMap = [
         component: routes['menu'],
         meta: { title: 'menu' }
       },
-      {
-        path: 'pages',
-        name: 'pages',
-        component: routes['menu'],
-        meta: { title: 'pages' }
-      },
+      // {
+      //   path: 'pages',
+      //   name: 'pages',
+      //   component: routes['menu'],
+      //   meta: { title: 'pages' }
+      // },
       {
         path: 'dict',
         name: 'dict',

@@ -3,7 +3,7 @@ export default {
     Dashboard: '首页',
     test: '测试',
     dict: '字典管理',
-    sys: '后台管理',
+    sys: '系统设置',
     menu: '菜单管理',
     pages: '页面管理',
     // -----------
@@ -32,7 +32,7 @@ export default {
     taskQuery: '任务查询',
     taskExamine: '任务审批',
     taskIssue: '任务发布',
-    tasksDispatch: '调度任务',
+    tasksDispatch: '历史调度',
     tasksDispatchM: '调度任务管理',
     statisticsReport: '统计分析',
     realReport: '实时统计',

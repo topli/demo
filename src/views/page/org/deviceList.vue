@@ -8,7 +8,7 @@
       </el-form>
     </search-tem>
     <div class="btns">
-      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
+      <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
     </div>
     <div class="table">
       <t-for-col

@@ -12,8 +12,8 @@
     </search-tem>
     <div class="btns">
       <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
+      <!-- <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
     <div class="table">
       <t-for-col
@@ -40,7 +40,7 @@
 <script>
 import add from './add'
 import review from './review'
-import push from './push'
+import dispatch from './dispatch'
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
@@ -95,9 +95,21 @@ export default {
           align: 'center',
           fixed: 'right',
           render: (h, params) => {
+            let hide = false
+            let hide1 = false
+            let hide2 = false
+            if (params.row.status === '已调度') {
+              hide = true
+            }
+            if (params.row.status === '待审核') {
+              hide1 = true
+            }
+            if (params.row.status === '未调度') {
+              hide2 = true
+            }
             return h('div', this.iconBtn(h, params, [
-              { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6' },
-              // { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6' },
+              { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6', hide: hide || hide2 },
+              { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6', hide: hide || hide1 },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
               { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
             ]))
@@ -187,8 +199,8 @@ export default {
     pushData(row) {
       this.$dialogBox({
         title: this.$t('app.push'),
-        components: push,
-        width: 380,
+        components: dispatch,
+        width: 750,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作

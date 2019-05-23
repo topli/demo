@@ -20,6 +20,7 @@
         <el-tabs v-model="showPage" style="padding: 20px 20px 0 20px">
           <el-tab-pane label="用户" name="userList"/>
           <el-tab-pane label="设备" name="deviceList"/>
+          <el-tab-pane label="围栏" name="enclosureList"/>
         </el-tabs>
         <div class="showPage">
           <component :is="showPage"/>
@@ -33,9 +34,10 @@ import { deepClone, confirm } from '@/libs/utils'
 import { getList, editData } from './service'
 import userList from './userList.vue'
 import deviceList from './deviceList.vue'
+import enclosureList from './enclosureList.vue'
 import addOrg from './addOrg.vue'
 export default {
-  components: { userList, deviceList },
+  components: { userList, deviceList, enclosureList },
   data() {
     return {
       dialogBox: false,

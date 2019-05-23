@@ -46,7 +46,7 @@ import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
 import { parseTime } from '@/libs/utils'
-
+import Mock from 'mockjs'
 export default {
   mixins: [list, dialog],
   data() {
@@ -66,7 +66,8 @@ export default {
         // }
       ],
       showType: 'week', // day week month
-      fileType: 'driverTask'
+      fileType: 'driverTask',
+      nameList: []
     }
   },
   watch: {
@@ -75,10 +76,16 @@ export default {
     }
   },
   created() {
+    var Random = Mock.Random
+    let i = 0
+    while (i < 50) {
+      this.nameList.push(Random.cname())
+      i++
+    }
   },
   methods: {
     getColumns() {
-      this.columnsTitle.splice(2, this.columnsTitle.length)
+      this.columnsTitle.splice(1, this.columnsTitle.length)
       let num = 0
       switch (this.showType) {
         case 'day':
@@ -112,9 +119,9 @@ export default {
           minWidth: 200,
           render: (h, params) => {
             const list = [
-              { driverName: '张三', taskType: 1, taskStatus: 2 },
-              { driverName: '李四', taskType: 2, taskStatus: 2 },
-              { driverName: '王五', taskType: 1, taskStatus: 1 }
+              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 3), taskStatus: Math.ceil(Math.random() * 2) }
             ]
             return h('div', list.map(item => {
               return h('task-col', { props: { dirverTaskInfo: item }})
