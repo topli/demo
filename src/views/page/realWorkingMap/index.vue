@@ -88,7 +88,7 @@ export default {
           deviceNum: '120301070004A',
           realTimeStatus: '工作中',
           organisation: '山西分公司',
-          deviceInfoAddress: '北京市通州区通马路',
+          deviceInfoAddress: '北京市朝阳区双桥东路',
           workingMode: '运输模式',
           engineSpeed: '2000r/s',
           realTimeFuelConsumption: '20L/h',
@@ -162,7 +162,7 @@ export default {
       // 单击获取点击的经纬度
       // this.map.addEventListener('click', function(e) {
       //  console.log(e.target.getZoom())
-      // alert(e.point.lng + ',' + e.point.lat)
+      //  alert(e.point.lng + ',' + e.point.lat)
       // })
       // 创建地图覆盖物(点)
       //  装载机
@@ -170,7 +170,7 @@ export default {
       var pt2 = new BMap.Point(116.689158, 39.822408)
       var pt3 = new BMap.Point(116.677085, 39.863182)
       // 矿车
-      var pt4 = new BMap.Point(116.64604, 39.878244)
+      var pt4 = new BMap.Point(116.619593, 39.885442)
       var pt5 = new BMap.Point(116.626493, 39.833047)
       var pt6 = new BMap.Point(116.721354, 39.880016)
       // 挖掘机
