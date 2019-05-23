@@ -1,5 +1,11 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
+    <div class="app-title">
+      <transition name="el-fade-in" mode="out-in">
+        <span v-if="sidebar.opened">{{ $t('app.appTitle') }}</span>
+        <img v-else src="/favicon.ico" style="width: 100%">
+      </transition>
+    </div>
     <el-menu
       :show-timeout="200"
       :default-active="$route.path"

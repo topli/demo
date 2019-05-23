@@ -6,6 +6,7 @@ const getters = {
   name: state => state.user.name,
   roles: state => state.user.roles,
   pageBtns: state => state.user.pageBtns,
-  dictData: state => state.app.dictData
+  dictData: state => state.app.dictData,
+  videoCount: state => state.app.videoCount
 }
 export default getters

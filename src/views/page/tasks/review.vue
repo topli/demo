@@ -51,6 +51,7 @@ export default {
     submit() {
       this.$refs['form'].validate((valid) => {
         if (valid) { // 验证通过
+          this.$message.success('审核通过')
           this.$dialogBox({
             title: this.$t('app.dispatch'),
             components: dispatch,
@@ -62,6 +63,7 @@ export default {
               this.onSub()
             }
           })
+          this.onSub()
           // if (this.form.id) {
           //   this.edit()
           // } else {

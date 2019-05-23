@@ -1,9 +1,9 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.deviceNo" :placeholder="$t('driverTask.deviceNo')" clearable/>
+          <el-input v-model="searchForm.deviceNo" :placeholder="$t('driverTask.deviceNo')" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -46,7 +46,7 @@ import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
 import { parseTime } from '@/libs/utils'
-
+import Mock from 'mockjs'
 export default {
   mixins: [list, dialog],
   data() {
@@ -66,7 +66,8 @@ export default {
         // }
       ],
       showType: 'week', // day week month
-      fileType: 'driverTask'
+      fileType: 'driverTask',
+      nameList: []
     }
   },
   watch: {
@@ -75,10 +76,16 @@ export default {
     }
   },
   created() {
+    var Random = Mock.Random
+    let i = 0
+    while (i < 200) {
+      this.nameList.push(Random.cname())
+      i++
+    }
   },
   methods: {
     getColumns() {
-      this.columnsTitle.splice(2, this.columnsTitle.length)
+      this.columnsTitle.splice(1, this.columnsTitle.length)
       let num = 0
       switch (this.showType) {
         case 'day':
@@ -112,9 +119,9 @@ export default {
           minWidth: 200,
           render: (h, params) => {
             const list = [
-              { driverName: '张三', taskType: 1, taskStatus: 2 },
-              { driverName: '李四', taskType: 2, taskStatus: 2 },
-              { driverName: '王五', taskType: 1, taskStatus: 1 }
+              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 3), taskStatus: Math.ceil(Math.random() * 2) }
             ]
             return h('div', list.map(item => {
               return h('task-col', { props: { dirverTaskInfo: item }})
@@ -181,7 +188,7 @@ export default {
           if (res.code === 200) {
             this.$message({
               type: 'success',
-              message: this.$t('app.delete') + this.$t('app.success')
+              message: this.$t('app.disables') + this.$t('app.success')
             })
           } else {
             this.$message({

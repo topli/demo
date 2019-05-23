@@ -7,7 +7,8 @@ const app = {
       withoutAnimation: false
     },
     device: 'desktop',
-    dictData: null
+    dictData: null,
+    videoCount: 0
   },
   mutations: {
     TOGGLE_SIDEBAR: state => {
@@ -29,6 +30,12 @@ const app = {
     },
     DICT_DATA: (state, dictData) => {
       state.dictData = dictData
+    },
+    VIDEO_COUNT: (state) => {
+      state.videoCount = 0
+    },
+    VIDEO_COUNT_ADD: (state) => {
+      state.videoCount++
     }
   },
   actions: {
@@ -40,6 +47,12 @@ const app = {
     },
     ToggleDevice({ commit }, device) {
       commit('TOGGLE_DEVICE', device)
+    },
+    VideoCount({ commit }) {
+      commit('VIDEO_COUNT')
+    },
+    VideoCountAdd({ commit }) {
+      commit('VIDEO_COUNT_ADD')
     },
     SetDictData({ commit }) {
       getData().then((res) => {

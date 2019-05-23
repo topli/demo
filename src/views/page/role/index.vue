@@ -1,9 +1,9 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.roleName" :placeholder="$t('role.roleName')" clearable/>
+          <el-input v-model="searchForm.roleName" :placeholder="$t('role.roleName')" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -58,7 +58,7 @@ export default {
             return h('div', this.iconBtn(h, params, [
               { icon: 'addperson', t: 'role.addPerson', handler: this.addPerson },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
@@ -132,7 +132,7 @@ export default {
           if (res.code === 200) {
             this.$message({
               type: 'success',
-              message: this.$t('app.delete') + this.$t('app.success')
+              message: this.$t('app.disables') + this.$t('app.success')
             })
           } else {
             this.$message({

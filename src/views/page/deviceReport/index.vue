@@ -1,9 +1,9 @@
 <template>
   <div id="deviceReport" class="device-report">
-    <el-button type="text" style="position:absolute; right: 20px; top: 20px" @click="screenfull">
-      {{ !isScreenfull ? '全屏显示' : '退出全屏' }}
-    </el-button>
-    <div style="width:100%;">
+    <div style="width:100%;position:relative">
+      <el-button type="text" style="position:absolute; right: 20px; top: 10px" @click="screenfull">
+        {{ !isScreenfull ? $t('app.fullScreen') : '' }}
+      </el-button>
       <div class="title">
         <span>挖机健康监控大屏</span>
       </div>
@@ -249,6 +249,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import countTo from 'vue-count-to'
 import screenfull from 'screenfull'
 export default {
@@ -259,13 +260,44 @@ export default {
       isScreenfull: false
     }
   },
+  computed: {
+    ...mapGetters([
+      'sidebar'
+    ])
+  },
+  mounted() {
+    window.onresize = () => {
+      // 全屏下监控是否按键了ESC
+      if (!this.checkFull()) {
+        // 全屏下按键esc后要执行的动作
+        this.isScreenfull = false
+      }
+    }
+    if (this.sidebar.opened) {
+      this.$store.dispatch('ToggleSideBar')
+    }
+  },
   methods: {
+    /**
+     * 全屏事件
+     */
     screenfull() {
       const deviceReport = document.getElementById('deviceReport')
       if (screenfull.enabled) {
-        screenfull.toggle(deviceReport)
+        screenfull.request(deviceReport)
         this.isScreenfull = !this.isScreenfull
       }
+    },
+    /**
+     * 是否全屏并按键ESC键的方法
+     */
+    checkFull() {
+      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
+      // to fix : false || undefined == undefined
+      if (isFull === undefined) {
+        isFull = false
+      }
+      return isFull
     }
   }
 }
@@ -353,7 +385,7 @@ export default {
           &-body {
             height:15.7vw;
             background-size: 100% 100%;
-            padding: 2.5vw 3vw;
+            padding: 2.5vw 3.5vw;
           }
         }
       }
