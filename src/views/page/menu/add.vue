@@ -54,12 +54,6 @@ export default {
       form: this.data ? Object.assign({}, this.data) : {},
       loading: false,
       rules: {
-        // roleName: [
-        //   { required: true, message: this.$t('role.roleNameError') }
-        // ],
-        // roles: [
-        //   { required: true, message: this.$t('role.rolesError') }
-        // ]
       },
       menuList: [
       ]
@@ -68,14 +62,8 @@ export default {
   computed: {
   },
   mounted() {
-    if (this.form.id) {
-      this.$set(this.form, 'rolesArray', this.form.roles.split(','))
-    }
   },
   methods: {
-    treeChange(current, { checkedKeys }) {
-      this.$set(this.form, 'roles', checkedKeys.toString())
-    },
     // 提交按钮
     submit() {
       this.$refs['form'].validate((valid) => {
@@ -109,6 +97,8 @@ export default {
     },
     edit() {
       this.loading = true
+      delete this.form.child
+      delete this.form.parent
       editData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false

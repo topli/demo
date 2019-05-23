@@ -43,12 +43,11 @@
 <script>
 import add from './add'
 import list from '@/libs/mixins/list'
-import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
 import { parseTime } from '@/libs/utils'
 import Mock from 'mockjs'
 export default {
-  mixins: [list, dialog],
+  mixins: [list],
   data() {
     return {
       columnsTitle: [
@@ -118,19 +117,18 @@ export default {
           title: dateStr,
           minWidth: 200,
           render: (h, params) => {
-            const list = [
-              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
-              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
-              { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 3), taskStatus: Math.ceil(Math.random() * 2) }
-            ]
-            return h('div', list.map(item => {
+            return h('div', params.row[dateStr].map(item => {
               return h('task-col', { props: { dirverTaskInfo: item }})
             }))
           }
         }
         this.columnsTitle.push(dateCol)
         this.list.forEach((item) => {
-          this.$set(item, dateStr, Math.ceil(Math.random() * 3))
+          this.$set(item, dateStr, [
+            { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+            { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+            { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 3), taskStatus: Math.ceil(Math.random() * 2) }
+          ])
         })
       }
     },

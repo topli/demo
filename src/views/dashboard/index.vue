@@ -7,7 +7,7 @@
         <statistics :number="userNumber" icon="user" title="用户列表" color="#f0ad4e"/>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-        <statistics :number="messageNumber" icon="message" title="消息列表" color="#4CB1CF"/>
+        <statistics :number="messageNumber" icon="message" title="报警列表" color="#4CB1CF"/>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
         <statistics :number="taskNumber" icon="task" title="任务列表" color="#F0433D"/>

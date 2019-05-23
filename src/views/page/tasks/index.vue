@@ -53,7 +53,7 @@ export default {
         {
           key: 'no',
           title: this.$t('tasks.no'),
-          width: '100'
+          width: '160'
         },
         {
           key: 'name',
@@ -109,7 +109,7 @@ export default {
             }
             return h('div', this.iconBtn(h, params, [
               { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6', hide: hide || hide2 },
-              { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6', hide: hide || hide1 },
+              { icon: 'push', t: 'app.dispatch', handler: this.pushData, color: '#64d9d6', hide: hide || hide1 },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
               { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
             ]))

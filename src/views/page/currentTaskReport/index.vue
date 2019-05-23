@@ -47,7 +47,7 @@ export default {
         {
           key: 'no',
           title: this.$t('tasks.no'),
-          width: '100'
+          width: '160'
         },
         {
           key: 'name',

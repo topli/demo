@@ -3,6 +3,7 @@ export default {
     login: '登录',
     logout: '登出',
     appTitle: '三一智矿监控平台',
+    appShortTitle: '三一',
     username: '用户名',
     password: '密码',
     roles: '角色权限',

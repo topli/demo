@@ -6,7 +6,7 @@
           <el-input v-model="form.roleName"/>
         </el-form-item>
         <el-form-item :label="$t('role.roles')" prop="roles">
-          <el-tree ref="roles" :data="menuList" :default-checked-keys="form.rolesArray" node-key="id" class="form-tree" show-checkbox @check="treeChange"/>
+          <el-tree ref="roles" :data="menuList" :default-checked-keys="form.rolesArray" :props="prposDefault" node-key="id" class="form-tree" show-checkbox @check="treeChange"/>
           <el-input v-model="form.roles" style="display: none"/>
         </el-form-item>
       </el-form>
@@ -20,6 +20,7 @@
 
 <script>
 import { addData, editData } from './service'
+import { getData } from '@/views/page/menu/service'
 export default {
   props: {
     data: { type: Object, default: () => { return {} } }
@@ -46,14 +47,20 @@ export default {
             { label: '角色管理', id: 13 }
           ]
         }
-      ]
+      ],
+      prposDefault: {
+        children: 'child',
+        label: 'name'
+      }
     }
   },
   computed: {
   },
   mounted() {
+    this.getMenuList()
     if (this.form.id) {
       this.$set(this.form, 'rolesArray', this.form.roles.split(','))
+      console.log(this.form)
     }
   },
   methods: {
@@ -93,6 +100,7 @@ export default {
     },
     edit() {
       this.loading = true
+      console.log(this.form)
       editData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
@@ -106,6 +114,12 @@ export default {
           console.log(error)
         }, 300)
       })
+    },
+    getMenuList() {
+      getData().then((res) => {
+        console.log(res)
+        this.menuList = res.data.list
+      })
     }
   }
 }
@@ -116,7 +130,7 @@ export default {
     border: 1px solid #dcdfe6;
     border-radius: 4px;
     padding: 4px;
-    width:200px;
+    width: 260px;
     height: 200px;
     overflow: auto;
   }

@@ -199,7 +199,17 @@ export const constantRouterMap = [
         name: 'tasksDispatch',
         component: routes['tasksDispatch'],
         meta: { title: 'tasksDispatch' }
-      },
+      }
+    ]
+  },
+  {
+    path: '/reportCenter',
+    component: Layout,
+    name: 'reportCenter',
+    redirect: 'noredirect',
+    alwaysShow: true,
+    meta: { title: 'reportCenter', icon: 'shebei' },
+    children: [
       {
         path: 'currentTaskReport',
         name: 'currentTaskReport',

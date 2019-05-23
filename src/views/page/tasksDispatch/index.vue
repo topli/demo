@@ -51,17 +51,14 @@ export default {
     return {
       columnsTitle: [
         {
-          key: 'id',
+          key: 'dispatchNo',
           title: this.$t('dispatch.no'),
-          width: '100',
-          render: (h) => {
-            return h('span', 'NO' + (Math.ceil(Math.random() * 100)))
-          }
+          width: '160'
         },
         {
           key: 'no',
           title: this.$t('tasks.no'),
-          width: '100'
+          width: '160'
         },
         {
           key: 'name',
