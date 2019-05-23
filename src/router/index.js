@@ -49,6 +49,7 @@ export const childRouterMap = {
   component: Layout,
   redirect: '/dashboard',
   name: 'childRouter',
+  hidden: true,
   children: [
     { path: 'monitorM/enclosure/edit', name: 'enclosureEdit', component: () => import('@/views/page/enclosure/add') }
   ]
