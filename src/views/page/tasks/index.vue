@@ -1,12 +1,12 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.name" :placeholder="$t('tasks.name')" clearable/>
+          <el-input v-model="searchForm.name" :placeholder="$t('tasks.name')" clearable/>
         </el-form-item>
         <el-form-item>
-          <select-remote v-model="searchFrom.status" :placeholder="$t('tasks.status')" filterable clearable data-type="taskStatus"/>
+          <select-remote v-model="searchForm.status" :placeholder="$t('tasks.status')" filterable clearable data-type="taskStatus"/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -111,13 +111,16 @@ export default {
               { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6', hide: hide || hide2 },
               { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6', hide: hide || hide1 },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
       ],
       fileType: 'tasks'
     }
+  },
+  mounted() {
+    this.searchForm.status = null
   },
   methods: {
     _getList() {
@@ -170,7 +173,7 @@ export default {
           if (res.code === 200) {
             this.$message({
               type: 'success',
-              message: this.$t('app.delete') + this.$t('app.success')
+              message: this.$t('app.disables') + this.$t('app.success')
             })
           } else {
             this.$message({

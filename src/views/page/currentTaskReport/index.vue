@@ -1,12 +1,9 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.name" :placeholder="$t('tasks.name')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchFrom.status" :placeholder="$t('tasks.status')" filterable clearable data-type="taskStatus"/>
+          <el-input v-model="searchForm.name" :placeholder="$t('tasks.name')" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>

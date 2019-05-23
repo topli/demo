@@ -1,12 +1,15 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
+          <el-input v-model="searchForm.user" :placeholder="$t('user.username')" clearable/>
         </el-form-item>
         <el-form-item>
-          <select-remote v-model="searchFrom.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
+          <select-remote v-model="searchForm.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
+        </el-form-item>
+        <el-form-item>
+          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -41,12 +44,11 @@
 <script>
 import add from './add'
 import list from '@/libs/mixins/list'
-import dialog from '@/libs/mixins/dialog'
 import { getList, delData } from './service'
 
 export default {
   name: 'User',
-  mixins: [list, dialog],
+  mixins: [list],
   data() {
     return {
       columnsTitle: [
@@ -128,7 +130,7 @@ export default {
           title: this.$t('user.isWork'),
           width: '100',
           render: (h, params) => {
-            return h('span', params.row.isWork ? '否' : '是')
+            return h('span', params.row.isWork ? '是' : '否')
           }
         },
         {
@@ -155,7 +157,7 @@ export default {
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
@@ -218,7 +220,7 @@ export default {
           if (res.code === 200) {
             this.$message({
               type: 'success',
-              message: this.$t('app.delete') + this.$t('app.success')
+              message: this.$t('app.disables') + this.$t('app.success')
             })
           } else {
             this.$message({

@@ -30,6 +30,7 @@ export default {
     review: '审核',
     push: '发布',
     dispatch: '智能调度',
-    fullScreen: '全屏'
+    fullScreen: '全屏',
+    unbind: '解除绑定'
   }
 }

@@ -161,7 +161,7 @@ export default {
         this.treeData = Object.assign([], this.treeData)
         editData({ list: this.treeData }).then((res) => {
           if (res.code === 200) {
-            this.$message.success(this.$t('app.delete') + this.$t('app.success'))
+            this.$message.success(this.$t('app.disables') + this.$t('app.success'))
           }
         })
       })
@@ -185,7 +185,7 @@ export default {
           h('span', [
             this.renderIconBtn(h, { node, data, store }, { icon: 'add', content: this.$t('app.add') }, this.append),
             this.renderIconBtn(h, { node, data, store }, { icon: 'edit', content: this.$t('app.modify') }, this.edit, data.type === 'org'),
-            this.renderIconBtn(h, { node, data, store }, { icon: 'delete', content: this.$t('app.delete') }, this.remove, data.type === 'org')
+            this.renderIconBtn(h, { node, data, store }, { icon: 'disables', content: this.$t('app.disables') }, this.remove, data.type === 'org')
           ])
         ])
     },

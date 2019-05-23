@@ -2,7 +2,7 @@
   <div class="list-template">
     <!--{{ pageName }}-->
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom" label-position="right">
+      <el-form :inline="true" :model="searchForm" label-position="right">
         <el-form-item prop="GpsID" label="设备GPS ID">
           <el-input v-model="ruleForm.gpsID" placeholder="GPS ID" clearable/>
         </el-form-item>
@@ -14,6 +14,9 @@
         </el-form-item>
         <el-form-item prop="EndTime" label="结束时间">
           <el-date-picker v-model="ruleForm.EndTime" type="date" placeholder="选择日期" style="width: 100%;"/>
+        </el-form-item>
+        <el-form-item>
+          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
         </el-form-item>
       </el-form>
     </search-tem>

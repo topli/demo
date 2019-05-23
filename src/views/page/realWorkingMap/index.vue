@@ -2,18 +2,18 @@
   <div class="list-template">
     <div style="padding:20px;padding-bottom:0px;">
       <search-tem class="list-search" @on-search="onSearch">
-        <el-form :inline="true" :model="searchFrom">
+        <el-form :inline="true" :model="searchForm">
           <el-form-item>
-            <el-input v-model="searchFrom.organization" :placeholder="$t('map.organization')" clearable/>
+            <el-input v-model="searchForm.organization" :placeholder="$t('map.organization')" clearable/>
           </el-form-item>
           <el-form-item>
-            <el-input v-model="searchFrom.equipmentNumber" :placeholder="$t('map.equipmentNumber')" clearable/>
+            <el-input v-model="searchForm.equipmentNumber" :placeholder="$t('map.equipmentNumber')" clearable/>
           </el-form-item>
           <el-form-item>
-            <el-input v-model="searchFrom.deviceType" :placeholder="$t('map.deviceType')" clearable/>
+            <el-input v-model="searchForm.deviceType" :placeholder="$t('map.deviceType')" clearable/>
           </el-form-item>
           <el-form-item>
-            <el-input v-model="searchFrom.penName" :placeholder="$t('map.penName')" clearable/>
+            <el-input v-model="searchForm.penName" :placeholder="$t('map.penName')" clearable/>
           </el-form-item>
         </el-form>
       </search-tem>
@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      searchFrom: {},
+      searchForm: {},
       map: null,
       circle: '',
       styleOptions: {

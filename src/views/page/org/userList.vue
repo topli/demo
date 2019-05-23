@@ -1,12 +1,15 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.user" :placeholder="$t('user.username')" clearable/>
+          <el-input v-model="searchForm.user" :placeholder="$t('user.username')" clearable/>
         </el-form-item>
         <el-form-item>
-          <select-remote v-model="searchFrom.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
+          <select-remote v-model="searchForm.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
+        </el-form-item>
+        <el-form-item>
+          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -87,7 +90,7 @@ export default {
           fixed: 'right',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'unbind', t: 'app.unbind', handler: this.deleteItem, color: '#ff7c4a' }
             ]))
           }
         }
