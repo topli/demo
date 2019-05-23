@@ -151,7 +151,7 @@ export default {
     // 初始化地图
     async init() {
       this.map = new BMap.Map('map', { enableMapClick: false })
-      this.map.centerAndZoom(new BMap.Point(116.685134, 39.861631), 12) // 初始化北京地图
+      this.map.centerAndZoom(new BMap.Point(116.718695, 39.853711), 12) // 初始化北京地图
       // this.sCity = '北京' // 选择城市
       this.map.setCurrentCity('北京')
       this.map.enableScrollWheelZoom(true)
