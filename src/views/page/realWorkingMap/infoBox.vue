@@ -25,7 +25,7 @@
     border-radius: 10px;
   }
   .info-hd{
-    height: 40px;
+    height: 50px;
     background: #96a1a7;
     border-radius: 10px 10px 0 0;
     color: #fff;
@@ -36,7 +36,7 @@
   }
   .car_icon{
     position: absolute;
-    top: 6px;
+    top: 12px;
     left: 12px;
     opacity: 0.4;
     width: 32px;
@@ -48,7 +48,7 @@
     padding-left: 12px;
   }
   .info-content .inner-font p{
-    padding-top: 6px;
+    padding-top: 9px;
   }
   .info-content table{
     margin: 0 0 10px 0;
@@ -139,31 +139,31 @@
 <template>
   <div class="info-content">
     <div class="info-hd status">
-      <img class="car_icon" src="/static/images/info_box_car.png">
+      <img v-if="infoBoxData.deviceType === '矿车'" class="car_icon" src="/static/images/harvesters1.png">
+      <img v-if="infoBoxData.deviceType === '装载机'" class="car_icon" src="/static/images/loader1.png">
+      <img v-if="infoBoxData.deviceType === '挖掘机'" class="car_icon" src="/static/images/excavator1.png">
       <div class="inner-font">
         <p style="margin:0px">
-          <b class="pwCarnum">京A12345</b>
+          <b class="pwCarnum">设备编号：{{ infoBoxData.deviceNum }}</b>
         </p>
-        <p style="margin-top:0px;">打卡司机：<span class="pwCurrentDriver">{{ '张三' }}</span></p>
+        <p style="margin-top:0px;">设备类型：<span class="pwCurrentDriver">{{ infoBoxData.deviceType }}</span></p>
       </div>
     </div>
     <table>
       <tbody>
-        <tr><td>设备编号 :</td><td>{{ '无数据' }}</td></tr>
-        <tr><td>设备类型 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>实时状态 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>所属组织 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>设备地址 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>工作模式 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>发动机转速 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>实时油耗 : </td><td>{{ '无数据' }}</td></tr>
-        <tr><td>GPS : </td><td>{{ '无数据' }}</td></tr>
+        <tr><td>实时状态 : </td><td>{{ infoBoxData.realTimeStatus }}</td></tr>
+        <tr><td>所属组织 : </td><td>{{ infoBoxData.organisation }}</td></tr>
+        <tr><td>设备地址 : </td><td>{{ infoBoxData.deviceInfoAddress }}</td></tr>
+        <tr><td>工作模式 : </td><td>{{ infoBoxData.workingMode }}</td></tr>
+        <tr><td>发动机转速 : </td><td>{{ infoBoxData.engineSpeed }}</td></tr>
+        <tr><td>实时油耗 : </td><td>{{ infoBoxData.realTimeFuelConsumption }}</td></tr>
+        <tr><td>GPS号 : </td><td>{{ infoBoxData.gpsNum }}</td></tr>
       </tbody>
     </table>
-    <ul class="fn clearfix">
-      <li class="track"><a href="javascript:;" @click="clickTrack()"><i class="el-icon-caret-right"/><span class="text">跟踪</span></a></li>
+    <ul class="fn clearfix" style="height:30px;">
+      <!--  <li class="track"><a href="javascript:;" @click="clickTrack()"><i class="el-icon-caret-right"/><span class="text">跟踪</span></a></li>
       <li class="replay"><a href="javascript:;" @click="clickReplay()"><i class="el-icon-caret-right"/><span class="text">回放</span></a></li>
-      <!-- <li class="marker"><a href="javascript:;"><Icon type="location"></Icon><span class="text">标注</span></a></li> -->
+      <li class="marker"><a href="javascript:;"><Icon type="location"></Icon><span class="text">标注</span></a></li> -->
     </ul>
     <div class="little-corner"><span class="inner"/></div>
   </div>
