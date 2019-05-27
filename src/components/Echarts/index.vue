@@ -13,6 +13,7 @@
 
 <script>
 import echarts from 'echarts'
+import { monitorDomEvent } from '@/libs/utils'
 export default {
   props: {
     id: {
@@ -50,19 +51,22 @@ export default {
     }
   },
   created() {
-    window.addEventListener('resize', this.resize)
+    // window.addEventListener('resize', this.resize)
   },
   mounted() {
     this._initCharts()
+    monitorDomEvent.call(this, this.id)
   },
   beforeDestroy() {
     this.chart = null
-    window.removeEventListener('resize', this.resize)
+    // window.removeEventListener('resize', this.resize)
   },
   methods: {
     resize() {
       if (this.chart) {
-        this.chart.resize()
+        setTimeout(() => {
+          this.chart.resize()
+        }, 200)
       }
     },
     _initCharts() {
