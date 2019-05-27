@@ -1,12 +1,13 @@
 <template>
   <div v-loading="loading" class="aou-template">
     <div class="aou-body">
-      <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="120px">
         <el-form-item :label="$t('device.status')">
           <el-input v-model="form.status"/>
         </el-form-item>
         <el-form-item :label="$t('device.model')">
-          <el-input v-model.number="form.model"/>
+          <!-- <el-input v-model.number="form.model"/> -->
+          <select-remote v-model="form.sex" filterable clearable data-type="sex"/>
         </el-form-item>
         <el-form-item :label="$t('device.number')" prop="number">
           <el-input v-model="form.number"/>

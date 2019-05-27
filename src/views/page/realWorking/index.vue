@@ -3,7 +3,7 @@
     <!--{{ pageName }}-->
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm" label-position="right">
-        <el-form-item prop="GpsID" label="设备GPS ID">
+        <el-form-item prop="GpsID">
           <el-input v-model="ruleForm.gpsID" placeholder="GPS ID" clearable/>
         </el-form-item>
         <el-form-item prop="StartTime" label="">

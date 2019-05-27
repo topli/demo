@@ -19,8 +19,6 @@ const app = {
       }
       state.sidebar.opened = !state.sidebar.opened
       state.sidebar.withoutAnimation = false
-      var myEvent = new Event('resize')
-      window.dispatchEvent(myEvent)
     },
     CLOSE_SIDEBAR: (state, withoutAnimation) => {
       Cookies.set('sidebarStatus', 1)
@@ -59,9 +57,9 @@ const app = {
     SetDictData({ commit }) {
       getData().then((res) => {
         // 模拟请求延迟
-        setTimeout(() => {
-          commit('DICT_DATA', res.data.list || null)
-        }, 2000)
+        // setTimeout(() => {
+        commit('DICT_DATA', res.data.list || null)
+        // }, 2000)
         // commit('DICT_DATA', res.data.list || null)
       })
     }

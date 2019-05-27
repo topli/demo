@@ -197,21 +197,21 @@ const data = {
       isRemindType: [
         { id: 27, value: '1', label: '短信和APP提醒', color: '#b03e32' },
         { id: 28, value: '2', label: '短信提醒', color: '#409EFF' },
-        { id: 29, value: '3', label: 'APP提醒', color: '#409EFF' }
+        { id: 29, value: '3', label: 'APP提醒', color: '#409EFF' },
+        { id: 29, value: '4', label: '不提醒', color: '#409EFF' }
       ],
       pushDateType: [
         { id: 30, value: '1', label: '立即', color: '#b03e32' },
-        { id: 31, value: '2', label: '1小时后', color: '#409EFF' },
-        { id: 32, value: '3', label: '2小时后', color: '#409EFF' },
-        { id: 37, value: '4', label: '不处理', color: '#409EFF' }
+        { id: 37, value: '2', label: '不处理', color: '#409EFF' },
+        { id: 31, value: '3', label: '1小时后', color: '#409EFF' },
+        { id: 32, value: '4', label: '2小时后', color: '#409EFF' },
+        { id: 34, value: '5', label: '3小时后', color: '#409EFF' },
+        { id: 35, value: '6', label: '1天后', color: '#409EFF' },
+        { id: 36, value: '7', label: '2天后', color: '#409EFF' }
       ],
       handleStatus: [
         { id: 33, value: 'true', label: '已处理', color: '#409EFF' },
-        { id: 34, value: 'false', label: '未处理', color: '#67C23A' },
-        { id: 32, value: '3', label: '2小时后', color: '#409EFF' },
-        { id: 34, value: '4', label: '3小时后', color: '#409EFF' },
-        { id: 35, value: '5', label: '1天后', color: '#409EFF' },
-        { id: 36, value: '6', label: '2天后', color: '#409EFF' }
+        { id: 34, value: 'false', label: '未处理', color: '#67C23A' }
       ]
     }
   },

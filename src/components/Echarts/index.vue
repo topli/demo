@@ -1,24 +1,23 @@
 <style lang="scss" scoped>
   .echarts-report {
-    width: 100%;
-    height: 100%;
     position: relative;
   }
 </style>
 <template>
-  <div class="echarts-report">
-    <div :id="id" :style="style" style="height: 100%;width: 100%;"/>
-  </div>
+  <div :style="{height:height + 'px',width:width}"/>
 </template>
 
 <script>
 import echarts from 'echarts'
-import { monitorDomEvent } from '@/libs/utils'
 export default {
   props: {
-    id: {
+    width: {
       type: String,
-      default: ''
+      default: '100%'
+    },
+    height: {
+      type: String,
+      default: '350'
     },
     reportObject: {
       type: Object,
@@ -33,33 +32,31 @@ export default {
     }
   },
   computed: {
-    style() {
-      const style = {}
-      return style
-    }
   },
   watch: {
     reportObject: {
       handler: function(val) {
-        if (val && val.series) {
-          this.chart.setOption(val)
-        } else {
-          this.chart && this.chart.clear()
-        }
+        this.chart.setOption(val)
       },
       deep: true
     }
   },
   created() {
-    // window.addEventListener('resize', this.resize)
+    window.addEventListener('resize', this.resize)
   },
   mounted() {
     this._initCharts()
-    monitorDomEvent.call(this, this.id)
+    // 监听侧边栏的变化
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    sidebarElm.addEventListener('transitionend', this.resize)
   },
   beforeDestroy() {
+    if (!this.chart) {
+      return
+    }
+    this.chart.dispose()
     this.chart = null
-    // window.removeEventListener('resize', this.resize)
+    window.removeEventListener('resize', this.resize)
   },
   methods: {
     resize() {
@@ -70,16 +67,8 @@ export default {
       }
     },
     _initCharts() {
-      setTimeout(() => {
-        // 不存在echarts实例 创建实例 存在则清除之前数据
-        if (!this.chart) {
-          this.chart = echarts.init(document.getElementById(this.id))
-        } else {
-          this.chart && this.chart.clear()
-        }
-        const option = this.reportObject
-        option && this.chart.setOption(option)
-      }, 500)
+      this.chart = echarts.init(this.$el)
+      this.chart.setOption(this.reportObject)
     }
   }
 }

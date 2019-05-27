@@ -36,3 +36,12 @@
   background-color: #f78989!important;
   border-color: #f78989!important;
 }
+.el-select-dropdown__item{
+  font-size: 13px;
+}
+// 统一输入框长度
+.el-form {
+  .el-input__inner{
+    padding-right: 15px!important; 
+  }
+}

@@ -145,22 +145,3 @@ export function deepClone(source) {
   })
   return targetObj
 }
-export function monitorDomEvent(id, callback) {
-  console.log(id)
-  const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver
-  const element = document.getElementById(id)
-  this.observer = new MutationObserver((mutationList) => {
-    for (const mutation of mutationList) {
-      console.log(mutation)
-    }
-    const width = getComputedStyle(element).getPropertyValue('width')
-    const height = getComputedStyle(element).getPropertyValue('height')
-    console.log(width)
-    console.log(height)
-    if (width === this.width && height === this.height) return
-    this.width = width
-    this.height = height
-    this.firedNum += 1
-  })
-  this.observer.observe(element, { attributes: true, attributeFilter: ['style'], attributeOldValue: true })
-}
