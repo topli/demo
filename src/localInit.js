@@ -142,75 +142,76 @@ const data = {
     ],
     data: {
       menuType: [
-        { id: 2, value: 1, label: '目录', color: '#409EFF' },
-        { id: 3, value: 2, label: '菜单', color: '#67C23A' },
-        { id: 4, value: 3, label: '按钮', color: '#E6A23C' }
+        { id: 2, value: '1', label: '目录', color: '#409EFF' },
+        { id: 3, value: '2', label: '菜单', color: '#67C23A' },
+        { id: 4, value: '3', label: '按钮', color: '#E6A23C' }
       ],
       menuStatus: [
-        { id: 6, value: true, label: '可见', color: '#67C23A' },
-        { id: 7, value: false, label: '不可见', color: '#F56C6C' }
+        { id: 6, value: 'true', label: '可见', color: '#67C23A' },
+        { id: 7, value: 'false', label: '不可见', color: '#F56C6C' }
       ],
       linkType: [
-        { id: 8, value: 1, label: '当前窗口' },
-        { id: 9, value: 2, label: '弹出窗口' },
-        { id: 10, value: 3, label: '弹出浏览器' },
-        { id: 11, value: 4, label: '新窗口/新标签' }
+        { id: 8, value: '1', label: '当前窗口' },
+        { id: 9, value: '2', label: '弹出窗口' },
+        { id: 10, value: '3', label: '弹出浏览器' },
+        { id: 11, value: '4', label: '新窗口/新标签' }
       ],
       sex: [
-        { id: 8, value: 1, label: '男', color: '#409EFF' },
-        { id: 9, value: 2, label: '女', color: '#67C23A' }
+        { id: 8, value: '1', label: '男', color: '#409EFF' },
+        { id: 9, value: '2', label: '女', color: '#67C23A' }
       ],
       status: [
-        { id: 10, value: true, label: '启用', color: '#67C23A' },
-        { id: 11, value: false, label: '禁用', color: '#F56C6C' }
+        { id: 10, value: 'true', label: '启用', color: '#67C23A' },
+        { id: 11, value: 'false', label: '禁用', color: '#F56C6C' }
       ],
       userType: [
-        { id: 12, value: 1, label: '司机', color: '#67C23A' },
-        { id: 13, value: 2, label: '管理员', color: '#F56C6C' },
-        { id: 13, value: 3, label: '任务调度员', color: '#F56C6C' },
-        { id: 13, value: 4, label: '统计专员', color: '#F56C6C' }
+        { id: 12, value: '1', label: '司机', color: '#67C23A' },
+        { id: 13, value: '2', label: '管理员', color: '#F56C6C' },
+        { id: 13, value: '3', label: '任务调度员', color: '#F56C6C' },
+        { id: 13, value: '4', label: '统计专员', color: '#F56C6C' }
       ],
       taskType: [
-        { id: 14, value: 1, label: '早班', color: '#04b669' },
-        { id: 15, value: 2, label: '晚班', color: '#6b89aa' },
-        { id: 16, value: 3, label: '休息', color: '#a8a8a8' }
+        { id: 14, value: '1', label: '早班', color: '#04b669' },
+        { id: 15, value: '2', label: '晚班', color: '#6b89aa' },
+        { id: 16, value: '3', label: '休息', color: '#a8a8a8' }
       ],
       taskStatus: [
-        { id: 17, value: 3, label: '待审核', color: '#b03e32' },
-        { id: 18, value: 1, label: '已调度', color: '#409EFF' },
-        { id: 33, value: 2, label: '未调度', color: '#b03e32' }
+        { id: 17, value: '3', label: '待审核', color: '#b03e32' },
+        { id: 18, value: '1', label: '已调度', color: '#409EFF' },
+        { id: 33, value: '2', label: '未调度', color: '#b03e32' }
       ],
       taskLevel: [
-        { id: 19, value: 1, label: '高', color: '#b03e32' },
-        { id: 20, value: 2, label: '中', color: '#409EFF' },
-        { id: 20, value: 3, label: '低', color: '#409EFF' }
+        { id: 19, value: '1', label: '高', color: '#b03e32' },
+        { id: 20, value: '2', label: '中', color: '#409EFF' },
+        { id: 20, value: '3', label: '低', color: '#409EFF' }
       ],
       deviceType: [
-        { id: 21, value: 1, label: '运输车', color: '#b03e32' },
-        { id: 22, value: 2, label: '起重机', color: '#409EFF' },
-        { id: 23, value: 3, label: '挖掘机', color: '#409EFF' }
+        { id: 21, value: '1', label: '运输车', color: '#b03e32' },
+        { id: 22, value: '2', label: '起重机', color: '#409EFF' },
+        { id: 23, value: '3', label: '挖掘机', color: '#409EFF' }
       ],
       examineType: [
-        { id: 24, value: 1, label: '通过', color: '#b03e32' },
-        { id: 25, value: 2, label: '拒绝', color: '#409EFF' }
+        { id: 24, value: '1', label: '通过', color: '#b03e32' },
+        { id: 25, value: '2', label: '拒绝', color: '#409EFF' }
       ],
       isRemindType: [
-        { id: 27, value: 1, label: '短信和APP提醒', color: '#b03e32' },
-        { id: 28, value: 2, label: '短信提醒', color: '#409EFF' },
-        { id: 29, value: 3, label: 'APP提醒', color: '#409EFF' }
+        { id: 27, value: '1', label: '短信和APP提醒', color: '#b03e32' },
+        { id: 28, value: '2', label: '短信提醒', color: '#409EFF' },
+        { id: 29, value: '3', label: 'APP提醒', color: '#409EFF' }
       ],
       pushDateType: [
-        { id: 30, value: 1, label: '立即', color: '#b03e32' },
-        { id: 31, value: 2, label: '1小时后', color: '#409EFF' },
-        { id: 32, value: 3, label: '2小时后', color: '#409EFF' }
+        { id: 30, value: '1', label: '立即', color: '#b03e32' },
+        { id: 31, value: '2', label: '1小时后', color: '#409EFF' },
+        { id: 32, value: '3', label: '2小时后', color: '#409EFF' },
+        { id: 37, value: '4', label: '不处理', color: '#409EFF' }
       ],
       handleStatus: [
         { id: 33, value: 'true', label: '已处理', color: '#409EFF' },
         { id: 34, value: 'false', label: '未处理', color: '#67C23A' },
-        { id: 32, value: 3, label: '2小时后', color: '#409EFF' },
-        { id: 34, value: 4, label: '3小时后', color: '#409EFF' },
-        { id: 35, value: 5, label: '1天后', color: '#409EFF' },
-        { id: 36, value: 6, label: '2天后', color: '#409EFF' }
+        { id: 32, value: '3', label: '2小时后', color: '#409EFF' },
+        { id: 34, value: '4', label: '3小时后', color: '#409EFF' },
+        { id: 35, value: '5', label: '1天后', color: '#409EFF' },
+        { id: 36, value: '6', label: '2天后', color: '#409EFF' }
       ]
     }
   },
@@ -427,11 +428,20 @@ const data = {
             identification: 'tasksDispatch',
             linkType: 1,
             child: []
-          },
+          }
+        ]
+      },
+      {
+        id: 22,
+        name: '报表中心',
+        order: 4,
+        type: 1,
+        status: true,
+        child: [
           {
             id: 22,
             name: '当前任务进度统计',
-            order: 3,
+            order: 1,
             type: 2,
             status: true,
             identification: 'currentTaskReport',
@@ -443,7 +453,7 @@ const data = {
       {
         id: 28,
         name: '系统设置',
-        order: 4,
+        order: 5,
         type: 1,
         child: [
           {
