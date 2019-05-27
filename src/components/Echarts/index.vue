@@ -17,7 +17,7 @@ export default {
     },
     height: {
       type: String,
-      default: '350'
+      default: '150'
     },
     reportObject: {
       type: Object,
