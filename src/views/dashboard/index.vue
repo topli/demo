@@ -34,11 +34,11 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-row :gutter="10">
+    <!-- <el-row :gutter="10">
       <el-col :xs="{span: 24}" :sm="{span: 24}" :md="{span: 24}" :lg="{span: 24}" :xl="{span: 24}" style="margin-bottom:30px;">
         <todo-list/>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 

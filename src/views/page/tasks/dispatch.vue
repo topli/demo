@@ -54,7 +54,7 @@
           <el-alert
             v-else
             :closable="false"
-            title="调度失败,设备不足！"
+            title="调度失败,设备资源不足！"
             type="error"
             center
             show-icon/>
@@ -99,7 +99,7 @@ export default {
     console.log(this.data)
     this.deviceLoading = true
     let index = 0
-    if (this.data.no === 'NO3') {
+    if (this.data.no === 'BJ201905231531') {
       this.dispatchReslut = false
     }
     const interval = setInterval(() => {
