@@ -162,7 +162,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.modify'),
         components: add,
-        width: 700,
+        width: 480,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
@@ -175,5 +175,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
 </style>

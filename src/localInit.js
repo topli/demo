@@ -206,11 +206,7 @@ const data = {
       ],
       handleStatus: [
         { id: 33, value: 'true', label: '已处理', color: '#409EFF' },
-        { id: 34, value: 'false', label: '未处理', color: '#67C23A' },
-        { id: 32, value: 3, label: '2小时后', color: '#409EFF' },
-        { id: 34, value: 4, label: '3小时后', color: '#409EFF' },
-        { id: 35, value: 5, label: '1天后', color: '#409EFF' },
-        { id: 36, value: 6, label: '2天后', color: '#409EFF' }
+        { id: 34, value: 'false', label: '未处理', color: '#67C23A' }
       ]
     }
   },

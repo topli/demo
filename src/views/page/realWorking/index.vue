@@ -3,20 +3,17 @@
     <!--{{ pageName }}-->
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm" label-position="right">
-        <el-form-item prop="GpsID" label="设备GPS ID">
-          <el-input v-model="ruleForm.gpsID" placeholder="GPS ID" clearable/>
+        <el-form-item prop="gpsID" label="">
+          <el-input v-model="ruleForm.gpsID" placeholder="设备编号" clearable/>
         </el-form-item>
-        <el-form-item prop="StartTime" label="">
-          <el-date-picker v-model="ruleForm.StartTime" type="date" placeholder="选择日期" style="width: 100%;"/>
+        <el-form-item prop="gpsNo" label="">
+          <el-input v-model="ruleForm.gpsNo" placeholder="GPS设备" clearable/>
         </el-form-item>
-        <el-form-item prop="TargetResv" label="">
-          <el-input v-model="ruleForm.TargetResv" placeholder="属性名称" clearable/>
+        <el-form-item prop="gpsNo" label="">
+          <el-input v-model="ruleForm.gpsNo" placeholder="动作编号" clearable/>
         </el-form-item>
-        <el-form-item prop="EndTime" label="">
-          <el-date-picker v-model="ruleForm.EndTime" type="date" placeholder="选择日期" style="width: 100%;"/>
-        </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
+        <el-form-item prop="gpsNo" label="">
+          <el-input v-model="ruleForm.gpsNo" placeholder="工作模式" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>

@@ -56,7 +56,5 @@ export default {
 </script>
 
 <style scoped>
-.el-dialog {
-  width: 494px;
-}
+
 </style>
