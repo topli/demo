@@ -42,9 +42,9 @@ export default {
   computed: {
   },
   mounted() {
-    this.$set(this.form, 'examine', 1)
-    this.$set(this.form, 'isRemind', 1)
-    this.$set(this.form, 'pushDate', 1)
+    this.$set(this.form, 'examine', '1')
+    this.$set(this.form, 'isRemind', '1')
+    this.$set(this.form, 'pushDate', '1')
   },
   methods: {
     // 提交按钮

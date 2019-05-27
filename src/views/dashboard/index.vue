@@ -22,15 +22,15 @@
           <div slot="header">
             <span>一周工作量</span>
           </div>
-          <echarts id="test1" :report-object="reportData" style="height: 300px"/>
+          <echarts :report-object="reportData" height="300"/>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="10" :md="10" :lg="8" :xl="8">
         <el-card class="box-card">
           <div slot="header">
-            <span>当天完成工作量</span>
+            <span>设备占比分布</span>
           </div>
-          <echarts id="test2" :report-object="reportData1" style="height: 300px"/>
+          <echarts :report-object="reportData1" height="300"/>
         </el-card>
       </el-col>
     </el-row>
@@ -56,8 +56,8 @@ export default {
       messageNumber: 3215,
       taskNumber: 9641,
       driverNumber: 1258,
-      reportData: null,
-      reportData1: null
+      reportData: {},
+      reportData1: {}
     }
   },
   computed: {
@@ -145,13 +145,10 @@ export default {
             name: '挖掘机'
           }, {
             value: 4,
-            name: '推土机'
+            name: '装载机'
           }, {
             value: 35,
             name: '运输车'
-          }, {
-            value: 53,
-            name: '起重机'
           }],
           label: {
             normal: {

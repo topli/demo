@@ -68,7 +68,7 @@ function getDictDataByType(type) {
 }
 export function getDictDatas(val, type) {
   const findData = getDictDataByType(type).find((item) => {
-    return item.value === val
+    return item.value === val + ''
   })
   return findData
 }

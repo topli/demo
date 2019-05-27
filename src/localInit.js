@@ -142,67 +142,72 @@ const data = {
     ],
     data: {
       menuType: [
-        { id: 2, value: 1, label: '目录', color: '#409EFF' },
-        { id: 3, value: 2, label: '菜单', color: '#67C23A' },
-        { id: 4, value: 3, label: '按钮', color: '#E6A23C' }
+        { id: 2, value: '1', label: '目录', color: '#409EFF' },
+        { id: 3, value: '2', label: '菜单', color: '#67C23A' },
+        { id: 4, value: '3', label: '按钮', color: '#E6A23C' }
       ],
       menuStatus: [
-        { id: 6, value: true, label: '可见', color: '#67C23A' },
-        { id: 7, value: false, label: '不可见', color: '#F56C6C' }
+        { id: 6, value: 'true', label: '可见', color: '#67C23A' },
+        { id: 7, value: 'false', label: '不可见', color: '#F56C6C' }
       ],
       linkType: [
-        { id: 8, value: 1, label: '当前窗口' },
-        { id: 9, value: 2, label: '弹出窗口' },
-        { id: 10, value: 3, label: '弹出浏览器' },
-        { id: 11, value: 4, label: '新窗口/新标签' }
+        { id: 8, value: '1', label: '当前窗口' },
+        { id: 9, value: '2', label: '弹出窗口' },
+        { id: 10, value: '3', label: '弹出浏览器' },
+        { id: 11, value: '4', label: '新窗口/新标签' }
       ],
       sex: [
-        { id: 8, value: 1, label: '男', color: '#409EFF' },
-        { id: 9, value: 2, label: '女', color: '#67C23A' }
+        { id: 8, value: '1', label: '男', color: '#409EFF' },
+        { id: 9, value: '2', label: '女', color: '#67C23A' }
       ],
       status: [
-        { id: 10, value: true, label: '启用', color: '#67C23A' },
-        { id: 11, value: false, label: '禁用', color: '#F56C6C' }
+        { id: 10, value: 'true', label: '启用', color: '#67C23A' },
+        { id: 11, value: 'false', label: '禁用', color: '#F56C6C' }
       ],
       userType: [
-        { id: 12, value: 1, label: '司机', color: '#67C23A' },
-        { id: 13, value: 2, label: '管理员', color: '#F56C6C' },
-        { id: 13, value: 3, label: '任务调度员', color: '#F56C6C' },
-        { id: 13, value: 4, label: '统计专员', color: '#F56C6C' }
+        { id: 12, value: '1', label: '司机', color: '#67C23A' },
+        { id: 13, value: '2', label: '管理员', color: '#F56C6C' },
+        { id: 13, value: '3', label: '任务调度员', color: '#F56C6C' },
+        { id: 13, value: '4', label: '统计专员', color: '#F56C6C' }
       ],
       taskType: [
-        { id: 14, value: 1, label: '早班', color: '#04b669' },
-        { id: 15, value: 2, label: '晚班', color: '#6b89aa' },
-        { id: 16, value: 3, label: '休息', color: '#a8a8a8' }
+        { id: 14, value: '1', label: '早班', color: '#04b669' },
+        { id: 15, value: '2', label: '晚班', color: '#6b89aa' },
+        { id: 16, value: '3', label: '休息', color: '#a8a8a8' }
       ],
       taskStatus: [
-        { id: 17, value: 3, label: '待审核', color: '#b03e32' },
-        { id: 18, value: 1, label: '已调度', color: '#409EFF' },
-        { id: 33, value: 2, label: '未调度', color: '#b03e32' }
+        { id: 17, value: '3', label: '待审核', color: '#b03e32' },
+        { id: 18, value: '1', label: '已调度', color: '#409EFF' },
+        { id: 33, value: '2', label: '未调度', color: '#b03e32' }
       ],
       taskLevel: [
-        { id: 19, value: 1, label: '高', color: '#b03e32' },
-        { id: 20, value: 2, label: '中', color: '#409EFF' },
-        { id: 20, value: 3, label: '低', color: '#409EFF' }
+        { id: 19, value: '1', label: '高', color: '#b03e32' },
+        { id: 20, value: '2', label: '中', color: '#409EFF' },
+        { id: 20, value: '3', label: '低', color: '#409EFF' }
       ],
       deviceType: [
-        { id: 21, value: 1, label: '运输车', color: '#b03e32' },
-        { id: 22, value: 2, label: '起重机', color: '#409EFF' },
-        { id: 23, value: 3, label: '挖掘机', color: '#409EFF' }
+        { id: 21, value: '1', label: '运输车', color: '#b03e32' },
+        { id: 22, value: '2', label: '起重机', color: '#409EFF' },
+        { id: 23, value: '3', label: '挖掘机', color: '#409EFF' }
       ],
       examineType: [
-        { id: 24, value: 1, label: '通过', color: '#b03e32' },
-        { id: 25, value: 2, label: '拒绝', color: '#409EFF' }
+        { id: 24, value: '1', label: '通过', color: '#b03e32' },
+        { id: 25, value: '2', label: '拒绝', color: '#409EFF' }
       ],
       isRemindType: [
-        { id: 27, value: 1, label: '短信和APP提醒', color: '#b03e32' },
-        { id: 28, value: 2, label: '短信提醒', color: '#409EFF' },
-        { id: 29, value: 3, label: 'APP提醒', color: '#409EFF' }
+        { id: 27, value: '1', label: '短信和APP提醒', color: '#b03e32' },
+        { id: 28, value: '2', label: '短信提醒', color: '#409EFF' },
+        { id: 29, value: '3', label: 'APP提醒', color: '#409EFF' },
+        { id: 29, value: '4', label: '不提醒', color: '#409EFF' }
       ],
       pushDateType: [
-        { id: 30, value: 1, label: '立即', color: '#b03e32' },
-        { id: 31, value: 2, label: '1小时后', color: '#409EFF' },
-        { id: 32, value: 3, label: '2小时后', color: '#409EFF' }
+        { id: 30, value: '1', label: '立即', color: '#b03e32' },
+        { id: 37, value: '2', label: '不处理', color: '#409EFF' },
+        { id: 31, value: '3', label: '1小时后', color: '#409EFF' },
+        { id: 32, value: '4', label: '2小时后', color: '#409EFF' },
+        { id: 34, value: '5', label: '3小时后', color: '#409EFF' },
+        { id: 35, value: '6', label: '1天后', color: '#409EFF' },
+        { id: 36, value: '7', label: '2天后', color: '#409EFF' }
       ],
       handleStatus: [
         { id: 33, value: 'true', label: '已处理', color: '#409EFF' },
@@ -423,11 +428,20 @@ const data = {
             identification: 'tasksDispatch',
             linkType: 1,
             child: []
-          },
+          }
+        ]
+      },
+      {
+        id: 22,
+        name: '报表中心',
+        order: 4,
+        type: 1,
+        status: true,
+        child: [
           {
             id: 22,
             name: '当前任务进度统计',
-            order: 3,
+            order: 1,
             type: 2,
             status: true,
             identification: 'currentTaskReport',
@@ -439,7 +453,7 @@ const data = {
       {
         id: 28,
         name: '系统设置',
-        order: 4,
+        order: 5,
         type: 1,
         child: [
           {
@@ -478,25 +492,25 @@ const data = {
   },
   device: {
     list: [
-      { id: 1, gpsNo: '', useStatus: '使用中', orgName: '北京总公司', model: '挖掘机', number: 'NO1', status: '可用', usePerson: '张秀英', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '', useStatus: '使用中', orgName: '北京总公司', model: '装载机', number: 'NO2', status: '可用', usePerson: '余平', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '', useStatus: '闲置中', orgName: '北京总公司', model: '运输车', number: 'NO3', status: '可用', usePerson: '贾刚', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO4', status: '可用', usePerson: '陈超', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO5', status: '可用', usePerson: '黄伟', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '', useStatus: '闲置中', orgName: '山西分公司', model: '挖掘机', number: 'NO6', status: '可用', usePerson: '萧杰', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO7', status: '可用', usePerson: '白杰', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO8', status: '可用', usePerson: '顾勇', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO9', status: '可用', usePerson: '孙军', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '', useStatus: '使用中', orgName: '山西分公司', model: '挖掘机', number: 'NO10', status: '可用', usePerson: '秦敏', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO11', status: '可用', usePerson: '高涛', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO12', status: '可用', usePerson: '吕勇', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '', useStatus: '报废', orgName: '山西分公司', model: '运输车', number: 'NO13', status: '可用', usePerson: '梁磊', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO14', status: '可用', usePerson: '石敏', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: 'NO15', status: '可用', usePerson: '熊静', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: 'NO16', status: '可用', usePerson: '吕平', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '', useStatus: '报废', orgName: '山西分公司', model: '装载机', number: 'NO17', status: '可用', usePerson: '石洋', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO18', status: '可用', usePerson: '方静', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO19', status: '可用', usePerson: '沈明', createTime: new Date(), available: true }
+      { id: 1, gpsNo: '91376494', useStatus: '使用中', orgName: '北京总公司', model: '挖掘机', number: 'NO1', status: '可用', usePerson: '张秀英', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '41055218', useStatus: '使用中', orgName: '北京总公司', model: '装载机', number: 'NO2', status: '可用', usePerson: '余平', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '91232187', useStatus: '闲置中', orgName: '北京总公司', model: '运输车', number: 'NO3', status: '可用', usePerson: '贾刚', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41108585', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO4', status: '可用', usePerson: '陈超', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '91376514', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO5', status: '可用', usePerson: '黄伟', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41086687', useStatus: '闲置中', orgName: '山西分公司', model: '挖掘机', number: 'NO6', status: '可用', usePerson: '萧杰', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41086686', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO7', status: '可用', usePerson: '白杰', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '91297925', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO8', status: '可用', usePerson: '顾勇', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41086595', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO9', status: '可用', usePerson: '孙军', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41080622', useStatus: '使用中', orgName: '山西分公司', model: '挖掘机', number: 'NO10', status: '可用', usePerson: '秦敏', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '41086687', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO11', status: '可用', usePerson: '高涛', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41080622', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO12', status: '可用', usePerson: '吕勇', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41086595', useStatus: '报废', orgName: '山西分公司', model: '运输车', number: 'NO13', status: '可用', usePerson: '梁磊', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '91270313', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO14', status: '可用', usePerson: '石敏', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41086679', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: 'NO15', status: '可用', usePerson: '熊静', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '91207317', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: 'NO16', status: '可用', usePerson: '吕平', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '41108584', useStatus: '报废', orgName: '山西分公司', model: '装载机', number: 'NO17', status: '可用', usePerson: '石洋', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41108559', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO18', status: '可用', usePerson: '方静', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '91207390', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO19', status: '可用', usePerson: '沈明', createTime: new Date(), available: true }
     ]
   },
   driverTask: {

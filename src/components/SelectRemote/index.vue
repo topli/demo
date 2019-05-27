@@ -99,7 +99,7 @@ export default {
   },
   mounted() {
     this.getOptions()
-    this.selectValue = this.value
+    this.selectValue = this.value ? this.value + '' : ''
   },
   methods: {
     getOptions() {
