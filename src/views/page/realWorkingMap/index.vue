@@ -1,6 +1,8 @@
 <template>
-  <div class="list-template">
-    <div style="padding:20px;padding-bottom:0px;">
+  <div class="map-template">
+    <div id="map" class="map"/>
+    <div style="display:none;"><infoBox ref="renderAfter" :info-box-data="infoBoxData" v-model="showInfoBox"/></div>
+    <div style="position: absolute;top:0;left:0;padding: 10px">
       <search-tem class="list-search" @on-search="onSearch">
         <el-form :inline="true" :model="searchForm">
           <el-form-item>
@@ -18,11 +20,11 @@
         </el-form>
       </search-tem>
     </div>
-    <div id="map" class="map"/>
-    <div style="display:none;"><infoBox ref="renderAfter" :info-box-data="infoBoxData" v-model="showInfoBox"/></div>
   </div>
 </template>
 <script>
+import '@/styles/map-template.scss'
+import { mapGetters } from 'vuex'
 import BMap from 'BMap'
 import infoBox from './InfoBox.vue'
 import BMapLib from 'BMapLib'
@@ -141,7 +143,15 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters([
+      'sidebar'
+    ])
+  },
   mounted() {
+    if (this.sidebar.opened) {
+      this.$store.dispatch('ToggleSideBar')
+    }
     this.init()
   },
   methods: {
@@ -264,8 +274,4 @@ export default {
 }
 </script>
 <style lang="scss">
-  .map{
-    width: 100%;
-    height: calc(100vh - 120px);
-  }
 </style>

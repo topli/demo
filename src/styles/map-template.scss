@@ -1,0 +1,9 @@
+.map-template{
+  .anchorBL{
+    display: none
+  }
+  .map{
+    width: 100%;
+    height: calc(100vh - 50px);
+  }
+}

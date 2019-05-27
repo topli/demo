@@ -208,7 +208,7 @@ export const constantRouterMap = [
     name: 'reportCenter',
     redirect: 'noredirect',
     alwaysShow: true,
-    meta: { title: 'reportCenter', icon: 'shebei' },
+    meta: { title: 'reportCenter', icon: 'reportMenu' },
     children: [
       {
         path: 'currentTaskReport',

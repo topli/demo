@@ -41,7 +41,7 @@ export default {
     reportObject: {
       handler: function(val) {
         if (val && val.series) {
-          this._initCharts()
+          this.chart.setOption(val)
         } else {
           this.chart && this.chart.clear()
         }
@@ -66,7 +66,6 @@ export default {
       }
     },
     _initCharts() {
-      console.log(this.chart)
       setTimeout(() => {
         // 不存在echarts实例 创建实例 存在则清除之前数据
         if (!this.chart) {
@@ -75,7 +74,7 @@ export default {
           this.chart && this.chart.clear()
         }
         const option = this.reportObject
-        this.chart.setOption(option)
+        option && this.chart.setOption(option)
       }, 500)
     }
   }
