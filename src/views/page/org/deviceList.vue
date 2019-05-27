@@ -1,14 +1,14 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.status" :placeholder="$t('device.status')" clearable/>
+          <el-input v-model="searchForm.status" :placeholder="$t('device.status')" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">
-      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
+      <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
     </div>
     <div class="table">
       <t-for-col
@@ -57,6 +57,11 @@ export default {
           width: '120'
         },
         {
+          key: 'gpsNo',
+          title: this.$t('device.gpsNo'),
+          width: '120'
+        },
+        {
           key: 'createTime',
           title: this.$t('device.createTime'),
           filters: 'parseTime',
@@ -92,13 +97,16 @@ export default {
           fixed: 'right',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'unbind', t: 'app.unbind', handler: this.deleteItem, color: '#ff7c4a' }
             ]))
           }
         }
       ],
       fileType: 'device'
     }
+  },
+  mounted() {
+    this.searchForm.status = null
   },
   methods: {
     _getList() {

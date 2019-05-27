@@ -1,19 +1,19 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name:{{ name }}   roles:<span v-for="role in roles" :key="role">{{ role }}</span></div>
+    <div class="dashboard-text">{{ $t('app.username') }}:{{ name }}   {{ $t('app.roles') }}:<span v-for="role in roles" :key="role">{{ role }}</span></div>
     <hr>
     <el-row :gutter="10">
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-        <statistics :number="userNumber" icon="user" title="User List" color="#f0ad4e"/>
+        <statistics :number="userNumber" icon="user" title="用户列表" color="#f0ad4e"/>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-        <statistics :number="messageNumber" icon="message" title="Message List" color="#4CB1CF"/>
+        <statistics :number="messageNumber" icon="message" title="报警列表" color="#4CB1CF"/>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-        <statistics :number="taskNumber" icon="task" title="Task List" color="#F0433D"/>
+        <statistics :number="taskNumber" icon="task" title="任务列表" color="#F0433D"/>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-        <statistics :number="driverNumber" icon="driver" title="Driver List" color="#5cb85c"/>
+        <statistics :number="driverNumber" icon="driver" title="司机列表" color="#5cb85c"/>
       </el-col>
     </el-row>
     <el-row :gutter="10">

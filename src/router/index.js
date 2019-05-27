@@ -49,6 +49,7 @@ export const childRouterMap = {
   component: Layout,
   redirect: '/dashboard',
   name: 'childRouter',
+  hidden: true,
   children: [
     { path: 'monitorM/enclosure/edit', name: 'enclosureEdit', meta: { title: 'enclosureAdd' }, component: () => import('@/views/page/enclosure/add') }
   ]
@@ -198,7 +199,17 @@ export const constantRouterMap = [
         name: 'tasksDispatch',
         component: routes['tasksDispatch'],
         meta: { title: 'tasksDispatch' }
-      },
+      }
+    ]
+  },
+  {
+    path: '/reportCenter',
+    component: Layout,
+    name: 'reportCenter',
+    redirect: 'noredirect',
+    alwaysShow: true,
+    meta: { title: 'reportCenter', icon: 'shebei' },
+    children: [
       {
         path: 'currentTaskReport',
         name: 'currentTaskReport',
@@ -235,12 +246,12 @@ export const constantRouterMap = [
         component: routes['menu'],
         meta: { title: 'menu' }
       },
-      {
-        path: 'pages',
-        name: 'pages',
-        component: routes['menu'],
-        meta: { title: 'pages' }
-      },
+      // {
+      //   path: 'pages',
+      //   name: 'pages',
+      //   component: routes['menu'],
+      //   meta: { title: 'pages' }
+      // },
       {
         path: 'dict',
         name: 'dict',

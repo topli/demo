@@ -3,7 +3,7 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchForm.user" :placeholder="$t('user.username')" clearable/>
+          <el-input v-model="searchForm.enclosureName" :placeholder="$t('enclosure.enclosureName')" clearable/>
         </el-form-item>
         <el-form-item>
           <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
@@ -11,14 +11,11 @@
       </el-form>
     </search-tem>
     <div class="btns">
-      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="editData"/>
-      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
+      <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="editData"/> -->
     </div>
     <div class="table">
       <t-for-col
         :data="list"
-        :sort-change="sortChange"
         :columns-title="columnsTitle"
         :loading="loading"
         selection
@@ -39,13 +36,11 @@
 </template>
 
 <script>
-import add from './add'
 import list from '@/libs/mixins/list'
-import dialog from '@/libs/mixins/dialog'
-import { getList, delData } from './service'
+import { getList } from '@/views/page/enclosure/service'
 
 export default {
-  mixins: [list, dialog],
+  mixins: [list],
   data() {
     return {
       columnsTitle: [
@@ -63,13 +58,13 @@ export default {
           }
         },
         {
-          key: 'name',
-          title: this.$t('enclosure.name'),
+          key: 'enclosureName',
+          title: this.$t('enclosure.enclosureName'),
           width: '180'
         },
         {
-          key: 'labelState',
-          title: this.$t('enclosure.labelState'),
+          key: 'enclosureType',
+          title: this.$t('enclosure.enclosureType'),
           width: '120'
         },
         {
@@ -88,13 +83,13 @@ export default {
           width: '130'
         },
         {
-          key: 'address',
-          title: this.$t('enclosure.address'),
+          key: 'adress',
+          title: this.$t('enclosure.adress'),
           width: '250'
         },
         {
-          key: 'scope',
-          title: this.$t('enclosure.scope'),
+          key: 'enclosureRange',
+          title: this.$t('enclosure.enclosureRange'),
           width: '100',
           unit: this.$t('enclosure.rangeUnit')
         },
@@ -106,12 +101,13 @@ export default {
         },
         {
           title: this.$t('app.buttons'),
-          width: '100',
+          width: '60',
           align: 'center',
+          fixed: 'right',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
+              // { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
+              { icon: 'unbind', t: 'app.unbind', handler: this.deleteItem, color: '#ff7c4a' }
             ]))
           }
         }
@@ -122,15 +118,12 @@ export default {
   mounted() {
   },
   methods: {
-    sortChange(data) {
-      console.log(data)
-    },
     _getList() {
       this.loading = true
       getList(this.searchData).then(res => {
         setTimeout(() => {
           this.loading = false
-          this.list = res.data.list
+          this.list.push(res.data.list[0])
           this.totalElement = res.data.total
         }, 1000)
       })
@@ -142,43 +135,43 @@ export default {
           if (item.id === id) this.dialogData = item
         })
       }, 1000)
-    },
-    editData(row) {
-      console.log(row)
-      this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange, id: row.id }})
-    },
-    addData() {
-      this.$dialogBox({
-        title: this.$t('app.add'),
-        components: add,
-        width: 650,
-        onSub: (el) => {
-          // 新增完成后执行操作
-          // todo 刷新列表
-          this._getList()
-        }
-      })
-    },
-    deleteItem(row) {
-      this.confirm((success) => {
-        delData(row).then((res) => {
-          console.log(res)
-          if (res.code === 200) {
-            this.$message({
-              type: 'success',
-              message: this.$t('app.disables') + this.$t('app.success')
-            })
-          } else {
-            this.$message({
-              type: 'error',
-              message: res.message
-            })
-            return
-          }
-          this._getList()
-        })
-      })
     }
+    // editData(row) {
+    //   console.log(row)
+    //   this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange }})
+    // },
+    // addData() {
+    //   this.$dialogBox({
+    //     title: this.$t('app.add'),
+    //     components: add,
+    //     width: 650,
+    //     onSub: (el) => {
+    //       // 新增完成后执行操作
+    //       // todo 刷新列表
+    //       this._getList()
+    //     }
+    //   })
+    // },
+    // deleteItem(row) {
+    //   this.confirm((success) => {
+    //     delData(row).then((res) => {
+    //       console.log(res)
+    //       if (res.code === 200) {
+    //         this.$message({
+    //           type: 'success',
+    //           message: this.$t('app.disables') + this.$t('app.success')
+    //         })
+    //       } else {
+    //         this.$message({
+    //           type: 'error',
+    //           message: res.message
+    //         })
+    //         return
+    //       }
+    //       this._getList()
+    //     })
+    //   })
+    // }
   }
 }
 </script>

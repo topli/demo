@@ -20,6 +20,7 @@
         <el-tabs v-model="showPage" style="padding: 20px 20px 0 20px">
           <el-tab-pane label="用户" name="userList"/>
           <el-tab-pane label="设备" name="deviceList"/>
+          <el-tab-pane label="电子围栏" name="enclosureList"/>
         </el-tabs>
         <div class="showPage">
           <component :is="showPage"/>
@@ -33,9 +34,10 @@ import { deepClone, confirm } from '@/libs/utils'
 import { getList, editData } from './service'
 import userList from './userList.vue'
 import deviceList from './deviceList.vue'
+import enclosureList from './enclosureList.vue'
 import addOrg from './addOrg.vue'
 export default {
-  components: { userList, deviceList },
+  components: { userList, deviceList, enclosureList },
   data() {
     return {
       dialogBox: false,
@@ -159,7 +161,7 @@ export default {
         this.treeData = Object.assign([], this.treeData)
         editData({ list: this.treeData }).then((res) => {
           if (res.code === 200) {
-            this.$message.success(this.$t('app.delete') + this.$t('app.success'))
+            this.$message.success(this.$t('app.disables') + this.$t('app.success'))
           }
         })
       })
@@ -183,7 +185,7 @@ export default {
           h('span', [
             this.renderIconBtn(h, { node, data, store }, { icon: 'add', content: this.$t('app.add') }, this.append),
             this.renderIconBtn(h, { node, data, store }, { icon: 'edit', content: this.$t('app.modify') }, this.edit, data.type === 'org'),
-            this.renderIconBtn(h, { node, data, store }, { icon: 'delete', content: this.$t('app.delete') }, this.remove, data.type === 'org')
+            this.renderIconBtn(h, { node, data, store }, { icon: 'disables', content: this.$t('app.disables') }, this.remove, data.type === 'org')
           ])
         ])
     },

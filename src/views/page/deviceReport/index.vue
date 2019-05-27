@@ -249,6 +249,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import countTo from 'vue-count-to'
 import screenfull from 'screenfull'
 export default {
@@ -259,6 +260,11 @@ export default {
       isScreenfull: false
     }
   },
+  computed: {
+    ...mapGetters([
+      'sidebar'
+    ])
+  },
   mounted() {
     window.onresize = () => {
       // 全屏下监控是否按键了ESC
@@ -266,6 +272,9 @@ export default {
         // 全屏下按键esc后要执行的动作
         this.isScreenfull = false
       }
+    }
+    if (this.sidebar.opened) {
+      this.$store.dispatch('ToggleSideBar')
     }
   },
   methods: {

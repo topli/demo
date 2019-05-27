@@ -10,11 +10,11 @@
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
-            Home
+            {{ $t('route.Dashboard') }}
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>
-          <span style="display:block;" @click="logout">LogOut</span>
+          <span style="display:block;" @click="logout"> {{ $t('app.logout') }}</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>

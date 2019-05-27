@@ -1,12 +1,12 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.user" :placeholder="$t('deviceError.alarmType')" clearable/>
+          <el-input v-model="searchForm.user" :placeholder="$t('deviceError.alarmType')" clearable/>
         </el-form-item>
         <!-- <el-form-item>
-          <el-select v-model="searchFrom.region" :placeholder="$t('user.region')" clearable>
+          <el-select v-model="searchForm.region" :placeholder="$t('user.region')" clearable>
             <el-option label="区域一" value="shanghai"/>
             <el-option label="区域二" value="beijing"/>
           </el-select>

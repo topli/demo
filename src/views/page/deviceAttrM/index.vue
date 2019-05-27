@@ -1,16 +1,16 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.status" :placeholder="$t('device.status')" clearable/>
+          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
         </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">
       <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/>
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
+      <!-- <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
     <div class="table">
       <t-for-col
@@ -62,6 +62,11 @@ export default {
           width: '120'
         },
         {
+          key: 'gpsNo',
+          title: this.$t('device.gpsNo'),
+          width: '120'
+        },
+        {
           key: 'createTime',
           title: this.$t('device.createTime'),
           filters: 'parseTime',
@@ -98,7 +103,7 @@ export default {
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
@@ -160,7 +165,7 @@ export default {
           if (res.code === 200) {
             this.$message({
               type: 'success',
-              message: this.$t('app.delete') + this.$t('app.success')
+              message: this.$t('app.disables') + this.$t('app.success')
             })
           } else {
             this.$message({

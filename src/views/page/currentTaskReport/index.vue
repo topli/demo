@@ -1,19 +1,16 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchFrom">
+      <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchFrom.name" :placeholder="$t('tasks.name')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchFrom.status" :placeholder="$t('tasks.status')" filterable clearable data-type="taskStatus"/>
+          <el-input v-model="searchForm.name" :placeholder="$t('tasks.name')" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">
       <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
+      <!-- <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
     <div class="table">
       <t-for-col
@@ -50,7 +47,7 @@ export default {
         {
           key: 'no',
           title: this.$t('tasks.no'),
-          width: '100'
+          width: '160'
         },
         {
           key: 'name',

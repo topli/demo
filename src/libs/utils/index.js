@@ -115,7 +115,7 @@ export function getQueryString(url) {
  * @param {*} cancelFun
  */
 export function confirm(submitFun, cancelFun) {
-  this.$confirm(this.$t('app.delTips'), this.$t('app.delete'), {
+  this.$confirm(this.$t('app.delTips'), this.$t('app.disables'), {
     confirmButtonText: this.$t('app.submit'),
     cancelButtonText: this.$t('app.cancel'),
     type: 'warning',

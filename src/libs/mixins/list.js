@@ -17,7 +17,9 @@ export default {
       },
       loading: false,
       // 用户输入查询条件
-      searchFrom: {},
+      searchForm: {
+        status: true
+      },
       pageSizeOpts: [10, 20, 50, 100],
       multipleSelection: [],
       totalElement: 0
@@ -40,7 +42,7 @@ export default {
     },
     onSearch() {
       if (this.loading) return
-      this.searchData = Object.assign(this.searchData, this.searchFrom)
+      this.searchData = Object.assign(this.searchData, this.searchForm)
       this.searchData.pageNo = 1
       // 删除查询条件中为空的值  包括值为0的
       for (const k in this.searchData) {
