@@ -3,24 +3,24 @@
     <!--{{ pageName }}-->
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchFrom" label-position="right">
-        <el-form-item prop="GpsID" label="设备GPS ID">
+        <el-form-item prop="GpsID" label="">
           <el-input v-model="ruleForm.gpsID" placeholder="GPS ID" clearable/>
         </el-form-item>
-        <el-form-item prop="StartTime" label="起始时间">
+        <el-form-item prop="StartTime" label="">
           <el-date-picker v-model="ruleForm.StartTime" type="date" placeholder="选择日期" style="width: 100%;"/>
         </el-form-item>
-        <el-form-item prop="TargetResv" label="查询属性">
+        <el-form-item prop="TargetResv" label="">
           <el-input v-model="ruleForm.TargetResv" placeholder="属性名称" clearable/>
         </el-form-item>
-        <el-form-item prop="EndTime" label="结束时间">
+        <el-form-item prop="EndTime" label="">
           <el-date-picker v-model="ruleForm.EndTime" type="date" placeholder="选择日期" style="width: 100%;"/>
         </el-form-item>
       </el-form>
     </search-tem>
-    <div class="btns">
+    <!-- <div class="btns">
       <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
-    </div>
+    </div> -->
     <div class="table">
       <t-for-col
         :data="list"
@@ -57,40 +57,106 @@ export default {
       gpsID: '',
       columnsTitle: [
         {
+          key: 'mieNo',
+          title: this.$t('realWorking.mieNo'),
+          minWidth: '120'
+        },
+        {
           key: 'gpsNo',
           title: this.$t('realWorking.gpsNo'),
           minWidth: '120'
         },
         {
-          key: 'oilConsumption',
-          title: this.$t('realWorking.oilConsumption'),
-          minWidth: '180'
-        },
-        {
-          key: 'timeCount',
-          title: this.$t('realWorking.timeCount'),
+          key: 'mieIp',
+          title: this.$t('realWorking.mieIp'),
           minWidth: '120'
         },
         {
-          key: 'loadCount',
-          title: this.$t('realWorking.loadCount'),
-          minWidth: '150'
+          key: 'actionNo',
+          title: this.$t('realWorking.actionNo'),
+          minWidth: '120'
         },
         {
-          key: 'maintenanceTime',
-          title: this.$t('realWorking.maintenanceTime'),
-          minWidth: '130'
+          key: 'gear',
+          title: this.$t('realWorking.gear'),
+          minWidth: '90'
+        },
+        {
+          key: 'operatingMode',
+          title: this.$t('realWorking.operatingMode'),
+          minWidth: '90'
+        },
+        {
+          key: 'address',
+          title: this.$t('realWorking.address'),
+          minWidth: '220'
+        },
+        {
+          key: 'engineSpeed',
+          title: this.$t('realWorking.engineSpeed'),
+          minWidth: '90'
+        },
+        {
+          key: 'oilLevel',
+          title: this.$t('realWorking.oilLevel'),
+          minWidth: '90'
+        },
+        {
+          key: 'waterTemperature',
+          title: this.$t('realWorking.waterTemperature'),
+          minWidth: '120'
+        },
+        {
+          key: 'hydraulicTemperature',
+          title: this.$t('realWorking.hydraulicTemperature'),
+          minWidth: '100'
+        },
+        {
+          key: 'fuelconsumptionTime',
+          title: this.$t('realWorking.fuelconsumptionTime'),
+          minWidth: '120'
+        },
+        {
+          key: 'fuelconsumptionAverage',
+          title: this.$t('realWorking.fuelconsumptionAverage'),
+          minWidth: '120'
         },
         {
           key: 'oilRate',
           title: this.$t('realWorking.oilRate'),
-          wiminWidthdth: '130'
+          minWidth: '130'
         },
         {
-          key: 'createTime',
-          title: this.$t('realWorking.createTime'),
-          minWidth: '250'
+          key: 'batteryVoltage',
+          title: this.$t('realWorking.batteryVoltage'),
+          minWidth: '120'
+        },
+        {
+          key: 'lockMachineTime',
+          title: this.$t('realWorking.lockMachineTime'),
+          minWidth: '120'
+        },
+        {
+          key: 'Htime',
+          title: this.$t('realWorking.Htime'),
+          minWidth: '120'
+        },
+        {
+          key: 'Hoil',
+          title: this.$t('realWorking.Hoil'),
+          minWidth: '120'
+        },
+        {
+          key: 'Stime',
+          title: this.$t('realWorking.Stime'),
+          minWidth: '120'
+        },
+        {
+          key: 'Soil',
+          title: this.$t('realWorking.Soil'),
+          minWidth: '120'
         }
+
       ],
       ruleForm: {
         GpsID: '',

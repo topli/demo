@@ -50,7 +50,7 @@ export const childRouterMap = {
   redirect: '/dashboard',
   name: 'childRouter',
   children: [
-    { path: 'monitorM/enclosure/edit', name: 'enclosureEdit', component: () => import('@/views/page/enclosure/add') }
+    { path: 'monitorM/enclosure/edit', name: 'enclosureEdit', meta: { title: 'enclosureAdd' }, component: () => import('@/views/page/enclosure/add') }
   ]
 }
 export const constantRouterMap = [

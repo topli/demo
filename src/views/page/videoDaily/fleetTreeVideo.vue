@@ -34,16 +34,13 @@
         <el-col :span="21">
           <el-select
             v-model="keyword"
-            :remote-method="remoteMethod"
-            :loading="loading"
             :placeholder="placeholder"
             filterable
-            remote
             clearable
             style="width:100%"
             not-found-text=""
             @on-change="selectSearch">
-            <el-option v-for="(item, index) in searchCarList" :value="item.guid" :key="index">
+            <el-option v-for="(item, index) in searchCarList" :value="item.id" :key="index" :label="item.name">
               <!-- <template v-if="item.fleetName && !item.plateNo && pathName === 'realTime'">
                 <svg-icon icon-class="fleet"/> {{ item.fleetName }}
               </template> -->
@@ -123,7 +120,7 @@ export default {
           falge: 'noTip',
           children: [
             {
-              label: '0819BA2F',
+              label: '120301070001A',
               icon: 'deviceNum',
               id: '1-1',
               falge: 'noTip',
@@ -149,7 +146,7 @@ export default {
               ]
             },
             {
-              label: '0819333F',
+              label: '120301070002A',
               icon: 'deviceNum',
               falge: 'noTip',
               children: [
@@ -174,7 +171,7 @@ export default {
               ]
             },
             {
-              label: '08143A2F',
+              label: '120301070003A',
               icon: 'deviceNum',
               falge: 'noTip',
               children: [
@@ -199,7 +196,7 @@ export default {
               ]
             },
             {
-              label: '0219BA2F',
+              label: '120301070004A',
               icon: 'deviceNum',
               falge: 'noTip',
               children: [
@@ -224,7 +221,7 @@ export default {
               ]
             },
             {
-              label: '0329BA2F',
+              label: '120301070005A',
               icon: 'deviceNum',
               falge: 'noTip',
               children: [
@@ -257,7 +254,13 @@ export default {
       },
       currentCheckNode: {}, // 当前选中节点
       checkNodeList: [], // 获取已选中的点击
-      searchCarList: [], // 搜索列表
+      searchCarList: [
+        { id: 1, name: '120301070001A' },
+        { id: 2, name: '120301070002A' },
+        { id: 3, name: '120301070003A' },
+        { id: 4, name: '120301070004A' },
+        { id: 5, name: '120301070005A' }
+      ], // 搜索列表
       allNodes: [], // 所有节点数据
       spanStyle: {
         backgroundColor: '#d5e8fc',
@@ -266,7 +269,7 @@ export default {
       }, // 公共样式
       gprscode: '', // 页面传递gprscode
       pathName: '', // 当前页面名称
-      placeholder: '搜索、车牌、SIM卡、终端号', // 搜索框提示内容
+      placeholder: '搜索设备编号', // 搜索框提示内容
       setPassagewayList: [], // 变为播放图标的通道号
       fleetGradeList: []
     }
@@ -415,29 +418,29 @@ export default {
       }
     },
     // 搜索车队
-    remoteMethod(val) {
-      this.loading = true
-      this.searchCarList = []
-      if (val) {
-        this.allNodes.forEach(item => {
-          if (item.plateNo) {
-            let boolean1 = false
-            let boolean2 = false
-            if (item.terminalNumber) boolean1 = item.terminalNumber.includes(val)
-            if (item.terminalPhone) boolean2 = item.terminalPhone.includes(val)
-            if (item.plateNo.includes(val) || boolean1 || boolean2) {
-              if (this.searchCarList.length) {
-                // 如果已存在对象就不添加到数组
-                this.searchCarList.some(item2 => item2.id === item.id) || this.searchCarList.push(item)
-              } else {
-                this.searchCarList.push(item)
-              }
-            }
-          }
-        })
-      }
-      this.loading = false
-    },
+    // remoteMethod(val) {
+    //   this.loading = true
+    //   this.searchCarList = []
+    //   if (val) {
+    //     this.allNodes.forEach(item => {
+    //       if (item.plateNo) {
+    //         let boolean1 = false
+    //         let boolean2 = false
+    //         if (item.terminalNumber) boolean1 = item.terminalNumber.includes(val)
+    //         if (item.terminalPhone) boolean2 = item.terminalPhone.includes(val)
+    //         if (item.plateNo.includes(val) || boolean1 || boolean2) {
+    //           if (this.searchCarList.length) {
+    //             // 如果已存在对象就不添加到数组
+    //             this.searchCarList.some(item2 => item2.id === item.id) || this.searchCarList.push(item)
+    //           } else {
+    //             this.searchCarList.push(item)
+    //           }
+    //         }
+    //       }
+    //     })
+    //   }
+    //   this.loading = false
+    // },
     // 选择搜索出来的车牌
     selectSearch(guid) {
       if (guid) {

@@ -26,6 +26,7 @@ export default {
     deviceStatus: '故障或异常状态监控',
     deviceError: '设备故障报警',
     enclosure: '电子围栏',
+    enclosureAdd: '新增/编辑',
     taskM: '任务管理',
     tasks: '任务列表',
     taskCreate: '任务创建',

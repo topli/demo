@@ -9,8 +9,8 @@
     </search-tem>
     <div class="btns">
       <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="editData"/>
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
+      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
     <div class="table">
       <t-for-col
@@ -60,13 +60,13 @@ export default {
           }
         },
         {
-          key: 'enclosureName',
-          title: this.$t('enclosure.enclosureName'),
+          key: 'name',
+          title: this.$t('enclosure.name'),
           width: '180'
         },
         {
-          key: 'enclosureType',
-          title: this.$t('enclosure.enclosureType'),
+          key: 'labelState',
+          title: this.$t('enclosure.labelState'),
           width: '120'
         },
         {
@@ -85,13 +85,13 @@ export default {
           width: '130'
         },
         {
-          key: 'adress',
-          title: this.$t('enclosure.adress'),
+          key: 'address',
+          title: this.$t('enclosure.address'),
           width: '250'
         },
         {
-          key: 'enclosureRange',
-          title: this.$t('enclosure.enclosureRange'),
+          key: 'scope',
+          title: this.$t('enclosure.scope'),
           width: '100',
           unit: this.$t('enclosure.rangeUnit')
         },
@@ -107,8 +107,8 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' }
+              // { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
@@ -142,7 +142,7 @@ export default {
     },
     editData(row) {
       console.log(row)
-      this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange }})
+      this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange, id: row.id }})
     },
     addData() {
       this.$dialogBox({

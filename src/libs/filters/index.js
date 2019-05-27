@@ -58,6 +58,7 @@ export function status(val) {
   }
   return data[!!val]
 }
+
 function getDictDataByType(type) {
   let data = []
   if (store.state.app.dictData) {

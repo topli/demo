@@ -1,5 +1,5 @@
-import { getLocalList, addLocalData, delLocalData } from './utils'
-import { setStorage, getStorage } from '@/libs/utils'
+import { getLocalList, addLocalData, delLocalData, editLocalData } from './utils'
+// import { setStorage, getStorage } from '@/libs/utils'
 
 export default {
   add: (param) => {
@@ -7,13 +7,8 @@ export default {
     return data
   },
   edit: (param) => {
-    const localData = JSON.parse(getStorage('localData'))
-    localData['enclosure'].list = JSON.parse(param.body).list
-    setStorage('localData', localData)
-    return {
-      code: 200,
-      data: null
-    }
+    const data = editLocalData(param, 'enclosure')
+    return data
   },
   del: (param) => {
     const data = delLocalData(param, 'enclosure')

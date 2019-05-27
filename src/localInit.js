@@ -171,34 +171,38 @@ const data = {
         { id: 30, value: 1, label: '立即', color: '#b03e32' },
         { id: 31, value: 2, label: '1小时后', color: '#409EFF' },
         { id: 32, value: 3, label: '2小时后', color: '#409EFF' }
+      ],
+      handleStatus: [
+        { id: 33, value: 'true', label: '已处理', color: '#409EFF' },
+        { id: 34, value: 'false', label: '未处理', color: '#67C23A' }
       ]
     }
   },
   enclosure: {
     list: [
-      { id: 1, status: true, enclosureName: '循环取货测试渝北工厂', enclosureType: '中转站', createTime: new Date(), org: '整车事业部', province: '重庆市', city: '重庆市', adress: '重庆市渝北区创新路长安汽车渝北工厂内,阳光百曌重庆汽车服务有限公司西北263米', enclosureRange: '100' },
-      { id: 2, status: true, enclosureName: '哈尔滨基地运力电子围栏', enclosureType: '仓库', createTime: new Date(), org: '整车事业部', province: '重庆市', city: '重庆市', adress: '重庆市渝北区创新路长安汽车渝北工厂内,阳光百曌重庆汽车服务有限公司西北263米', enclosureRange: '300' },
-      { id: 3, status: true, enclosureName: '46686民生二中储', enclosureType: '仓库', createTime: new Date(), org: '整车事业部', province: '黑龙江省', city: '哈尔滨市', adress: '黑龙江省哈尔滨市香坊区新疆东路东安汽车发动机制造公司北568米', enclosureRange: '300' },
-      { id: 4, status: true, enclosureName: '昆明中转站运力围栏', enclosureType: '仓库', createTime: new Date(), org: '零部件事业部', province: '云南省', city: '昆明市', adress: '云南省昆明市西山区明河碧波苑东521米', enclosureRange: '200' },
-      { id: 4, status: false, enclosureName: '广州中转站运力围栏', enclosureType: '仓库', createTime: new Date(), org: '零部件事业部', province: '广东省', city: '广州市', adress: '广东省广州市花都区竹洞村南568米', enclosureRange: '200' }
+      { id: 1, status: true, name: '北京通州区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区潮白河大堤路,阳光百曌重庆汽车服务有限公司西北263米', scope: '100' },
+      { id: 2, status: true, name: '北京通州区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区X201(任港路)', scope: '300' },
+      { id: 3, status: true, name: '北京海淀区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '海淀区', address: '北京市海淀区S50(北五环路)', scope: '300' },
+      { id: 4, status: true, name: '北京市门头沟区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '头沟区', address: '北京市门头沟区大峪南路15号楼', scope: '200' },
+      { id: 4, status: false, name: '北京市房山区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '房山区', address: '北京市房山区凯旋大街', scope: '200' }
     ]
   },
   deviceError: {
     list: [
-      { id: 1, status: 0, alarmType: '燃油不足', principal: '刘明', createTime: new Date() },
-      { id: 2, status: 1, alarmType: '胎压不足', principal: '韩雪', createTime: new Date() },
-      { id: 3, status: 1, alarmType: '温度过高', principal: '陈启', createTime: new Date() },
-      { id: 4, status: 1, alarmType: '胎压不足', principal: '王志', createTime: new Date() },
-      { id: 4, status: 0, alarmType: '燃油不足', principal: '张红', createTime: new Date() }
+      { id: 1, status: 0, alarmType: '燃油不足', deviceStatus: false, handleStatus: 'true', deviceAddress: '北京市昌平区二拔子工业区东路三一重工三一产业园', principal: '刘明', createTime: new Date() },
+      { id: 2, status: 1, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '韩雪', createTime: new Date() },
+      { id: 3, status: 1, alarmType: '温度过高', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '陈启', createTime: new Date() },
+      { id: 4, status: 1, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区三一重工三一产业园', principal: '王志', createTime: new Date() },
+      { id: 4, status: 0, alarmType: '燃油不足', deviceStatus: true, handleStatus: 'false', deviceAddress: '北京市昌平区二拔子工业区东路三一重工，三一产业园', principal: '张红', createTime: new Date() }
     ]
   },
   realWorking: {
     list: [
-      { id: 1, gpsNo: '0819BA2F', oilConsumption: '1828L', timeCount: '821小时', loadCount: '34', maintenanceTime: '56小时', oilRate: '78%', createTime: new Date() },
-      { id: 2, gpsNo: '0819333F', oilConsumption: '1927L', timeCount: '825小时', loadCount: '23', maintenanceTime: '55小时', oilRate: '43%', createTime: new Date() },
-      { id: 3, gpsNo: '0329BA2F', oilConsumption: '1887L', timeCount: '315小时', loadCount: '45', maintenanceTime: '44小时', oilRate: '44%', createTime: new Date() },
-      { id: 4, gpsNo: '08143A2F', oilConsumption: '1298L', timeCount: '515小时', loadCount: '55', maintenanceTime: '35小时', oilRate: '79%', createTime: new Date() },
-      { id: 4, gpsNo: '0219BA2F', oilConsumption: '1398L', timeCount: '715小时', loadCount: '28', maintenanceTime: '85小时', oilRate: '91%', createTime: new Date() }
+      { id: 1, mieNo: '120301070001A', gpsNo: '0819BA2F', mieIp: '118.112.177.102', actionNo: '130908099A', gear: '档位1', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2200', oilLevel: '1/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070002A', gpsNo: '0819545F', mieIp: '118.112.177.102', actionNo: '130908012A', gear: '档位1', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2550', oilLevel: '3/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070003A', gpsNo: '08434A2F', mieIp: '118.112.177.102', actionNo: '130908011A', gear: '档位2', operatingMode: 'S', address: '北京市昌平区三一重工三一产业园', engineSpeed: '2250', oilLevel: '1/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070004A', gpsNo: '2124BA2F', mieIp: '118.112.177.102', actionNo: '130908007A', gear: '档位1', operatingMode: 'S', address: '北京市昌平区三一重工三一产业园', engineSpeed: '2200', oilLevel: '3/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070005A', gpsNo: '0655BA2F', mieIp: '118.112.177.102', actionNo: '130908005A', gear: '档位3', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2250', oilLevel: '3/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' }
     ]
   },
   menu: {

@@ -10,7 +10,7 @@
         <el-button-group>
           <el-button :class="{buttonCur: isMarker}" type="ghost" icon="el-icon-location" class="button" @click="addMarker(1)"/>
           <el-button :class="{buttonCur: isWeilan}" type="ghost" icon="el-icon-menu" class="button" @click="addMarker(2)"/>
-          <el-button type="ghost" icon="el-icon-circle-plus" class="button" @click="addMarker(3)"/>
+          <!-- <el-button type="ghost" icon="el-icon-circle-plus" class="button" @click="addMarker(3)"/> -->
         </el-button-group>
       </div>
       <div v-if="addMarkerModal" class="add_modal">
@@ -57,8 +57,8 @@
             </el-row>
             <el-row>
               <el-col :span="12">
-                <el-form-item label="监控类型" prop="monitoringType" class="l-form-input form-mini">
-                  <el-select ref="monitoringType" v-model="formData.monitoringType" placeholder="监控类型" @change="changeSelect">
+                <el-form-item label="所属组织" prop="org" class="l-form-input form-mini">
+                  <el-select ref="monitoringType" v-model="formData.org" placeholder="监控类型" @change="changeSelect">
                     <el-option v-for="(item, index) in monitoringTypeArray" :value="item.id" :key="index" :label="item.name"/>
                   </el-select>
                 </el-form-item>
@@ -86,6 +86,7 @@
 import BMap from 'BMap'
 import BMapLib from 'BMapLib'
 import mapTool from '@/libs/utils/map'
+import { getList, addData, editData } from './service'
 // import axios from 'axios'
 export default {
   data() {
@@ -110,7 +111,8 @@ export default {
       addMarkerModal: false,
       isMarker: false,
       isWeilan: false,
-      drawingManager: null
+      drawingManager: null,
+      drawPoints: '' // 多边形点
     }
   },
   created() {
@@ -235,6 +237,7 @@ export default {
         let mPoint = ''
         // 计算中心点
         const points = this.drawPoints
+        console.log(points)
         let x = points[0] && points[0].lat
         let y = points[0] && points[0].lng
         if (!x || !y) return
@@ -327,82 +330,41 @@ export default {
       })
     },
     addMarkerInfo(name) {
-      this.$refs[name].validate((valid) => {
-        if (valid) {
-          if (this.drawType === 1) {
-            this.formData.scopeType = '圆形'
-            if (!this.formData.scope) {
-              this.$Notice.error({
-                title: '请填写标注范围'
-              })
-              return
-            }
-          }
-          if (this.drawType === 2) this.formData.scopeType = '多边形'
-          if (this.drawType === 3) {
-            this.formData.scopeType = '区县'
-            if (!this.formData.districts) {
-              this.$Notice.error({
-                title: '请选择区县'
-              })
-              return
-            }
-            this.formData.address = this.formData.city + this.formData.districts
-            if (!this.formData.point || this.formData.point === '') {
-              this.$Notice.error({
-                title: '未选择正确的区域'
-              })
-              return
-            }
-          }
-          if (this.isSite) {
-            this.formData.site = 1
-          } else {
-            this.formData.site = 0
-          }
-          if (this.isPeling) {
-            this.formData.paling = 1
-          } else {
-            this.formData.paling = 0
-          }
-          if (this.isPrivatization) {
-            this.formData.privatization = 0
-          } else {
-            this.formData.privatization = 1
-          }
-          if (this.isAttention) {
-            this.formData.attention = 1
-          } else {
-            this.formData.attention = 2
-          }
-          // this._hyTool.cal(true);
-          try {
-            if (this.formData.id !== undefined && this.formData.id !== '') {
-              // const opt = { id: this.formData.id }
-              // service.updateApi(opt, this.formData).then((data) => {
-              //   this.$Notice.success({
-              //     title: '修改成功'
-              //   })
-              //   this.goBack()
-              // })
-            } else {
-              // service.saveApi(this.formData).then((data) => {
-              //   this.$Notice.success({
-              //     title: '新增成功'
-              //   })
-              //   this.addMarkerModal = false
-              //   this.clearMap()
-              //   this.isMarker = false
-              //   this.isWeilan = false
-              //   this.goBack()
-              // })
-            }
-            // this._hyTool.cal(false);
-          } catch (e) {
-            console.log(e)
-          }
-        }
-      })
+      const id = this.$route.query.id
+      if (!this.formData.name) {
+        this.$notify({ title: '请输入名称', type: 'warning' })
+        return
+      }
+      if (!this.formData.scope) {
+        this.$notify({ title: '请选择范围', type: 'warning' })
+        return
+      }
+      this.formData.createTime = '2019-05-23 11:31:58'
+      // this.formData.org = '仓库'
+      this.formData.status = true
+      if (id) {
+        editData(this.formData).then(() => {
+          setTimeout(() => {
+            this.$message.success(this.$t('app.modify') + this.$t('app.success'))
+            this.$router.push({ name: 'enclosure' })
+          }, 1000)
+        }).catch(error => {
+          setTimeout(() => {
+            console.log(error)
+          }, 300)
+        })
+      } else {
+        addData(this.formData).then(() => {
+          setTimeout(() => {
+            this.$message.success(this.$t('app.add') + this.$t('app.success'))
+            this.$router.push({ name: 'enclosure' })
+          }, 1000)
+        }).catch(error => {
+          setTimeout(() => {
+            console.log(error)
+          }, 300)
+        })
+      }
     },
     // 初始化地图
     async init() {
@@ -452,9 +414,24 @@ export default {
       }
       // 编辑
       this.formData.id = this.$route.query.id
-      console.log(this.formData.id, 'id')
       if (this.formData.id !== undefined && this.formData.id !== '') {
-        // await this.getById(this.formData.id);
+        getList().then(res => {
+          this.list = res.data.list
+          this.list.forEach(item => {
+            if (Number(item.id) === Number(this.formData.id)) {
+              this.formData = item
+            }
+          })
+          const _this = this
+          this.myGeo.getPoint(this.formData.address, function(point) {
+            console.log(point, 'bbb')
+            _this.formData.lng = point.lng
+            _this.formData.lat = point.lat
+          }, '')
+          this.addMarkerModal = true
+          console.log(this.formData, 'cc')
+          this.modifyInit(_this.formData)
+        })
         if (this.formData.color) {
           styleOptions.strokeColor = this.formData.color
           styleOptions.fillColor = this.formData.color
@@ -476,7 +453,9 @@ export default {
         rectangleOptions: styleOptions // 矩形的样式
       })
       const overlays = []
+      console.log('11')
       this.drawingManager.addEventListener('overlaycomplete', function(e) {
+        console.log('22')
         if (_this.drawType === 1) {
           const marker = e.overlay.point
           _this.clearMap()
@@ -487,6 +466,7 @@ export default {
             anchor: new BMap.Size(13, 48)
           })
           const markers = new BMap.Marker(_this.newMarker, { icon: myIcon })
+          console.log('c')
           _this.map.addOverlay(markers)
           _this.formData.point = marker.lng + ',' + marker.lat
           if (marker.lat && marker.lng) {
@@ -582,6 +562,62 @@ export default {
     getId(id) {
       return document.getElementById(id)
     },
+    async modifyInit(formDate) {
+      // 站点，私有，围栏
+      if (this.formData.site === 1) {
+        this.isSite = true
+      } else {
+        this.isSite = false
+      }
+      if (this.formData.paling === 1) {
+        this.isPeling = true
+      } else {
+        this.isPeling = false
+      }
+      // 0私有 1共享
+      if (this.formData.privatization === 0) {
+        this.isPrivatization = true
+      } else {
+        this.isPrivatization = false
+      }
+      // 1关注 2非关注
+      if (this.formData.attention === 1) {
+        this.isAttention = true
+      } else {
+        this.isAttention = false
+      }
+      // 绘制点
+      this.formData = formDate
+      this.formData.scopeType = '圆形'
+      if (this.formData.scopeType === '圆形') {
+        console.log(this.formData, 'aa')
+        this.drawType = 1
+        // const po = this.formData.point.split(',')
+        this.newMarker = new BMap.Point(116.782023, 39.923804)
+      }
+      if (this.formData.scopeType !== '圆形') {
+        this.drawType = 2
+        if (this.formData.scopeType === '区县') this.drawType = 3
+        const pos = this.formData.point.split(';') // 后台接口由于解析地址，把’|‘改成了’;‘;
+        const arr = []
+        let point
+        pos.forEach(item => {
+          let aa = []
+          aa = item.split(',')
+          point = new BMap.Point(aa[0], aa[1])
+          arr.push(point)
+        })
+        this.drawPoints = arr
+      }
+      // }, 1000)
+      if (this.formData.color === '#A90329') this.colorType = 1 // 红
+      if (this.formData.color === '#C79121') this.colorType = 2 // 黄
+      if (this.formData.color === '#57889c') this.colorType = 3 // 蓝
+      if (this.formData.color === '#AC5287') this.colorType = 4 // 紫
+      if (this.formData.color === '#356E35') this.colorType = 5 // 绿
+      if (!this.formData.color) this.colorType = 1
+      await this.selectYs(this.colorType)
+    },
     setPlace(myValue) {
       this.map.clearOverlays() // 清除地图上所有覆盖物
       const _this = this
@@ -636,9 +672,8 @@ export default {
         { label: '200千米', value: 200000 }
       ]
       this.monitoringTypeArray = [
-        { id: 1, name: '进出围栏' },
-        { id: 2, name: '进围栏' },
-        { id: 3, name: '出围栏' }
+        { id: 1, name: '整车事业部' },
+        { id: 2, name: '零部件事业部' }
       ]
     }
   }

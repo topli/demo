@@ -60,6 +60,7 @@ Mock.mock(/\/enclosure\/edit/, 'put', enclosureAPI.edit)
 Mock.mock(/\/enclosure\/del/, 'delete', enclosureAPI.del)
 // deviceError
 Mock.mock(/\/deviceError\/list/, 'get', deviceErrorAPI.list)
+Mock.mock(/\/deviceError\/edit/, 'put', deviceErrorAPI.edit)
 // realWorking
 Mock.mock(/\/realWorking\/list/, 'get', realWorkingAPI.list)
 // menu

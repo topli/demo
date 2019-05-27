@@ -108,8 +108,8 @@
     <panel-ext :layout="layout" class="realvideochild" @click="clickPanel">
       <div slot="left-panel" class="left-panel-content">
         <el-button-group class="button-group">
-          <el-button :class="{'button-active': fleetType === 'video1'}" type="ghost" style="width: 50%;" @click="changeView(false)">实时视频</el-button>
-          <el-button :class="{'button-active': fleetType === 'video2'}" type="ghost" style="width: 50%;" @click="changeView(true)">录像回放</el-button>
+          <el-button :class="{'button-active': fleetType === 'video1'}" type="ghost" style="width: 100%;" @click="changeView(false)">实时视频</el-button>
+          <!-- <el-button :class="{'button-active': fleetType === 'video2'}" type="ghost" style="width: 50%;" @click="changeView(true)">录像回放</el-button> -->
         </el-button-group>
         <fleet-tree-video
           v-if="fleetTreeShow"
