@@ -110,8 +110,8 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' }
+              // { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
