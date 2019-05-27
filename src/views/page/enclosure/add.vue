@@ -48,18 +48,18 @@
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="类型" prop="labelState" class="l-form-input form-mini">
-                  <el-select ref="labelState" v-model="formData.labelState" placeholder="类型" @change="changeSelect">
-                    <el-option v-for="(item, index) in typeArray" :value="item" :key="index">{{ item }}</el-option>
+                <el-form-item label="所属组织" prop="org" class="l-form-input form-mini">
+                  <el-select ref="monitoringType" v-model="formData.org" placeholder="所属组织" @change="changeSelect">
+                    <el-option v-for="(item, index) in monitoringTypeArray" :value="item.name" :key="index" :label="item.name"/>
                   </el-select>
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row>
               <el-col :span="12">
-                <el-form-item label="所属组织" prop="org" class="l-form-input form-mini">
-                  <el-select ref="monitoringType" v-model="formData.org" placeholder="监控类型" @change="changeSelect">
-                    <el-option v-for="(item, index) in monitoringTypeArray" :value="item.id" :key="index" :label="item.name"/>
+                <el-form-item label="类型" prop="labelState" class="l-form-input form-mini">
+                  <el-select ref="labelState" v-model="formData.labelState" placeholder="类型" @change="changeSelect">
+                    <el-option v-for="(item, index) in typeArray" :value="item" :key="index">{{ item }}</el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -96,7 +96,7 @@ export default {
         province: null,
         city: '',
         name: null,
-        labelState: null,
+        labelState: 1,
         monitoringType: null,
         scope: 500
       },
@@ -117,16 +117,11 @@ export default {
   },
   created() {
     this.initJson()
-    this.initPage()
   },
   mounted() {
     this.init()
   },
   methods: {
-    initPage() {
-      // const id = this.$route.query.id
-      // if (id) this.prDisabled = true
-    },
     changeSelect() {
       this.$forceUpdate()
     },
@@ -186,7 +181,6 @@ export default {
       iconUrl = '/static/images/bz0' + type + '.png'
       this.clearMap()
       if (this.drawType * 1 === 1) {
-        console.log(888)
         const iconSize = new BMap.Size(26, 48)
         const myIcon = new BMap.Icon(iconUrl, iconSize, {
           anchor: new BMap.Size(13, 48)
@@ -211,25 +205,9 @@ export default {
         await this.showDraggingInfo(markers)
         if (this.newMarker && this.newMarker.lat && this.newMarker.lng) {
           mapTool.getAddress(this.newMarker).then((res) => {
-            console.log(res)
           })
-          // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${this.newMarker.lat},${this.newMarker.lng}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-          // $.ajax({
-          //   url: url,
-          //   dataType: 'jsonp',
-          //   xhrFields: {
-          //     withCredentials: true // 设置运行跨域操作
-          //   },
-          //   success: data => {
-          //     this.$set(this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-          //     let labelgg = new BMap.Label(this.formData.address, { offset: new BMap.Size(0, -20) })
-          //     if (this.drawType * 1 === 3) labelgg = new BMap.Label(this.formData.districts, { offset: new BMap.Size(0, -20) })
-          //     markers.setLabel(labelgg)
-          //   }
-          // })
         }
       } else {
-        console.log(333)
         const polygon = new BMap.Polygon(this.drawPoints, { strokeColor: this.formData.color, fillColor: this.formData.color, strokeWeight: 3, strokeOpacity: 0.8, fillOpacity: 0.7 })
         this.map.addOverlay(polygon)
         this.showDraggingInfoFang(polygon)
@@ -237,7 +215,6 @@ export default {
         let mPoint = ''
         // 计算中心点
         const points = this.drawPoints
-        console.log(points)
         let x = points[0] && points[0].lat
         let y = points[0] && points[0].lng
         if (!x || !y) return
@@ -261,20 +238,6 @@ export default {
           mapTool.getAddress({ lng: x, lat: y }).then((res) => {
             console.log(res)
           })
-          // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${x},${y}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-          // $.ajax({
-          //   url: url,
-          //   dataType: 'jsonp',
-          //   xhrFields: {
-          //     withCredentials: true // 设置运行跨域操作
-          //   },
-          //   success: data => {
-          //     this.$set(this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-          //     let labelgg = new BMap.Label(this.formData.address, { offset: new BMap.Size(0, -20) })
-          //     if (this.drawType * 1 === 3) labelgg = new BMap.Label(this.formData.districts, { offset: new BMap.Size(0, -20) })
-          //     markers.setLabel(labelgg)
-          //   }
-          // })
         }
       }
     },
@@ -293,10 +256,6 @@ export default {
           __this.map.removeOverlay(markers.getLabel()) // 删除之前的label
           __this.newMarker = new BMap.Point(e.point.lng, e.point.lat)
           __this.formData.point = e.point.lng + ',' + e.point.lat
-          // __this.formData.address = rs.address;
-          console.log(rs.addressComponents.province)
-          // __this.formData.province = rs.addressComponents.province;
-          console.log(_this)
           __this.$set(__this.formData, 'province', rs.addressComponents.province)
           __this.formData.city = rs.addressComponents.city
           // 创建圆对象
@@ -422,15 +381,8 @@ export default {
               this.formData = item
             }
           })
-          const _this = this
-          this.myGeo.getPoint(this.formData.address, function(point) {
-            console.log(point, 'bbb')
-            _this.formData.lng = point.lng
-            _this.formData.lat = point.lat
-          }, '')
           this.addMarkerModal = true
-          console.log(this.formData, 'cc')
-          this.modifyInit(_this.formData)
+          this.setCircle()
         })
         if (this.formData.color) {
           styleOptions.strokeColor = this.formData.color
@@ -453,9 +405,7 @@ export default {
         rectangleOptions: styleOptions // 矩形的样式
       })
       const overlays = []
-      console.log('11')
       this.drawingManager.addEventListener('overlaycomplete', function(e) {
-        console.log('22')
         if (_this.drawType === 1) {
           const marker = e.overlay.point
           _this.clearMap()
@@ -466,7 +416,6 @@ export default {
             anchor: new BMap.Size(13, 48)
           })
           const markers = new BMap.Marker(_this.newMarker, { icon: myIcon })
-          console.log('c')
           _this.map.addOverlay(markers)
           _this.formData.point = marker.lng + ',' + marker.lat
           if (marker.lat && marker.lng) {
@@ -477,7 +426,6 @@ export default {
           }
           _this.myGeo.getLocation(_this.newMarker, function(rs) {
             _this.formData.address = rs.address
-            // _this.formData.province = rs.addressComponents.province;
             _this.$set(_this.formData, 'province', rs.addressComponents.province)
             _this.formData.city = rs.addressComponents.city
             const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
@@ -522,24 +470,8 @@ export default {
             mapTool.getAddress({ lng: x, lat: y }).then((res) => {
               console.log(res, 2)
             })
-            // const url = `http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${y},${x}&output=json&pois=1&ak=ehokpezgpQESNRi1ld0fQmRSgAoO6YAG`
-            // $.ajax({
-            //   url: url,
-            //   dataType: 'jsonp',
-            //   xhrFields: {
-            //     withCredentials: true // 设置运行跨域操作
-            //   },
-            //   success: data => {
-            //     _this.$set(_this.formData, 'address', data.result.formatted_address + data.result.sematic_description)
-            //     const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
-            //     markers.setLabel(labelgg)
-            //   }
-            // })
           }
           _this.myGeo.getLocation(mPoint, function(rs) {
-            // _this.formData.address = rs.address;
-            console.log(rs.addressComponents.province)
-            // _this.formData.province = rs.addressComponents.province;
             _this.$set(_this.formData, 'province', rs.addressComponents.province)
             _this.formData.city = rs.addressComponents.city
             //               let labelgg = new BMap.Label(_this.formData.address, {offset: new BMap.Size(0, -20)});
@@ -551,7 +483,7 @@ export default {
         _this.formData.color = '#A90329'
         _this.colorType = 1
         _this.drawingManager.close() // 关闭绘画
-        if (!_this.formData.id) _this.formData.labelState = '无'
+        if (!_this.formData.id) _this.formData.labelState = '进出围栏'
       })
     },
     // 清除地图
@@ -562,7 +494,15 @@ export default {
     getId(id) {
       return document.getElementById(id)
     },
-    async modifyInit(formDate) {
+    // 通过地址获取经纬度，然后画圆或矩形
+    setCircle() {
+      this.myGeo.getPoint(this.formData.address, (point) => {
+        if (point) {
+          this.modifyInit(point)
+        }
+      }, '')
+    },
+    async modifyInit(point) {
       // 站点，私有，围栏
       if (this.formData.site === 1) {
         this.isSite = true
@@ -586,14 +526,11 @@ export default {
       } else {
         this.isAttention = false
       }
-      // 绘制点
-      this.formData = formDate
       this.formData.scopeType = '圆形'
+      // 绘制点
       if (this.formData.scopeType === '圆形') {
-        console.log(this.formData, 'aa')
         this.drawType = 1
-        // const po = this.formData.point.split(',')
-        this.newMarker = new BMap.Point(116.782023, 39.923804)
+        this.newMarker = new BMap.Point(point.lng, point.lat)
       }
       if (this.formData.scopeType !== '圆形') {
         this.drawType = 2
@@ -636,7 +573,6 @@ export default {
         const _this = this
         this.myGeo.getPoint(this.addressOption, function(point) {
           if (point) {
-            console.log(_this)
             _this.map.centerAndZoom(point, 11)
             //               _this.map.addOverlay(new BMap.Marker(point));
           } else {
@@ -655,7 +591,7 @@ export default {
     initJson() {
       this.provinceList = ['北京', '天津', '上海', '重庆', '河北', '山西', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '海南', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '内蒙古', '广西', '西藏', '宁夏', '新疆维吾尔自治区', '香港', '澳门', '台湾']
       this.cityList = ['东城区', '西城区', '崇文区', '宣武区', '朝阳区', '海淀区', '丰台区', '石景山区', '房山区', '通州区', '顺义区', '杭州', '宁波', '温州', '嘉兴', '湖州', '绍兴', '金华', '衢州', '舟山', '台州', '丽水', '长沙', '株洲', '湘潭', '衡阳', '邵阳', '岳阳', '常德', '张家界', '益阳', '郴州', '永州', '怀化', '娄底', '湘西', '兰州', '嘉峪关', '金昌', '白银', '天水', '武威', '酒泉', '张掖', '庆阳', '平凉', '定西', '陇南', '临夏', '甘南', '广州', '深圳', '珠海', '汕头', '韶关', '佛山', '江门', '湛江', '茂名', '肇庆', '惠州', '梅州', '汕尾', '河源', '阳江', '清远', '东莞']
-      this.typeArray = ['基地', '中转站', '配送中心', '码头', '火车站', '经销商', '堆场', '供应商', '承运商', 'PDC', '卸货点', '回货点', '机场', '运输点', '仓库']
+      this.typeArray = ['进出围栏']
       this.scopeArray = [
         { label: '100米', value: 100 },
         { label: '200米', value: 200 },
@@ -672,8 +608,9 @@ export default {
         { label: '200千米', value: 200000 }
       ]
       this.monitoringTypeArray = [
-        { id: 1, name: '整车事业部' },
-        { id: 2, name: '零部件事业部' }
+        { id: 1, name: '北京总公司' },
+        { id: 2, name: '北京昌平分公司' },
+        { id: 3, name: '山西分公司' }
       ]
     }
   }
