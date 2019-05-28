@@ -32,7 +32,9 @@ export default {
   },
   data() {
     return {
-      searchForm: {},
+      searchForm: {
+        organization: '北京总公司'
+      },
       map: null,
       circle: '',
       styleOptions: {

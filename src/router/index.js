@@ -24,6 +24,7 @@ const routes = {
   videoDaily: () => import('@/views/page/videoDaily/index'),
   deviceStatus: () => import('@/views/page/deviceStatus/index'),
   deviceError: () => import('@/views/page/deviceError/index'),
+  deviceErrorSet: () => import('@/views/page/deviceErrorSet/index'),
   enclosure: () => import('@/views/page/enclosure/index'),
   tasks: () => import('@/views/page/tasks/index'),
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
@@ -168,10 +169,26 @@ export const constantRouterMap = [
         meta: { title: 'videoDaily' }
       },
       {
-        path: 'deviceError',
-        name: 'deviceError',
-        component: routes['deviceError'],
-        meta: { title: 'deviceError' }
+        path: 'deviceAlarmInfo',
+        name: 'deviceAlarmInfo',
+        // component: routes['deviceError'],
+        component: routeView,
+        redirect: 'noredirect',
+        meta: { title: 'deviceAlarmInfo' },
+        children: [
+          {
+            path: 'deviceError',
+            name: 'deviceError',
+            component: routes['deviceError'],
+            meta: { title: 'deviceError' }
+          },
+          {
+            path: 'deviceErrorSet',
+            name: 'deviceErrorSet',
+            component: routes['deviceErrorSet'],
+            meta: { title: 'deviceErrorSet' }
+          }
+        ]
       },
       {
         path: 'enclosure',

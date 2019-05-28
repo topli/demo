@@ -483,6 +483,18 @@ const data = {
       { no: 'NO2', name: '工程2', status: '已调度', executor: '白杰', line: '天安门-中关村', describe: '运输', org: '分公司2', enclosure: '中关村附近', level: 2 },
       { no: 'NO3', name: '工程3', status: '未调度', executor: '贾刚', line: '朝阳区-中关村', describe: '运输', org: '分公司3', enclosure: '中关村附近', level: 3 }
     ]
+  },
+  alarmSet: {
+    list: [
+      { id: 1, equipmentNumber: '120301070001A', deviceType: '装载机', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 2, equipmentNumber: '120301070002A', deviceType: '装载机', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 3, equipmentNumber: '120301070003A', deviceType: '装载机', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 4, equipmentNumber: '120301070004A', deviceType: '矿车', fuel: '10', temperature: '80', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 5, equipmentNumber: '120301070005A', deviceType: '矿车', fuel: '10', temperature: '80', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 6, equipmentNumber: '120301070006A', deviceType: '矿车', fuel: '10', temperature: '90', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 7, equipmentNumber: '120301070007A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 1, equipmentNumber: '120301070008A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true }
+    ]
   }
 }
 setStorage('localData', data)

@@ -11,6 +11,7 @@ import driverTaskAPI from './driverTask'
 import deviceErrorAPI from './deviceError'
 import realWorkingAPI from './realWorking'
 import tasksAPI from './tasks'
+import alarmSetAPI from './alarmSet'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -83,4 +84,10 @@ Mock.mock(/\/tasks\/add/, 'post', tasksAPI.add)
 Mock.mock(/\/tasks\/list/, 'get', tasksAPI.list)
 Mock.mock(/\/tasks\/edit/, 'put', tasksAPI.edit)
 Mock.mock(/\/tasks\/del/, 'delete', tasksAPI.del)
+
+// alarmSet
+Mock.mock(/\/alarmSet\/add/, 'post', alarmSetAPI.add)
+Mock.mock(/\/alarmSet\/list/, 'get', alarmSetAPI.list)
+Mock.mock(/\/alarmSet\/edit/, 'put', alarmSetAPI.edit)
+Mock.mock(/\/alarmSet\/del/, 'delete', alarmSetAPI.del)
 export default Mock
