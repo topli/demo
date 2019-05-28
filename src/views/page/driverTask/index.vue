@@ -115,7 +115,7 @@ export default {
         const dateCol = {
           key: dateStr,
           title: dateStr,
-          minWidth: 200,
+          minWidth: 220,
           render: (h, params) => {
             return h('div', params.row[dateStr].map(item => {
               return h('task-col', { props: { dirverTaskInfo: item }})
@@ -125,9 +125,9 @@ export default {
         this.columnsTitle.push(dateCol)
         this.list.forEach((item) => {
           this.$set(item, dateStr, [
-            { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
-            { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
-            { driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 3), taskStatus: Math.ceil(Math.random() * 2) }
+            { id: Math.ceil(Math.random() * 10000), driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+            { id: Math.ceil(Math.random() * 10000), driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 2), taskStatus: Math.ceil(Math.random() * 2) },
+            { id: Math.ceil(Math.random() * 10000), driverName: this.nameList[Math.ceil(Math.random() * 20)], taskType: Math.ceil(Math.random() * 3), taskStatus: Math.ceil(Math.random() * 2) }
           ])
         })
       }

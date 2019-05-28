@@ -13,6 +13,7 @@ import realWorkingAPI from './realWorking'
 import tasksAPI from './tasks'
 import alarmSetAPI from './alarmSet'
 import currentTaskReportApi from './currentTaskReport'
+import deviceErrorReportApi from './deviceErrorReport'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -97,4 +98,9 @@ Mock.mock(/\/currentTaskReport\/add/, 'post', currentTaskReportApi.add)
 Mock.mock(/\/currentTaskReport\/list/, 'get', currentTaskReportApi.list)
 Mock.mock(/\/currentTaskReport\/edit/, 'put', currentTaskReportApi.edit)
 Mock.mock(/\/currentTaskReport\/del/, 'delete', currentTaskReportApi.del)
+// deviceErrorReport
+Mock.mock(/\/deviceErrorReport\/add/, 'post', deviceErrorReportApi.add)
+Mock.mock(/\/deviceErrorReport\/list/, 'get', deviceErrorReportApi.list)
+Mock.mock(/\/deviceErrorReport\/edit/, 'put', deviceErrorReportApi.edit)
+Mock.mock(/\/deviceErrorReport\/del/, 'delete', deviceErrorReportApi.del)
 export default Mock

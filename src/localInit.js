@@ -555,6 +555,14 @@ const data = {
       { id: 7, equipmentNumber: '120301070007A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true },
       { id: 8, equipmentNumber: '120301070008A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true }
     ]
+  },
+  deviceErrorReport: {
+    list: [
+      { org: '北京总公司', errorNum: '654', deviceNum: '11', errorRate: '1.6' },
+      { org: '山西分公司', errorNum: '121564', deviceNum: '11349', errorRate: '9.3' },
+      { org: '武汉分公司', errorNum: '65124', deviceNum: '635', errorRate: '0.9' },
+      { org: '河南分公司', errorNum: '91243', deviceNum: '1847', errorRate: '2.0' }
+    ]
   }
 }
 setStorage('localData', data)
