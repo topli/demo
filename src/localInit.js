@@ -186,8 +186,8 @@ const data = {
         { id: 20, value: '3', label: '低', color: '#409EFF' }
       ],
       deviceType: [
-        { id: 21, value: '1', label: '运输车', color: '#b03e32' },
-        { id: 22, value: '2', label: '起重机', color: '#409EFF' },
+        { id: 21, value: '1', label: '装载机', color: '#b03e32' },
+        { id: 22, value: '2', label: '运输车', color: '#409EFF' },
         { id: 23, value: '3', label: '挖掘机', color: '#409EFF' }
       ],
       examineType: [
