@@ -25,6 +25,7 @@ export default {
     videoDaily: '日常监控',
     deviceStatus: '故障或异常状态监控',
     deviceError: '设备故障报警',
+    deviceErrorReport: '设备故障统计表',
     enclosure: '电子围栏',
     enclosureAdd: '新增/编辑',
     taskM: '任务管理',

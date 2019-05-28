@@ -525,9 +525,23 @@ const data = {
   },
   tasks: {
     list: [
-      { no: 'BJ201905231529', dispatchNo: 'DD201905231529', name: '工程1', status: '待审核', executor: '石洋', line: '光谷-江夏', describe: '挖掘', org: '北京总公司', enclosure: '朝阳区附近', level: 1 },
-      { no: 'BJ201905231530', dispatchNo: 'DD201905231530', name: '工程2', status: '已调度', executor: '白杰', line: '天安门-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 2 },
-      { no: 'BJ201905231531', dispatchNo: 'DD201905231531', name: '工程3', status: '未调度', executor: '贾刚', line: '朝阳区-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 3 }
+      { no: 'BJ201905231529', dispatchNo: 'DD201905231529', devices: '91376494(张秀英),41055218(余平),91232187(贾刚)', workTime: '24H', progress: 60, name: '工程1', status: '待审核', executor: '石洋', line: '光谷-江夏', describe: '挖掘', org: '北京总公司', enclosure: '朝阳区附近', level: 1 },
+      { no: 'BJ201905231530', dispatchNo: 'DD201905231530', devices: '91270313(石敏),41080622(吕勇),41086687(高涛)', workTime: '35H', progress: 80, name: '工程2', status: '已调度', executor: '白杰', line: '天安门-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 2 },
+      { no: 'BJ201905231531', dispatchNo: 'DD201905231531', devices: '91207390(沈明),41108559(方静),41108584(石洋)', workTime: '31H', progress: 89, name: '工程3', status: '未调度', executor: '贾刚', line: '朝阳区-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 3 }
+    ]
+  },
+  currentTaskReport: {
+    list: [
+      { deviceNo: '91376494', workTime: '124H', currentDriver: '张秀英', workNum: '2', workAmount: '65421' },
+      { deviceNo: '41055218', workTime: '621H', currentDriver: '余平', workNum: '10', workAmount: '451245' },
+      { deviceNo: '91232187', workTime: '454H', currentDriver: '贾刚', workNum: '8', workAmount: '37744' },
+      { deviceNo: '91270313', workTime: '312H', currentDriver: '石敏', workNum: '5', workAmount: '12773' },
+      { deviceNo: '41080622', workTime: '754H', currentDriver: '吕勇', workNum: '5', workAmount: '456457' },
+      { deviceNo: '41086687', workTime: '271H', currentDriver: '高涛', workNum: '6', workAmount: '45112' },
+      { deviceNo: '91207390', workTime: '254H', currentDriver: '沈明', workNum: '1', workAmount: '89454' },
+      { deviceNo: '41108559', workTime: '341H', currentDriver: '方静', workNum: '5', workAmount: '44561' },
+      { deviceNo: '41108584', workTime: '85H', currentDriver: '石洋', workNum: '2', workAmount: '2783' },
+      { deviceNo: '41086595', workTime: '614H', currentDriver: '孙军', workNum: '7', workAmount: '85645' }
     ]
   }
 }
