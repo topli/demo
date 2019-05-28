@@ -18,6 +18,7 @@ export default {
     harvesters: '矿车',
     fuelError: '燃油数值不能为空',
     temperatureError: '温度不能为空',
-    temperatureNumberError: '温度请输入数字'
+    temperatureNumberError: '温度请输入数字',
+    select: '请选择'
   }
 }
