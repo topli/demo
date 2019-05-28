@@ -5,15 +5,17 @@
         <el-form-item :label="$t('driverTask.deviceNo')">
           <el-input v-model="form.deviceNo"/>
         </el-form-item>
-        <el-form-item :label="$t('driverTask.driverName')">
-          <el-input v-model.number="form.driverName"/>
-        </el-form-item>
         <el-form-item :label="$t('driverTask.time')">
           <el-input v-model="form.time"/>
         </el-form-item>
-        <el-form-item :label="$t('driverTask.taskType')">
-          <select-remote v-model="form.taskType" filterable clearable data-type="taskType"/>
-        </el-form-item>
+        <template v-for="(task, i) in form.taskType">
+          <el-form-item :label="$t('driverTask.driverName')" :key="i + task.driverName">
+            <el-input v-model.number="task.driverName"/>
+          </el-form-item>
+          <el-form-item :label="$t('driverTask.taskType')" :key="i + task.taskType">
+            <select-remote v-model="task.taskType" filterable clearable data-type="taskType"/>
+          </el-form-item>
+        </template>
       </el-form>
     </div>
     <div class="aou-footer">

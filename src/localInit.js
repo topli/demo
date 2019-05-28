@@ -268,7 +268,7 @@ const data = {
                 type: 2,
                 identification: 'user',
                 status: true,
-                linkType: 1,
+                linkType: '1',
                 child: []
               },
               {
@@ -542,6 +542,14 @@ const data = {
       { deviceNo: '41108559', workTime: '341H', currentDriver: '方静', workNum: '5', workAmount: '44561' },
       { deviceNo: '41108584', workTime: '85H', currentDriver: '石洋', workNum: '2', workAmount: '2783' },
       { deviceNo: '41086595', workTime: '614H', currentDriver: '孙军', workNum: '7', workAmount: '85645' }
+    ]
+  },
+  deviceErrorReport: {
+    list: [
+      { org: '北京总公司', errorNum: '654', deviceNum: '11', errorRate: '1.6' },
+      { org: '山西分公司', errorNum: '121564', deviceNum: '11349', errorRate: '9.3' },
+      { org: '武汉分公司', errorNum: '65124', deviceNum: '635', errorRate: '0.9' },
+      { org: '河南分公司', errorNum: '91243', deviceNum: '1847', errorRate: '2.0' }
     ]
   }
 }
