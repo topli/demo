@@ -5,6 +5,14 @@
         <el-form-item>
           <el-input v-model="searchForm.name" :placeholder="$t('tasks.name')" clearable/>
         </el-form-item>
+        <el-form-item>
+          <el-date-picker
+            v-model="searchForm.expiryDate"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            type="daterange"
+            clearable/>
+        </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">
@@ -45,31 +53,26 @@ export default {
     return {
       columnsTitle: [
         {
-          key: 'no',
-          title: this.$t('tasks.no'),
+          key: 'deviceNo',
+          title: this.$t('currentTaskReport.deviceNo'),
           width: '160'
         },
         {
-          key: 'name',
-          title: this.$t('tasks.name')
+          key: 'currentDriver',
+          title: this.$t('currentTaskReport.currentDriver')
         },
         {
-          key: 'executor',
-          title: this.$t('tasks.executor')
+          key: 'workTime',
+          title: this.$t('currentTaskReport.workTime')
         },
         {
-          key: 'line',
-          title: this.$t('tasks.line')
+          key: 'workNum',
+          title: this.$t('currentTaskReport.workNum')
         },
         {
-          key: 'describe',
-          title: this.$t('tasks.describe')
-        },
-        {
-          title: '任务进度',
-          render: (h) => {
-            return h('span', Math.ceil(Math.random() * 100) + '%')
-          }
+          key: 'workAmount',
+          title: this.$t('currentTaskReport.workAmount'),
+          unit: this.$t('currentTaskReport.workAmountUnit')
         }
       ],
       fileType: 'currentTaskReport'

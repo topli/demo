@@ -24,10 +24,12 @@ const routes = {
   videoDaily: () => import('@/views/page/videoDaily/index'),
   deviceStatus: () => import('@/views/page/deviceStatus/index'),
   deviceError: () => import('@/views/page/deviceError/index'),
+  deviceErrorSet: () => import('@/views/page/deviceErrorSet/index'),
   enclosure: () => import('@/views/page/enclosure/index'),
   tasks: () => import('@/views/page/tasks/index'),
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
   currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
+  deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
   map: () => import('@/views/page/map/index')
 }
 /**
@@ -57,7 +59,6 @@ export const childRouterMap = {
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-
   {
     path: '/',
     component: Layout,
@@ -168,10 +169,26 @@ export const constantRouterMap = [
         meta: { title: 'videoDaily' }
       },
       {
-        path: 'deviceError',
-        name: 'deviceError',
-        component: routes['deviceError'],
-        meta: { title: 'deviceError' }
+        path: 'deviceAlarmInfo',
+        name: 'deviceAlarmInfo',
+        // component: routes['deviceError'],
+        component: routeView,
+        redirect: 'noredirect',
+        meta: { title: 'deviceAlarmInfo' },
+        children: [
+          {
+            path: 'deviceError',
+            name: 'deviceError',
+            component: routes['deviceError'],
+            meta: { title: 'deviceError' }
+          },
+          {
+            path: 'deviceErrorSet',
+            name: 'deviceErrorSet',
+            component: routes['deviceErrorSet'],
+            meta: { title: 'deviceErrorSet' }
+          }
+        ]
       },
       {
         path: 'enclosure',
@@ -215,6 +232,12 @@ export const constantRouterMap = [
         name: 'currentTaskReport',
         component: routes['currentTaskReport'],
         meta: { title: 'currentTaskReport' }
+      },
+      {
+        path: 'deviceErrorReport',
+        name: 'deviceErrorReport',
+        component: routes['deviceErrorReport'],
+        meta: { title: 'deviceErrorReport' }
       }
     ]
   },

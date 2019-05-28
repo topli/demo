@@ -2,7 +2,7 @@ export default {
   app: {
     login: '登录',
     logout: '登出',
-    appTitle: '三一智矿监控平台',
+    appTitle: '三一智矿调度管理平台',
     appShortTitle: '三一',
     username: '用户名',
     password: '密码',
@@ -32,6 +32,8 @@ export default {
     push: '发布',
     dispatch: '智能调度',
     fullScreen: '全屏',
-    unbind: '解除绑定'
+    unbind: '解除绑定',
+    modifyValue: '报警阈值设置',
+    addValue: '新增报警阈值'
   }
 }
