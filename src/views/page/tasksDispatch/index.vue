@@ -65,6 +65,19 @@ export default {
           title: this.$t('tasks.name')
         },
         {
+          key: 'devices',
+          title: this.$t('tasks.devices'),
+          minWidth: 300
+        },
+        {
+          key: 'progress',
+          title: this.$t('tasks.progress'),
+          minWidth: 160,
+          render: (h, params) => {
+            return h('el-progress', { props: { percentage: params.row.progress }})
+          }
+        },
+        {
           key: 'status',
           title: this.$t('tasks.status'),
           render: (h) => {
@@ -77,7 +90,8 @@ export default {
         },
         {
           key: 'line',
-          title: this.$t('tasks.line')
+          title: this.$t('tasks.line'),
+          minWidth: 200
         },
         {
           key: 'describe',
@@ -85,7 +99,8 @@ export default {
         },
         {
           key: 'org',
-          title: this.$t('tasks.org')
+          title: this.$t('tasks.org'),
+          minWidth: 160
         }
         // {
         //   key: 'level',

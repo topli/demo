@@ -20,6 +20,8 @@ export default {
     number: '数量',
     isRemind: '是否提醒审批',
     examine: '审核结果',
-    pushDate: '发布时间'
+    pushDate: '发布时间',
+    devices: '设备',
+    progress: '完成进度'
   }
 }

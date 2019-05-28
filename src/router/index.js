@@ -28,6 +28,7 @@ const routes = {
   tasks: () => import('@/views/page/tasks/index'),
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
   currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
+  deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
   map: () => import('@/views/page/map/index')
 }
 /**
@@ -57,7 +58,6 @@ export const childRouterMap = {
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-
   {
     path: '/',
     component: Layout,
@@ -215,6 +215,12 @@ export const constantRouterMap = [
         name: 'currentTaskReport',
         component: routes['currentTaskReport'],
         meta: { title: 'currentTaskReport' }
+      },
+      {
+        path: 'deviceErrorReport',
+        name: 'deviceErrorReport',
+        component: routes['deviceErrorReport'],
+        meta: { title: 'deviceErrorReport' }
       }
     ]
   },
