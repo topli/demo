@@ -520,7 +520,11 @@ const data = {
       { deviceNo: '120301070009A', driverName: '苏军' },
       { deviceNo: '120301070010A', driverName: '谢军' },
       { deviceNo: '120301070011A', driverName: '程磊' },
-      { deviceNo: '120301070012A', driverName: '尹涛' }
+      { deviceNo: '120301070012A', driverName: '尹涛' },
+      { deviceNo: '120301070012A', driverName: '李明' },
+      { deviceNo: '120301070012A', driverName: '何乐' },
+      { deviceNo: '120301070012A', driverName: '张扬' },
+      { deviceNo: '120301070012A', driverName: '王利桃' }
     ]
   },
   tasks: {

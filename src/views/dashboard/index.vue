@@ -8,7 +8,7 @@
     <div class="content-right">
       <div class="left-one">
         <div>
-          <statistics-count :number="messageNumber" icon="message" title="报警列表" color="#4CB1CF" @click.native="$router.push({name: 'deviceError'})">
+          <statistics-count :number="messageNumber" icon="message" title="报警列表" class="devicePic" color="#4CB1CF" @click.native="$router.push({name: 'deviceError'})">
             <div class="circle"/>
           </statistics-count>
         </div>
@@ -27,7 +27,7 @@
           <div slot="header">
             <span style="font-weight: 700;font-size:14px">设备总数分布</span>
           </div>
-          <echarts :report-object="reportData2" height="245"/>
+          <echarts :report-object="reportData2" height="232"/>
         </el-card>
       </div>
     </div>
@@ -302,6 +302,7 @@ export default {
     min-height: 36px;
   }
   .dashboard-container {
+    min-height: calc(100vh - 50px);
     margin: 0;
     display: flex;
     .content-left {
@@ -321,7 +322,11 @@ export default {
       .left-one {
         min-width: 143px;
         margin-bottom: 10px;
+        height: 115px;
         display: flex;
+        .statistics {
+          height: 100%;
+        }
         >div {
           width: 50%;
           flex: 1;
@@ -334,11 +339,19 @@ export default {
         }
       }
       .left-two {
-        min-width: 143px;
+        // min-width: 143px;
+        flex: 1;
         margin-bottom: 10px;
+        /deep/.el-card {
+          height: 100%;
+          /deep/.el-card__body {
+            height: 100%;
+          }
+        }
       }
       .left-three {
-        flex: 1;
+        // flex: 1;
+        height: 278px;
         /deep/.el-card__header {
           padding: 14px 0;
         }
@@ -347,21 +360,23 @@ export default {
     .statistics {
       margin: 0;
       /deep/.statistics-icon:nth-child(1), /deep/.statistics-icon:nth-child(2) {
+        width: 76px;
+        height: 76px;
         position: relative;
         .circle,.circleSnd {
-          width: 15px;
-          height: 15px;
+          width: 12px;
+          height: 12px;
           border-radius: 50%;
           background: #ff0000;
           position: absolute;
           right: 0;
           top: 0;
-          margin-top: 14px;
-          margin-right: 6px;
+          margin-top: 16px;
+          margin-right: 13px;
         }
         .circleSnd {
           margin-top: 14px;
-          margin-right: 2px;
+          margin-right: 5px;
         }
       }
     }
@@ -376,7 +391,12 @@ export default {
     }
     .taskPic {
       /deep/.svg-icon {
-        color: #cd853f;
+        color: #02a675;
+      }
+    }
+    .devicePic {
+      /deep/.svg-icon {
+        color: #e6773c;
       }
     }
   }

@@ -37,8 +37,10 @@ export default {
       iconPeople: 'driver',
       iconArrow: 'iconArrow',
       nameList: [],
-      taskTypeList: ['早班', '早班', '晚班', '晚班', '休息'],
-      taskStatusList: ['已调度', '已调度', '已调度', '未调度', '未调度'],
+      taskTypeList: ['早班', '早班', '晚班', '晚班', '休息', '晚班', '晚班', '休息', '早班', '晚班', '休息'],
+      taskStatusList: ['已调度', '已调度', '已调度', '未调度', '未调度', '已调度', '已调度', '未调度', '已调度', '已调度', '未调度'],
+      scrrenHeight: document.body.offsetHeight,
+      filterList: [],
       columnsTitle: [
         {
           key: 'deviceNo',
@@ -85,7 +87,19 @@ export default {
     }
   },
   mounted() {
-
+    this.scrrenHeight = document.documentElement.clientHeight
+    window.onresize = () => {
+      this.scrrenHeight = document.documentElement.clientHeight
+      if (this.scrrenHeight < 750) {
+        this.list = this.filterList.filter((item, index) => {
+          return index < 5
+        })
+      } else {
+        this.list = this.filterList.filter((item, index) => {
+          return index < 10
+        })
+      }
+    }
   },
   methods: {
     _getList() {
@@ -94,13 +108,17 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.list = res.data.list
-          this.list = this.list.filter((item, index) => {
-            return index < 5
-          })
-          for (let i = 0; i < 5; i++) {
+          this.scrrenHeight = document.documentElement.clientHeight
+          if (this.scrrenHeight < 750) {
+            this.list = this.list.filter((item, index) => {
+              return index < 5
+            })
+          }
+          for (let i = 0; i < 10; i++) {
             this.list[i].taskType = this.taskTypeList[i]
             this.list[i].taskStatus = this.taskStatusList[i]
           }
+          this.filterList = this.list
         }, 1000)
       })
     }
@@ -133,7 +151,7 @@ export default {
     cursor: pointer;
     float: right;
     span {
-      font-size: 13px;
+      font-size: 12px;
     }
   }
 }
@@ -144,9 +162,9 @@ export default {
   }
 }
 .table {
-  height: 194px ;
+  height: calc(100vh - 535px);
   /deep/.el-table {
-    height: 200px !important;
+      height: calc(100vh - 526px)!important;
     /deep/.el-table__header-wrapper {
       display: none;
     }
