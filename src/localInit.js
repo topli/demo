@@ -553,7 +553,7 @@ const data = {
       { id: 5, equipmentNumber: '120301070005A', deviceType: '矿车', fuel: '10', temperature: '80', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
       { id: 6, equipmentNumber: '120301070006A', deviceType: '矿车', fuel: '10', temperature: '90', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
       { id: 7, equipmentNumber: '120301070007A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 1, equipmentNumber: '120301070008A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true }
+      { id: 8, equipmentNumber: '120301070008A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true }
     ]
   }
 }

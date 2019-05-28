@@ -10,7 +10,7 @@
           <el-input :disabled="form.id" v-model="form.equipmentNumber" />
         </el-form-item>
         <el-form-item :label="$t('alarmSet.deviceType')">
-          <el-select v-model="form.deviceType" :disabled="form.id" style="width:184px;" placeholder="请选择">
+          <el-select v-model="form.deviceType" :disabled="form.id" :placeholder="$t('alarmSet.select')" style="width:184px;">
             <el-option
               v-for="item in deviceType"
               :key="item.value"
