@@ -91,7 +91,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.modify'),
         components: add,
-        width: 400,
+        width: 450,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
@@ -104,7 +104,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.add'),
         components: add,
-        width: 400,
+        width: 450,
         onSub: (el) => {
           // 新增完成后执行操作
           // todo 刷新列表

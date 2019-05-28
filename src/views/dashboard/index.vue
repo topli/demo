@@ -1,13 +1,37 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">{{ $t('app.username') }}:{{ name }}   {{ $t('app.roles') }}:<span v-for="role in roles" :key="role">{{ role }}</span></div>
-    <hr>
-    <el-row :gutter="10">
+    <!-- <div class="dashboard-text">{{ $t('app.username') }}:{{ name }}   {{ $t('app.roles') }}:<span v-for="role in roles" :key="role">{{ role }}</span></div>
+    <hr> -->
+    <div class="content-left">
+      <real-working-map/>
+    </div>
+    <div class="content-right">
+      <div class="left-one">
+        <div>
+          <statistics :number="messageNumber" icon="message" title="报警列表" color="#4CB1CF"/>
+        </div>
+        <div>
+          <statistics :number="taskNumber" icon="task" title="任务列表" color="#F0433D" class="taskPic"/>
+        </div>
+      </div>
+      <div class="left-two">
+        <statistics :number="driverNumber" icon="driver" title="司机列表" color="#5cb85c"/>
+      </div>
+      <div class="left-three">
+        <el-card class="box-card echarts-card">
+          <div slot="header">
+            <span>设备占比分布</span>
+          </div>
+          <echarts :report-object="reportData2" height="300"/>
+        </el-card>
+      </div>
+    </div>
+    <!-- <el-row :gutter="10">
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
         <statistics :number="userNumber" icon="user" title="用户列表" color="#f0ad4e"/>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-        <statistics :number="messageNumber" icon="message" title="消息列表" color="#4CB1CF"/>
+        <statistics :number="messageNumber" icon="message" title="报警列表" color="#4CB1CF"/>
       </el-col>
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
         <statistics :number="taskNumber" icon="task" title="任务列表" color="#F0433D"/>
@@ -22,23 +46,23 @@
           <div slot="header">
             <span>一周工作量</span>
           </div>
-          <echarts id="test1" :report-object="reportData" style="height: 300px"/>
+          <echarts :report-object="reportData" height="300"/>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="10" :md="10" :lg="8" :xl="8">
         <el-card class="box-card">
           <div slot="header">
-            <span>当天完成工作量</span>
+            <span>设备占比分布</span>
           </div>
-          <echarts id="test2" :report-object="reportData1" style="height: 300px"/>
+          <echarts :report-object="reportData1" height="300"/>
         </el-card>
       </el-col>
-    </el-row>
-    <el-row :gutter="10">
+    </el-row> -->
+    <!-- <el-row :gutter="10">
       <el-col :xs="{span: 24}" :sm="{span: 24}" :md="{span: 24}" :lg="{span: 24}" :xl="{span: 24}" style="margin-bottom:30px;">
         <todo-list/>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 
@@ -47,17 +71,19 @@ import { mapGetters } from 'vuex'
 import statistics from './components/statistics'
 import TodoList from './components/TodoList'
 import { parseTime } from '@/libs/utils'
+import realWorkingMap from '../../views/page/realWorkingMap/index'
 export default {
   name: 'Dashboard',
-  components: { statistics, TodoList },
+  components: { statistics, TodoList, realWorkingMap },
   data() {
     return {
       userNumber: 201,
       messageNumber: 3215,
       taskNumber: 9641,
       driverNumber: 1258,
-      reportData: null,
-      reportData1: null
+      reportData: {},
+      reportData1: {},
+      reportData2: {}
     }
   },
   computed: {
@@ -135,9 +161,9 @@ export default {
         //   }]
         // },
         series: [{
-          type: 'pie',
-          radius: [30, '55%'],
-          center: ['50%', '50%'],
+          type: 'bar',
+          // radius: [30, '55%'],
+          // center: ['50%', '50%'],
           // roseType: 'radius',
           color: ['#f2c955', '#00a69d', '#46d185', '#ec5845'],
           data: [{
@@ -145,13 +171,10 @@ export default {
             name: '挖掘机'
           }, {
             value: 4,
-            name: '推土机'
+            name: '装载机'
           }, {
             value: 35,
             name: '运输车'
-          }, {
-            value: 53,
-            name: '起重机'
           }],
           label: {
             normal: {
@@ -184,6 +207,51 @@ export default {
             return Math.random() * 200
           }
         }]
+      }
+      this.reportData2 = {
+        interval: 0,
+        xAxis: {
+          splitLine: { show: false } // 改设置不显示坐标区域内的y轴分割线
+        },
+        yAxis: {
+          data: ['矿车', '挖机', '装载机', '推土机']
+        },
+        series: [{
+          name: '分类设备工作量',
+          type: 'bar',
+          data: [91, 43, 82, 53],
+          // 设置柱子的宽度
+          barWidth: 30,
+          // 配置样式
+          itemStyle: {
+            // 通常情况下：
+            normal: {
+              // 每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+              color: function(params) {
+                var colorList = ['#bf9000', '#00b050', '#c00000', '#0070c0']
+                return colorList[params.dataIndex]
+              }
+            },
+            // 鼠标悬停时：
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          },
+          label: {
+            normal: {
+              show: true,
+              formatter: '{c}%'
+            }
+          }
+        }],
+        // 控制边距
+        grid: {
+          left: '0%',
+          right: '10%',
+          containLabel: true
+        }
       }
     }, 1000)
   }
@@ -221,5 +289,46 @@ export default {
   .grid-content {
     border-radius: 4px;
     min-height: 36px;
+  }
+  .dashboard-container {
+    margin: 0;
+    display: flex;
+    .content-left {
+      flex: 7
+    }
+    .content-right {
+      flex: 3;
+      padding: 10px;
+      .left-one {
+        display: flex;
+        >div {
+          width: 50%;
+          flex: 1;
+        }
+        >div:first-child {
+          margin-right: 5px;
+        }
+        >div:last-child {
+          margin-left: 5px;
+        }
+      }
+    }
+    .statistics {
+      margin: 0 0 10px 0;
+    }
+    .echarts-card {
+      padding: 0 20px;
+      /deep/.el-card__body {
+        padding: 0 20px 0 20px;
+      }
+    }
+    /deep/.search-tem {
+      display: none;
+    }
+    .taskPic {
+      /deep/.svg-icon {
+        color: #cd853f;
+      }
+    }
   }
 </style>

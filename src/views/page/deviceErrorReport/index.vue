@@ -3,15 +3,26 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchForm.user" :placeholder="$t('user.username')" clearable/>
+          <el-input v-model="searchForm.alarmType" :placeholder="$t('deviceError.alarmType')" clearable/>
         </el-form-item>
         <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
+          <el-date-picker
+            v-model="searchForm.expiryDate"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            type="daterange"
+            clearable/>
         </el-form-item>
+        <!-- <el-form-item>
+          <el-select v-model="searchForm.region" :placeholder="$t('user.region')" clearable>
+            <el-option label="区域一" value="shanghai"/>
+            <el-option label="区域二" value="beijing"/>
+          </el-select>
+        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">
-      <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="editData"/>
+      <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
       <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
@@ -39,69 +50,78 @@
 </template>
 
 <script>
-import add from './add'
 import list from '@/libs/mixins/list'
+import add from './add'
 import dialog from '@/libs/mixins/dialog'
-import { getList, delData } from './service'
+import { getList } from './service'
 
 export default {
   mixins: [list, dialog],
   data() {
     return {
+      doList: [
+        '报警已处理',
+        '预警已处理',
+        '预警未处理',
+        '预警已处理',
+        '报警未处理'
+      ],
       columnsTitle: [
         {
           key: 'status',
-          title: this.$t('enclosure.status'),
+          title: this.$t('deviceError.status'),
           filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
-          width: '120',
+          width: '90',
           render: (h, params) => {
             return h('el-tag', {
-              props: { color: params.row.status ? '#52c08e' : '#EE3B3B', type: 'text' },
+              props: { color: params.row.status ? '#F4A460' : '#EE3B3B', type: 'text' },
               style: { color: 'white' }
             },
-            params.row.status ? '启用' : '禁用')
+            params.row.status ? '预警' : '报警')
           }
         },
         {
-          key: 'name',
-          title: this.$t('enclosure.name'),
-          width: '180'
+          key: 'alarmType',
+          title: this.$t('deviceError.alarmType'),
+          minWidth: '120'
         },
         {
-          key: 'labelState',
-          title: this.$t('enclosure.labelState'),
-          width: '120'
+          key: 'deviceStatus',
+          title: this.$t('deviceError.deviceStatus'),
+          minWidth: '90',
+          render: (h, params) => {
+            return h('el-tag', {
+              props: { color: params.row.deviceStatus ? '#409eff' : '#999', type: 'text' },
+              style: { color: 'white' }
+            },
+            params.row.status ? '在线' : '离线')
+          }
         },
         {
-          key: 'org',
-          title: this.$t('enclosure.org'),
-          width: '150'
+          key: 'handleStatus',
+          title: this.$t('deviceError.handleStatus'),
+          minWidth: '120',
+          render: (h, params) => {
+            return h('span', {
+
+            },
+            params.row.handleStatus === 'true' ? '已处理' : '未处理')
+          }
         },
         {
-          key: 'province',
-          title: this.$t('enclosure.province'),
-          width: '130'
+          key: 'deviceAddress',
+          title: this.$t('deviceError.deviceAddress'),
+          minWidth: '220'
         },
         {
-          key: 'city',
-          title: this.$t('enclosure.city'),
-          width: '130'
-        },
-        {
-          key: 'address',
-          title: this.$t('enclosure.address'),
-          width: '250'
-        },
-        {
-          key: 'scope',
-          title: this.$t('enclosure.scope'),
-          width: '100',
-          unit: this.$t('enclosure.rangeUnit')
+          key: 'principal',
+          title: this.$t('deviceError.principal'),
+          minWidth: '120'
         },
         {
           key: 'createTime',
-          title: this.$t('enclosure.createTime'),
-          width: '150',
+          title: this.$t('deviceError.createTime'),
+          minWidth: '150',
           filters: 'parseTime'
         },
         {
@@ -110,8 +130,7 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'alertError', t: '处理结果', handler: this.editData, color: '#F6BD30' }
             ]))
           }
         }
@@ -128,6 +147,7 @@ export default {
     _getList() {
       this.loading = true
       getList(this.searchData).then(res => {
+        console.log(res)
         setTimeout(() => {
           this.loading = false
           this.list = res.data.list
@@ -144,39 +164,19 @@ export default {
       }, 1000)
     },
     editData(row) {
-      console.log(row)
-      this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange, id: row.id }})
-    },
-    addData() {
+      // this.$alert('<i style="margin-right: 6px" class="' + (this.doList[row.id].indexOf('已') > -1 ? 'el-icon-success' : 'el-icon-warning') + '"></i><h3 style="display: inline-block">' + this.doList[row.id] + '</h3>', '处理结果', {
+      //   dangerouslyUseHTMLString: true
+      // })
       this.$dialogBox({
-        title: this.$t('app.add'),
+        title: this.$t('app.modify'),
         components: add,
-        width: 650,
+        width: 700,
+        props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
           // todo 刷新列表
           this._getList()
         }
-      })
-    },
-    deleteItem(row) {
-      this.confirm((success) => {
-        delData(row).then((res) => {
-          console.log(res)
-          if (res.code === 200) {
-            this.$message({
-              type: 'success',
-              message: this.$t('app.disables') + this.$t('app.success')
-            })
-          } else {
-            this.$message({
-              type: 'error',
-              message: res.message
-            })
-            return
-          }
-          this._getList()
-        })
       })
     }
   }

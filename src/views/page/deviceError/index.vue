@@ -15,8 +15,8 @@
     </search-tem>
     <div class="btns">
       <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
+      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
     <div class="table">
       <t-for-col
@@ -43,6 +43,7 @@
 
 <script>
 import list from '@/libs/mixins/list'
+import add from './add'
 import dialog from '@/libs/mixins/dialog'
 import { getList } from './service'
 
@@ -62,7 +63,7 @@ export default {
           key: 'status',
           title: this.$t('deviceError.status'),
           filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
-          width: '120',
+          width: '90',
           render: (h, params) => {
             return h('el-tag', {
               props: { color: params.row.status ? '#F4A460' : '#EE3B3B', type: 'text' },
@@ -74,7 +75,35 @@ export default {
         {
           key: 'alarmType',
           title: this.$t('deviceError.alarmType'),
-          minWidth: '180'
+          minWidth: '120'
+        },
+        {
+          key: 'deviceStatus',
+          title: this.$t('deviceError.deviceStatus'),
+          minWidth: '90',
+          render: (h, params) => {
+            return h('el-tag', {
+              props: { color: params.row.deviceStatus ? '#409eff' : '#999', type: 'text' },
+              style: { color: 'white' }
+            },
+            params.row.status ? '在线' : '离线')
+          }
+        },
+        {
+          key: 'handleStatus',
+          title: this.$t('deviceError.handleStatus'),
+          minWidth: '120',
+          render: (h, params) => {
+            return h('span', {
+
+            },
+            params.row.handleStatus === 'true' ? '已处理' : '未处理')
+          }
+        },
+        {
+          key: 'deviceAddress',
+          title: this.$t('deviceError.deviceAddress'),
+          minWidth: '220'
         },
         {
           key: 'principal',
@@ -93,7 +122,7 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' }
+              { icon: 'alertError', t: '处理结果', handler: this.editData, color: '#F6BD30' }
             ]))
           }
         }
@@ -127,13 +156,25 @@ export default {
       }, 1000)
     },
     editData(row) {
-      this.$alert('<i style="margin-right: 6px" class="' + (this.doList[row.id].indexOf('已') > -1 ? 'el-icon-success' : 'el-icon-warning') + '"></i><h3 style="display: inline-block">' + this.doList[row.id] + '</h3>', '处理结果', {
-        dangerouslyUseHTMLString: true
+      // this.$alert('<i style="margin-right: 6px" class="' + (this.doList[row.id].indexOf('已') > -1 ? 'el-icon-success' : 'el-icon-warning') + '"></i><h3 style="display: inline-block">' + this.doList[row.id] + '</h3>', '处理结果', {
+      //   dangerouslyUseHTMLString: true
+      // })
+      this.$dialogBox({
+        title: this.$t('app.modify'),
+        components: add,
+        width: 480,
+        props: { data: row },
+        onSub: (el) => {
+          // 新增完成后执行操作
+          // todo 刷新列表
+          this._getList()
+        }
       })
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
 </style>

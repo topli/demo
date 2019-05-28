@@ -3,7 +3,8 @@
     <div class="app-title">
       <transition name="el-fade-in" mode="out-in">
         <span v-if="sidebar.opened">{{ $t('app.appTitle') }}</span>
-        <img v-else src="/favicon.ico" style="width: 100%">
+        <span v-else>{{ $t('app.appShortTitle') }}</span>
+        <!-- <img v-else src="/favicon.ico" style="width: 100%"> -->
       </transition>
     </div>
     <el-menu

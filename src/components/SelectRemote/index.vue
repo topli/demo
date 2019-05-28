@@ -90,13 +90,16 @@ export default {
       this.selectValue = this.value
       this.$emit('input', val)
     },
+    selectValue: function(val) {
+      this.$emit('input', val)
+    },
     dictData: function() {
       this.getOptions()
     }
   },
   mounted() {
     this.getOptions()
-    this.selectValue = this.value
+    this.selectValue = this.value ? this.value + '' : ''
   },
   methods: {
     getOptions() {

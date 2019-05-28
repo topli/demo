@@ -51,21 +51,31 @@ export default {
     return {
       columnsTitle: [
         {
-          key: 'id',
+          key: 'dispatchNo',
           title: this.$t('dispatch.no'),
-          width: '100',
-          render: (h) => {
-            return h('span', 'NO' + (Math.ceil(Math.random() * 100)))
-          }
+          width: '160'
         },
         {
           key: 'no',
           title: this.$t('tasks.no'),
-          width: '100'
+          width: '160'
         },
         {
           key: 'name',
           title: this.$t('tasks.name')
+        },
+        {
+          key: 'devices',
+          title: this.$t('tasks.devices'),
+          minWidth: 300
+        },
+        {
+          key: 'progress',
+          title: this.$t('tasks.progress'),
+          minWidth: 160,
+          render: (h, params) => {
+            return h('el-progress', { props: { percentage: params.row.progress }})
+          }
         },
         {
           key: 'status',
@@ -80,7 +90,8 @@ export default {
         },
         {
           key: 'line',
-          title: this.$t('tasks.line')
+          title: this.$t('tasks.line'),
+          minWidth: 200
         },
         {
           key: 'describe',
@@ -88,7 +99,8 @@ export default {
         },
         {
           key: 'org',
-          title: this.$t('tasks.org')
+          title: this.$t('tasks.org'),
+          minWidth: 160
         }
         // {
         //   key: 'level',

@@ -1,23 +1,23 @@
 <style lang="scss" scoped>
   .echarts-report {
-    width: 100%;
-    height: 100%;
     position: relative;
   }
 </style>
 <template>
-  <div class="echarts-report">
-    <div :id="id" :style="style" style="height: 100%;width: 100%;"/>
-  </div>
+  <div :style="{height:height + 'px',width:width}"/>
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
   props: {
-    id: {
+    width: {
       type: String,
-      default: ''
+      default: '100%'
+    },
+    height: {
+      type: String,
+      default: '150'
     },
     reportObject: {
       type: Object,
@@ -32,19 +32,11 @@ export default {
     }
   },
   computed: {
-    style() {
-      const style = {}
-      return style
-    }
   },
   watch: {
     reportObject: {
       handler: function(val) {
-        if (val && val.series) {
-          this._initCharts()
-        } else {
-          this.chart && this.chart.clear()
-        }
+        this.chart.setOption(val)
       },
       deep: true
     }
@@ -54,29 +46,29 @@ export default {
   },
   mounted() {
     this._initCharts()
+    // 监听侧边栏的变化
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    sidebarElm.addEventListener('transitionend', this.resize)
   },
   beforeDestroy() {
+    if (!this.chart) {
+      return
+    }
+    this.chart.dispose()
     this.chart = null
     window.removeEventListener('resize', this.resize)
   },
   methods: {
     resize() {
       if (this.chart) {
-        this.chart.resize()
+        setTimeout(() => {
+          this.chart.resize()
+        }, 200)
       }
     },
     _initCharts() {
-      console.log(this.chart)
-      setTimeout(() => {
-        // 不存在echarts实例 创建实例 存在则清除之前数据
-        if (!this.chart) {
-          this.chart = echarts.init(document.getElementById(this.id))
-        } else {
-          this.chart && this.chart.clear()
-        }
-        const option = this.reportObject
-        this.chart.setOption(option)
-      }, 500)
+      this.chart = echarts.init(this.$el)
+      this.chart.setOption(this.reportObject)
     }
   }
 }

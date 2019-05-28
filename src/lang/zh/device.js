@@ -1,5 +1,6 @@
 export default {
   device: {
+    gpsNo: 'GPS号',
     status: '状态',
     model: '型号',
     number: '编号',

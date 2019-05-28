@@ -62,6 +62,11 @@ export default {
           width: '120'
         },
         {
+          key: 'gpsNo',
+          title: this.$t('device.gpsNo'),
+          width: '120'
+        },
+        {
           key: 'createTime',
           title: this.$t('device.createTime'),
           filters: 'parseTime',
@@ -132,7 +137,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.modify'),
         components: add,
-        width: 650,
+        width: 690,
         props: { data: row },
         onSub: (el) => {
           // 新增完成后执行操作
@@ -145,7 +150,7 @@ export default {
       this.$dialogBox({
         title: this.$t('app.add'),
         components: add,
-        width: 650,
+        width: 690,
         onSub: (el) => {
           // 新增完成后执行操作
           // todo 刷新列表

@@ -53,11 +53,24 @@ export default {
         {
           key: 'no',
           title: this.$t('tasks.no'),
-          width: '100'
+          width: '160'
         },
         {
           key: 'name',
           title: this.$t('tasks.name')
+        },
+        {
+          key: 'devices',
+          title: this.$t('tasks.devices'),
+          minWidth: 300
+        },
+        {
+          key: 'progress',
+          title: this.$t('tasks.progress'),
+          minWidth: 160,
+          render: (h, params) => {
+            return h('el-progress', { props: { percentage: params.row.progress }})
+          }
         },
         {
           key: 'status',
@@ -69,7 +82,8 @@ export default {
         },
         {
           key: 'line',
-          title: this.$t('tasks.line')
+          title: this.$t('tasks.line'),
+          minWidth: 200
         },
         {
           key: 'describe',
@@ -77,7 +91,8 @@ export default {
         },
         {
           key: 'org',
-          title: this.$t('tasks.org')
+          title: this.$t('tasks.org'),
+          minWidth: 160
         },
         {
           key: 'level',
@@ -109,7 +124,7 @@ export default {
             }
             return h('div', this.iconBtn(h, params, [
               { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6', hide: hide || hide2 },
-              { icon: 'push', t: 'app.push', handler: this.pushData, color: '#64d9d6', hide: hide || hide1 },
+              { icon: 'push', t: 'app.dispatch', handler: this.pushData, color: '#64d9d6', hide: hide || hide1 },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
               { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
             ]))

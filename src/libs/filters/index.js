@@ -58,6 +58,7 @@ export function status(val) {
   }
   return data[!!val]
 }
+
 function getDictDataByType(type) {
   let data = []
   if (store.state.app.dictData) {
@@ -67,7 +68,7 @@ function getDictDataByType(type) {
 }
 export function getDictDatas(val, type) {
   const findData = getDictDataByType(type).find((item) => {
-    return item.value === val
+    return item.value === val + ''
   })
   return findData
 }
