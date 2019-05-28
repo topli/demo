@@ -22,7 +22,7 @@
           <el-switch v-model="form.available"/>
         </el-form-item>
         <el-form-item :label="$t('device.orgName')">
-          <org-tree v-model="form.orgName" clearable/>
+          <org-tree v-model="form.orgName" multiple clearable/>
         </el-form-item>
       </el-form>
     </div>

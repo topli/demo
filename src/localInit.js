@@ -447,6 +447,16 @@ const data = {
             identification: 'currentTaskReport',
             linkType: 1,
             child: []
+          },
+          {
+            id: 23,
+            name: '设备故障统计表',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'deviceErrorReport',
+            linkType: 1,
+            child: []
           }
         ]
       },

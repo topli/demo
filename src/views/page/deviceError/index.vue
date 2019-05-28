@@ -122,7 +122,7 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'alertError', t: '处理结果', handler: this.editData, color: '#F6BD30' }
+              { icon: 'alertError', t: 'deviceError.handleResult', handler: this.editData, color: '#F6BD30' }
             ]))
           }
         }

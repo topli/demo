@@ -1,7 +1,7 @@
 <template>
   <!-- org-tree -->
   <div v-clickoutside="handleClickOutside" id="org-tree" class="org-tree" style="position: relative">
-    <el-input slot="reference" :placeholder="placeholder" v-model="checkedStr" type="text" readonly @focus="togglePopover">
+    <el-input slot="reference" :placeholder="placeholder" v-model="checkedStr" :clearable="clearable" type="text" @focus="togglePopover">
       <svg-icon slot="suffix" icon-class="file-tree"/>
     </el-input>
     <transition name="el-zoom-in-top"> <!-- el-zoom-in-top by element-ui transiton.scss-->
@@ -14,9 +14,11 @@
             :props="defaultProps"
             :filter-node-method="filterTree"
             :default-checked-keys="checkedKeys"
+            :check-strictly="checkStrictly"
             node-key="id"
             default-expand-all
             show-checkbox
+            @check="getChecked"
           />
         </el-scrollbar>
       </div>
@@ -38,6 +40,18 @@ export default {
     value: {
       type: [String, Array],
       default: () => []
+    },
+    multiple: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
+    },
+    clearable: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
     }
   },
   data() {
@@ -77,7 +91,7 @@ export default {
                 parentId: 2,
                 parentName: '山西分公司'
               }, {
-                id: 6,
+                id: 7,
                 orgName: '设备管理部',
                 state: true,
                 code: 'ZBM2',
@@ -146,8 +160,17 @@ export default {
       clientWidth: '200px'
     }
   },
-  computed: {},
+  computed: {
+    checkStrictly() {
+      return !this.multiple
+    }
+  },
   watch: {
+    checkedStr(val) {
+      if (!val) {
+        this.$refs.tree.setCheckedNodes([])
+      }
+    },
     filterText(val) {
       this.$refs.tree && this.$refs.tree.filter(val)
     },
@@ -168,7 +191,7 @@ export default {
         const inputStr = []
         const inputValue = []
         this.$refs.tree.getCheckedNodes().forEach((item) => {
-          inputStr.push(item.label)
+          inputStr.push(item.orgName)
           inputValue.push(item.id)
         })
         this.checkedStr = inputStr.toString()
@@ -199,15 +222,21 @@ export default {
       const inputStr = []
       const inputValue = []
       this.$refs.tree.getCheckedNodes().forEach((item) => {
-        inputStr.push(item.label)
+        inputStr.push(item.orgName)
         inputValue.push(item.id)
       })
+      console.log(inputValue)
       this.$emit('input', inputValue)
       this.checkedStr = inputStr.toString()
     },
     filterTree(value, data) {
       if (!value) return true
-      return data.label.indexOf(value) !== -1
+      return data.orgName.indexOf(value) !== -1
+    },
+    getChecked(data) {
+      if (!this.multiple) {
+        this.$refs.tree.setCheckedNodes([data])
+      }
     }
   }
 }
