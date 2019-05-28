@@ -3,7 +3,7 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchForm.user" :placeholder="$t('user.username')" clearable/>
+          <el-input v-model="searchForm.user" :placeholder="$t('enclosure.name')" clearable/>
         </el-form-item>
         <el-form-item>
           <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>

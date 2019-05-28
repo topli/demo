@@ -27,7 +27,7 @@
           <div slot="header">
             <span style="font-weight: 700;font-size:14px">设备总数分布</span>
           </div>
-          <echarts :report-object="reportData2" height="275"/>
+          <echarts :report-object="reportData2" height="245"/>
         </el-card>
       </div>
     </div>
@@ -305,7 +305,13 @@ export default {
     margin: 0;
     display: flex;
     .content-left {
-      flex: 7
+      flex: 7;
+        /deep/.map-template {
+        height: 100%;
+        .map {
+          height: 100%;
+        }
+      }
     }
     .content-right {
       flex: 3;

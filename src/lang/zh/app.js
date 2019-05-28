@@ -34,6 +34,7 @@ export default {
     fullScreen: '全屏',
     unbind: '解除绑定',
     modifyValue: '报警阈值设置',
-    addValue: '新增报警阈值'
+    addValue: '新增报警阈值',
+    dealWith: '处理'
   }
 }

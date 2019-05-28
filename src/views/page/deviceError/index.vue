@@ -160,7 +160,7 @@ export default {
       //   dangerouslyUseHTMLString: true
       // })
       this.$dialogBox({
-        title: this.$t('app.modify'),
+        title: this.$t('app.dealWith'),
         components: add,
         width: 480,
         props: { data: row },
