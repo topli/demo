@@ -2,7 +2,7 @@
 <template>
   <el-card class="statistics">
     <el-row :gutter="20">
-      <el-col :span="12" style="text-align:center">
+      <el-col :span="12" style="text-align:center;margin-top: 10px;">
         <div :style="style" class="statistics-icon">
           <svg-icon :icon-class="icon"/>
           <slot/>
@@ -10,10 +10,16 @@
       </el-col>
       <el-col :span="12">
         <div class="statistics-number">
+          <countTo :start-val="startVal" :end-val="endVal" :duration="2000"/>
           <div class="statistics-title">
             {{ title }}
           </div>
-          <countTo :start-val="startVal" :end-val="endVal" :duration="2000"/>
+
+          <!-- <ul>
+            <li v-for="(item, index) in 2" :key="index">
+              <span v-for="(num, index) in numArray" :key="index">{{ num }}</span>
+            </li>
+          </ul> -->
         </div>
       </el-col>
     </el-row>
@@ -44,7 +50,8 @@ export default {
   data() {
     return {
       startVal: 0,
-      endVal: 0
+      endVal: 0,
+      numArray: []
     }
   },
   computed: {
@@ -64,11 +71,20 @@ export default {
   },
   // 方法集合
   methods: {
+    initPage() {
+      this.numArray = String(this.number).split('')
+      this.numArray.map(item => {
+        item = Number(item)
+      })
+    }
   }
 }
 </script>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
+/deep/.el-card__body {
+  padding: 12px 20px;
+}
 .statistics{
   cursor: pointer;
   margin: 10px 0;
@@ -88,11 +104,32 @@ export default {
     padding: 10px 0;
     color: rgba(0,0,0,.45);
   }
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+  .statistics-number {
+    div {
+      font-size: 14px;
+      color: #7e8b9d;
+    }
+    span {
+      font-size: 28px;
+      color: #0f1010;
+    }
+  }
+}
+.statistics {
+  .statistics-icon{
+    padding: 15px 0px 16px 0px;
+    font-size: 40px
+  }
 }
 .statistics:hover{
   .statistics-icon{
     padding: 15px 0px 16px 0px;
-    font-size: 63px
+    font-size: 45px
   }
 }
 </style>
