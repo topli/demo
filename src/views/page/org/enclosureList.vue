@@ -3,7 +3,7 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchForm.enclosureName" :placeholder="$t('enclosure.enclosureName')" clearable/>
+          <el-input v-model="searchForm.name" :placeholder="$t('enclosure.name')" clearable/>
         </el-form-item>
         <el-form-item>
           <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
@@ -58,13 +58,13 @@ export default {
           }
         },
         {
-          key: 'enclosureName',
-          title: this.$t('enclosure.enclosureName'),
+          key: 'name',
+          title: this.$t('enclosure.name'),
           width: '180'
         },
         {
-          key: 'enclosureType',
-          title: this.$t('enclosure.enclosureType'),
+          key: 'labelState',
+          title: this.$t('enclosure.labelState'),
           width: '120'
         },
         {
@@ -83,13 +83,13 @@ export default {
           width: '130'
         },
         {
-          key: 'adress',
-          title: this.$t('enclosure.adress'),
+          key: 'address',
+          title: this.$t('enclosure.address'),
           width: '250'
         },
         {
-          key: 'enclosureRange',
-          title: this.$t('enclosure.enclosureRange'),
+          key: 'scope',
+          title: this.$t('enclosure.scope'),
           width: '100',
           unit: this.$t('enclosure.rangeUnit')
         },
