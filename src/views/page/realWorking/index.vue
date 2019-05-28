@@ -3,11 +3,11 @@
     <!--{{ pageName }}-->
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm" label-position="right">
-        <el-form-item prop="设备编号">
+        <!-- <el-form-item prop="GpsID">
           <el-input v-model="ruleForm.gpsID" placeholder="设备编号" clearable/>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item prop="gpsNo" label="">
-          <el-input v-model="ruleForm.gpsNo" placeholder="GPS设备" clearable/>
+          <el-input v-model="ruleForm.gpsNo" placeholder="设备编号" clearable/>
         </el-form-item>
         <el-form-item prop="gpsNo" label="">
           <el-input v-model="ruleForm.gpsNo" placeholder="动作编号" clearable/>
