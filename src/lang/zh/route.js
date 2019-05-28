@@ -27,7 +27,9 @@ export default {
     deviceAlarmInfo: '设备报警',
     deviceError: '设备故障报警',
     deviceErrorSet: '故障报警设置',
+    deviceErrorReport: '设备故障统计表',
     enclosure: '电子围栏',
+    enclosureAdd: '新增/编辑',
     taskM: '任务管理',
     tasks: '任务列表',
     taskCreate: '任务创建',
@@ -39,6 +41,7 @@ export default {
     statisticsReport: '统计分析',
     realReport: '实时统计',
     currentTaskReport: '当前任务进度统计',
-    map: '地图'
+    map: '地图',
+    reportCenter: '报表中心'
   }
 }

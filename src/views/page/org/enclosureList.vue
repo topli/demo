@@ -3,7 +3,7 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchForm.user" :placeholder="$t('enclosure.enclosureName')" clearable/>
+          <el-input v-model="searchForm.enclosureName" :placeholder="$t('enclosure.enclosureName')" clearable/>
         </el-form-item>
         <el-form-item>
           <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
@@ -123,7 +123,7 @@ export default {
       getList(this.searchData).then(res => {
         setTimeout(() => {
           this.loading = false
-          this.list = res.data.list
+          this.list.push(res.data.list[0])
           this.totalElement = res.data.total
         }, 1000)
       })

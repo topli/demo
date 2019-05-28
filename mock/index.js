@@ -12,6 +12,7 @@ import deviceErrorAPI from './deviceError'
 import realWorkingAPI from './realWorking'
 import tasksAPI from './tasks'
 import alarmSetAPI from './alarmSet'
+import currentTaskReportApi from './currentTaskReport'
 
 // Fix an issue with setting withCredentials = true, cross-domain request lost cookies
 // https://github.com/nuysoft/Mock/issues/300
@@ -61,6 +62,7 @@ Mock.mock(/\/enclosure\/edit/, 'put', enclosureAPI.edit)
 Mock.mock(/\/enclosure\/del/, 'delete', enclosureAPI.del)
 // deviceError
 Mock.mock(/\/deviceError\/list/, 'get', deviceErrorAPI.list)
+Mock.mock(/\/deviceError\/edit/, 'put', deviceErrorAPI.edit)
 // realWorking
 Mock.mock(/\/realWorking\/list/, 'get', realWorkingAPI.list)
 // menu
@@ -69,17 +71,17 @@ Mock.mock(/\/menu\/list/, 'get', menuAPI.list)
 Mock.mock(/\/menu\/edit/, 'put', menuAPI.edit)
 Mock.mock(/\/menu\/del/, 'delete', menuAPI.del)
 Mock.mock(/\/menu\/data/, 'get', menuAPI.data)
-// menu
+// device
 Mock.mock(/\/device\/add/, 'post', deviceAPI.add)
 Mock.mock(/\/device\/list/, 'get', deviceAPI.list)
 Mock.mock(/\/device\/edit/, 'put', deviceAPI.edit)
 Mock.mock(/\/device\/del/, 'delete', deviceAPI.del)
-// menu
+// driverTask
 Mock.mock(/\/driverTask\/add/, 'post', driverTaskAPI.add)
 Mock.mock(/\/driverTask\/list/, 'get', driverTaskAPI.list)
 Mock.mock(/\/driverTask\/edit/, 'put', driverTaskAPI.edit)
 Mock.mock(/\/driverTask\/del/, 'delete', driverTaskAPI.del)
-// menu
+// tasks
 Mock.mock(/\/tasks\/add/, 'post', tasksAPI.add)
 Mock.mock(/\/tasks\/list/, 'get', tasksAPI.list)
 Mock.mock(/\/tasks\/edit/, 'put', tasksAPI.edit)
@@ -90,4 +92,9 @@ Mock.mock(/\/alarmSet\/add/, 'post', alarmSetAPI.add)
 Mock.mock(/\/alarmSet\/list/, 'get', alarmSetAPI.list)
 Mock.mock(/\/alarmSet\/edit/, 'put', alarmSetAPI.edit)
 Mock.mock(/\/alarmSet\/del/, 'delete', alarmSetAPI.del)
+// currentTaskReport
+Mock.mock(/\/currentTaskReport\/add/, 'post', currentTaskReportApi.add)
+Mock.mock(/\/currentTaskReport\/list/, 'get', currentTaskReportApi.list)
+Mock.mock(/\/currentTaskReport\/edit/, 'put', currentTaskReportApi.edit)
+Mock.mock(/\/currentTaskReport\/del/, 'delete', currentTaskReportApi.del)
 export default Mock

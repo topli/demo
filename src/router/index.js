@@ -29,6 +29,7 @@ const routes = {
   tasks: () => import('@/views/page/tasks/index'),
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
   currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
+  deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
   map: () => import('@/views/page/map/index')
 }
 /**
@@ -52,13 +53,12 @@ export const childRouterMap = {
   name: 'childRouter',
   hidden: true,
   children: [
-    { path: 'monitorM/enclosure/edit', name: 'enclosureEdit', component: () => import('@/views/page/enclosure/add') }
+    { path: 'monitorM/enclosure/edit', name: 'enclosureEdit', meta: { title: 'enclosureAdd' }, component: () => import('@/views/page/enclosure/add') }
   ]
 }
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-
   {
     path: '/',
     component: Layout,
@@ -216,12 +216,28 @@ export const constantRouterMap = [
         name: 'tasksDispatch',
         component: routes['tasksDispatch'],
         meta: { title: 'tasksDispatch' }
-      },
+      }
+    ]
+  },
+  {
+    path: '/reportCenter',
+    component: Layout,
+    name: 'reportCenter',
+    redirect: 'noredirect',
+    alwaysShow: true,
+    meta: { title: 'reportCenter', icon: 'reportMenu' },
+    children: [
       {
         path: 'currentTaskReport',
         name: 'currentTaskReport',
         component: routes['currentTaskReport'],
         meta: { title: 'currentTaskReport' }
+      },
+      {
+        path: 'deviceErrorReport',
+        name: 'deviceErrorReport',
+        component: routes['deviceErrorReport'],
+        meta: { title: 'deviceErrorReport' }
       }
     ]
   },

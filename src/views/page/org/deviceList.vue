@@ -57,6 +57,11 @@ export default {
           width: '120'
         },
         {
+          key: 'gpsNo',
+          title: this.$t('device.gpsNo'),
+          width: '120'
+        },
+        {
           key: 'createTime',
           title: this.$t('device.createTime'),
           filters: 'parseTime',
