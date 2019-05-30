@@ -32,7 +32,9 @@ const routes = {
   deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
   map: () => import('@/views/page/map/index'),
   taskProgress: () => import('@/views/page/taskProgress/index'),
-  excavatorMiningTrend: () => import('@/views/page/excavatorMiningTrend/index')
+  excavatorMiningTrend: () => import('@/views/page/excavatorMiningTrend/index'),
+  realWorkingMonitor: () => import('@/views/page/realWorkingMonitor/index'),
+  map: () => import('@/views/page/map/index')
 }
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -155,6 +157,12 @@ export const constantRouterMap = [
             name: 'realWorking',
             component: routes['realWorking'],
             meta: { title: 'realWorking' }
+          },
+          {
+            path: 'realWorkingMonitor',
+            name: 'realWorkingMonitor',
+            component: routes['realWorkingMonitor'],
+            meta: { title: 'realWorkingMonitor' }
           },
           {
             path: 'realWorkingMap',
