@@ -31,6 +31,7 @@ const routes = {
   currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
   deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
   realWorkingMonitor: () => import('@/views/page/realWorkingMonitor/index'),
+  playback: () => import('@/views/page/playback/index'),
   map: () => import('@/views/page/map/index')
 }
 /**
@@ -150,12 +151,6 @@ export const constantRouterMap = [
         meta: { title: 'monitorDevice' },
         children: [
           {
-            path: 'realWorking',
-            name: 'realWorking',
-            component: routes['realWorking'],
-            meta: { title: 'realWorking' }
-          },
-          {
             path: 'realWorkingMonitor',
             name: 'realWorkingMonitor',
             component: routes['realWorkingMonitor'],
@@ -166,6 +161,12 @@ export const constantRouterMap = [
             name: 'realWorkingMap',
             component: routes['realWorkingMap'],
             meta: { title: 'realWorkingMap' }
+          },
+          {
+            path: 'playback',
+            name: 'playback',
+            component: routes['playback'],
+            meta: { title: 'playback' }
           }
         ]
       },
@@ -245,6 +246,12 @@ export const constantRouterMap = [
         name: 'deviceErrorReport',
         component: routes['deviceErrorReport'],
         meta: { title: 'deviceErrorReport' }
+      },
+      {
+        path: 'realWorking',
+        name: 'realWorking',
+        component: routes['realWorking'],
+        meta: { title: 'realWorking' }
       }
     ]
   },

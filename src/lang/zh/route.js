@@ -19,7 +19,7 @@ export default {
     deviceReport: '挖机健康监控大屏',
     monitorM: '监控平台',
     monitorDevice: '设备监控',
-    realWorking: '实时状态查询',
+    realWorking: '实时状态统计',
     realWorkingMonitor: '实时状态监控',
     realWorkingMap: '实时地图监控',
     videoM: '视频监控',
@@ -43,6 +43,7 @@ export default {
     realReport: '实时统计',
     currentTaskReport: '当前任务进度统计',
     map: '地图',
-    reportCenter: '报表中心'
+    reportCenter: '报表中心',
+    playback: '轨迹回放'
   }
 }
