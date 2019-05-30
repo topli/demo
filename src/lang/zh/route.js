@@ -20,6 +20,7 @@ export default {
     monitorM: '监控平台',
     monitorDevice: '设备监控',
     realWorking: '实时状态查询',
+    realWorkingMonitor: '实时状态监控',
     realWorkingMap: '实时地图监控',
     videoM: '视频监控',
     videoDaily: '日常监控',

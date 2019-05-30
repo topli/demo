@@ -30,6 +30,7 @@ const routes = {
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
   currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
   deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
+  realWorkingMonitor: () => import('@/views/page/realWorkingMonitor/index'),
   map: () => import('@/views/page/map/index')
 }
 /**
@@ -153,6 +154,12 @@ export const constantRouterMap = [
             name: 'realWorking',
             component: routes['realWorking'],
             meta: { title: 'realWorking' }
+          },
+          {
+            path: 'realWorkingMonitor',
+            name: 'realWorkingMonitor',
+            component: routes['realWorkingMonitor'],
+            meta: { title: 'realWorkingMonitor' }
           },
           {
             path: 'realWorkingMap',
