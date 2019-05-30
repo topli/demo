@@ -3461,6 +3461,15 @@ gaze@^1.0.0:
   dependencies:
     globule "^1.0.0"
 
+gelerator@^1.1.54:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/gelerator/-/gelerator-1.2.4.tgz#ff38420825b0503df7c6436f22c73e9a02b59415"
+  integrity sha1-/zhCCCWwUD33xkNvIsc+mgK1lBU=
+  dependencies:
+    lodash.iselement "^4.1.1"
+    lodash.isobject "^3.0.2"
+    lodash.isstring "^4.0.1"
+
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
@@ -4569,6 +4578,21 @@ lodash.camelcase@^4.3.0:
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
   integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
+lodash.iselement@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.iselement/-/lodash.iselement-4.1.1.tgz#f678d4f6f3a964f9ec7f115f2546f3e4a0ba82ca"
+  integrity sha1-9njU9vOpZPnsfxFfJUbz5KC6gso=
+
+lodash.isobject@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
+  integrity sha1-PI+41bW/S/kK4G4U8qUwpO2TXh0=
+
+lodash.isstring@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
+  integrity sha1-1SfftUVuynzJu5XV2ur4i6VKVFE=
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -5294,6 +5318,13 @@ num2fraction@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/num2fraction/-/num2fraction-1.2.2.tgz#6f682b6a027a4e9ddfa4564cd2589d1d4e669ede"
   integrity sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=
+
+number-flip@^1.0.28:
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/number-flip/-/number-flip-1.0.28.tgz#91bebe18088bce0c6d3d2e649bd65dea0abec43a"
+  integrity sha512-jd1lYQkSEZzgNScOu7tUsZ3Az2/Vxy5AlIhDubutidiKAkS6pi2YJv0G4yMV6GTeCI4bc7Y9KQfsttmaa2vP9g==
+  dependencies:
+    gelerator "^1.1.54"
 
 number-is-nan@^1.0.0:
   version "1.0.1"

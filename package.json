@@ -22,6 +22,7 @@
     "mockjs": "1.0.1-beta3",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
+    "number-flip": "^1.0.28",
     "screenfull": "^4.2.0",
     "vue": "2.5.17",
     "vue-count-to": "^1.0.13",

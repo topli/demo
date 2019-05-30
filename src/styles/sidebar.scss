@@ -70,6 +70,15 @@
       align-items:Center;
       overflow: hidden;
       word-spacing: normal;
+      >div {
+        padding: 0 5px;
+        img {
+          vertical-align: middle;
+        }
+        span {
+          font-size: 13px;
+        }
+      }
     }
     // menu hover
     .submenu-title-noDropdown,

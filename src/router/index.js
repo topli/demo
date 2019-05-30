@@ -30,7 +30,9 @@ const routes = {
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
   currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
   deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
-  map: () => import('@/views/page/map/index')
+  map: () => import('@/views/page/map/index'),
+  taskProgress: () => import('@/views/page/taskProgress/index'),
+  excavatorMiningTrend: () => import('@/views/page/excavatorMiningTrend/index')
 }
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -238,6 +240,18 @@ export const constantRouterMap = [
         name: 'deviceErrorReport',
         component: routes['deviceErrorReport'],
         meta: { title: 'deviceErrorReport' }
+      },
+      {
+        path: 'taskProgress',
+        name: 'taskProgress',
+        component: routes['taskProgress'],
+        meta: { title: 'taskProgress' }
+      },
+      {
+        path: 'excavatorMiningTrend',
+        name: 'excavatorMiningTrend',
+        component: routes['excavatorMiningTrend'],
+        meta: { title: 'excavatorMiningTrend' }
       }
     ]
   },

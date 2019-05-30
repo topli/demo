@@ -42,6 +42,8 @@ export default {
     realReport: '实时统计',
     currentTaskReport: '当前任务进度统计',
     map: '地图',
-    reportCenter: '报表中心'
+    reportCenter: '统计中心',
+    taskProgress: '任务进度监控统计',
+    excavatorMiningTrend: '挖机开采量趋势分析'
   }
 }
