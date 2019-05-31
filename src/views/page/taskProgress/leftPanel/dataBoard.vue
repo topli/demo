@@ -206,7 +206,7 @@
         <div class="content">
           <div class="content-info">
             <span class="value"/>
-            <span class="unit">辆</span>
+            <span class="unit">万辆</span>
           </div>
           <div class="vice-info">
             <ul>
@@ -288,7 +288,7 @@ export default {
       this.flip3 = new Flip({
         node: valueArry[2],
         from: 0,
-        to: 12236,
+        to: 13265,
         separator: '.',
         delay: 0.5,
         duration: 1.4

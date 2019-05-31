@@ -44,7 +44,7 @@ export default {
     currentTaskReport: '当前任务进度统计',
     map: '地图',
     reportCenter: '统计中心',
-    taskProgress: '任务进度监控统计',
+    taskProgress: '设备分布监控统计',
     excavatorMiningTrend: '挖机开采量趋势分析',
     playback: '轨迹回放'
   }

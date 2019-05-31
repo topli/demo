@@ -123,7 +123,7 @@
     <div class="task-header clearfix">
       <!-- 菜单 -->
       <div class="task-nav fl clearfix">
-        <a v-for="item in sysList" :key="item.id" @click="link(item.home)">{{ item.menu }}</a>
+        <a v-for="item in sysList" :key="item.id" href="javascript:void(0);" @click="link(item.home)">{{ item.menu }}</a>
       </div>
       <!-- 快捷栏 -->
       <ul class="shortcut-bar fr">
@@ -203,7 +203,7 @@ export default {
   methods: {
 
     link(home) {
-      this.$router.push({ name: home })
+      // this.$router.push({ name: home })
     },
     rem() {
       const doc = document

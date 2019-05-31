@@ -129,7 +129,7 @@
         <span>全矿总量及油耗统计</span>
       </div>
       <!-- <bar-chart :value="listData1"/> -->
-      <echarts :report-object="listData1" height="300"/>
+      <echarts :report-object="listData1" :height="chartOneHeight"/>
     </div>
     <div class="chart-half-two">
       <div class="chart-1">
@@ -137,14 +137,14 @@
           <span>故障数量占比</span>
         </div>
         <!-- <pie-chart :value="listData2"/> -->
-        <echarts :report-object="listData2" height="235"/>
+        <echarts :report-object="listData2" :height="chartTwoHeight"/>
       </div>
       <div class="chart-2">
         <div class="chart-title">
           <span>挖机开采量总和统计</span>
         </div>
         <!-- <scatter-chart :value="listData3"/> -->
-        <echarts :report-object="listData3" height="255"/>
+        <echarts :report-object="listData3" :height="chartTwoHeight"/>
       </div>
     </div>
   </div>
@@ -162,7 +162,12 @@ export default {
   // mixins: [remote, date, searchDate],
   data() {
     return {
-      searchData: {},
+      searchData: {
+        startTime: '',
+        endTime: '',
+        type: '',
+        status: ''
+      },
       typeList: [],
       cityList: [],
       actionLoading: false,
@@ -177,6 +182,8 @@ export default {
         { label: '年', value: 3 }
       ],
       dateType: 'date',
+      chartOneHeight: '300',
+      chartTwoHeight: '235',
       reportDate: {
         disabledDate(date) {
           return date && date.valueOf() > Date.now()
@@ -200,6 +207,12 @@ export default {
     if (this.sidebar.opened) {
       this.$store.dispatch('ToggleSideBar')
     }
+    this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 5 + ''
+    this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 5 + ''
+    window.onresize = () => {
+      this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 10 + ''
+      this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 5 + ''
+    }
   },
   methods: {
     // 日期格式
@@ -219,12 +232,12 @@ export default {
           this.dateType = 'month'
           console.log(this.searchData.startTime, this.searchData.endTime)
           console.log(year, month)
-          this.searchData.endTime = '' + year + month
+          this.searchData.endTime = '' + year
           if (month < 6) {
             year = year - 1
             month = month + 12 - 6
           }
-          this.searchData.startTime = '' + year + month
+          this.searchData.startTime = '' + year
           console.log(this.searchData.startTime, this.searchData.endTime)
           break
         case 3:
@@ -258,7 +271,7 @@ export default {
           }
         },
         grid: {
-          top: '5%',
+          top: '10%',
           left: '9%',
           containLabel: true
         },
@@ -298,12 +311,12 @@ export default {
         ],
         series: [
           {
-            name: '日累计行程里程',
+            name: '当月总方量',
             type: 'bar',
             data: [3, 6, 8, 32, 57, 88, 109, 145, 45, 29, 24, 17]
           },
           {
-            name: '日均单车行驶里程',
+            name: '当月累计油耗',
             type: 'line',
             yAxisIndex: 1,
             data: [11, 18, 19, 20, 48, 30, 35, 45, 34, 29, 21, 11],
@@ -330,7 +343,7 @@ export default {
         },
         series: [
           {
-            name: '里程',
+            name: '故障数量',
             type: 'pie',
             radius: ['40%', '70%'],
             center: ['35%', '40%'],
