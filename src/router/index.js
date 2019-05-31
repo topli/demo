@@ -33,8 +33,7 @@ const routes = {
   map: () => import('@/views/page/map/index'),
   taskProgress: () => import('@/views/page/taskProgress/index'),
   excavatorMiningTrend: () => import('@/views/page/excavatorMiningTrend/index'),
-  realWorkingMonitor: () => import('@/views/page/realWorkingMonitor/index'),
-  map: () => import('@/views/page/map/index')
+  realWorkingMonitor: () => import('@/views/page/realWorkingMonitor/index')
 }
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)

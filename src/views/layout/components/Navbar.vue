@@ -59,7 +59,11 @@ export default {
     line-height: 58px;
     height: 50px;
     float: left;
+    font-size: 16px;
     padding: 0 10px;
+  }
+  /deep/.el-breadcrumb {
+    float: left;
   }
   .screenfull {
     position: absolute;

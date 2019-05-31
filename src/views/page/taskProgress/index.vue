@@ -204,6 +204,11 @@ export default {
     }
     this.rem()
   },
+  destroyed() {
+    const doc = document
+    const docEl = doc.documentElement
+    docEl.style.fontSize = null
+  },
   methods: {
 
     link(home) {
@@ -219,10 +224,6 @@ export default {
         if (!clientWidth) return
         var fontSize = 20 * (clientWidth / 320) + 'px'
         docEl.style.fontSize = fontSize
-        // const hamCont = document.getElementsByClassName('hamburger-container')[0]
-        // const ham = document.getElementsByClassName('el-breadcrumb')[0]
-        // ham.style.float = 'left'
-        // hamCont.style.fontSize = '16px'
       }
       recalc()
       if (!doc.addEventListener) return
