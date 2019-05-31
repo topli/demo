@@ -1,5 +1,5 @@
 <template>
-  <div class="map-template">
+  <div class="map-template" style="position:relative;">
     <div class="map-search">
       <el-input :placeholder="$t('device.number')" v-model="deviceNumber"/>
     </div>
