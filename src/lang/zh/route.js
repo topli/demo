@@ -7,7 +7,7 @@ export default {
     menu: '菜单管理',
     pages: '页面管理',
     // -----------
-    sysInfoM: '系统信息管理',
+    sysInfoM: '基础信息管理',
     userM: '用户中心',
     user: '用户管理',
     role: '角色权限',

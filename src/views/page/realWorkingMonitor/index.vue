@@ -1,7 +1,7 @@
 <template>
   <div class="map-template">
     <div class="map-search">
-      <el-input :placeholder="$t('device.number')"/>
+      <el-input :placeholder="$t('device.number')" v-model="deviceNumber"/>
     </div>
     <div id="map" style="height: 500px;width: 100%;"/>
     <div class="device-info">
@@ -173,6 +173,7 @@ export default {
     return {
       map: null,
       dashboards: [],
+      deviceNumber: '120301070001A',
       infos1: [
         { title: '总里程', value: '46523km' },
         { title: '小计里程', value: '56km' },
@@ -355,7 +356,7 @@ export default {
       }))
       var myIcon = new BMap.Icon('/static/images/loader.png', new BMap.Size(50, 50))
       var marker = new BMap.Marker(new BMap.Point(112.352013, 39.469762), { icon: myIcon })
-      var label = new BMap.Label('91376494', { offset: new BMap.Size(-5, 50) })
+      var label = new BMap.Label(this.deviceNumber, { offset: new BMap.Size(-23, 50) })
       marker.setLabel(label)
       this.map.addOverlay(marker)
     },

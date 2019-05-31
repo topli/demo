@@ -8,28 +8,7 @@
         </div>
         <el-tree :data="data" :props="defaultProps" default-expand-all @node-click="handleNodeClick"/>
       </div>
-      <!-- <transition enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOutLeft">
-        <div v-if="showSearch" class="play-device-tree">
-          <div class="play-device-tree-title">
-            设备列表
-          </div>
-          <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"/>
-        </div>
-      </transition>
-      <div :style="showSearch ? {left: '300px',right: '-18px' }: {left: 0, right: null}" class="play-device-show-hide">
-        <div class="play-device-show-hide-icon">
-          <svg-icon :icon-class="showSearch ? 'toLeft' : 'toRight'"/>
-        </div>
-      </div> -->
     </div>
-    <!-- <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
-      <div class="play-page">
-        <div class="play-page-progress">
-          <div class="play-page-progress-line">2</div>
-        </div>
-        <div class="play-page-btn">3</div>
-      </div>
-    </transition> -->
   </div>
 </template>
 
@@ -50,38 +29,38 @@ export default {
               label: '山西分公司',
               children: [
                 {
-                  label: '91376494'
+                  label: '120301070001A'
                 },
                 {
-                  label: '41055218'
+                  label: '120301070002A'
                 },
                 {
-                  label: '91232187'
+                  label: '120301070003A'
                 },
                 {
-                  label: '41108585'
+                  label: '120301070004A'
                 },
                 {
-                  label: '91376514'
+                  label: '120301070005A'
                 }
               ]
             }, {
               label: '武汉分公司',
               children: [
                 {
-                  label: '41086687'
+                  label: '120301070006A'
                 },
                 {
-                  label: '41086686'
+                  label: '120301070007A'
                 },
                 {
-                  label: '91297925'
+                  label: '120301070008A'
                 },
                 {
-                  label: '41086595'
+                  label: '120301070009A'
                 },
                 {
-                  label: '41080622'
+                  label: '120301070010A'
                 }
               ]
             }

@@ -163,7 +163,7 @@ export default {
     // 初始化地图
     async init() {
       this.map = new BMap.Map('map', { enableMapClick: false })
-      this.map.centerAndZoom(new BMap.Point(116.718695, 39.853711), 12) // 初始化北京地图
+      this.map.centerAndZoom(new BMap.Point(112.352013, 39.469762), 12)
       // this.sCity = '北京' // 选择城市
       this.map.setCurrentCity('北京')
       this.map.enableScrollWheelZoom(true)
@@ -178,16 +178,16 @@ export default {
       // })
       // 创建地图覆盖物(点)
       //  装载机
-      var pt = new BMap.Point(116.738601, 39.822629)
-      var pt2 = new BMap.Point(116.689158, 39.822408)
-      var pt3 = new BMap.Point(116.677085, 39.863182)
+      var pt = new BMap.Point(112.392013, 39.489762)
+      var pt2 = new BMap.Point(112.402013, 39.519762)
+      var pt3 = new BMap.Point(112.302013, 39.409762)
       // 矿车
-      var pt4 = new BMap.Point(116.619593, 39.885442)
-      var pt5 = new BMap.Point(116.626493, 39.833047)
-      var pt6 = new BMap.Point(116.721354, 39.880016)
+      var pt4 = new BMap.Point(112.332013, 39.439762)
+      var pt5 = new BMap.Point(112.302013, 39.519762)
+      var pt6 = new BMap.Point(112.352013, 39.509762)
       // 挖掘机
-      var pt7 = new BMap.Point(116.794943, 39.875587)
-      var pt8 = new BMap.Point(116.813915, 39.836593)
+      var pt7 = new BMap.Point(112.382013, 39.449762)
+      var pt8 = new BMap.Point(112.442013, 39.469762)
       var myIcon1 = new BMap.Icon('../../../../static/images/loader.png', new BMap.Size(48, 48))
       var myIcon2 = new BMap.Icon('../../../../static/images/excavator.png', new BMap.Size(48, 48))
       var myIcon3 = new BMap.Icon('../../../../static/images/harvesters.png', new BMap.Size(48, 48))
@@ -214,15 +214,15 @@ export default {
       new BMapLib.MarkerClusterer(this.map, { markers: markers })
 
       // 圆 中心点提示
-      var pt9 = new BMap.Point(116.718695, 39.853711)
+      var pt9 = new BMap.Point(112.352013, 39.469762)
       var myIcon4 = new BMap.Icon('../../../../static/images/weilanTips.png', new BMap.Size(20, 24))
       var marker9 = new BMap.Marker(pt9, { icon: myIcon4 }) // 创建旗帜
       this.map.addOverlay(marker9)
-      var label = new BMap.Label('北京市通州区张梁路', { offset: new BMap.Size(20, -10) })
+      var label = new BMap.Label('平朔安太堡露天矿', { offset: new BMap.Size(20, -10) })
       marker9.setLabel(label)
 
       // 画圆
-      var circle = new BMap.Circle(new BMap.Point(116.718695, 39.853711), this.rangeRadius, this.styleOptions)
+      var circle = new BMap.Circle(new BMap.Point(112.352013, 39.469762), this.rangeRadius, this.styleOptions)
       this.map.addOverlay(circle)
 
       // 添加点击事件
