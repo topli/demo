@@ -124,7 +124,7 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.list.push(res.data.list[0])
-          this.totalElement = res.data.total
+          this.totalElement = 1
         }, 1000)
       })
     },

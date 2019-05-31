@@ -3,7 +3,7 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
+          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="available"/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -49,7 +49,13 @@ export default {
         {
           key: 'status',
           title: this.$t('device.status'),
-          width: '100'
+          width: '100',
+          dictType: 'status',
+          render: (h, params) => {
+            const f = params.row['_f_status']
+            if (!f) return
+            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          }
         },
         {
           key: 'model',
@@ -84,7 +90,7 @@ export default {
         {
           key: 'available',
           title: this.$t('device.available'),
-          dictType: 'status',
+          dictType: 'available',
           render: (h, params) => {
             const f = params.row['_f_available']
             if (!f) return

@@ -16,7 +16,7 @@ export default {
     driverTask: '司机排班',
     deviceM: '设备管理',
     deviceAttrM: '设备属性管理',
-    deviceReport: '挖机健康监控大屏',
+    deviceReport: '设备健康监控',
     monitorM: '监控平台',
     monitorDevice: '设备监控',
     realWorking: '实时状态统计',

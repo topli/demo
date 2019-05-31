@@ -5,7 +5,7 @@
         {{ !isScreenfull ? $t('app.fullScreen') : '' }}
       </el-button>
       <div class="title">
-        <span>挖机健康监控大屏</span>
+        <span>设备健康监控大屏</span>
       </div>
       <div class="body">
         <div class="total">
