@@ -5,6 +5,7 @@
   background: #eee;
   display: flex;
   flex-direction: column;
+  overflow: hidden!important;
   .search-div {
     padding: 10px 15px;
     height: 72px;
@@ -129,7 +130,7 @@
         <span>全矿总量及油耗统计</span>
       </div>
       <!-- <bar-chart :value="listData1"/> -->
-      <echarts :report-object="listData1" :height="chartOneHeight"/>
+      <echarts :report-object="listData1" :height="chartOneHeight" width="96%"/>
     </div>
     <div class="chart-half-two">
       <div class="chart-1">
@@ -272,11 +273,14 @@ export default {
         },
         grid: {
           top: '10%',
-          left: '9%',
+          left: '4%',
           containLabel: true
         },
         legend: {
-          data: ['(万KM)', '(KM)']
+          data: ['当月总方量', '当月累计油耗'],
+          orient: 'vertical',
+          right: '-1%',
+          top: '8%'
         },
         xAxis: [
           {
