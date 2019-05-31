@@ -68,71 +68,27 @@ export default {
       ],
       columnsTitle: [
         {
-          key: 'status',
-          title: this.$t('deviceError.status'),
-          filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
-          width: '90',
-          render: (h, params) => {
-            return h('el-tag', {
-              props: { color: params.row.status ? '#F4A460' : '#EE3B3B', type: 'text' },
-              style: { color: 'white' }
-            },
-            params.row.status ? '预警' : '报警')
-          }
-        },
-        {
-          key: 'alarmType',
-          title: this.$t('deviceError.alarmType'),
+          key: 'org',
+          title: this.$t('deviceErrorReport.org'),
           minWidth: '120'
         },
         {
-          key: 'deviceStatus',
-          title: this.$t('deviceError.deviceStatus'),
-          minWidth: '90',
-          render: (h, params) => {
-            return h('el-tag', {
-              props: { color: params.row.deviceStatus ? '#409eff' : '#999', type: 'text' },
-              style: { color: 'white' }
-            },
-            params.row.status ? '在线' : '离线')
-          }
-        },
-        {
-          key: 'handleStatus',
-          title: this.$t('deviceError.handleStatus'),
-          minWidth: '120',
-          render: (h, params) => {
-            return h('span', {
-
-            },
-            params.row.handleStatus === 'true' ? '已处理' : '未处理')
-          }
-        },
-        {
-          key: 'deviceAddress',
-          title: this.$t('deviceError.deviceAddress'),
-          minWidth: '220'
-        },
-        {
-          key: 'principal',
-          title: this.$t('deviceError.principal'),
+          key: 'errorNum',
+          title: this.$t('deviceErrorReport.errorNum'),
+          unit: this.$t('deviceErrorReport.errorNumUnit'),
           minWidth: '120'
         },
         {
-          key: 'createTime',
-          title: this.$t('deviceError.createTime'),
-          minWidth: '150',
-          filters: 'parseTime'
+          key: 'deviceNum',
+          title: this.$t('deviceErrorReport.deviceNum'),
+          unit: this.$t('deviceErrorReport.deviceNumUnit'),
+          minWidth: '120'
         },
         {
-          title: this.$t('app.buttons'),
-          width: '100',
-          align: 'center',
-          render: (h, params) => {
-            return h('div', this.iconBtn(h, params, [
-              { icon: 'alertError', t: '处理结果', handler: this.editData, color: '#F6BD30' }
-            ]))
-          }
+          key: 'errorRate',
+          title: this.$t('deviceErrorReport.errorRate'),
+          unit: this.$t('deviceErrorReport.errorRateUnit'),
+          minWidth: '120'
         }
       ],
       fileType: 'user'

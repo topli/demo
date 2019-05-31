@@ -1,7 +1,7 @@
 <template>
   <!-- org-tree -->
   <div v-clickoutside="handleClickOutside" id="org-tree" class="org-tree" style="position: relative">
-    <el-input slot="reference" :placeholder="placeholder" v-model="checkedStr" type="text" readonly @focus="togglePopover">
+    <el-input slot="reference" :placeholder="placeholder" v-model="checkedStr" :clearable="clearable" type="text" @focus="togglePopover">
       <svg-icon slot="suffix" icon-class="file-tree"/>
     </el-input>
     <transition name="el-zoom-in-top"> <!-- el-zoom-in-top by element-ui transiton.scss-->
@@ -14,9 +14,11 @@
             :props="defaultProps"
             :filter-node-method="filterTree"
             :default-checked-keys="checkedKeys"
+            :check-strictly="checkStrictly"
             node-key="id"
             default-expand-all
             show-checkbox
+            @check="getChecked"
           />
         </el-scrollbar>
       </div>
@@ -38,122 +40,112 @@ export default {
     value: {
       type: [String, Array],
       default: () => []
+    },
+    multiple: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
+    },
+    clearable: {
+      type: Boolean,
+      default: () => {
+        return false
+      }
     }
   },
   data() {
     const data = [
       {
         id: 9999,
-        label: '顶级机构',
+        orgName: '北京总公司',
         type: 'org',
         children: [
           {
             id: 1,
-            label: '部门1',
+            orgName: '山西分公司',
             state: true,
             code: 'BM1',
             linkman: '张三',
             phone: '13211111111',
             parentId: 9999,
             parentName: '顶级机构',
-            parentType: 'org'
-          },
-          {
-            id: 2,
-            label: '部门2',
-            state: true,
-            code: 'BM2',
-            linkman: '李四',
-            phone: '1322222222',
-            parentId: 9999,
-            parentName: '顶级机构',
             parentType: 'org',
             children: [
               {
-                id: 3,
-                label: '子部门1',
+                id: 5,
+                orgName: '财务部',
                 state: true,
                 code: 'ZBM1',
-                linkman: '王五',
-                phone: '1313333333',
+                linkman: '于敏',
+                phone: '13345842125',
                 parentId: 2,
-                parentName: '部门2'
+                parentName: '山西分公司'
               }, {
-                id: 4,
-                label: '子部门2',
+                id: 6,
+                orgName: '调度部',
                 state: true,
                 code: 'ZBM2',
-                linkman: '赵六',
-                phone: '1511111111',
+                linkman: '吴磊',
+                phone: '18621521782',
                 parentId: 2,
-                parentName: '部门2'
-              }
-            ]
-          },
-          {
-            id: 5,
-            label: '部门2',
-            state: true,
-            code: 'BM2',
-            linkman: '李四',
-            phone: '1322222222',
-            parentId: 9999,
-            parentName: '顶级机构',
-            parentType: 'org',
-            children: [
-              {
-                id: 6,
-                label: '子部门1',
-                state: true,
-                code: 'ZBM1',
-                linkman: '王五',
-                phone: '1313333333',
-                parentId: 5,
-                parentName: '部门2'
+                parentName: '山西分公司'
               }, {
                 id: 7,
-                label: '子部门2',
+                orgName: '设备管理部',
                 state: true,
                 code: 'ZBM2',
-                linkman: '赵六',
-                phone: '1511111111',
-                parentId: 5,
-                parentName: '部门2'
+                linkman: '潘奕',
+                phone: '15156498213',
+                parentId: 2,
+                parentName: '山西分公司'
               }
             ]
-          },
-          {
-            id: 8,
-            label: '部门2',
-            state: true,
-            code: 'BM2',
-            linkman: '李四',
-            phone: '1322222222',
-            parentId: 9999,
-            parentName: '顶级机构',
-            parentType: 'org',
-            children: [
-              {
-                id: 9,
-                label: '子部门1',
-                state: true,
-                code: 'ZBM1',
-                linkman: '王五',
-                phone: '1313333333',
-                parentId: 8,
-                parentName: '部门2'
-              }, {
-                id: 10,
-                label: '子部门2',
-                state: true,
-                code: 'ZBM2',
-                linkman: '赵六',
-                phone: '1511111111',
-                parentId: 8,
-                parentName: '部门2'
-              }
-            ]
-          }]
+          }
+          // {
+          //   id: 3,
+          //   orgName: '分公司1',
+          //   state: true,
+          //   code: 'BM1',
+          //   linkman: '张三',
+          //   phone: '13211111111',
+          //   parentId: 9999,
+          //   parentName: '顶级机构',
+          //   parentType: 'org'
+          // },
+          // {
+          //   id: 2,
+          //   orgName: '分公司2',
+          //   state: true,
+          //   code: 'BM2',
+          //   linkman: '李四',
+          //   phone: '1322222222',
+          //   parentId: 9999,
+          //   parentName: '顶级机构',
+          //   parentType: 'org',
+          //   children: [
+          //     {
+          //       id: 5,
+          //       orgName: '财务',
+          //       state: true,
+          //       code: 'ZBM1',
+          //       linkman: '王五',
+          //       phone: '1313333333',
+          //       parentId: 2,
+          //       parentName: '部门2'
+          //     }, {
+          //       id: 6,
+          //       orgName: '调度',
+          //       state: true,
+          //       code: 'ZBM2',
+          //       linkman: '赵六',
+          //       phone: '1511111111',
+          //       parentId: 2,
+          //       parentName: '部门2'
+          //     }
+          //   ]
+          // }
+        ]
       }]
     return {
       data: data,
@@ -161,15 +153,24 @@ export default {
       filterText: '',
       defaultProps: {
         children: 'children',
-        label: 'label'
+        label: 'orgName'
       },
       checkedKeys: [],
       checkedStr: '',
       clientWidth: '200px'
     }
   },
-  computed: {},
+  computed: {
+    checkStrictly() {
+      return !this.multiple
+    }
+  },
   watch: {
+    checkedStr(val) {
+      if (!val) {
+        this.$refs.tree.setCheckedNodes([])
+      }
+    },
     filterText(val) {
       this.$refs.tree && this.$refs.tree.filter(val)
     },
@@ -190,7 +191,7 @@ export default {
         const inputStr = []
         const inputValue = []
         this.$refs.tree.getCheckedNodes().forEach((item) => {
-          inputStr.push(item.label)
+          inputStr.push(item.orgName)
           inputValue.push(item.id)
         })
         this.checkedStr = inputStr.toString()
@@ -221,15 +222,21 @@ export default {
       const inputStr = []
       const inputValue = []
       this.$refs.tree.getCheckedNodes().forEach((item) => {
-        inputStr.push(item.label)
+        inputStr.push(item.orgName)
         inputValue.push(item.id)
       })
+      console.log(inputValue)
       this.$emit('input', inputValue)
       this.checkedStr = inputStr.toString()
     },
     filterTree(value, data) {
       if (!value) return true
-      return data.label.indexOf(value) !== -1
+      return data.orgName.indexOf(value) !== -1
+    },
+    getChecked(data) {
+      if (!this.multiple) {
+        this.$refs.tree.setCheckedNodes([data])
+      }
     }
   }
 }

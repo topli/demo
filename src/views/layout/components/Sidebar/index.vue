@@ -2,8 +2,12 @@
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <div class="app-title">
       <transition name="el-fade-in" mode="out-in">
-        <span v-if="sidebar.opened">{{ $t('app.appTitle') }}</span>
-        <span v-else>{{ $t('app.appShortTitle') }}</span>
+        <div>
+          <img v-if="sidebar.opened" src="../../../../../static/images/sany-logo.png" alt="">
+          <span v-if="sidebar.opened">{{ $t('app.appTitle') }}</span>
+          <!-- <span v-else>{{ $t('app.appShortTitle') }}</span> -->
+          <img v-else src="../../../../../static/images/sany-logo.png" alt="">
+        </div>
         <!-- <img v-else src="/favicon.ico" style="width: 100%"> -->
       </transition>
     </div>

@@ -86,7 +86,7 @@ export default {
               props: { color: params.row.deviceStatus ? '#409eff' : '#999', type: 'text' },
               style: { color: 'white' }
             },
-            params.row.status ? '在线' : '离线')
+            params.row.deviceStatus ? '在线' : '离线')
           }
         },
         {
@@ -122,7 +122,7 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'alertError', t: '处理结果', handler: this.editData, color: '#F6BD30' }
+              { icon: 'alertError', t: 'deviceError.handleResult', handler: this.editData, color: '#F6BD30' }
             ]))
           }
         }
@@ -160,7 +160,7 @@ export default {
       //   dangerouslyUseHTMLString: true
       // })
       this.$dialogBox({
-        title: this.$t('app.modify'),
+        title: this.$t('app.dealWith'),
         components: add,
         width: 480,
         props: { data: row },

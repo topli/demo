@@ -56,6 +56,31 @@ export function formatTime(time, option) {
     return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
   }
 }
+
+/**
+ * 格式化日期
+ * @param  {[type]} fmt [description]
+ * @return {[type]}     [description]
+ */
+export function DateFormat(str, fmt) {
+  const o = {
+    'M+': str.getMonth() + 1,
+    'd+': str.getDate(),
+    'h+': str.getHours(),
+    'm+': str.getMinutes(),
+    's+': str.getSeconds(),
+    'q+': Math.floor((str.getMonth() + 3) / 3),
+    'S': str.getMilliseconds()
+  }
+  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (str.getFullYear() + '').substr(4 - RegExp.$1.length))
+  for (const k in o) {
+    if (new RegExp('(' + k + ')').test(fmt)) {
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+    }
+  }
+  return fmt
+}
+
 /** 调用浏览器storage
  * @param key
  * @param value
@@ -115,7 +140,7 @@ export function getQueryString(url) {
  * @param {*} cancelFun
  */
 export function confirm(submitFun, cancelFun) {
-  this.$confirm(this.$t('app.delTips'), this.$t('app.disables'), {
+  this.$confirm(this.$t('app.disablesTips'), this.$t('app.disables'), {
     confirmButtonText: this.$t('app.submit'),
     cancelButtonText: this.$t('app.cancel'),
     type: 'warning',

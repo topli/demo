@@ -8,21 +8,26 @@
     <div class="content-right">
       <div class="left-one">
         <div>
-          <statistics :number="messageNumber" icon="message" title="报警列表" color="#4CB1CF"/>
+          <statistics-count :number="messageNumber" icon="message" title="报警列表" class="devicePic" color="#4CB1CF" @click.native="$router.push({name: 'deviceError'})">
+            <div class="circle"/>
+          </statistics-count>
         </div>
         <div>
-          <statistics :number="taskNumber" icon="task" title="任务列表" color="#F0433D" class="taskPic"/>
+          <statistics-count :number="taskNumber" icon="task" title="任务列表" color="#F0433D" class="taskPic" @click.native="$router.push({name: 'tasks'})">
+            <div class="circleSnd"/>
+          </statistics-count>
         </div>
       </div>
       <div class="left-two">
-        <statistics :number="driverNumber" icon="driver" title="司机列表" color="#5cb85c"/>
+        <!-- <statistics :number="driverNumber" icon="driver" title="司机排班" color="#5cb85c" @click.native="$router.push({name: 'driverTask'})"/> -->
+        <driver-task/>
       </div>
       <div class="left-three">
         <el-card class="box-card echarts-card">
           <div slot="header">
-            <span>设备占比分布</span>
+            <span style="font-weight: 700;font-size:14px">设备总数分布</span>
           </div>
-          <echarts :report-object="reportData2" height="300"/>
+          <echarts :report-object="reportData2" height="232"/>
         </el-card>
       </div>
     </div>
@@ -69,12 +74,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import statistics from './components/statistics'
+import statisticsCount from './components/statisticscount'
 import TodoList from './components/TodoList'
 import { parseTime } from '@/libs/utils'
 import realWorkingMap from '../../views/page/realWorkingMap/index'
+import driverTask from './components/driverTask'
 export default {
   name: 'Dashboard',
-  components: { statistics, TodoList, realWorkingMap },
+  components: { statistics, TodoList, realWorkingMap, statisticsCount, driverTask },
   data() {
     return {
       userNumber: 201,
@@ -108,8 +115,8 @@ export default {
           }
         },
         grid: {
-          top: 10,
-          left: '3%',
+          top: 0,
+          left: '2%',
           right: '4%',
           bottom: '3%',
           containLabel: true
@@ -219,7 +226,7 @@ export default {
         series: [{
           name: '分类设备工作量',
           type: 'bar',
-          data: [91, 43, 82, 53],
+          data: [191, 243, 182, 353],
           // 设置柱子的宽度
           barWidth: 30,
           // 配置样式
@@ -228,7 +235,7 @@ export default {
             normal: {
               // 每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
               color: function(params) {
-                var colorList = ['#bf9000', '#00b050', '#c00000', '#0070c0']
+                var colorList = ['#275981', '#a4992a', '#b0782d', '#e3b30e']
                 return colorList[params.dataIndex]
               }
             },
@@ -241,19 +248,23 @@ export default {
           },
           label: {
             normal: {
-              show: true,
-              formatter: '{c}%'
+              show: true
+              // formatter: '{c}%'
             }
           }
         }],
         // 控制边距
         grid: {
-          left: '0%',
-          right: '10%',
+          // left: '0%',
+          // right: '10%',
+          x: 0,
+          y: 30,
+          x2: 20,
+          y2: 20,
           containLabel: true
         }
       }
-    }, 1000)
+    }, 500)
   }
 }
 </script>
@@ -291,16 +302,31 @@ export default {
     min-height: 36px;
   }
   .dashboard-container {
+    min-height: calc(100vh - 50px);
     margin: 0;
     display: flex;
     .content-left {
-      flex: 7
+      flex: 7;
+        /deep/.map-template {
+        height: 100%;
+        .map {
+          height: 100%;
+        }
+      }
     }
     .content-right {
       flex: 3;
       padding: 10px;
+      display: flex;
+      flex-direction: column;
       .left-one {
+        min-width: 143px;
+        margin-bottom: 10px;
+        height: 115px;
         display: flex;
+        .statistics {
+          height: 100%;
+        }
         >div {
           width: 50%;
           flex: 1;
@@ -312,9 +338,47 @@ export default {
           margin-left: 5px;
         }
       }
+      .left-two {
+        // min-width: 143px;
+        flex: 1;
+        margin-bottom: 10px;
+        /deep/.el-card {
+          height: 100%;
+          /deep/.el-card__body {
+            height: 100%;
+          }
+        }
+      }
+      .left-three {
+        // flex: 1;
+        height: 278px;
+        /deep/.el-card__header {
+          padding: 14px 0;
+        }
+      }
     }
     .statistics {
-      margin: 0 0 10px 0;
+      margin: 0;
+      /deep/.statistics-icon:nth-child(1), /deep/.statistics-icon:nth-child(2) {
+        width: 76px;
+        height: 76px;
+        position: relative;
+        .circle,.circleSnd {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #ff0000;
+          position: absolute;
+          right: 0;
+          top: 0;
+          margin-top: 16px;
+          margin-right: 13px;
+        }
+        .circleSnd {
+          margin-top: 14px;
+          margin-right: 5px;
+        }
+      }
     }
     .echarts-card {
       padding: 0 20px;
@@ -327,7 +391,12 @@ export default {
     }
     .taskPic {
       /deep/.svg-icon {
-        color: #cd853f;
+        color: #02a675;
+      }
+    }
+    .devicePic {
+      /deep/.svg-icon {
+        color: #e6773c;
       }
     }
   }

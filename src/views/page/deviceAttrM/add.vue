@@ -7,7 +7,7 @@
         </el-form-item>
         <el-form-item :label="$t('device.model')">
           <!-- <el-input v-model.number="form.model"/> -->
-          <select-remote v-model="form.sex" filterable clearable data-type="sex"/>
+          <select-remote v-model="form.deviceType" filterable clearable data-type="deviceType"/>
         </el-form-item>
         <el-form-item :label="$t('device.number')" prop="number">
           <el-input v-model="form.number"/>
@@ -22,7 +22,7 @@
           <el-switch v-model="form.available"/>
         </el-form-item>
         <el-form-item :label="$t('device.orgName')">
-          <el-input v-model="form.orgName"/>
+          <org-tree v-model="form.orgName" multiple clearable/>
         </el-form-item>
       </el-form>
     </div>

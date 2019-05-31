@@ -5,6 +5,7 @@
       <el-col :span="12" style="text-align:center">
         <div :style="style" class="statistics-icon">
           <svg-icon :icon-class="icon"/>
+          <slot/>
         </div>
       </el-col>
       <el-col :span="12">

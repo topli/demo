@@ -29,7 +29,8 @@
             v-model="form.status"/>
         </el-form-item>
         <el-form-item :label="$t('menu.linkType')">
-          <el-input v-model="form.linkType"/>
+          <!-- <el-input v-model="form.linkType"/> -->
+          <select-remote v-model="form.linkType" filterable clearable data-type="linkType"/>
         </el-form-item>
         <el-form-item :label="$t('menu.remark')" style="width: 100%">
           <el-input v-model="form.remark" type="textarea" style="width: 100%"/>

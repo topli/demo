@@ -16,10 +16,11 @@ export default {
     driverTask: '司机排班',
     deviceM: '设备管理',
     deviceAttrM: '设备属性管理',
-    deviceReport: '挖机健康监控大屏',
+    deviceReport: '设备健康监控',
     monitorM: '监控平台',
     monitorDevice: '设备监控',
-    realWorking: '实时状态查询',
+    realWorking: '实时状态统计',
+    realWorkingMonitor: '实时状态监控',
     realWorkingMap: '实时地图监控',
     videoM: '视频监控',
     videoDaily: '日常监控',
@@ -42,6 +43,9 @@ export default {
     realReport: '实时统计',
     currentTaskReport: '当前任务进度统计',
     map: '地图',
-    reportCenter: '报表中心'
+    reportCenter: '统计中心',
+    taskProgress: '任务进度监控统计',
+    excavatorMiningTrend: '挖机开采量趋势分析',
+    playback: '轨迹回放'
   }
 }

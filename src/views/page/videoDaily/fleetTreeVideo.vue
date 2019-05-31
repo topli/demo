@@ -51,7 +51,7 @@
           </el-select>
         </el-col>
         <el-col :span="3">
-          <el-button title="刷新车队" long style="padding: 9px 13px" @click="refreshData">
+          <el-button title="刷新" long style="padding: 9px 13px" @click="refreshData">
             <!-- <icon type="refresh" size="14"/> -->
             <svg-icon icon-class="refresh"/>
           </el-button>

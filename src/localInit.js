@@ -2,25 +2,25 @@ import { setStorage } from '@/libs/utils'
 const data = {
   user: {
     list: [
-      { id: 1, username: '余平', orgName: '总公司', roleName: '管理员', jobName: '管理员', isWork: false, jobLevel: '普通', sex: 1, age: 20, createTime: new Date(), status: true },
-      { id: 2, username: '陈超', orgName: '分公司', roleName: '管理员', jobName: '管理员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
-      { id: 3, username: '萧杰', orgName: '分公司', roleName: '管理员', jobName: '管理员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
-      { id: 4, username: '秦敏', orgName: '分公司', roleName: '调度员', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
-      { id: 5, username: '高涛', orgName: '分公司', roleName: '调度员', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 2, age: 25, createTime: new Date(), status: true },
-      { id: 6, username: '吕勇', orgName: '分公司', roleName: '调度员', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
-      { id: 7, username: '熊静', orgName: '分公司', roleName: '财务', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
-      { id: 8, username: '王丽', orgName: '分公司', roleName: '财务', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
-      { id: 9, username: '马强', orgName: '分公司', roleName: '财务', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
-      { id: 10, username: '易磊', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
-      { id: 11, username: '石涛', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
-      { id: 12, username: '白杰', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
-      { id: 13, username: '苏刚', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
-      { id: 14, username: '李秀英', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 2, age: 25, createTime: new Date(), status: true },
-      { id: 15, username: '赵强', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 2, age: 21, createTime: new Date(), status: true },
-      { id: 16, username: '于娟', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 1, age: 23, createTime: new Date(), status: true },
-      { id: 17, username: '金霞', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
-      { id: 18, username: '余秀兰', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
-      { id: 19, username: '林洋', orgName: '分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true }
+      { id: 1, username: '余平', orgName: '北京总公司', roleName: '管理员', jobName: '管理员', isWork: false, jobLevel: '普通', sex: 1, age: 20, createTime: new Date(), status: true },
+      { id: 2, username: '陈超', orgName: '北京总公司', roleName: '管理员', jobName: '管理员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 3, username: '萧杰', orgName: '北京总公司', roleName: '管理员', jobName: '管理员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 4, username: '秦敏', orgName: '北京总公司', roleName: '调度员', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 5, username: '高涛', orgName: '山西分公司', roleName: '调度员', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 2, age: 25, createTime: new Date(), status: true },
+      { id: 6, username: '吕勇', orgName: '北京总公司', roleName: '调度员', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 7, username: '熊静', orgName: '北京总公司', roleName: '财务', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 8, username: '王丽', orgName: '山西分公司', roleName: '财务', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 9, username: '马强', orgName: '山西分公司', roleName: '财务', jobName: '业务员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 10, username: '易磊', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 11, username: '石涛', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 12, username: '白杰', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 13, username: '苏刚', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true },
+      { id: 14, username: '李秀英', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 2, age: 25, createTime: new Date(), status: true },
+      { id: 15, username: '赵强', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 2, age: 21, createTime: new Date(), status: true },
+      { id: 16, username: '于娟', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 1, age: 23, createTime: new Date(), status: true },
+      { id: 17, username: '金霞', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 25, createTime: new Date(), status: true },
+      { id: 18, username: '余秀兰', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: false, jobLevel: '普通', sex: 1, age: 21, createTime: new Date(), status: true },
+      { id: 19, username: '林洋', orgName: '山西分公司', roleName: '司机', jobName: '工作人员', isWork: true, jobLevel: '普通', sex: 2, age: 23, createTime: new Date(), status: true }
     ]
   },
   org: {
@@ -186,8 +186,8 @@ const data = {
         { id: 20, value: '3', label: '低', color: '#409EFF' }
       ],
       deviceType: [
-        { id: 21, value: '1', label: '运输车', color: '#b03e32' },
-        { id: 22, value: '2', label: '起重机', color: '#409EFF' },
+        { id: 21, value: '1', label: '装载机', color: '#b03e32' },
+        { id: 22, value: '2', label: '运输车', color: '#409EFF' },
         { id: 23, value: '3', label: '挖掘机', color: '#409EFF' }
       ],
       examineType: [
@@ -212,6 +212,10 @@ const data = {
       handleStatus: [
         { id: 33, value: 'true', label: '已处理', color: '#409EFF' },
         { id: 34, value: 'false', label: '未处理', color: '#67C23A' }
+      ],
+      available: [
+        { id: 38, value: 'true', label: '可用', color: '#67C23A' },
+        { id: 39, value: 'false', label: '不可用', color: '#F56C6C' }
       ]
     }
   },
@@ -235,11 +239,11 @@ const data = {
   },
   realWorking: {
     list: [
-      { id: 1, mieNo: '120301070001A', gpsNo: '0819BA2F', mieIp: '118.112.177.102', actionNo: '130908099A', gear: '档位1', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2200', oilLevel: '1/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
-      { id: 1, mieNo: '120301070002A', gpsNo: '0819545F', mieIp: '118.112.177.102', actionNo: '130908012A', gear: '档位1', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2550', oilLevel: '3/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
-      { id: 1, mieNo: '120301070003A', gpsNo: '08434A2F', mieIp: '118.112.177.102', actionNo: '130908011A', gear: '档位2', operatingMode: 'S', address: '北京市昌平区三一重工三一产业园', engineSpeed: '2250', oilLevel: '1/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
-      { id: 1, mieNo: '120301070004A', gpsNo: '2124BA2F', mieIp: '118.112.177.102', actionNo: '130908007A', gear: '档位1', operatingMode: 'S', address: '北京市昌平区三一重工三一产业园', engineSpeed: '2200', oilLevel: '3/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
-      { id: 1, mieNo: '120301070005A', gpsNo: '0655BA2F', mieIp: '118.112.177.102', actionNo: '130908005A', gear: '档位3', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2250', oilLevel: '3/4', waterTemperature: '19', hydraulicTemperature: '20', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' }
+      { id: 1, mieNo: '120301070001A', gpsNo: '0819BA2F', mieIp: '118.112.177.102', actionNo: '130908099A', gear: '档位1', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2200r/min', oilLevel: '1/4', waterTemperature: '19℃', hydraulicTemperature: '20℃', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070002A', gpsNo: '0819545F', mieIp: '118.112.177.102', actionNo: '130908012A', gear: '档位1', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2550r/min', oilLevel: '3/4', waterTemperature: '19℃', hydraulicTemperature: '20℃', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070003A', gpsNo: '08434A2F', mieIp: '118.112.177.102', actionNo: '130908011A', gear: '档位2', operatingMode: 'S', address: '北京市昌平区三一重工三一产业园', engineSpeed: '2250r/min', oilLevel: '1/4', waterTemperature: '19℃', hydraulicTemperature: '20℃', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070004A', gpsNo: '2124BA2F', mieIp: '118.112.177.102', actionNo: '130908007A', gear: '档位1', operatingMode: 'S', address: '北京市昌平区三一重工三一产业园', engineSpeed: '2200r/min', oilLevel: '3/4', waterTemperature: '19℃', hydraulicTemperature: '20℃', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' },
+      { id: 1, mieNo: '120301070005A', gpsNo: '0655BA2F', mieIp: '118.112.177.102', actionNo: '130908005A', gear: '档位3', operatingMode: 'H', address: '北京市昌平区北清路二号', engineSpeed: '2250r/min', oilLevel: '3/4', waterTemperature: '19℃', hydraulicTemperature: '20℃', fuelconsumptionTime: '3.2L/KM', fuelconsumptionAverage: '2.9L/KM', oilRate: '92%', batteryVoltage: '220V', lockMachineTime: '2h', Htime: '1820h', Hoil: '3200L', Stime: '2490h', Soil: '4200L' }
     ]
   },
   menu: {
@@ -447,6 +451,16 @@ const data = {
             identification: 'currentTaskReport',
             linkType: 1,
             child: []
+          },
+          {
+            id: 23,
+            name: '设备故障统计表',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'deviceErrorReport',
+            linkType: 1,
+            child: []
           }
         ]
       },
@@ -492,25 +506,25 @@ const data = {
   },
   device: {
     list: [
-      { id: 1, gpsNo: '91376494', useStatus: '使用中', orgName: '北京总公司', model: '挖掘机', number: 'NO1', status: '可用', usePerson: '张秀英', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '41055218', useStatus: '使用中', orgName: '北京总公司', model: '装载机', number: 'NO2', status: '可用', usePerson: '余平', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '91232187', useStatus: '闲置中', orgName: '北京总公司', model: '运输车', number: 'NO3', status: '可用', usePerson: '贾刚', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41108585', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO4', status: '可用', usePerson: '陈超', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '91376514', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO5', status: '可用', usePerson: '黄伟', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41086687', useStatus: '闲置中', orgName: '山西分公司', model: '挖掘机', number: 'NO6', status: '可用', usePerson: '萧杰', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41086686', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO7', status: '可用', usePerson: '白杰', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '91297925', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: 'NO8', status: '可用', usePerson: '顾勇', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41086595', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO9', status: '可用', usePerson: '孙军', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41080622', useStatus: '使用中', orgName: '山西分公司', model: '挖掘机', number: 'NO10', status: '可用', usePerson: '秦敏', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '41086687', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO11', status: '可用', usePerson: '高涛', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41080622', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO12', status: '可用', usePerson: '吕勇', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41086595', useStatus: '报废', orgName: '山西分公司', model: '运输车', number: 'NO13', status: '可用', usePerson: '梁磊', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '91270313', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO14', status: '可用', usePerson: '石敏', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41086679', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: 'NO15', status: '可用', usePerson: '熊静', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '91207317', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: 'NO16', status: '可用', usePerson: '吕平', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '41108584', useStatus: '报废', orgName: '山西分公司', model: '装载机', number: 'NO17', status: '可用', usePerson: '石洋', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41108559', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: 'NO18', status: '可用', usePerson: '方静', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '91207390', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: 'NO19', status: '可用', usePerson: '沈明', createTime: new Date(), available: true }
+      { id: 1, gpsNo: '91376494', useStatus: '使用中', orgName: '北京总公司', model: '挖掘机', number: '120301070001A', status: true, usePerson: '张秀英', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '41055218', useStatus: '使用中', orgName: '北京总公司', model: '装载机', number: '120301070002A', status: true, usePerson: '余平', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '91232187', useStatus: '闲置中', orgName: '北京总公司', model: '运输车', number: '120301070003A', status: true, usePerson: '贾刚', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41108585', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070004A', status: true, usePerson: '陈超', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '91376514', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070005A', status: true, usePerson: '黄伟', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41086687', useStatus: '闲置中', orgName: '山西分公司', model: '挖掘机', number: '120301070006A', status: true, usePerson: '萧杰', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41086686', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070007A', status: true, usePerson: '白杰', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '91297925', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070008A', status: true, usePerson: '顾勇', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41086595', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070009A', status: true, usePerson: '孙军', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41080622', useStatus: '使用中', orgName: '山西分公司', model: '挖掘机', number: '120301070010A', status: true, usePerson: '秦敏', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '41086687', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070011A', status: true, usePerson: '高涛', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41080622', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070012A', status: true, usePerson: '吕勇', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41086595', useStatus: '报废', orgName: '山西分公司', model: '运输车', number: '120301070013A', status: false, usePerson: '梁磊', createTime: new Date(), available: false },
+      { id: 2, gpsNo: '91270313', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070014A', status: true, usePerson: '石敏', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '41086679', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070015A', status: true, usePerson: '熊静', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '91207317', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070016A', status: true, usePerson: '吕平', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '41108584', useStatus: '报废', orgName: '山西分公司', model: '装载机', number: '120301070017A', status: false, usePerson: '石洋', createTime: new Date(), available: false },
+      { id: 3, gpsNo: '41108559', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070018A', status: true, usePerson: '方静', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '91207390', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '1120301070019A', status: true, usePerson: '沈明', createTime: new Date(), available: true }
     ]
   },
   driverTask: {
@@ -520,7 +534,11 @@ const data = {
       { deviceNo: '120301070009A', driverName: '苏军' },
       { deviceNo: '120301070010A', driverName: '谢军' },
       { deviceNo: '120301070011A', driverName: '程磊' },
-      { deviceNo: '120301070012A', driverName: '尹涛' }
+      { deviceNo: '120301070012A', driverName: '尹涛' },
+      { deviceNo: '120301070012A', driverName: '李明' },
+      { deviceNo: '120301070012A', driverName: '何乐' },
+      { deviceNo: '120301070012A', driverName: '张扬' },
+      { deviceNo: '120301070012A', driverName: '王利桃' }
     ]
   },
   tasks: {
@@ -554,6 +572,14 @@ const data = {
       { id: 6, equipmentNumber: '120301070006A', deviceType: '矿车', fuel: '10', temperature: '90', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
       { id: 7, equipmentNumber: '120301070007A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true },
       { id: 8, equipmentNumber: '120301070008A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true }
+    ]
+  },
+  deviceErrorReport: {
+    list: [
+      { org: '北京总公司', errorNum: '654', deviceNum: '11', errorRate: '1.6' },
+      { org: '山西分公司', errorNum: '121564', deviceNum: '11349', errorRate: '9.3' },
+      { org: '武汉分公司', errorNum: '65124', deviceNum: '635', errorRate: '0.9' },
+      { org: '河南分公司', errorNum: '91243', deviceNum: '1847', errorRate: '2.0' }
     ]
   }
 }

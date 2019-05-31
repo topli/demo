@@ -1,9 +1,11 @@
 .map-template{
+  width: 100%;
+  height: 100%;
   .anchorBL{
     display: none
   }
   .map{
     width: 100%;
-    height: calc(100vh - 50px);
+    height: 100%;
   }
 }

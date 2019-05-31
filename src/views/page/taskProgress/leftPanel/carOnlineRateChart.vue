@@ -1,0 +1,278 @@
+// 近24h车辆在线率
+<style lang="scss" scoped>
+/deep/ .spin {
+  background: transparent;
+  .loader {
+    text-align: center;
+    img {
+      width: 55%;
+    }
+  }
+}
+.left-panel-item {
+  height: 28%;
+  .hd {
+    height: 0.16rem;
+    padding-left: 0.42rem;
+    font-size: 0.12rem;
+    font-weight: bold;
+    color: #3de6b1;
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 0.18rem center
+      no-repeat;
+    background-size: auto 0.09rem;
+  }
+  .bd {
+    position: relative;
+    height: 100%;
+    .chart {
+      height: 88%;
+    }
+  }
+}
+</style>
+<template>
+  <div class="left-panel-item">
+    <div class="hd">近24h设备在线率</div>
+    <div class="bd">
+      <div v-if="spinShow" fix class="spin">
+        <div class="loader"><img src="../../../../../static/images/taskProgress/loading-black.gif"></div>
+      </div>
+      <div v-else ref="chart" class="chart"/>
+    </div>
+  </div>
+</template>
+
+<script>
+import echarts from 'echarts'
+// import { on } from '@/libs/nav'
+export default {
+  name: 'CarOnlineRateChart',
+  data() {
+    return {
+      spinShow: true,
+      dom: {} // 车型能耗排行dom
+    }
+  },
+  mounted() {
+    // this.initChart();
+  },
+  created() {
+    setTimeout(() => {
+      this.spinShow = false
+      this.$nextTick(() => {
+        this.initChart()
+      })
+    }, 2500)
+  },
+  beforeDestroy() {
+    this.dom.clear()
+  },
+  methods: {
+    // 车型能耗排行
+    initChart() {
+      // 设置X轴数据
+      // 线查询当前1个小时的每隔5分钟的数据
+      // let now = new Date();
+      //   nowHour = now.getHours();
+      // nowMinu = now.getMinutes();
+      // let xData = [];
+      // while (nowMinu < 0) {
+      //   xData.push(nowHour);
+      // }
+      // console.log(now);
+      // 绘制图表
+      const seriesData = [
+        {
+          value: ['2019-05-17 14:09', 23]
+        },
+        {
+          value: ['2019-05-17 14:08', 324]
+        },
+        {
+          value: ['2019-05-17 14:07', 215]
+        },
+        {
+          value: ['2019-05-17 14:06', 213]
+        },
+        {
+          value: ['2019-05-17 14:05', 214]
+        },
+        {
+          value: ['2019-05-17 14:04', 251]
+        },
+        {
+          value: ['2019-05-17 14:03', 231]
+        },
+        {
+          value: ['2019-05-17 14:02', 24]
+        },
+        {
+          value: ['2019-05-17 14:01', 25]
+        },
+        {
+          value: ['2019-05-17 14:00', 25]
+        }
+      ]
+      const seriesData2 = [
+        {
+          value: ['2019-05-17 14:09', 233]
+        },
+        {
+          value: ['2019-05-17 14:08', 224]
+        },
+        {
+          value: ['2019-05-17 14:07', 251]
+        },
+        {
+          value: ['2019-05-17 14:06', 232]
+        },
+        {
+          value: ['2019-05-17 14:05', 241]
+        },
+        {
+          value: ['2019-05-17 14:04', 252]
+        },
+        {
+          value: ['2019-05-17 14:03', 213]
+        },
+        {
+          value: ['2019-05-17 14:02', 242]
+        },
+        {
+          value: ['2019-05-17 14:01', 213]
+        },
+        {
+          value: ['2019-05-17 14:00', 251]
+        }
+      ]
+      const option = {
+        tooltip: {
+          trigger: 'axis',
+          backgroundColor: 'rgba(0, 26, 33, 0.68)',
+          borderColor: '#01525b',
+          extraCssText: 'box-shadow: 0 0 8px rgba(15, 235, 255, 0.56) inset',
+          formatter: function(params) {
+            const content = `${params[0].value[0]}<br>
+            ${params[0].seriesName}: ${params[0].value[1]}%<br>
+            ${params[1].seriesName}: ${params[1].value[1]}万`
+            return content
+          }
+        },
+        grid: {
+          top: '22%',
+          left: '4%',
+          right: '4%',
+          bottom: '1%',
+          containLabel: true
+        },
+        textStyle: {
+          color: '#fff'
+        },
+        xAxis: {
+          type: 'time',
+          // boundaryGap: false,
+          // minInterval: 4,
+          axisTick: {
+            show: false // 隐藏坐标轴刻度线
+          },
+          splitNumber: 8,
+          splitLine: {
+            lineStyle: {
+              color: 'rgba(1, 53, 64, 1)'
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: 'rgba(1, 53, 64, 1)'
+            }
+          },
+          axisLabel: {
+            // formatter: value => {
+            //   return this._hyTool.DateFormat(new Date(value), 'hh:mm')
+            // }
+          }
+        },
+        yAxis: [
+          {
+            name: '在线率 %',
+            type: 'value',
+            axisLabel: {
+              formatter: '{value} %'
+            },
+            splitLine: {
+              lineStyle: {
+                color: 'rgba(1, 53, 64, 1)'
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'rgba(1, 53, 64, 1)'
+              }
+            },
+            minInterval: 10,
+            boundaryGap: [0, '20%']
+          },
+          {
+            name: '在线数量/万',
+            type: 'value',
+            position: 'right',
+            minInterval: 100,
+            axisLabel: {
+              formatter: '{value}'
+            },
+            axisTick: { show: false }, // 隐藏坐标轴刻度线
+            splitLine: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            }
+          }
+        ],
+        series: [
+          {
+            name: '在线率',
+            lineStyle: {
+              color: 'rgba(0, 255, 255, 1)'
+            },
+            data: seriesData,
+            type: 'line',
+            smooth: true
+          },
+          {
+            name: '在线数量',
+            type: 'line',
+            lineStyle: {
+              color: 'rgba(221, 201, 32, 1)'
+            },
+            smooth: true,
+            barWidth: 14,
+            data: seriesData2,
+            yAxisIndex: 1
+          }
+        ]
+      }
+      this.dom = echarts.init(this.$refs.chart)
+      this.dom.setOption(option)
+      // on(window, 'resize', this.resize)
+      // 模拟动态添加
+      // setInterval(() => {
+      //   let nowData = new Date().getTime() + 1 * 60 * 1000;
+      //   let newData = {
+      //     value: [
+      //       this._hyTool.DateFormat(new Date(nowData), "yyyy-MM-dd hh:mm"),
+      //       Math.round(Math.random() * 60)
+      //     ]
+      //   };
+      //   seriesData.insert(0, newData);
+      //   seriesData.splice(seriesData.length - 1, seriesData.length);
+      //   this.dom.setOption(option);
+      // }, 5000);
+    },
+    // 重置尺寸
+    resize() {
+      this.dom.resize()
+    }
+  }
+}
+</script>

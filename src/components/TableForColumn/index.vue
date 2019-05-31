@@ -4,7 +4,8 @@
       v-loading="tableLoading"
       :data="data"
       :height="tableHeight"
-      border
+      :border="border"
+      :stripe="stripe"
       style="width: 100%"
       @selection-change="handleSelectionChange"
       @sort-change="sortChange"
@@ -60,7 +61,9 @@ export default {
     data: { type: Array, required: true },
     columnsTitle: { type: Array, required: true },
     loading: { type: Boolean, default: false },
-    sortChange: { type: Function, default: function() {} }
+    sortChange: { type: Function, default: function() {} },
+    border: { type: Boolean, default: true },
+    stripe: { type: Boolean, default: true }
   },
   data() {
     return {

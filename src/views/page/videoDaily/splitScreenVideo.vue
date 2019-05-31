@@ -90,7 +90,7 @@
           <el-button v-for="item in splitArray" :key="item" :class="{'button-active': splitNum === item}" @click="split(item)">{{ item }}</el-button>
         </el-button-group>
         <el-button type="ghost" @click="closeVideoAll">全部关闭</el-button>
-        <el-button type="ghost" @click="toggle">全屏</el-button>
+        <!-- <el-button type="ghost" @click="toggle">全屏</el-button> -->
       </div>
     </div>
   </div>

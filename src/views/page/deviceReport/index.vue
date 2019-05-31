@@ -5,7 +5,7 @@
         {{ !isScreenfull ? $t('app.fullScreen') : '' }}
       </el-button>
       <div class="title">
-        <span>挖机健康监控大屏</span>
+        <span>设备健康监控大屏</span>
       </div>
       <div class="body">
         <div class="total">
@@ -30,13 +30,63 @@
             <el-col :span="6">
               <div class="total-child">
                 <div class="split-line"/>
-                <countTo :start-val="0" :end-val="3" :duration="2000"/>
+                <el-popover
+                  :open-delay="500"
+                  placement="bottom"
+                  width="400"
+                  trigger="hover"
+                  popper-class="popover-body">
+                  <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
+                    <ul>
+                      <li>
+                        <div class="title">
+                          <div v-for="(t, i) in titles" :key="i">{{ t }}</div>
+                        </div>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li v-for="(device, i) in deviceErrorList" :key="i">
+                        <div class="title">
+                          <div>{{ device.deviceNo }}</div>
+                          <div>{{ device.type }}</div>
+                          <div>{{ device.time }}</div>
+                        </div>
+                      </li>
+                    </ul>
+                  </el-scrollbar>
+                  <countTo slot="reference" :start-val="0" :end-val="3" :duration="2000"/>
+                </el-popover>
                 <div class="total-child-title">亚健康设备数</div>
               </div>
             </el-col>
             <el-col :span="6">
               <div class="total-child">
-                <countTo :start-val="0" :end-val="1" :duration="2000"/>
+                <el-popover
+                  :open-delay="500"
+                  placement="bottom"
+                  width="400"
+                  trigger="hover"
+                  popper-class="popover-body">
+                  <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
+                    <ul>
+                      <li>
+                        <div class="title">
+                          <div v-for="(t, i) in titles" :key="i">{{ t }}</div>
+                        </div>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li v-for="(device, i) in deviceErrorList2" :key="i">
+                        <div class="title">
+                          <div>{{ device.deviceNo }}</div>
+                          <div>{{ device.type }}</div>
+                          <div>{{ device.time }}</div>
+                        </div>
+                      </li>
+                    </ul>
+                  </el-scrollbar>
+                  <countTo slot="reference" :start-val="0" :end-val="1" :duration="2000"/>
+                </el-popover>
                 <div class="total-child-title">问题设备数</div>
               </div>
             </el-col>
@@ -257,7 +307,16 @@ export default {
   data() {
     return {
       pageName: this.$t('route.' + this.$route.meta.title),
-      isScreenfull: false
+      isScreenfull: false,
+      titles: ['设备编号', '故障类型', '故障时间'],
+      deviceErrorList: [
+        { deviceNo: '91376494', type: '燃油不足', time: '2019-05-28 14:15' },
+        { deviceNo: '91232187', type: '胎压不足', time: '2019-05-28 11:33' },
+        { deviceNo: '41108559', type: '温度过高', time: '2019-05-28 13:26' }
+      ],
+      deviceErrorList2: [
+        { deviceNo: '91270313', type: '发动机停车', time: '2019-05-28 13:26' }
+      ]
     }
   },
   computed: {
@@ -392,3 +451,33 @@ export default {
     }
   }
 </style>
+<style lang="scss">
+  .popover-body{
+    color: white;
+    overflow: hidden;
+    height: 200px;
+    font-size: 13px!important;
+    ul li {
+      list-style: none;
+    }
+    .title{
+      display: -webkit-box;
+      width: 100%;
+      div {
+        width: 33%;
+      }
+    }
+    background: #1e57d6db!important;
+    border: 1px solid #1e57d6db;
+    .popper__arrow{
+      border-bottom-color: #1e57d6db!important;
+    }
+    .popper__arrow::after{
+      border-bottom-color: #1e57d6db!important;
+    }
+    .el-scrollbar__wrap{
+      overflow-x: hidden
+    }
+  }
+</style>
+

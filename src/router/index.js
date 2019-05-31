@@ -30,7 +30,11 @@ const routes = {
   tasksDispatch: () => import('@/views/page/tasksDispatch/index'),
   currentTaskReport: () => import('@/views/page/currentTaskReport/index'),
   deviceErrorReport: () => import('@/views/page/deviceErrorReport/index'),
-  map: () => import('@/views/page/map/index')
+  map: () => import('@/views/page/map/index'),
+  taskProgress: () => import('@/views/page/taskProgress/index'),
+  excavatorMiningTrend: () => import('@/views/page/excavatorMiningTrend/index'),
+  realWorkingMonitor: () => import('@/views/page/realWorkingMonitor/index'),
+  playback: () => import('@/views/page/playback/index')
 }
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -149,16 +153,22 @@ export const constantRouterMap = [
         meta: { title: 'monitorDevice' },
         children: [
           {
-            path: 'realWorking',
-            name: 'realWorking',
-            component: routes['realWorking'],
-            meta: { title: 'realWorking' }
+            path: 'realWorkingMonitor',
+            name: 'realWorkingMonitor',
+            component: routes['realWorkingMonitor'],
+            meta: { title: 'realWorkingMonitor' }
           },
           {
             path: 'realWorkingMap',
             name: 'realWorkingMap',
             component: routes['realWorkingMap'],
             meta: { title: 'realWorkingMap' }
+          },
+          {
+            path: 'playback',
+            name: 'playback',
+            component: routes['playback'],
+            meta: { title: 'playback' }
           }
         ]
       },
@@ -238,6 +248,24 @@ export const constantRouterMap = [
         name: 'deviceErrorReport',
         component: routes['deviceErrorReport'],
         meta: { title: 'deviceErrorReport' }
+      },
+      {
+        path: 'taskProgress',
+        name: 'taskProgress',
+        component: routes['taskProgress'],
+        meta: { title: 'taskProgress' }
+      },
+      {
+        path: 'excavatorMiningTrend',
+        name: 'excavatorMiningTrend',
+        component: routes['excavatorMiningTrend'],
+        meta: { title: 'excavatorMiningTrend' }
+      },
+      {
+        path: 'realWorking',
+        name: 'realWorking',
+        component: routes['realWorking'],
+        meta: { title: 'realWorking' }
       }
     ]
   },

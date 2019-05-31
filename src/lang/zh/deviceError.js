@@ -6,6 +6,7 @@ export default {
     deviceStatus: '设备状态',
     handleStatus: '处理状态',
     deviceAddress: '报警地址',
-    createTime: '创建时间'
+    createTime: '创建时间',
+    handleResult: '处理结果'
   }
 }

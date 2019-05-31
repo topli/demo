@@ -126,11 +126,12 @@ export default {
       this.$forceUpdate()
     },
     cancel() {
+      const id = this.$route.query.id
       this.addMarkerModal = false
       this.isMarker = false
       this.isWeilan = false
       this.clearMap()
-      if (this.formData.id) this.goBack()
+      if (id) this.$router.go(-1)
     },
     // 新增 1-标注 2-围栏 3区县
     addMarker(type) {
