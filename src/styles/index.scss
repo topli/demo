@@ -70,7 +70,7 @@ a:hover {
 
 //main-container全局样式
 .app-main {
-  min-height: 100%
+  height: calc(100vh - 50px);
 }
 
 .app-container {
