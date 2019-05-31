@@ -116,15 +116,6 @@
   }
 }
 </style>
-<style>
-/* .hamburger-container {
-  height: 0.52rem!important;
-  line-height: 0.04rem!important;
-}
-.el-breadcrumb  {
-  float: left;
-} */
-</style>
 
 <template>
   <div class="taskProgress">

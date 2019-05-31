@@ -86,7 +86,7 @@ export default {
               props: { color: params.row.deviceStatus ? '#409eff' : '#999', type: 'text' },
               style: { color: 'white' }
             },
-            params.row.status ? '在线' : '离线')
+            params.row.deviceStatus ? '在线' : '离线')
           }
         },
         {
