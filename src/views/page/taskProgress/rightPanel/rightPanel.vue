@@ -3,7 +3,7 @@
 // 右侧面板
 /deep/.digit {
     // height: 2%!important;
-    line-height: 150%!important;
+    line-height: 145%!important;
   }
 /deep/ .spin {
   background: transparent;
@@ -54,6 +54,7 @@
     // z-index: 2;
     // 头部总数
     .map-header {
+      width: 29%;
       position: absolute;
       top: 0;
       left: 0;
@@ -94,6 +95,7 @@
       left: 0;
       bottom: -10px;
       font-size: 11px;
+      padding-left: 0;
       li {
         display: flex;
         align-items: center;
@@ -120,7 +122,7 @@
   }
   .btn-fold {
     position: absolute;
-    top: -10%;
+    top: -18px;
     right: 5%;
     z-index: 1;
     width: 90px;
@@ -186,7 +188,7 @@
 // 顶部全国车辆数字
 .child-box {
   display: inline-block;
-  width: 142%;
+  width: 100%;
   margin-top: 4%;
   padding: 0 5.76%;
   color: #0febff;
@@ -201,6 +203,7 @@
     position: relative;
     margin-right: 5%;
     text-align: center;
+    width: 10%;
     &:last-child {
       margin-right: 0;
     }

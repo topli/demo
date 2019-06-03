@@ -5,7 +5,6 @@
   background: #eee;
   display: flex;
   flex-direction: column;
-  overflow: hidden!important;
   .search-div {
     padding: 10px 15px;
     height: 72px;
@@ -17,6 +16,11 @@
     }
     .item2,.item3 {
       margin-right: 5px;
+    }
+    .search-button {
+      position: absolute;
+      top: 37px;
+      right: 65px;
     }
   }
   .chart-half {
@@ -61,12 +65,12 @@
 </style>
 <template>
   <div class="tem-div">
-    <div class="search-div">
+    <div :style="{height: searchDivHeight+ 'px'}" class="search-div">
       <el-form
         label-position="left"
         inline
         class="clear"
-        style="padding-top: 20px;"
+        style="padding-top: 20px;padding-right: 140px"
       >
         <el-form-item class="item1" label-width="80px" label="日期范围">
           <el-radio-group v-model="timeType" @change="changeTime(timeType)">
@@ -122,8 +126,8 @@
             <el-option v-for="(option, index) in cityList" :value="option.value" :key="index">{{ option.label }}</el-option>
           </el-select>
         </el-form-item>
-        <el-button :loading="actionLoading" type="primary" icon="ios-search" @click="getList">查询</el-button>
       </el-form>
+      <el-button :loading="actionLoading" class="search-button" type="primary" icon="ios-search" @click="getList">查询</el-button>
     </div>
     <div class="chart-half">
       <div class="chart-title">
@@ -183,8 +187,9 @@ export default {
         { label: '年', value: 3 }
       ],
       dateType: 'date',
-      chartOneHeight: '300',
-      chartTwoHeight: '235',
+      chartOneHeight: '252',
+      chartTwoHeight: '206',
+      searchDivHeight: '72',
       reportDate: {
         disabledDate(date) {
           return date && date.valueOf() > Date.now()
@@ -208,11 +213,13 @@ export default {
     if (this.sidebar.opened) {
       this.$store.dispatch('ToggleSideBar')
     }
-    this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 5 + ''
-    this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 5 + ''
+    this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
+    this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 48.6 + ''
+    this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
+    console.log(this.searchDivHeight)
     window.onresize = () => {
-      this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 10 + ''
-      this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 5 + ''
+      this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
+      this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 44.6 + ''
     }
   },
   methods: {
@@ -274,12 +281,13 @@ export default {
         grid: {
           top: '10%',
           left: '4%',
+          bottom: '4%',
           containLabel: true
         },
         legend: {
           data: ['当月总方量', '当月累计油耗'],
           orient: 'vertical',
-          right: '-1%',
+          right: '0%',
           top: '8%'
         },
         xAxis: [
@@ -342,15 +350,15 @@ export default {
         legend: {
           orient: 'vertical',
           left: '75%',
-          top: '15%',
+          top: '18%',
           data: ['平朔安太堡露天矿', '杨庄煤矿', '山西煤矿']
         },
         series: [
           {
             name: '故障数量',
             type: 'pie',
-            radius: ['40%', '70%'],
-            center: ['35%', '40%'],
+            radius: ['50%', '80%'],
+            center: ['35%', '50%'],
             // avoidLabelOverlap: false,
             itemStyle: {
               emphasis: {
@@ -418,8 +426,9 @@ export default {
           borderRadius: 5
         },
         grid: {
-          top: '5%',
+          top: '7%',
           left: '9%',
+          bottom: '9%',
           containLabel: true
         },
         legend: {

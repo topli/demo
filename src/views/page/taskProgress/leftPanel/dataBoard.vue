@@ -9,14 +9,14 @@
   }
 }
 /deep/.digit {
-  font-size: 150%;
+  font-size: 125%;
 }
 .left-panel-item {
   position: relative;
   height: 35%;
   .hd {
-    height: 7.8%;
-    line-height: 138%;
+    height: 18px;
+    line-height: 18px;
     padding-left: 42px;
     font-size: 12px;
     font-weight: bold;
@@ -28,7 +28,7 @@
   .bd {
     position: relative;
     height: 90%;
-    margin-top: 3%;
+    margin-top: 2.4%;
     // 数据看板
     .item-content {
       // width: 1.64rem;
@@ -85,22 +85,23 @@
           // margin: 0.06rem 0;
           padding-bottom: 3.3%;
           .value {
-            height: 35px !important;
-            font-size: 24px;
+            height: 32px !important;
+            font-size: 210%;
             /deep/ .ctnr:last-child {
               width: 0;
             }
           }
           .unit {
             font-size: 10px;
+            line-height: 100%;
           }
         }
         .vice-info {
-          font-size: 10px;
+          font-size: 100%;
           // transform: scale(0.8);
           ul {
             padding-left: 0;
-            margin: 4% 0;
+            margin: 2% 0;
           }
           ul li {
             color: #00d5e9;

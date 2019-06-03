@@ -12,8 +12,8 @@
 .left-panel-item {
   height: 30%;
   .hd {
-    height: 7.2%;
-    line-height: 138%;
+    height: 18px;
+    line-height: 18px;
     padding-left: 42px;
     font-size: 12px;
     font-weight: bold;
