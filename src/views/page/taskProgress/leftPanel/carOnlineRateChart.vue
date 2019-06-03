@@ -10,16 +10,17 @@
   }
 }
 .left-panel-item {
-  height: 28%;
+  height: 30%;
   .hd {
-    height: 0.16rem;
-    padding-left: 0.42rem;
-    font-size: 0.12rem;
+    height: 7.2%;
+    line-height: 138%;
+    padding-left: 42px;
+    font-size: 12px;
     font-weight: bold;
     color: #3de6b1;
-    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 0.18rem center
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 18px center
       no-repeat;
-    background-size: auto 0.09rem;
+    background-size: auto 9px;
   }
   .bd {
     position: relative;
@@ -83,66 +84,66 @@ export default {
       // 绘制图表
       const seriesData = [
         {
-          value: ['2019-05-17 14:09', 23]
+          value: ['2019-06-02 14:09', 23]
         },
         {
-          value: ['2019-05-17 14:08', 43]
+          value: ['2019-06-02 14:08', 43]
         },
         {
-          value: ['2019-05-17 14:07', 58]
+          value: ['2019-06-02 14:07', 58]
         },
         {
-          value: ['2019-05-17 14:06', 67]
+          value: ['2019-06-02 14:06', 67]
         },
         {
-          value: ['2019-05-17 14:05', 34]
+          value: ['2019-06-02 14:05', 34]
         },
         {
-          value: ['2019-05-17 14:04', 88]
+          value: ['2019-06-02 14:04', 88]
         },
         {
-          value: ['2019-05-17 14:03', 25]
+          value: ['2019-06-02 14:03', 25]
         },
         {
-          value: ['2019-05-17 14:02', 24]
+          value: ['2019-06-02 14:02', 24]
         },
         {
-          value: ['2019-05-17 14:01', 25]
+          value: ['2019-06-02 14:01', 25]
         },
         {
-          value: ['2019-05-17 14:00', 25]
+          value: ['2019-06-02 14:00', 25]
         }
       ]
       const seriesData2 = [
         {
-          value: ['2019-05-17 14:09', 48]
+          value: ['2019-06-02 14:09', 48]
         },
         {
-          value: ['2019-05-17 14:08', 36]
+          value: ['2019-06-02 14:08', 36]
         },
         {
-          value: ['2019-05-17 14:07', 21]
+          value: ['2019-06-02 14:07', 21]
         },
         {
-          value: ['2019-05-17 14:06', 18]
+          value: ['2019-06-02 14:06', 18]
         },
         {
-          value: ['2019-05-17 14:05', 26]
+          value: ['2019-06-02 14:05', 26]
         },
         {
-          value: ['2019-05-17 14:04', 77]
+          value: ['2019-06-02 14:04', 77]
         },
         {
-          value: ['2019-05-17 14:03', 83]
+          value: ['2019-06-02 14:03', 83]
         },
         {
-          value: ['2019-05-17 14:02', 42]
+          value: ['2019-06-02 14:02', 42]
         },
         {
-          value: ['2019-05-17 14:01', 29]
+          value: ['2019-06-02 14:01', 29]
         },
         {
-          value: ['2019-05-17 14:00', 52]
+          value: ['2019-06-02 14:00', 52]
         }
       ]
       const option = {

@@ -2,13 +2,13 @@
 <style lang="scss" scoped>
 // 右侧面板
 /deep/.digit {
-    height: 0.65rem!important;
-    line-height: 0.65rem!important;
+    // height: 2%!important;
+    line-height: 150%!important;
   }
 /deep/ .spin {
   background: transparent;
   .loader {
-    margin-top: 1rem;
+    margin-top: 10%;
     text-align: center;
   }
 }
@@ -16,7 +16,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  padding-left: 4.4rem;
+  padding-left: 29.5%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -59,46 +59,47 @@
       left: 0;
       z-index: 999;
       .title {
-        padding-left: 0.22rem;
-        font-size: 0.12rem;
+        padding-left: 22px;
+        font-size: 11px;
         font-weight: bold;
         color: #0febff;
         background: url("../../../../../static/images/taskProgress/hd_arrow.png") left center
           no-repeat;
-        background-size: auto 0.09rem;
+        background-size: auto 9px;
       }
-      ul.total {
-        display: none;
-        margin-top: 0.1rem;
-        li {
-          display: inline;
-          font-size: 0.3rem;
-          color: #00bdcf;
-          font-weight: 600;
-          margin-right: 0.12rem;
-        }
-        .num {
-          display: inline-block;
-          width: 0.44rem;
-          height: 0.58rem;
-          line-height: 0.58rem;
-          text-align: center;
-          border: 1px solid #00bdcf;
-          background-color: rgba(0, 122, 135, 0.33);
-        }
-      }
+      // ul.total {
+      //   display: none;
+      //   margin-top: 22%;
+      //   li {
+      //     display: inline;
+      //     font-size: 0.3rem;
+      //     color: #00bdcf;
+      //     font-weight: 600;
+      //     margin-right: 0.12rem;
+      //   }
+      //   .num {
+      //     display: inline-block;
+      //     width: 0.44rem;
+      //     height: 0.58rem;
+      //     line-height: 0.58rem;
+      //     text-align: center;
+      //     border: 1px solid #00bdcf;
+      //     background-color: rgba(0, 122, 135, 0.33);
+      //   }
+      // }
     }
     // 左下角状态概览
     .status-overview {
       position: absolute;
       left: 0;
       bottom: -10px;
+      font-size: 11px;
       li {
         display: flex;
         align-items: center;
-        margin-bottom: 0.14rem;
+        margin-bottom: 11.5%;
         span {
-          margin-left: 0.08rem;
+          margin-left: 8px;
           text-align: left;
           color: #fff;
         }
@@ -122,8 +123,8 @@
     top: -10%;
     right: 5%;
     z-index: 1;
-    width: 0.94rem;
-    height: 0.2rem;
+    width: 90px;
+    height: 18px;
     // margin: 0 auto;
     text-align: center;
     color: #1b9aab;
@@ -145,9 +146,9 @@
     z-index: 1;
     transition: all 0.5s;
     .hd {
-      height: 0.16rem;
-      padding-right: 0.22rem;
-      font-size: 0.12rem;
+      height: 9%;
+      padding-right:3%;
+      font-size: 11px;
       font-weight: bold;
       color: rgba(61, 230, 177, 1);
       text-align: right;
@@ -185,26 +186,27 @@
 // 顶部全国车辆数字
 .child-box {
   display: inline-block;
-  margin-top: 0.1rem;
-  padding: 0 0.15rem;
+  width: 142%;
+  margin-top: 4%;
+  padding: 0 5.76%;
   color: #0febff;
-  font-size: 0.42rem;
+  font-size: 380%;
   font-weight: 600;
   border: 1px solid #0febff;
   background-color: rgba(0, 122, 135, 0.33);
   > div {
-    height: 0.63rem !important;
+    // height: 20% !important;
   }
   /deep/ .ctnr {
     position: relative;
-    margin-right: 0.1rem;
+    margin-right: 5%;
     text-align: center;
     &:last-child {
       margin-right: 0;
     }
   }
   /deep/ .sprtr {
-    margin-right: 0.1rem;
+    margin-right: 6%;
     text-align: center;
   }
 }

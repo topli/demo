@@ -10,16 +10,17 @@
   }
 }
 .left-panel-item {
-  height: 30%;
+  height: 31%;
   .hd {
-    height: 0.16rem;
-    padding-left: 0.42rem;
-    font-size: 0.12rem;
+    height: 7%;
+    padding-left: 42px;
+    line-height: 138%;
+    font-size: 12px;
     font-weight: bold;
     color: #3de6b1;
-    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 0.18rem center
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 18px center
       no-repeat;
-    background-size: auto 0.09rem;
+    background-size: auto 9px;
   }
   .bd {
     // 车型能耗排行
@@ -27,18 +28,15 @@
     height: 100%;
     .car-type {
       text-align: right;
-      margin: 0.06rem 0.16rem 0;
+      margin: 2% 4% 0;
       // transform: scale(0.9);
       a {
         display: inline-block;
-        // width: 0.38rem;
-        padding: 0 0.1rem;
-        height: 0.22rem;
-        line-height: 0.2rem;
+        padding: 0 2.7%;
+        line-height: 125%;
         text-align: center;
         color: rgba(17, 237, 255, 1);
         border: 1px solid rgba(17, 237, 255, 1);
-        margin-left: 0.08rem;
         &:first-child {
           margin-left: 0;
         }
@@ -79,7 +77,7 @@ export default {
       carType: [
         {
           id: 1,
-          name: '矿机'
+          name: '矿车'
         },
         {
           id: 2,
