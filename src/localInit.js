@@ -593,9 +593,9 @@ const data = {
   },
   tasks: {
     list: [
-      { no: 'BJ201905231529', dispatchNo: 'DD201905231529', devices: '91376494(张秀英),41055218(余平),91232187(贾刚)', workTime: '24H', progress: 60, name: '工程1', status: '待审核', executor: '石洋', line: '光谷-江夏', describe: '挖掘', org: '北京总公司', enclosure: '朝阳区附近', level: 1 },
-      { no: 'BJ201905231530', dispatchNo: 'DD201905231530', devices: '91270313(石敏),41080622(吕勇),41086687(高涛)', workTime: '35H', progress: 80, name: '工程2', status: '已调度', executor: '白杰', line: '天安门-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 2 },
-      { no: 'BJ201905231531', dispatchNo: 'DD201905231531', devices: '91207390(沈明),41108559(方静),41108584(石洋)', workTime: '31H', progress: 89, name: '工程3', status: '未调度', executor: '贾刚', line: '朝阳区-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 3 }
+      { no: 'BJ201905231529', goods: '碎石', totalQuqntity: '1.5', dispatchNo: 'ZGBJLT012019060601', devices: '91376494(张秀英),41055218(余平),91232187(贾刚)', workTime: '24H', progress: 60, name: '工程1', status: '待审核', executor: '石洋', line: '光谷-江夏', describe: '挖掘', org: '北京总公司', enclosure: '朝阳区附近', level: 1 },
+      { no: 'BJ201905231530', goods: '煤矿', totalQuqntity: '1.0', dispatchNo: 'ZGBJLT022019060602', devices: '91270313(石敏),41080622(吕勇),41086687(高涛)', workTime: '35H', progress: 80, name: '工程2', status: '已调度', executor: '白杰', line: '天安门-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 2 },
+      { no: 'BJ201905231531', goods: '渣土', totalQuqntity: '2.0', dispatchNo: 'ZGBJLT032019060603', devices: '91207390(沈明),41108559(方静),41108584(石洋)', workTime: '31H', progress: 89, name: '工程3', status: '未调度', executor: '贾刚', line: '朝阳区-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 3 }
     ]
   },
   currentTaskReport: {
