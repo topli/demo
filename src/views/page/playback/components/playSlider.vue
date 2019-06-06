@@ -2,11 +2,14 @@
 </style>
 <style lang="scss" scoped>
   .play-bcak {
+    width: 100%;
+    height: 100%;
     .play-slider{
       margin-top: -16px;
       position: absolute;
       width: 100%;
       display: block;
+      overflow: hidden;
     }
     .align-center {
       display:flex;
@@ -16,24 +19,22 @@
     .operate {
       padding-top: 16px;
       width: 100%;
+      height: 100%;
+      display: -webkit-inline-box;
       &-left {
-        top: 20px;
         position: absolute;
-        left: 0;
+        left:0;
+        top: 13px;
+        padding: 5px 10px;
       }
       &-center {
-        top: 20px;
-        position: absolute;
-        left: 50%;
-        -ms-transform: translate(-50%,0);
-        -moz-transform: translate(-50%,0);
-        -o-transform: translate(-50%,0);
-        transform: translate(-50%,0)
+        width: 100%;
       }
       &-right {
-        top: 20px;
         position: absolute;
-        right: 20px;
+        right:0;
+        top: 10px;
+        padding: 5px 10px;
       }
     }
     .text-bg{
@@ -43,16 +44,6 @@
       border-radius: 10px;
       padding: 5px 10px;
     }
-    .bg-color {
-      margin-left: 10px;
-      color: #ffffff;
-      display: -webkit-box;
-      background-color: #1715159c;
-      border-radius: 10px;
-      div{
-        padding: 5px 10px;
-      }
-    }
     .text-a-style {
       color: #00b7ee;
     }
@@ -60,13 +51,12 @@
       cursor: pointer;
       color: #ffffff;
       background-color: #1715159c;
-      div{
-       padding: 5px 10px;
-      }
-      .check-speed {
-        color: #00b7ee;
-        border: 1px solid #00b7ee;
-      }
+      padding: 3px 5px;
+      border: 1px solid #1715159c;
+    }
+    .check-speed {
+      color: #00b7ee;
+      border: 1px solid #00b7ee;
     }
     .circle {
       cursor: pointer;
@@ -87,8 +77,8 @@
       margin: 0 5px;
       background-color: #a92529;
       color: #ffffff;
-      width: 44px;
-      height: 44px;
+      width: 38px;
+      height: 38px;
     }
     .fastforward {
       margin: 0 5px;
@@ -103,40 +93,42 @@
   }
 </style>
 <template>
-  <div class="play-bcak">
+  <div class="play-bcak" style="background: #2c2626;">
     <el-slider v-model="index" :show-tooltip="false" :format-tooltip="tipFormat" :max="videoData.length - 1" class="play-slider" @change="changeIndex"/>
-    <div class="operate-left">
-      <div class="text-bg">
-        <span class="text-a-style">{{ current }}</span> / <span>{{ total }}</span>
+    <div class="operate">
+      <div class="operate-left align-center">
+        <div class="text-bg">
+          <span class="text-a-style">{{ current }}</span> / <span>{{ total }}</span>
+        </div>
+        <!-- <div class="text-bg">
+          <span class="text-a-style">{{ currentTip }}test</span>
+        </div> -->
       </div>
-      <div class="text-bg">
-        <span class="text-a-style">{{ currentTip }}</span>
+      <div class="operate-center align-center">
+        <div v-if="!isPlay" class="circle rewind align-center" @click="rewind()">
+          <el-tooltip :open-delay="500" content="上一个轨迹点">
+            <svg-icon icon-class="back"/>
+          </el-tooltip>
+        </div>
+        <div class="circle play align-center" @click="channel()">
+          <el-tooltip :content="isPlayStr" :open-delay="500">
+            <svg-icon :icon-class="isPlayIcon"/>
+          </el-tooltip>
+        </div>
+        <div v-if="!isPlay" class="circle fastforward align-center" @click="fastforward()">
+          <el-tooltip :open-delay="500" content="下一个轨迹点">
+            <svg-icon icon-class="forward"/>
+          </el-tooltip>
+        </div>
       </div>
-    </div>
-    <div class="operate-center align-center">
-      <div v-if="!isPlay" class="circle rewind align-center" @click="rewind()">
-        <Tooltip content="上一个轨迹点" transfer>
-          <Icon :class="{'disable-color': index <= 0}" type="ios-rewind" size="16" style="margin-right: 2px"/>
-        </Tooltip>
-      </div>
-      <div class="circle play align-center" @click="channel()">
-        <Tooltip :content="isPlayStr" transfer>
-          <Icon :type="isPlayIcon" :style="isPlayStyle" size="38"/>
-        </Tooltip>
-      </div>
-      <div v-if="!isPlay" class="circle fastforward align-center" @click="fastforward()">
-        <Tooltip content="下一个轨迹点" transfer>
-          <Icon :class="{'disable-color': index >= videoData.length - 1}" type="ios-fastforward" size="16" style="margin-left: 2px"/>
-        </Tooltip>
-      </div>
-    </div>
-    <div class="operate-right">
-      <div class="text-bg">
-        <div><span>{{ endTip }}1</span></div>
-      </div>
-      <div class="text-bg speeds-option">
-        <div style="display: -webkit-inline-box">
-          <div v-for="(item, i) in speedArray" :key="i" :class="{ 'check-speed': currentSpeed === item.value }" @click="changeSpeed(item.value)">{{ item.name }}</div>
+      <div class="operate-right align-center">
+        <!-- <div class="text-bg">
+          <div><span>{{ endTip }}1</span></div>
+        </div> -->
+        <div class="text-bg">
+          <div style="display: -webkit-inline-box">
+            <div v-for="(item, i) in speedArray" :key="i" :class="{ 'check-speed': currentSpeed === item.value }" class="speeds-option" @click="changeSpeed(item.value)">{{ item.name }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -218,7 +210,7 @@ export default {
       return this.isPlay ? '暂停' : '播放'
     },
     isPlayIcon() {
-      return this.isPlay ? 'ios-pause' : 'ios-play'
+      return this.isPlay ? 'timeout' : 'play'
     },
     isPlayStyle() {
       return this.isPlay ? {} : { marginLeft: '5px' }
