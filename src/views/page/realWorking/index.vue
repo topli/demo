@@ -2,25 +2,25 @@
   <div class="list-template">
     <!--{{ pageName }}-->
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchForm" label-position="right">
+      <el-form :inline="true" :model="searchData" label-position="right">
         <!-- <el-form-item prop="GpsID">
-          <el-input v-model="ruleForm.gpsID" placeholder="设备编号" clearable/>
+          <el-input v-model="searchData.gpsID" placeholder="设备编号" clearable/>
         </el-form-item> -->
         <el-form-item prop="gpsNo" label="">
-          <el-input v-model="ruleForm.gpsNo" placeholder="设备编号" clearable/>
+          <el-input v-model="searchData.gpsNo" placeholder="设备编号" clearable/>
         </el-form-item>
         <el-form-item prop="gpsNo" label="">
-          <el-input v-model="ruleForm.gpsNo" placeholder="动作编号" clearable/>
+          <el-input v-model="searchData.gpsNo" placeholder="动作编号" clearable/>
         </el-form-item>
         <el-form-item prop="gpsNo" label="">
-          <el-input v-model="ruleForm.gpsNo" placeholder="工作模式" clearable/>
+          <el-input v-model="searchData.gpsNo" placeholder="工作模式" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>
-    <!-- <div class="btns">
-      <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
+    <div class="btns">
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
-    </div> -->
+    </div>
     <div class="table">
       <t-for-col
         :data="list"
@@ -158,11 +158,11 @@ export default {
         }
 
       ],
-      ruleForm: {
-        GpsID: '',
-        StartTime: '',
-        EndTime: '',
-        TargetResv: ''
+      fileType: 'realWorking',
+      fileName: this.$t('route.' + this.$route.name),
+      searchData: {
+        pageNo: 1,
+        pageSize: 10
       }
     }
   },

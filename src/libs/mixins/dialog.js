@@ -23,7 +23,12 @@ export default {
       this.$dialogBox({ components: importTemplate, title: '导入', width: '400px', propsData: { fileType: this.fileType }})
     },
     exportFun() {
-      this.$dialogBox({ components: exportTemplate, title: '导出', width: '400px', propsData: { fileType: this.fileType }})
+      if (!this.fileType) {
+        console.log(this.$t('app.fileTypeNullError'))
+        this.$message.error(this.$t('app.fileTypeNullError'))
+        return
+      }
+      this.$dialogBox({ components: exportTemplate, title: '导出', width: '400px', props: { propObject: { fileType: this.fileType, searchData: this.searchData, columnsTitle: this.columnsTitle, fileName: this.fileName }}})
     }
   },
   watch: {}

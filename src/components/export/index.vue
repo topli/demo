@@ -12,10 +12,15 @@
 </template>
 
 <script>
+import { getStorage, parseTime } from '@/libs/utils'
 export default {
   props: {
     id: {
       type: Number,
+      default: null
+    },
+    propObject: {
+      type: Object,
       default: null
     }
   },
@@ -33,9 +38,43 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       })
       setTimeout(() => {
+        this.handleDownload(this.propObject)
         loading.close()
         this.onSub()
       }, 2000)
+    },
+    handleDownload(propObject) {
+      this.downloadLoading = true
+      import('@/libs/utils/exportExcel').then(excel => {
+        const [tHeader, filterVal] = [[], []]
+        propObject.columnsTitle.forEach(item => {
+          tHeader.push(item.title)
+          filterVal.push(item.key)
+        })
+        const localData = JSON.parse(getStorage('localData'))
+        let list = localData[propObject.fileType].list
+        if (propObject.searchData.pageNo && propObject.searchData.pageSize) {
+          list = list.slice((propObject.searchData.pageNo - 1) * propObject.searchData.pageSize, (propObject.searchData.pageNo * propObject.searchData.pageSize) > list.length ? list.length : propObject.searchData.pageNo * propObject.searchData.pageSize)
+        }
+        const data = this.formatJson(filterVal, list)
+        excel.export_json_to_excel({
+          header: tHeader,
+          data,
+          filename: this.propObject.fileName,
+          autoWidth: true,
+          bookType: 'xlsx'
+        })
+        this.downloadLoading = false
+      })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => {
+        if (j === 'timestamp') {
+          return parseTime(v[j])
+        } else {
+          return v[j]
+        }
+      }))
     }
   }
 }
