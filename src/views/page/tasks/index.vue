@@ -60,9 +60,18 @@ export default {
           title: this.$t('tasks.name')
         },
         {
+          key: 'goods',
+          title: this.$t('tasks.goods'),
+          width: '100'
+        },
+        {
           key: 'devices',
           title: this.$t('tasks.devices'),
           minWidth: 300
+        },
+        {
+          key: 'totalQuqntity',
+          title: this.$t('tasks.totalQuqntity') + '(t)'
         },
         {
           key: 'progress',

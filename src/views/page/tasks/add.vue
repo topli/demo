@@ -17,6 +17,9 @@
         <el-form-item :label="$t('tasks.goods')" prop="goods">
           <el-input v-model="form.goods" clearable/>
         </el-form-item>
+        <el-form-item :label="$t('tasks.totalQuqntity')" prop="totalQuqntity">
+          <el-input v-model="form.totalQuqntity" clearable/>
+        </el-form-item>
         <el-form-item :label="$t('tasks.receiving')" prop="receiving">
           <el-input v-model="form.receiving" clearable/>
         </el-form-item>
@@ -32,6 +35,7 @@
         <el-form-item :label="$t('tasks.isRemind')" prop="isRemind">
           <el-switch v-model="form.isRemind" clearable/>
         </el-form-item>
+        <br>
         <el-form-item :label="$t('tasks.expiryDate')" prop="expiryDate">
           <el-date-picker
             v-model="form.expiryDate"
