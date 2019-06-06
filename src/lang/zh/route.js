@@ -7,7 +7,7 @@ export default {
     menu: '菜单管理',
     pages: '页面管理',
     // -----------
-    sysInfoM: '系统信息管理',
+    sysInfoM: '基础信息管理',
     userM: '用户中心',
     user: '用户管理',
     role: '角色权限',
@@ -44,7 +44,7 @@ export default {
     currentTaskReport: '当前任务进度统计',
     map: '地图',
     reportCenter: '统计中心',
-    taskProgress: '任务进度监控统计',
+    taskProgress: '设备分布监控统计',
     excavatorMiningTrend: '挖机开采量趋势分析',
     playback: '轨迹回放'
   }

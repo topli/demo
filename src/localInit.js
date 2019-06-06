@@ -249,8 +249,194 @@ const data = {
   menu: {
     data: [
       {
+        id: 10,
+        name: '监控平台',
+        order: 2,
+        type: 1,
+        status: true,
+        child: [
+          {
+            id: 11,
+            name: '设备监控',
+            order: 1,
+            type: 1,
+            status: true,
+            child: [
+              {
+                id: 12,
+                name: '实时状态查询',
+                order: 1,
+                type: 2,
+                identification: 'realWorking',
+                status: true,
+                linkType: 1,
+                child: []
+              },
+              {
+                id: 13,
+                name: '实时地图监控',
+                order: 2,
+                type: 2,
+                identification: 'realWorkingMap',
+                status: true,
+                linkType: 1,
+                child: []
+              },
+              {
+                id: 50,
+                name: '轨迹回放',
+                order: 2,
+                type: 2,
+                identification: 'playback',
+                status: true,
+                linkType: 1,
+                child: []
+              }
+            ]
+          },
+          {
+            id: 14,
+            name: '日常监控',
+            order: 2,
+            type: 2,
+            status: true,
+            identification: 'videoDaily',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 15,
+            name: '设备故障报警',
+            order: 3,
+            type: 2,
+            status: true,
+            identification: 'deviceError',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 51,
+            name: '设备报警设置',
+            order: 3,
+            type: 2,
+            status: true,
+            identification: 'deviceErrorSet',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 16,
+            name: '电子围栏',
+            order: 4,
+            type: 2,
+            status: true,
+            identification: 'enclosure',
+            linkType: 1,
+            child: []
+          }
+        ]
+      },
+      {
+        id: 17,
+        name: '任务管理',
+        order: 3,
+        type: 1,
+        status: true,
+        child: [
+          {
+            id: 18,
+            name: '任务列表',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'tasks',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 19,
+            name: '历史调度',
+            order: 2,
+            type: 2,
+            status: true,
+            identification: 'tasksDispatch',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 6,
+            name: '司机排班',
+            order: 4,
+            type: 2,
+            identification: 'driverTask',
+            status: true,
+            linkType: 1,
+            child: []
+          }
+        ]
+      },
+      {
+        id: 22,
+        name: '统计中心',
+        order: 4,
+        type: 1,
+        status: true,
+        child: [
+          {
+            id: 22,
+            name: '当前任务进度统计',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'currentTaskReport',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 23,
+            name: '设备故障统计表',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'deviceErrorReport',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 52,
+            name: '设备分布监控统计',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'taskProgress',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 53,
+            name: '挖机开采量趋势分析',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'excavatorMiningTrend',
+            linkType: 1,
+            child: []
+          },
+          {
+            id: 54,
+            name: '实时状态统计',
+            order: 1,
+            type: 2,
+            status: true,
+            identification: 'realWorking',
+            linkType: 1,
+            child: []
+          }
+        ]
+      },
+      {
         id: 1,
-        name: '系统信息管理',
+        name: '基础信息管理',
         order: 1,
         type: 1,
         path: 'sys',
@@ -294,16 +480,6 @@ const data = {
                 status: true,
                 linkType: 1,
                 child: []
-              },
-              {
-                id: 6,
-                name: '司机排班',
-                order: 4,
-                type: 2,
-                identification: 'driverTask',
-                status: true,
-                linkType: 1,
-                child: []
               }
             ]
           },
@@ -326,7 +502,7 @@ const data = {
               },
               {
                 id: 9,
-                name: '挖机健康监控大屏',
+                name: '设备健康监控',
                 order: 2,
                 linkType: 3,
                 type: 2,
@@ -335,132 +511,6 @@ const data = {
                 child: []
               }
             ]
-          }
-        ]
-      },
-      {
-        id: 10,
-        name: '监控平台',
-        order: 2,
-        type: 1,
-        status: true,
-        child: [
-          {
-            id: 11,
-            name: '设备监控',
-            order: 1,
-            type: 1,
-            status: true,
-            child: [
-              {
-                id: 12,
-                name: '实时状态查询',
-                order: 1,
-                type: 2,
-                identification: 'realWorking',
-                status: true,
-                linkType: 1,
-                child: []
-              },
-              {
-                id: 13,
-                name: '实时地图监控',
-                order: 2,
-                type: 2,
-                identification: 'realWorkingMap',
-                status: true,
-                linkType: 1,
-                child: []
-              }
-            ]
-          },
-          {
-            id: 14,
-            name: '日常监控',
-            order: 2,
-            type: 2,
-            status: true,
-            identification: 'videoDaily',
-            linkType: 1,
-            child: []
-          },
-          {
-            id: 15,
-            name: '设备故障报警',
-            order: 3,
-            type: 2,
-            status: true,
-            identification: 'deviceError',
-            linkType: 1,
-            child: []
-          },
-          {
-            id: 16,
-            name: '电子围栏',
-            order: 4,
-            type: 2,
-            status: true,
-            identification: 'enclosure',
-            linkType: 1,
-            child: []
-          }
-        ]
-      },
-      {
-        id: 17,
-        name: '任务管理',
-        order: 3,
-        type: 1,
-        status: true,
-        child: [
-          {
-            id: 18,
-            name: '任务列表',
-            order: 1,
-            type: 2,
-            status: true,
-            identification: 'tasks',
-            linkType: 1,
-            child: []
-          },
-          {
-            id: 19,
-            name: '历史调度',
-            order: 2,
-            type: 2,
-            status: true,
-            identification: 'tasksDispatch',
-            linkType: 1,
-            child: []
-          }
-        ]
-      },
-      {
-        id: 22,
-        name: '报表中心',
-        order: 4,
-        type: 1,
-        status: true,
-        child: [
-          {
-            id: 22,
-            name: '当前任务进度统计',
-            order: 1,
-            type: 2,
-            status: true,
-            identification: 'currentTaskReport',
-            linkType: 1,
-            child: []
-          },
-          {
-            id: 23,
-            name: '设备故障统计表',
-            order: 1,
-            type: 2,
-            status: true,
-            identification: 'deviceErrorReport',
-            linkType: 1,
-            child: []
           }
         ]
       },
@@ -535,10 +585,10 @@ const data = {
       { deviceNo: '120301070010A', driverName: '谢军' },
       { deviceNo: '120301070011A', driverName: '程磊' },
       { deviceNo: '120301070012A', driverName: '尹涛' },
-      { deviceNo: '120301070012A', driverName: '李明' },
-      { deviceNo: '120301070012A', driverName: '何乐' },
-      { deviceNo: '120301070012A', driverName: '张扬' },
-      { deviceNo: '120301070012A', driverName: '王利桃' }
+      { deviceNo: '120301070013A', driverName: '李明' },
+      { deviceNo: '120301070014A', driverName: '何乐' },
+      { deviceNo: '120301070015A', driverName: '张扬' },
+      { deviceNo: '120301070016A', driverName: '王利桃' }
     ]
   },
   tasks: {

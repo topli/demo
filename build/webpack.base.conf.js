@@ -97,11 +97,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    })
+    new VueLoaderPlugin()
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery'
+    // })
   ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue

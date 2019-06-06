@@ -76,69 +76,6 @@ export const constantRouterMap = [
     }]
   },
   {
-    path: '/sysInfoM',
-    component: Layout,
-    name: 'sysInfoM',
-    redirect: 'noredirect',
-    meta: { title: 'sysInfoM', icon: 'siji' },
-    children: [
-      {
-        path: 'userM',
-        name: 'userM',
-        component: routeView,
-        redirect: 'noredirect',
-        meta: { title: 'userM' },
-        children: [
-          {
-            path: 'user',
-            name: 'user',
-            component: routes['user'],
-            meta: { title: 'user' }
-          },
-          {
-            path: 'org',
-            name: 'org',
-            component: routes['org'],
-            meta: { title: 'org' }
-          },
-          {
-            path: 'role',
-            name: 'role',
-            component: routes['role'],
-            meta: { title: 'role' }
-          },
-          {
-            path: 'driverTask',
-            name: 'driverTask',
-            component: routes['driverTask'],
-            meta: { title: 'driverTask' }
-          }
-        ]
-      },
-      {
-        path: 'deviceM',
-        name: 'deviceM',
-        component: routeView,
-        redirect: 'noredirect',
-        meta: { title: 'deviceM' },
-        children: [
-          {
-            path: 'deviceAttrM',
-            name: 'deviceAttrM',
-            component: routes['deviceAttrM'],
-            meta: { title: 'deviceAttrM' }
-          },
-          {
-            path: 'deviceReport',
-            name: 'deviceReport',
-            component: routes['deviceReport'],
-            meta: { title: 'deviceReport' }
-          }
-        ]
-      }
-    ]
-  },
-  {
     path: '/monitorM',
     component: Layout,
     name: 'monitorM',
@@ -179,27 +116,27 @@ export const constantRouterMap = [
         meta: { title: 'videoDaily' }
       },
       {
-        path: 'deviceAlarmInfo',
-        name: 'deviceAlarmInfo',
-        // component: routes['deviceError'],
-        component: routeView,
-        redirect: 'noredirect',
-        meta: { title: 'deviceAlarmInfo' },
-        children: [
-          {
-            path: 'deviceError',
-            name: 'deviceError',
-            component: routes['deviceError'],
-            meta: { title: 'deviceError' }
-          },
-          {
-            path: 'deviceErrorSet',
-            name: 'deviceErrorSet',
-            component: routes['deviceErrorSet'],
-            meta: { title: 'deviceErrorSet' }
-          }
-        ]
+        path: 'deviceError',
+        name: 'deviceError',
+        component: routes['deviceError'],
+        meta: { title: 'deviceError' }
       },
+      {
+        path: 'deviceErrorSet',
+        name: 'deviceErrorSet',
+        component: routes['deviceErrorSet'],
+        meta: { title: 'deviceErrorSet' }
+      },
+      // {
+      //   path: 'deviceAlarmInfo',
+      //   name: 'deviceAlarmInfo',
+      //   // component: routes['deviceError'],
+      //   component: routeView,
+      //   redirect: 'noredirect',
+      //   meta: { title: 'deviceAlarmInfo' },
+      //   children: [
+      //   ]
+      // },
       {
         path: 'enclosure',
         name: 'enclosure',
@@ -226,6 +163,12 @@ export const constantRouterMap = [
         name: 'tasksDispatch',
         component: routes['tasksDispatch'],
         meta: { title: 'tasksDispatch' }
+      },
+      {
+        path: 'driverTask',
+        name: 'driverTask',
+        component: routes['driverTask'],
+        meta: { title: 'driverTask' }
       }
     ]
   },
@@ -281,6 +224,63 @@ export const constantRouterMap = [
         name: 'map',
         component: routes['map'],
         meta: { title: 'map' }
+      }
+    ]
+  },
+  {
+    path: '/sysInfoM',
+    component: Layout,
+    name: 'sysInfoM',
+    redirect: 'noredirect',
+    meta: { title: 'sysInfoM', icon: 'siji' },
+    children: [
+      {
+        path: 'userM',
+        name: 'userM',
+        component: routeView,
+        redirect: 'noredirect',
+        meta: { title: 'userM' },
+        children: [
+          {
+            path: 'user',
+            name: 'user',
+            component: routes['user'],
+            meta: { title: 'user' }
+          },
+          {
+            path: 'org',
+            name: 'org',
+            component: routes['org'],
+            meta: { title: 'org' }
+          },
+          {
+            path: 'role',
+            name: 'role',
+            component: routes['role'],
+            meta: { title: 'role' }
+          }
+        ]
+      },
+      {
+        path: 'deviceM',
+        name: 'deviceM',
+        component: routeView,
+        redirect: 'noredirect',
+        meta: { title: 'deviceM' },
+        children: [
+          {
+            path: 'deviceAttrM',
+            name: 'deviceAttrM',
+            component: routes['deviceAttrM'],
+            meta: { title: 'deviceAttrM' }
+          },
+          {
+            path: 'deviceReport',
+            name: 'deviceReport',
+            component: routes['deviceReport'],
+            meta: { title: 'deviceReport' }
+          }
+        ]
       }
     ]
   },

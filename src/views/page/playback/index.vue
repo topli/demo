@@ -1,87 +1,101 @@
 <template>
-  <div class="map-template play">
-    <div id="map" class="map"/>
-    <div class="play-device">
-      <div class="play-device-tree">
-        <div class="play-device-tree-title">
+  <el-container class="map-template">
+    <el-aside :width="leftWidth" style="transition: width 1s ease;position: relative;overflow: hidden;">
+      <div class="left-plan">
+        <div class="left-plan-title">
           设备列表
         </div>
-        <el-tree :data="data" :props="defaultProps" default-expand-all @node-click="handleNodeClick"/>
+        <el-tree
+          :data="data"
+          :default-expanded-keys="['1', '2']"
+          :props="defaultProps"
+          :render-content="renderContent"
+          node-key="id"
+          @node-click="handleNodeClick"/>
       </div>
-      <!-- <transition enter-active-class="animated fadeInLeft" leave-active-class="animated fadeOutLeft">
-        <div v-if="showSearch" class="play-device-tree">
-          <div class="play-device-tree-title">
-            设备列表
-          </div>
-          <el-tree :data="data" :props="defaultProps" @node-click="handleNodeClick"/>
-        </div>
-      </transition>
-      <div :style="showSearch ? {left: '300px',right: '-18px' }: {left: 0, right: null}" class="play-device-show-hide">
-        <div class="play-device-show-hide-icon">
-          <svg-icon :icon-class="showSearch ? 'toLeft' : 'toRight'"/>
-        </div>
-      </div> -->
-    </div>
-    <!-- <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
-      <div class="play-page">
-        <div class="play-page-progress">
-          <div class="play-page-progress-line">2</div>
-        </div>
-        <div class="play-page-btn">3</div>
+      <div class="show-hide-left" @click="toggleShowLeft()">
+        <svg-icon :icon-class="showLeft ? 'toLeft' : 'toRight'" color="white"/>
       </div>
-    </transition> -->
-  </div>
+    </el-aside>
+    <el-container>
+      <el-main>
+        <div id="map" class="map"/>
+      </el-main>
+      <el-footer height="60px">
+        <div style="width:100%;height:100%;position:relative;">
+          <play-slider :video-data="lines" :map="map" @play="playLines"/>
+        </div>
+      </el-footer>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
 import '@/styles/map-template.scss'
 import BMap from 'BMap'
+import playSlider from './components/playSlider'
 export default {
-  components: {},
+  components: { playSlider },
   data() {
     return {
       map: null,
-      showSearch: false,
+      showLeft: true,
       data: [
         {
           label: '北京总公司',
+          icon: 'deviceHome',
+          id: 1,
           children: [
             {
               label: '山西分公司',
+              icon: 'deviceHome',
+              id: 2,
               children: [
                 {
-                  label: '91376494'
+                  label: '120301070001A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '41055218'
+                  label: '120301070002A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '91232187'
+                  label: '120301070003A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '41108585'
+                  label: '120301070004A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '91376514'
+                  label: '120301070005A',
+                  icon: 'deviceNum'
                 }
               ]
             }, {
               label: '武汉分公司',
+              icon: 'deviceHome',
+              id: 3,
               children: [
                 {
-                  label: '41086687'
+                  label: '120301070006A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '41086686'
+                  label: '120301070007A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '91297925'
+                  label: '120301070008A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '41086595'
+                  label: '120301070009A',
+                  icon: 'deviceNum'
                 },
                 {
-                  label: '41080622'
+                  label: '120301070010A',
+                  icon: 'deviceNum'
                 }
               ]
             }
@@ -91,10 +105,16 @@ export default {
         children: 'children',
         label: 'label'
       },
-      interval: null
+      interval: null,
+      lines: [],
+      marker: null
     }
   },
-  computed: {},
+  computed: {
+    leftWidth() {
+      return this.showLeft ? '300px' : '15px'
+    }
+  },
   watch: {},
   created() {
   },
@@ -122,9 +142,9 @@ export default {
         ]
       }))
       var myIcon = new BMap.Icon('/static/images/device.png', new BMap.Size(28, 28), { anchor: new BMap.Size(10, 10) })
-      var marker = new BMap.Marker(new BMap.Point(112.352013, 39.469762), { icon: myIcon })
-      this.map.addOverlay(marker)
-      let lines = [
+      this.marker = new BMap.Marker(new BMap.Point(112.352013, 39.469762), { icon: myIcon })
+      this.map.addOverlay(this.marker)
+      this.lines = [
         [112.352013, 39.469762, 300],
         [112.345348, 39.472951, 300],
         [112.345348, 39.472505, 300],
@@ -168,14 +188,14 @@ export default {
         [112.295599, 39.428057, 150],
         [112.296749, 39.425827, 150]
       ]
-      lines = lines.map((item) => {
+      this.lines = this.lines.map((item) => {
         return {
           point: new BMap.Point(item[0], item[1]),
           rotation: item[2]
         }
       })
       const polyline = new BMap.Polyline(
-        lines.map(item => {
+        this.lines.map(item => {
           return item.point
         }), // 所有的GPS坐标点
         {
@@ -185,15 +205,26 @@ export default {
         })
       // 绘制线路
       this.map.addOverlay(polyline)
-      let index = 0
-      this.interval = setInterval(() => {
-        if (index > lines.length - 1) {
-          index = 0
-        }
-        marker.setPosition(lines[index].point)
-        marker.setRotation(lines[index].rotation)
-        index++
-      }, 200)
+    },
+    renderContent(h, { node, data, store }) {
+      return (
+        <span class='custom-tree-node'>
+          <svg-icon icon-class={node.icon}/>
+          <span style='margin-left:5px;'>{node.label}</span>
+        </span>
+      )
+    },
+    handleNodeClick() {
+
+    },
+    toggleShowLeft() {
+      this.showLeft = !this.showLeft
+      console.log(this.showLeft)
+    },
+    playLines(index) {
+      console.log(index)
+      this.marker.setPosition(this.lines[index].point)
+      this.marker.setRotation(this.lines[index].rotation)
     }
   }
 }
@@ -259,5 +290,34 @@ export default {
       background: #2c2626;
     }
   }
+}
+.left-plan{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  &-title{
+    text-align: center;
+    width: 100%;
+    min-width: 120px;
+  }
+}
+.el-main {
+  padding: 0!important;
+}
+.el-footer{
+  padding: 0!important;
+}
+.show-hide-left{
+  cursor: pointer;
+  background: #a92529;
+  width: 15px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

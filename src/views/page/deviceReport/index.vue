@@ -401,7 +401,8 @@ export default {
             display: block;
           }
           .total-child-title {
-            color: aqua
+            color: aqua;
+            font-size: 1.3vw;
           }
           .split-line {
             position: absolute;

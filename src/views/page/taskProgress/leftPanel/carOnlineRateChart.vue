@@ -10,16 +10,17 @@
   }
 }
 .left-panel-item {
-  height: 28%;
+  height: 30%;
   .hd {
-    height: 0.16rem;
-    padding-left: 0.42rem;
-    font-size: 0.12rem;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 42px;
+    font-size: 12px;
     font-weight: bold;
     color: #3de6b1;
-    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 0.18rem center
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 18px center
       no-repeat;
-    background-size: auto 0.09rem;
+    background-size: auto 9px;
   }
   .bd {
     position: relative;
@@ -83,66 +84,66 @@ export default {
       // 绘制图表
       const seriesData = [
         {
-          value: ['2019-05-17 14:09', 23]
+          value: ['2019-06-02 14:09', 23]
         },
         {
-          value: ['2019-05-17 14:08', 324]
+          value: ['2019-06-02 14:08', 43]
         },
         {
-          value: ['2019-05-17 14:07', 215]
+          value: ['2019-06-02 14:07', 58]
         },
         {
-          value: ['2019-05-17 14:06', 213]
+          value: ['2019-06-02 14:06', 67]
         },
         {
-          value: ['2019-05-17 14:05', 214]
+          value: ['2019-06-02 14:05', 34]
         },
         {
-          value: ['2019-05-17 14:04', 251]
+          value: ['2019-06-02 14:04', 88]
         },
         {
-          value: ['2019-05-17 14:03', 231]
+          value: ['2019-06-02 14:03', 25]
         },
         {
-          value: ['2019-05-17 14:02', 24]
+          value: ['2019-06-02 14:02', 24]
         },
         {
-          value: ['2019-05-17 14:01', 25]
+          value: ['2019-06-02 14:01', 25]
         },
         {
-          value: ['2019-05-17 14:00', 25]
+          value: ['2019-06-02 14:00', 25]
         }
       ]
       const seriesData2 = [
         {
-          value: ['2019-05-17 14:09', 233]
+          value: ['2019-06-02 14:09', 48]
         },
         {
-          value: ['2019-05-17 14:08', 224]
+          value: ['2019-06-02 14:08', 36]
         },
         {
-          value: ['2019-05-17 14:07', 251]
+          value: ['2019-06-02 14:07', 21]
         },
         {
-          value: ['2019-05-17 14:06', 232]
+          value: ['2019-06-02 14:06', 18]
         },
         {
-          value: ['2019-05-17 14:05', 241]
+          value: ['2019-06-02 14:05', 26]
         },
         {
-          value: ['2019-05-17 14:04', 252]
+          value: ['2019-06-02 14:04', 77]
         },
         {
-          value: ['2019-05-17 14:03', 213]
+          value: ['2019-06-02 14:03', 83]
         },
         {
-          value: ['2019-05-17 14:02', 242]
+          value: ['2019-06-02 14:02', 42]
         },
         {
-          value: ['2019-05-17 14:01', 213]
+          value: ['2019-06-02 14:01', 29]
         },
         {
-          value: ['2019-05-17 14:00', 251]
+          value: ['2019-06-02 14:00', 52]
         }
       ]
       const option = {
@@ -209,14 +210,20 @@ export default {
                 color: 'rgba(1, 53, 64, 1)'
               }
             },
-            minInterval: 10,
+            // minInterval: 10,
+            min: 0,
+            max: 100,
+            interval: 25,
             boundaryGap: [0, '20%']
           },
           {
             name: '在线数量/万',
             type: 'value',
             position: 'right',
-            minInterval: 100,
+            // minInterval: 100,
+            min: 0,
+            max: 300,
+            interval: 100,
             axisLabel: {
               formatter: '{value}'
             },

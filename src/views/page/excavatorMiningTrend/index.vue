@@ -17,6 +17,11 @@
     .item2,.item3 {
       margin-right: 5px;
     }
+    .search-button {
+      position: absolute;
+      top: 37px;
+      right: 65px;
+    }
   }
   .chart-half {
     background: #fff;
@@ -60,12 +65,12 @@
 </style>
 <template>
   <div class="tem-div">
-    <div class="search-div">
+    <div :style="{height: searchDivHeight+ 'px'}" class="search-div">
       <el-form
         label-position="left"
         inline
         class="clear"
-        style="padding-top: 20px;"
+        style="padding-top: 20px;padding-right: 140px"
       >
         <el-form-item class="item1" label-width="80px" label="日期范围">
           <el-radio-group v-model="timeType" @change="changeTime(timeType)">
@@ -121,15 +126,15 @@
             <el-option v-for="(option, index) in cityList" :value="option.value" :key="index">{{ option.label }}</el-option>
           </el-select>
         </el-form-item>
-        <el-button :loading="actionLoading" type="primary" icon="ios-search" @click="getList">查询</el-button>
       </el-form>
+      <el-button :loading="actionLoading" class="search-button" type="primary" icon="ios-search" @click="getList">查询</el-button>
     </div>
     <div class="chart-half">
       <div class="chart-title">
         <span>全矿总量及油耗统计</span>
       </div>
       <!-- <bar-chart :value="listData1"/> -->
-      <echarts :report-object="listData1" height="300"/>
+      <echarts :report-object="listData1" :height="chartOneHeight" width="96%"/>
     </div>
     <div class="chart-half-two">
       <div class="chart-1">
@@ -137,14 +142,14 @@
           <span>故障数量占比</span>
         </div>
         <!-- <pie-chart :value="listData2"/> -->
-        <echarts :report-object="listData2" height="235"/>
+        <echarts :report-object="listData2" :height="chartTwoHeight"/>
       </div>
       <div class="chart-2">
         <div class="chart-title">
           <span>挖机开采量总和统计</span>
         </div>
         <!-- <scatter-chart :value="listData3"/> -->
-        <echarts :report-object="listData3" height="255"/>
+        <echarts :report-object="listData3" :height="chartTwoHeight"/>
       </div>
     </div>
   </div>
@@ -162,7 +167,12 @@ export default {
   // mixins: [remote, date, searchDate],
   data() {
     return {
-      searchData: {},
+      searchData: {
+        startTime: '',
+        endTime: '',
+        type: '',
+        status: ''
+      },
       typeList: [],
       cityList: [],
       actionLoading: false,
@@ -177,6 +187,9 @@ export default {
         { label: '年', value: 3 }
       ],
       dateType: 'date',
+      chartOneHeight: '252',
+      chartTwoHeight: '206',
+      searchDivHeight: '72',
       reportDate: {
         disabledDate(date) {
           return date && date.valueOf() > Date.now()
@@ -200,6 +213,14 @@ export default {
     if (this.sidebar.opened) {
       this.$store.dispatch('ToggleSideBar')
     }
+    this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
+    this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 48.6 + ''
+    this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
+    console.log(this.searchDivHeight)
+    window.onresize = () => {
+      this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
+      this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 44.6 + ''
+    }
   },
   methods: {
     // 日期格式
@@ -219,12 +240,12 @@ export default {
           this.dateType = 'month'
           console.log(this.searchData.startTime, this.searchData.endTime)
           console.log(year, month)
-          this.searchData.endTime = '' + year + month
+          this.searchData.endTime = '' + year
           if (month < 6) {
             year = year - 1
             month = month + 12 - 6
           }
-          this.searchData.startTime = '' + year + month
+          this.searchData.startTime = '' + year
           console.log(this.searchData.startTime, this.searchData.endTime)
           break
         case 3:
@@ -258,12 +279,16 @@ export default {
           }
         },
         grid: {
-          top: '5%',
-          left: '9%',
+          top: '10%',
+          left: '4%',
+          bottom: '4%',
           containLabel: true
         },
         legend: {
-          data: ['(万KM)', '(KM)']
+          data: ['当月总方量', '当月累计油耗'],
+          orient: 'vertical',
+          right: '0%',
+          top: '8%'
         },
         xAxis: [
           {
@@ -298,12 +323,12 @@ export default {
         ],
         series: [
           {
-            name: '日累计行程里程',
+            name: '当月总方量',
             type: 'bar',
             data: [3, 6, 8, 32, 57, 88, 109, 145, 45, 29, 24, 17]
           },
           {
-            name: '日均单车行驶里程',
+            name: '当月累计油耗',
             type: 'line',
             yAxisIndex: 1,
             data: [11, 18, 19, 20, 48, 30, 35, 45, 34, 29, 21, 11],
@@ -325,15 +350,15 @@ export default {
         legend: {
           orient: 'vertical',
           left: '75%',
-          top: '15%',
+          top: '18%',
           data: ['平朔安太堡露天矿', '杨庄煤矿', '山西煤矿']
         },
         series: [
           {
-            name: '里程',
+            name: '故障数量',
             type: 'pie',
-            radius: ['40%', '70%'],
-            center: ['35%', '40%'],
+            radius: ['50%', '80%'],
+            center: ['35%', '50%'],
             // avoidLabelOverlap: false,
             itemStyle: {
               emphasis: {
@@ -401,8 +426,9 @@ export default {
           borderRadius: 5
         },
         grid: {
-          top: '5%',
+          top: '7%',
           left: '9%',
+          bottom: '9%',
           containLabel: true
         },
         legend: {

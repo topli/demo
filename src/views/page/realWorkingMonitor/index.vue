@@ -1,7 +1,7 @@
 <template>
-  <div class="map-template">
+  <div class="map-template" style="position:relative;">
     <div class="map-search">
-      <el-input :placeholder="$t('device.number')"/>
+      <el-input :placeholder="$t('device.number')" v-model="deviceNumber"/>
     </div>
     <div id="map" style="height: 500px;width: 100%;"/>
     <div class="device-info">
@@ -114,7 +114,7 @@
                   <div style="display: inline-block">
                     <div style="color:blue;font-size: 30px">10 ℃</div>
                     <div style="font-size: 12px;color: #515a6e">
-                      <div>最高温度</div>
+                      <div>最低温度</div>
                       <div>探针：0</div>
                     </div>
                   </div>
@@ -173,6 +173,7 @@ export default {
     return {
       map: null,
       dashboards: [],
+      deviceNumber: '120301070001A',
       infos1: [
         { title: '总里程', value: '46523km' },
         { title: '小计里程', value: '56km' },
@@ -255,8 +256,8 @@ export default {
           type: 'value',
           name: '℃',
           min: 0,
-          max: 25,
-          interval: 5,
+          max: 125,
+          interval: 25,
           axisLabel: {
             formatter: ''
           }
@@ -266,7 +267,7 @@ export default {
         {
           name: '温度',
           type: 'line',
-          data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+          data: [10, 31, 33, 45, 60, 10, 20, 23, 23, 16, 12.0, 21]
         }
       ]
     }
@@ -355,7 +356,7 @@ export default {
       }))
       var myIcon = new BMap.Icon('/static/images/loader.png', new BMap.Size(50, 50))
       var marker = new BMap.Marker(new BMap.Point(112.352013, 39.469762), { icon: myIcon })
-      var label = new BMap.Label('91376494', { offset: new BMap.Size(-5, 50) })
+      var label = new BMap.Label(this.deviceNumber, { offset: new BMap.Size(-23, 50) })
       marker.setLabel(label)
       this.map.addOverlay(marker)
     },

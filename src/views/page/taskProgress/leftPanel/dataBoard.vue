@@ -8,33 +8,37 @@
     }
   }
 }
+/deep/.digit {
+  font-size: 125%;
+}
 .left-panel-item {
   position: relative;
-  height: 39%;
+  height: 35%;
   .hd {
-    height: 0.16rem;
-    padding-left: 0.42rem;
-    font-size: 0.12rem;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 42px;
+    font-size: 12px;
     font-weight: bold;
     color: #3de6b1;
-    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 0.18rem center
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 18px center
       no-repeat;
-    background-size: auto 0.09rem;
+    background-size: auto 9px;
   }
   .bd {
     position: relative;
     height: 90%;
-    margin-top: 0.15rem;
+    margin-top: 2.4%;
     // 数据看板
     .item-content {
       // width: 1.64rem;
       height: 50%;
-      padding: 0 0.2rem 0.3rem 0.1rem;
-      line-height: 1;
+      padding: 0 5% 8% 3%;
+      line-height: 280%;
       .title {
-        font-size: 0.12rem;
+        font-size: 2%;
         color: #fff;
-        height: 0.12rem;
+        height: 19%;
         .icon {
           height: 100%;
           margin: 0;
@@ -56,8 +60,8 @@
           }
           h3 {
             margin: 0;
-            margin-left: 0.06rem;
-            font-size: 0.12rem;
+            margin-left: 4.5%;
+            font-size: 12px;
           }
           &.icon2 li {
             background-color: #9eec2f;
@@ -79,31 +83,32 @@
           align-items: baseline;
           border-bottom: 1px solid #0febff;
           // margin: 0.06rem 0;
-          padding-bottom: 0.06rem;
+          padding-bottom: 3.3%;
           .value {
-            height: 0.36rem !important;
-            font-size: 0.36rem;
+            height: 32px !important;
+            font-size: 210%;
             /deep/ .ctnr:last-child {
               width: 0;
             }
           }
           .unit {
-            font-size: 0.12rem;
+            font-size: 10px;
+            line-height: 100%;
           }
         }
         .vice-info {
-          font-size: 0.1rem;
+          font-size: 100%;
           // transform: scale(0.8);
           ul {
             padding-left: 0;
-            margin: 0.05rem 0;
+            margin: 2% 0;
           }
           ul li {
             color: #00d5e9;
             list-style: square;
             list-style-position: inside;
             text-align: left;
-            line-height: 0.18rem;
+            line-height: 170%;
             width: 100%;
             &:last-child {
               color: rgba(83, 254, 192, 1);
@@ -206,7 +211,7 @@
         <div class="content">
           <div class="content-info">
             <span class="value"/>
-            <span class="unit">辆</span>
+            <span class="unit">万辆</span>
           </div>
           <div class="vice-info">
             <ul>
@@ -288,7 +293,7 @@ export default {
       this.flip3 = new Flip({
         node: valueArry[2],
         from: 0,
-        to: 12236,
+        to: 13265,
         separator: '.',
         delay: 0.5,
         duration: 1.4

@@ -90,7 +90,7 @@ export default {
         {
           key: 'address',
           title: this.$t('enclosure.address'),
-          width: '250'
+          minWidth: '250'
         },
         {
           key: 'scope',
@@ -108,6 +108,7 @@ export default {
           title: this.$t('app.buttons'),
           width: '100',
           align: 'center',
+          fixed: 'right',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
