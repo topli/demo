@@ -73,14 +73,6 @@ export default {
           key: 'workAmount',
           title: this.$t('currentTaskReport.workAmount'),
           unit: this.$t('currentTaskReport.workAmountUnit')
-        },
-        {
-          key: 'status',
-          title: '状态',
-          filters: 'status',
-          render: (h, params, val) => {
-            return h('el-tag', val.label)
-          }
         }
       ],
       fileType: 'currentTaskReport',
