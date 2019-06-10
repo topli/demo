@@ -86,11 +86,6 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.list = res.data.list
-          this.list = this.list.map(item => {
-            this.$set(item, 'datetime', new Date().getTime())
-            return item
-          })
-          console.log(this.list)
           this.totalElement = res.data.total
         }, 1000)
       })
