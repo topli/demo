@@ -42,8 +42,7 @@
               :render-content="col.render"
               :scope="scope"
               :prop="col.key"
-              :filters="col.filters"
-              :dict-type="col.dictType"/>
+              :filters="col.filters"/>
           </template>
         </el-table-column>
       </template>

@@ -72,14 +72,7 @@ export default {
           key: 'color',
           title: this.$t('dict.color'),
           render: (h, params) => {
-            return h('el-tag', {
-              props: {
-                color: params.row.color
-              },
-              style: {
-                width: '30px'
-              }
-            })
+            return h('el-tag', { props: { color: params.row.color }, style: { width: '30px' }})
           }
         },
         // {
@@ -90,13 +83,8 @@ export default {
           key: 'status',
           title: this.$t('dict.status'),
           filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
-          render: (h, params) => {
-            return h('el-tag', {
-              props: {
-                type: params.row.status ? 'success' : 'danger'
-              }
-            },
-            params.row['_f_status'])
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {

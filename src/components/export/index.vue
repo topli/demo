@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import { getStorage, parseTime } from '@/libs/utils'
+import { getStorage } from '@/libs/utils'
+import Vue from 'vue'
 export default {
   props: {
     id: {
@@ -46,17 +47,16 @@ export default {
     handleDownload(propObject) {
       this.downloadLoading = true
       import('@/libs/utils/exportExcel').then(excel => {
-        const [tHeader, filterVal] = [[], []]
+        const tHeader = []
         propObject.columnsTitle.forEach(item => {
           tHeader.push(item.title)
-          filterVal.push(item.key)
         })
         const localData = JSON.parse(getStorage('localData'))
         let list = localData[propObject.fileType].list
         if (propObject.searchData.pageNo && propObject.searchData.pageSize) {
           list = list.slice((propObject.searchData.pageNo - 1) * propObject.searchData.pageSize, (propObject.searchData.pageNo * propObject.searchData.pageSize) > list.length ? list.length : propObject.searchData.pageNo * propObject.searchData.pageSize)
         }
-        const data = this.formatJson(filterVal, list)
+        const data = this.formatJson(list)
         excel.export_json_to_excel({
           header: tHeader,
           data,
@@ -67,14 +67,29 @@ export default {
         this.downloadLoading = false
       })
     },
-    formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
+    formatJson(list) {
+      return list.map(l => {
+        return this.propObject.columnsTitle.map(c => {
+          if (c.filters) {
+            let v = null
+            const type = c.filters.split('|').slice(0, 1)
+            const params = c.filters.split('|').slice(1, c.filters.length)
+            const test = Vue.filter(type)
+            if (test) {
+              v = test(l[c.key], ...params)
+            } else {
+              const getDictDatas = Vue.filter('getDictDatas')
+              if (!getDictDatas) {
+                console.error('not define filters: ' + c.filters)
+                return
+              }
+              v = getDictDatas(l[c.key], c.filters)
+            }
+            return typeof v === 'string' ? v : v.label
+          }
+          return l[c.key]
+        })
+      })
     }
   }
 }

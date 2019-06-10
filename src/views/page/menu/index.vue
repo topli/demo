@@ -57,11 +57,9 @@ export default {
         {
           title: this.$t('menu.type'),
           key: 'type',
-          dictType: 'menuType',
-          render: (h, params) => {
-            const f = params.row['_f_type']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'menuType',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
@@ -75,21 +73,17 @@ export default {
         {
           title: this.$t('menu.status'),
           key: 'status',
-          dictType: 'menuStatus',
-          render: (h, params) => {
-            const f = params.row['_f_status']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'menuStatus',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
           title: this.$t('menu.linkType'),
           key: 'linkType',
-          dictType: 'linkType',
-          render: (h, params) => {
-            const f = params.row['_f_linkType']
-            if (!f) return
-            return h('span', f.label)
+          filters: 'linkType',
+          render: (h, params, val) => {
+            return h('span', val.label)
           }
         },
         {

@@ -73,14 +73,18 @@ export default {
           key: 'workAmount',
           title: this.$t('currentTaskReport.workAmount'),
           unit: this.$t('currentTaskReport.workAmountUnit')
+        },
+        {
+          key: 'status',
+          title: '状态',
+          filters: 'status',
+          render: (h, params, val) => {
+            return h('el-tag', val.label)
+          }
         }
       ],
       fileType: 'currentTaskReport',
-      fileName: this.$t('route.' + this.$route.name),
-      searchData: {
-        pageNo: 1,
-        pageSize: 10
-      }
+      fileName: this.$t('route.' + this.$route.name)
     }
   },
   methods: {
@@ -90,6 +94,11 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.list = res.data.list
+          this.list = this.list.map(item => {
+            this.$set(item, 'datetime', new Date().getTime())
+            return item
+          })
+          console.log(this.list)
           this.totalElement = res.data.total
         }, 1000)
       })

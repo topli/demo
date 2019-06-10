@@ -29,8 +29,7 @@
           :render-content="column.render"
           :scope="scope"
           :prop="column.key"
-          :filters="column.filters"
-          :dict-type="column.dictType"/>
+          :filters="column.filters"/>
         <span v-else>{{ scope.row[column.key] }}</span>
       </template>
     </el-table-column>
@@ -106,7 +105,7 @@ export default {
     iconShow(index, record) {
       return index === 0 && record.child && record.child.length > 0;
     },
- 
+
     //设置表头全选
     renderHeader(h, data) {
       return h("span", [
@@ -239,7 +238,7 @@ export default {
   }
 }
 </style>
- 
+
 <style scoped>
 .ms-tree-space {
   position: relative;

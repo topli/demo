@@ -91,31 +91,33 @@ export default {
           key: 'status',
           title: this.$t('alarmSet.status'),
           align: 'center',
-          dictType: 'status',
-          render: (h, params) => {
-            const f = params.row['_f_status']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'status',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
           key: 'fuel',
-          title: this.$t('alarmSet.fuel') + '(L)',
+          title: this.$t('alarmSet.fuel'),
+          unit: 'L',
           align: 'center'
         },
         {
           key: 'temperature',
-          title: this.$t('alarmSet.temperature') + '(°C)',
+          title: this.$t('alarmSet.temperature'),
+          unit: '°C',
           align: 'center'
         },
         {
           key: 'pressure',
-          title: this.$t('alarmSet.pressure') + '(Kpa)',
+          title: this.$t('alarmSet.pressure'),
+          unit: 'Kpa',
           align: 'center'
         },
         {
           key: 'workingTime',
-          title: this.$t('alarmSet.workingTime') + '(h)',
+          title: this.$t('alarmSet.workingTime'),
+          unit: '(h)',
           width: '100',
           align: 'center'
         },
@@ -133,18 +135,21 @@ export default {
         // },
         {
           key: 'loadingCapacity',
-          title: this.$t('alarmSet.loadingCapacity') + '(kg)',
+          title: this.$t('alarmSet.loadingCapacity'),
+          unit: 'kg',
           align: 'center'
         },
         {
           key: 'speed',
-          title: this.$t('alarmSet.speed') + '(km/h)',
+          title: this.$t('alarmSet.speed'),
+          unit: 'km/h',
           width: '100',
           align: 'center'
         },
         {
           key: 'beyondSpeed',
-          title: this.$t('alarmSet.beyondSpeed') + '(s)',
+          title: this.$t('alarmSet.beyondSpeed'),
+          unit: 's',
           width: '120',
           align: 'center'
         },

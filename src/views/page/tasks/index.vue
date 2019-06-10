@@ -106,11 +106,9 @@ export default {
         {
           key: 'level',
           title: this.$t('tasks.level'),
-          dictType: 'taskLevel',
-          render: (h, params) => {
-            const f = params.row['_f_level']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'taskLevel',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
