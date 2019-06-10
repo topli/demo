@@ -52,7 +52,7 @@
   .chart-title {
     padding: 10px;
     span {
-      font-size: 14px;
+      font-size: 0.9vw;
       font-weight: 700;
       display: inline-block;
       width: 100%;
@@ -156,6 +156,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+// import { on } from '@/libs/utils/index'
 // import date from 'mixins/date'
 // import remote from 'mixins/remote'
 // import searchDate from 'mixins/searchDate'
@@ -220,9 +221,15 @@ export default {
     window.onresize = () => {
       this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
       this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 44.6 + ''
+      this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
     }
   },
   methods: {
+    // 屏幕的宽度设置echarts的fontSize
+    getSize() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 8.5
+    },
     // 日期格式
     changeTime(type) {
       console.log(type)
@@ -268,6 +275,9 @@ export default {
             crossStyle: {
               color: '#999'
             }
+          },
+          textStyle: {
+            fontSize: this.getSize()
           }
         },
         toolbox: {
@@ -279,7 +289,7 @@ export default {
           }
         },
         grid: {
-          top: '10%',
+          top: '13%',
           left: '4%',
           bottom: '4%',
           containLabel: true
@@ -288,7 +298,10 @@ export default {
           data: ['当月总方量', '当月累计油耗'],
           orient: 'vertical',
           right: '0%',
-          top: '8%'
+          top: '8%',
+          textStyle: {
+            fontSize: this.getSize()
+          }
         },
         xAxis: [
           {
@@ -296,6 +309,11 @@ export default {
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
+            },
+            axisLabel: {
+              textStyle: {
+                fontSize: this.getSize()
+              }
             }
           }
         ],
@@ -303,9 +321,17 @@ export default {
           {
             type: 'value',
             name: '(方量)',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             min: 0,
             max: 200,
-            interval: 40
+            interval: 40,
+            axisLabel: {
+              textStyle: {
+                fontSize: this.getSize()
+              }
+            }
             // axisLabel: {
             //   formatter: '{value} 元'
             // }
@@ -313,11 +339,15 @@ export default {
           {
             type: 'value',
             name: '(油耗L)',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             min: 0,
             max: 50,
             interval: 10,
             axisLabel: {
-              formatter: '{value} '
+              formatter: '{value} ',
+              fontSize: this.getSize()
             }
           }
         ],
@@ -345,13 +375,19 @@ export default {
         color: ['#6cbfff', '#b55454', '#6f9fa7', '#c1883a', '#23ccda'],
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b}: {c} ({d}%)'
+          formatter: '{a} <br/>{b}: {c} ({d}%)',
+          textStyle: {
+            fontSize: this.getSize()
+          }
         },
         legend: {
           orient: 'vertical',
           left: '75%',
           top: '18%',
-          data: ['平朔安太堡露天矿', '杨庄煤矿', '山西煤矿']
+          data: ['平朔安太堡露天矿', '杨庄煤矿', '山西煤矿'],
+          textStyle: {
+            fontSize: this.getSize()
+          }
         },
         series: [
           {
@@ -371,7 +407,10 @@ export default {
               normal: {
                 show: true,
                 position: 'inside',
-                formatter: '{d}%'
+                formatter: '{d}%',
+                textStyle: {
+                  fontSize: this.getSize()
+                }
               },
               emphasis: {
                 show: true,
@@ -403,7 +442,10 @@ export default {
         yAxis: {
           data: ['山西煤矿', '杨庄煤矿', '平朔安太堡露天矿'],
           axisLabel: {
-            show: true
+            show: true,
+            textStyle: {
+              fontSize: this.getSize()
+            }
           }
         },
         series: [{
@@ -425,7 +467,10 @@ export default {
           },
           label: {
             normal: {
-              show: true
+              show: true,
+              textStyle: {
+                fontSize: this.getSize()
+              }
             }
           }
         }],

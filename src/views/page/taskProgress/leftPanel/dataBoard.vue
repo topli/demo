@@ -15,15 +15,15 @@
   position: relative;
   height: 35%;
   .hd {
-    height: 18px;
-    line-height: 18px;
-    padding-left: 42px;
-    font-size: 12px;
+    height: 2.7vh;
+    line-height: 2.7vh;
+    padding-left: 2.1vw;
+    font-size: 0.6vw;
     font-weight: bold;
     color: #3de6b1;
-    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 18px center
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 1vw center
       no-repeat;
-    background-size: auto 9px;
+    background-size: auto 0.5vw;
   }
   .bd {
     position: relative;
@@ -33,8 +33,8 @@
     .item-content {
       // width: 1.64rem;
       height: 50%;
-      padding: 0 5% 8% 3%;
-      line-height: 280%;
+      padding: 0 1vw 1vw 1vw;
+      line-height: 2.4vh;
       .title {
         font-size: 2%;
         color: #fff;
@@ -48,10 +48,10 @@
           justify-content: flex-end;
           align-items: center;
           li {
-            width: 4px;
-            height: 12px;
+            width: 0.15vw;
+            height: 0.9vh;
             list-style: none;
-            margin-left: 4px;
+            margin-left: 0.2vw;
             background-color: #71ffd5;
             transform: skewX(-22deg);
             &:last-child {
@@ -60,8 +60,8 @@
           }
           h3 {
             margin: 0;
-            margin-left: 4.5%;
-            font-size: 12px;
+            margin-left: 3.5%;
+            font-size: 0.8vw;
           }
           &.icon2 li {
             background-color: #9eec2f;
@@ -85,15 +85,16 @@
           // margin: 0.06rem 0;
           padding-bottom: 3.3%;
           .value {
-            height: 32px !important;
-            font-size: 210%;
+            height: 5vh !important;
+            font-size: 1.8vw;
+            line-height: 5vh;
             /deep/ .ctnr:last-child {
               width: 0;
             }
           }
           .unit {
-            font-size: 10px;
-            line-height: 100%;
+            font-size: 0.7vw;
+            line-height: 2vh;
           }
         }
         .vice-info {
@@ -104,11 +105,12 @@
             margin: 2% 0;
           }
           ul li {
+            font-size: 0.7vw;
             color: #00d5e9;
             list-style: square;
             list-style-position: inside;
             text-align: left;
-            line-height: 170%;
+            line-height: 2vh;
             width: 100%;
             &:last-child {
               color: rgba(83, 254, 192, 1);
@@ -247,7 +249,7 @@
 
 <script>
 import { Flip } from 'number-flip'
-// import { on } from '@/libs/nav';
+import { on } from '@/libs/utils/index'
 export default {
   name: 'DataBoard',
   data() {
@@ -259,13 +261,14 @@ export default {
       flip4: null
     }
   },
-  mounted() {},
+  mounted() {
+  },
   created() {
     setTimeout(() => {
       this.spinShow = false
       this.$nextTick(() => {
         this.animationNum()
-        // on(window, 'resize', this.resize)
+        on(window, 'resize', this.resize)
       })
     }, 1500)
   },

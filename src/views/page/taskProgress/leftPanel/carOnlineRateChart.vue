@@ -12,15 +12,15 @@
 .left-panel-item {
   height: 30%;
   .hd {
-    height: 18px;
-    line-height: 18px;
-    padding-left: 42px;
-    font-size: 12px;
+    height: 2.5vh;
+    line-height: 2.5vh;
+    padding-left: 2.1vw;
+    font-size: .6vw;
     font-weight: bold;
     color: #3de6b1;
-    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 18px center
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 1vw center
       no-repeat;
-    background-size: auto 9px;
+    background-size: auto 0.5vw;
   }
   .bd {
     position: relative;
@@ -45,7 +45,7 @@
 
 <script>
 import echarts from 'echarts'
-// import { on } from '@/libs/nav'
+import { on } from '@/libs/utils/index'
 export default {
   name: 'CarOnlineRateChart',
   data() {
@@ -69,6 +69,11 @@ export default {
     this.dom.clear()
   },
   methods: {
+    // 屏幕的宽度设置echarts的fontSize
+    getSize() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 8
+    },
     // 车型能耗排行
     initChart() {
       // 设置X轴数据
@@ -171,6 +176,9 @@ export default {
         },
         xAxis: {
           type: 'time',
+          nameTextStyle: {
+            fontSize: this.getSize()
+          },
           // boundaryGap: false,
           // minInterval: 4,
           axisTick: {
@@ -191,14 +199,23 @@ export default {
             // formatter: value => {
             //   return this._hyTool.DateFormat(new Date(value), 'hh:mm')
             // }
+            textStyle: {
+              fontSize: this.getSize()
+            }
           }
         },
         yAxis: [
           {
             name: '在线率 %',
             type: 'value',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             axisLabel: {
-              formatter: '{value} %'
+              formatter: '{value} %',
+              textStyle: {
+                fontSize: this.getSize()
+              }
             },
             splitLine: {
               lineStyle: {
@@ -218,6 +235,9 @@ export default {
           },
           {
             name: '在线数量/万',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             type: 'value',
             position: 'right',
             // minInterval: 100,
@@ -225,7 +245,10 @@ export default {
             max: 300,
             interval: 100,
             axisLabel: {
-              formatter: '{value}'
+              formatter: '{value}',
+              textStyle: {
+                fontSize: this.getSize()
+              }
             },
             axisTick: { show: false }, // 隐藏坐标轴刻度线
             splitLine: {
@@ -261,7 +284,7 @@ export default {
       }
       this.dom = echarts.init(this.$refs.chart)
       this.dom.setOption(option)
-      // on(window, 'resize', this.resize)
+      on(window, 'resize', this.resize)
       // 模拟动态添加
       // setInterval(() => {
       //   let nowData = new Date().getTime() + 1 * 60 * 1000;

@@ -12,15 +12,15 @@
 .left-panel-item {
   height: 31%;
   .hd {
-    height: 16px;
-    padding-left: 42px;
-    line-height: 16px;
-    font-size: 12px;
+    height: 2.5vh;
+    padding-left: 2.1vw;
+    line-height: 2.5vh;
+    font-size: 0.6vw;
     font-weight: bold;
     color: #3de6b1;
-    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 18px center
+    background: url("../../../../../static/images/taskProgress/hd_arrow.png") 1vw center
       no-repeat;
-    background-size: auto 9px;
+    background-size: auto 0.5vw;
   }
   .bd {
     // 车型能耗排行
@@ -28,11 +28,12 @@
     height: 100%;
     .car-type {
       text-align: right;
-      margin: 2% 4% 0;
+      margin: 0.5vw 1vw 0;
       // transform: scale(0.9);
       a {
         display: inline-block;
-        padding: 0 2.7%;
+        padding: .1vw .5vw;
+        font-size: .7vw;
         line-height: 125%;
         text-align: center;
         color: rgba(17, 237, 255, 1);
@@ -61,7 +62,7 @@
         <div class="loader"><img src="../../../../../static/images/taskProgress/loading-black.gif"></div>
       </div>
       <div v-else class="car-type">
-        <a v-for="item in carType" :key="item.id" :class="item.id === curCarType ? 'cur': ''" @click="curCarType = item.id">{{ item.name }}</a>
+        <a v-for="item in carType" :key="item.id" :class="item.id === curCarType ? 'cur': ''" @click="clickCarType(item)">{{ item.name }}</a>
       </div>
       <div ref="chart" class="bd-chart"/>
     </div>
@@ -69,7 +70,7 @@
 </template>
 <script>
 import echarts from 'echarts'
-// import { on } from '@/libs/nav'
+import { on } from '@/libs/utils/index'
 export default {
   name: 'CarModelEnergyChart',
   data() {
@@ -88,7 +89,9 @@ export default {
           name: '运输车'
         }
       ],
+      winWidth: 0,
       spinShow: true,
+      barData: [14.7, 13.7, 12.0, 6.7, 4.7],
       curCarType: 1,
       // yData: ["ERX5", "E550", "E950", "EI5", "Marve", "EMG6"],
       yData: ['120301070001A', '120301070002A', '120301070003A', '120301070004A', '120301070005A'],
@@ -96,7 +99,6 @@ export default {
     }
   },
   mounted() {
-    // this.initChart();
   },
   created() {
     setTimeout(() => {
@@ -110,8 +112,26 @@ export default {
     this.dom.clear()
   },
   methods: {
-    // ----------------------左侧图标----------------------
-    // 车型能耗排行
+    // 屏幕的宽度设置echarts的fontSize
+    getSize() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 8
+    },
+    getBarWidth() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 10
+    },
+    clickCarType(item) {
+      this.curCarType = item.id
+      if (item.id === 1) {
+        this.barData = [14.7, 13.7, 12.0, 6.7, 4.7]
+      } else if (item.id === 2) {
+        this.barData = [7.2, 11.7, 14.5, 8.7, 9.7]
+      } else if (item.id === 3) {
+        this.barData = [12.2, 11.7, 14.5, 8.7, 11.7]
+      }
+      this.initChart()
+    },
     initChart() {
       // 绘制图表
       const option = {
@@ -119,8 +139,8 @@ export default {
           color: 'rgba(255, 255, 255, 0.8)'
         },
         grid: {
-          top: '4%',
-          left: '35%',
+          top: '6%',
+          left: '25%',
           right: '6%',
           bottom: '4%',
           containLabel: true
@@ -130,7 +150,7 @@ export default {
           nameLocation: 'start',
           nameTextStyle: {
             padding: [0, 0, 30, 0],
-            fontSize: 10
+            fontSize: this.getSize()
           },
           type: 'value',
           position: 'top',
@@ -145,6 +165,12 @@ export default {
           },
           axisTick: {
             show: false // 隐藏坐标轴刻度线
+          },
+          axisLabel: {
+            textStyle: {
+              fontSize: this.getSize(),
+              fontFamily: 'Helvetica Neue'
+            }
           }
         },
         yAxis: {
@@ -161,92 +187,94 @@ export default {
             show: false // 隐藏坐标轴刻度线
           },
           axisLabel: {
-            formatter: function(value, index) {
-              return (
-                '{num' + index + '| ' + ++index + ' }{value|' + value + '}'
-              )
-            },
+            // formatter: function(value, index) {
+            //   return (
+            //     '{num' + index + '| ' + ++index + ' }{value|' + value + '}'
+            //   )
+            // },
             textStyle: {
               align: 'left',
-              padding: [0, 0, 0, -115]
-            },
-            rich: {
-              value: {
-                padding: [0, 0, 2, 8]
-              },
-              num0: {
-                width: 12,
-                height: 12,
-                lineHeight: 14,
-                fontSize: 10,
-                align: 'center',
-                borderRadius: 2,
-                backgroundColor: 'rgba(255, 126, 0, 1)'
-              },
-              num1: {
-                width: 12,
-                height: 12,
-                lineHeight: 12,
-                fontSize: 12,
-                align: 'center',
-                verticalAlign: 'middle',
-                borderRadius: 2,
-                backgroundColor: 'rgba(221, 201, 32, 1)'
-              },
-              num2: {
-                width: 12,
-                height: 12,
-                lineHeight: 12,
-                fontSize: 12,
-                align: 'center',
-                verticalAlign: 'middle',
-                borderRadius: 2,
-                backgroundColor: 'rgba(83, 146, 255, 1)'
-              },
-              num3: {
-                width: 12,
-                height: 12,
-                lineHeight: 12,
-                fontSize: 12,
-                align: 'center',
-                verticalAlign: 'middle',
-                borderRadius: 2,
-                backgroundColor: 'rgba(0, 189, 207, 1)'
-              },
-              num4: {
-                width: 12,
-                height: 12,
-                lineHeight: 12,
-                fontSize: 12,
-                align: 'center',
-                verticalAlign: 'middle',
-                borderRadius: 2,
-                backgroundColor: 'rgba(0, 189, 207, 1)'
-              },
-              num5: {
-                width: 12,
-                height: 12,
-                lineHeight: 12,
-                fontSize: 12,
-                align: 'center',
-                verticalAlign: 'middle',
-                borderRadius: 2,
-                backgroundColor: 'rgba(0, 189, 207, 1)'
-              }
+              padding: [0, 0, 0, -(this.getSize()) * 10],
+              fontSize: this.getSize()
             }
+            // rich: {
+            //   value: {
+            //     padding: [0, 0, 2, 8]
+            //   },
+            //   num0: {
+            //     width: 42,
+            //     height: 42,
+            //     lineHeight: 14,
+            //     fontSize: 30,
+            //     align: 'center',
+            //     borderRadius: 2,
+            //     backgroundColor: 'rgba(255, 126, 0, 1)'
+            //   },
+            //   num1: {
+            //     width: 22,
+            //     height: 22,
+            //     lineHeight: 12,
+            //     fontSize: this.getSize(),
+            //     align: 'center',
+            //     verticalAlign: 'middle',
+            //     borderRadius: 2,
+            //     backgroundColor: 'rgba(221, 201, 32, 1)'
+            //   },
+            //   num2: {
+            //     width: 12,
+            //     height: 12,
+            //     lineHeight: 12,
+            //     fontSize: this.getSize(),
+            //     align: 'center',
+            //     verticalAlign: 'middle',
+            //     borderRadius: 2,
+            //     backgroundColor: 'rgba(83, 146, 255, 1)'
+            //   },
+            //   num3: {
+            //     width: 12,
+            //     height: 12,
+            //     lineHeight: 12,
+            //     fontSize: this.getSize(),
+            //     align: 'center',
+            //     verticalAlign: 'middle',
+            //     borderRadius: 2,
+            //     backgroundColor: 'rgba(0, 189, 207, 1)'
+            //   },
+            //   num4: {
+            //     width: 12,
+            //     height: 12,
+            //     lineHeight: 12,
+            //     fontSize: this.getSize(),
+            //     align: 'center',
+            //     verticalAlign: 'middle',
+            //     borderRadius: 2,
+            //     backgroundColor: 'rgba(0, 189, 207, 1)'
+            //   },
+            //   num5: {
+            //     width: 12,
+            //     height: 12,
+            //     lineHeight: 12,
+            //     fontSize: this.getSize(),
+            //     align: 'center',
+            //     verticalAlign: 'middle',
+            //     borderRadius: 2,
+            //     backgroundColor: 'rgba(0, 189, 207, 1)'
+            //   }
+            // }
           },
           zlevel: 1
         },
         series: [
           {
             type: 'bar',
-            barWidth: 10,
+            barWidth: this.getBarWidth(),
             itemStyle: {
               normal: {
                 label: {
                   show: true,
                   position: 'right',
-                  color: '#828689'
+                  color: '#828689',
+                  fontSize: this.getSize()
                 },
                 // barBorderRadius: [0, 1, 200, 0],
                 color: params => {
@@ -288,13 +316,13 @@ export default {
                 borderColor: '#fff'
               }
             },
-            data: [14.7, 13.7, 12.0, 6.7, 4.7]
+            data: this.barData
           }
         ]
       }
       this.dom = echarts.init(this.$refs.chart)
       this.dom.setOption(option)
-      // on(window, 'resize', this.resize)
+      on(window, 'resize', this.resize)
     },
     // 重置尺寸
     resize() {
