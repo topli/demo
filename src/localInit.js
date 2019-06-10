@@ -607,9 +607,13 @@ const data = {
       { deviceNo: '41080622', workTime: '754H', currentDriver: '吕勇', workNum: '5', workAmount: '456457' },
       { deviceNo: '41086687', workTime: '271H', currentDriver: '高涛', workNum: '6', workAmount: '45112' },
       { deviceNo: '91207390', workTime: '254H', currentDriver: '沈明', workNum: '1', workAmount: '89454' },
-      { deviceNo: '41108559', workTime: '341H', currentDriver: '方静', workNum: '5', workAmount: '44561' },
+      { deviceNo: '41234559', workTime: '341H', currentDriver: '方静', workNum: '5', workAmount: '44561' },
       { deviceNo: '41108584', workTime: '85H', currentDriver: '石洋', workNum: '2', workAmount: '2783' },
-      { deviceNo: '41086595', workTime: '614H', currentDriver: '孙军', workNum: '7', workAmount: '85645' }
+      { deviceNo: '41086595', workTime: '544H', currentDriver: '孙军', workNum: '7', workAmount: '12345' },
+      { deviceNo: '34537390', workTime: '254H', currentDriver: '力达林', workNum: '1', workAmount: '34454' },
+      { deviceNo: '41212559', workTime: '3551H', currentDriver: '程志杰', workNum: '5', workAmount: '42261' },
+      { deviceNo: '41121584', workTime: '35H', currentDriver: '何志强', workNum: '2', workAmount: '12383' },
+      { deviceNo: '12386595', workTime: '614H', currentDriver: '刘静', workNum: '7', workAmount: '85645' }
     ]
   },
   alarmSet: {

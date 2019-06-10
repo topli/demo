@@ -1,13 +1,13 @@
 <template>
   <div class="list-template">
     <search-tem class="list-search" @on-search="onSearch">
-      <el-form :inline="true" :model="searchForm">
+      <el-form :inline="true" :model="searchData">
         <el-form-item>
-          <el-input v-model="searchForm.name" :placeholder="$t('tasks.name')" clearable/>
+          <el-input v-model="searchData.name" :placeholder="$t('tasks.name')" clearable/>
         </el-form-item>
         <el-form-item>
           <el-date-picker
-            v-model="searchForm.expiryDate"
+            v-model="searchData.expiryDate"
             start-placeholder="开始日期"
             end-placeholder="结束日期"
             type="daterange"
@@ -18,7 +18,7 @@
     <div class="btns">
       <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
       <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
-      <!-- <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
+      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
     </div>
     <div class="table">
       <t-for-col
@@ -75,14 +75,18 @@ export default {
           unit: this.$t('currentTaskReport.workAmountUnit')
         }
       ],
-      fileType: 'currentTaskReport'
+      fileType: 'currentTaskReport',
+      fileName: this.$t('route.' + this.$route.name),
+      searchData: {
+        pageNo: 1,
+        pageSize: 10
+      }
     }
   },
   methods: {
     _getList() {
       this.loading = true
-      console.log(this.searchData)
-      getList(this.searchData).then(res => {
+      getList().then(res => {
         setTimeout(() => {
           this.loading = false
           this.list = res.data.list

@@ -23,8 +23,8 @@
     </search-tem>
     <div class="btns">
       <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
-      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
-      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
+      <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
+      <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
     </div>
     <div class="table">
       <t-for-col
@@ -91,7 +91,12 @@ export default {
           minWidth: '120'
         }
       ],
-      fileType: 'user'
+      fileType: 'deviceErrorReport',
+      fileName: this.$t('route.' + this.$route.name),
+      searchData: {
+        pageNo: 1,
+        pageSize: 10
+      }
     }
   },
   mounted() {
