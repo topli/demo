@@ -45,11 +45,9 @@ export default {
           key: 'status',
           title: this.$t('device.status'),
           width: '100',
-          dictType: 'status',
-          render: (h, params) => {
-            const f = params.row['_f_status']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'status',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
@@ -85,11 +83,9 @@ export default {
         {
           key: 'available',
           title: this.$t('device.available'),
-          dictType: 'available',
-          render: (h, params) => {
-            const f = params.row['_f_available']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'available',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {

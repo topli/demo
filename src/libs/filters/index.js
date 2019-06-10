@@ -43,22 +43,6 @@ export function toThousandslsFilter(num) {
   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 
-export function sex(val) {
-  const data = {
-    1: '男',
-    2: '女'
-  }
-  return data[val]
-}
-
-export function status(val) {
-  const data = {
-    false: '禁用',
-    true: '启用'
-  }
-  return data[!!val]
-}
-
 function getDictDataByType(type) {
   let data = []
   if (store.state.app.dictData) {

@@ -105,7 +105,7 @@ export default {
         // {
         //   key: 'level',
         //   title: this.$t('tasks.level'),
-        //   dictType: 'taskLevel',
+        //   filters: 'taskLevel',
         //   render: (h, params) => {
         //     const f = params.row['_f_level']
         //     if (!f) return

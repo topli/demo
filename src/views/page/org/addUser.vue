@@ -117,12 +117,10 @@ export default {
         {
           key: 'sex',
           title: this.$t('user.sex'),
-          dictType: 'sex',
+          filters: 'sex',
           width: '80',
-          render: (h, params) => {
-            const f = params.row['_f_sex']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
@@ -142,11 +140,9 @@ export default {
         {
           key: 'status',
           title: this.$t('user.status'),
-          dictType: 'status',
-          render: (h, params) => {
-            const f = params.row['_f_status']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'status',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         }
       ]

@@ -216,6 +216,10 @@ const data = {
       available: [
         { id: 38, value: 'true', label: '可用', color: '#67C23A' },
         { id: 39, value: 'false', label: '不可用', color: '#F56C6C' }
+      ],
+      isWork: [
+        { id: 40, value: 'true', label: '是', color: '#67C23A' },
+        { id: 41, value: 'false', label: '否', color: '#F56C6C' }
       ]
     }
   },

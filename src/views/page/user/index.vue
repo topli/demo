@@ -117,36 +117,33 @@ export default {
         {
           key: 'sex',
           title: this.$t('user.sex'),
-          dictType: 'sex',
+          filters: 'sex',
           width: '80',
-          render: (h, params) => {
-            const f = params.row['_f_sex']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
           key: 'isWork',
           title: this.$t('user.isWork'),
+          filters: 'isWork',
           width: '100',
-          render: (h, params) => {
-            return h('span', params.row.isWork ? '是' : '否')
+          render: (h, params, val) => {
+            return h('span', val.label)
           }
         },
         {
           key: 'createTime',
           title: this.$t('user.createTime'),
-          filters: 'parseTime',
+          filters: 'parseTime|{y}-{m}-{d} {h}:{i}:{s}',
           width: '180'
         },
         {
           key: 'status',
           title: this.$t('user.status'),
-          dictType: 'status',
-          render: (h, params) => {
-            const f = params.row['_f_status']
-            if (!f) return
-            return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
+          filters: 'status',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {
