@@ -1,7 +1,7 @@
 <template>
   <div id="deviceReport" class="device-report">
     <div style="width:100%;position:relative">
-      <el-button type="text" style="position:absolute; right: 20px; top: 10px" @click="screenfull">
+      <el-button type="text" style="position:absolute; right: 20px; top: 10px;font-size: .7vw" @click="screenfull">
         {{ !isScreenfull ? $t('app.fullScreen') : '' }}
       </el-button>
       <div class="title">
@@ -32,8 +32,8 @@
                 <div class="split-line"/>
                 <el-popover
                   :open-delay="500"
+                  :width = "getWidth()"
                   placement="bottom"
-                  width="400"
                   trigger="hover"
                   popper-class="popover-body">
                   <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
@@ -63,8 +63,8 @@
               <div class="total-child">
                 <el-popover
                   :open-delay="500"
+                  :width="getWidth()"
                   placement="bottom"
-                  width="400"
                   trigger="hover"
                   popper-class="popover-body">
                   <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
@@ -337,6 +337,11 @@ export default {
     }
   },
   methods: {
+    // 弹框的长度
+    getWidth() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 200
+    },
     /**
      * 全屏事件
      */
@@ -458,14 +463,22 @@ export default {
     overflow: hidden;
     height: 200px;
     font-size: 13px!important;
+    ul {
+      padding-left: 0;
+    }
     ul li {
       list-style: none;
     }
     .title{
       display: -webkit-box;
       width: 100%;
+      font-size: .7vw;
       div {
-        width: 33%;
+        width: 30%;
+        text-align: center;
+      }
+      div:last-child {
+        width: 40%
       }
     }
     background: #1e57d6db!important;
