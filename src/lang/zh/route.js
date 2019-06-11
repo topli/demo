@@ -41,7 +41,7 @@ export default {
     tasksDispatchM: '调度任务管理',
     statisticsReport: '统计分析',
     realReport: '实时统计',
-    currentTaskReport: '当前任务进度统计',
+    currentTaskReport: '当前设备任务统计',
     map: '地图',
     reportCenter: '统计中心',
     taskProgress: '设备分布监控统计',

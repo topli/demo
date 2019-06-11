@@ -19,6 +19,11 @@
       <!-- <icon-btn :content="$t('app.add')" auth-code="add" icon="add" @click="addData"/> -->
       <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
+      <el-button-group style="float: right">
+        <el-button size="mini" @click="showType('day')">{{ $t('currentTaskReport.day') }}</el-button>
+        <el-button size="mini" @click="showType('month')">{{ $t('currentTaskReport.month') }}</el-button>
+        <el-button size="mini" @click="showType('years')">{{ $t('currentTaskReport.years') }}</el-button>
+      </el-button-group>
     </div>
     <div class="table">
       <t-for-col
@@ -76,7 +81,39 @@ export default {
         }
       ],
       fileType: 'currentTaskReport',
-      fileName: this.$t('route.' + this.$route.name)
+      fileName: this.$t('route.' + this.$route.name),
+      monthList: [
+        { deviceNo: '91376494', workTime: '600H', currentDriver: '张秀英', workNum: '30', workAmount: '165421', status: true },
+        { deviceNo: '41055218', workTime: '1200H', currentDriver: '余平', workNum: '40', workAmount: '4151245', status: true },
+        { deviceNo: '91232187', workTime: '1400H', currentDriver: '贾刚', workNum: '20', workAmount: '371744', status: true },
+        { deviceNo: '91270313', workTime: '900H', currentDriver: '石敏', workNum: '60', workAmount: '127713', status: true },
+        { deviceNo: '41080622', workTime: '2100H', currentDriver: '吕勇', workNum: '44', workAmount: '4546457', status: true },
+        { deviceNo: '41086687', workTime: '5000H', currentDriver: '高涛', workNum: '56', workAmount: '245112', status: true },
+        { deviceNo: '91207390', workTime: '765H', currentDriver: '沈明', workNum: '100', workAmount: '389454', status: false },
+        { deviceNo: '41234559', workTime: '981H', currentDriver: '方静', workNum: '45', workAmount: '844561', status: true },
+        { deviceNo: '41108584', workTime: '420H', currentDriver: '石洋', workNum: '50', workAmount: '72783', status: false },
+        { deviceNo: '41086595', workTime: '1500H', currentDriver: '孙军', workNum: '47', workAmount: '312345', status: true },
+        { deviceNo: '34537390', workTime: '900H', currentDriver: '力达林', workNum: '56', workAmount: '234454', status: false },
+        { deviceNo: '41212559', workTime: '6001H', currentDriver: '程志杰', workNum: '88', workAmount: '542261', status: false },
+        { deviceNo: '41121584', workTime: '750H', currentDriver: '何志强', workNum: '98', workAmount: '612383', status: true },
+        { deviceNo: '12386595', workTime: '950H', currentDriver: '刘静', workNum: '79', workAmount: '485645', status: true }
+      ],
+      yearsList: [
+        { deviceNo: '91376494', workTime: '33600H', currentDriver: '张秀英', workNum: '358', workAmount: '3665421', status: true },
+        { deviceNo: '41055218', workTime: '11200H', currentDriver: '余平', workNum: '265', workAmount: '4215125', status: true },
+        { deviceNo: '91232187', workTime: '29000H', currentDriver: '贾刚', workNum: '365', workAmount: '3571744', status: true },
+        { deviceNo: '91270313', workTime: '90000H', currentDriver: '石敏', workNum: '452', workAmount: '2127713', status: true },
+        { deviceNo: '41080622', workTime: '25000H', currentDriver: '吕勇', workNum: '281', workAmount: '14546457', status: true },
+        { deviceNo: '41086687', workTime: '65800H', currentDriver: '高涛', workNum: '275', workAmount: '1245112', status: true },
+        { deviceNo: '91207390', workTime: '86508H', currentDriver: '沈明', workNum: '300', workAmount: '5389454', status: false },
+        { deviceNo: '41234559', workTime: '95410H', currentDriver: '方静', workNum: '320', workAmount: '3844561', status: true },
+        { deviceNo: '41108584', workTime: '89541H', currentDriver: '石洋', workNum: '315', workAmount: '472783', status: false },
+        { deviceNo: '41086595', workTime: '26547H', currentDriver: '孙军', workNum: '345', workAmount: '3312345', status: true },
+        { deviceNo: '34537390', workTime: '25412H', currentDriver: '力达林', workNum: '200', workAmount: '2234454', status: false },
+        { deviceNo: '41212559', workTime: '12354H', currentDriver: '程志杰', workNum: '165', workAmount: '2542261', status: false },
+        { deviceNo: '41121584', workTime: '85412H', currentDriver: '何志强', workNum: '261', workAmount: '3612383', status: true },
+        { deviceNo: '12386595', workTime: '12578H', currentDriver: '刘静', workNum: '354', workAmount: '1485645', status: true }
+      ]
     }
   },
   methods: {
@@ -97,6 +134,22 @@ export default {
           if (item.id === id) this.dialogData = item
         })
       }, 1000)
+    },
+    showType(item) {
+      this.loading = true
+      if (item === 'day') {
+        this._getList()
+      } else if (item === 'month') {
+        setTimeout(() => {
+          this.loading = false
+          this.list = this.monthList
+        }, 1000)
+      } else {
+        setTimeout(() => {
+          this.loading = false
+          this.list = this.yearsList
+        }, 1000)
+      }
     }
   }
 }
