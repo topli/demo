@@ -56,14 +56,18 @@ export default {
     }
     this.chart.dispose()
     this.chart = null
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    sidebarElm.removeEventListener('transitionend', this.resize)
     window.removeEventListener('resize', this.resize)
   },
   methods: {
     resize() {
-      if (this.chart) {
-        setTimeout(() => {
-          this.chart.resize()
-        }, 200)
+      if ((event.type === 'transitionend' && event.propertyName === 'width') || event.type === 'resize') {
+        if (this.chart) {
+          setTimeout(() => {
+            this.chart.resize()
+          }, 200)
+        }
       }
     },
     _initCharts() {
