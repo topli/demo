@@ -102,18 +102,6 @@
             placeholder="结束时间"
           />
         </el-form-item>
-        <el-form-item class="item5" label-width="44px" label="车型">
-          <el-select
-            v-model="searchData.type"
-            placeholder="车型"
-            style="width: 200px"
-            filterable
-            transfer
-            clearable
-          >
-            <el-option v-for="(option, index) in typeList" :value="option.value" :key="index">{{ option.label }}</el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item class="item6" label-width="44px" label="省市">
           <el-select
             v-model="searchData.status"
@@ -134,7 +122,7 @@
         <span>全矿总量及油耗统计</span>
       </div>
       <!-- <bar-chart :value="listData1"/> -->
-      <echarts :report-object="listData1" :height="chartOneHeight" width="96%"/>
+      <echarts ref="chartOne" :report-object="listData1" :height="chartOneHeight" width="96%"/>
     </div>
     <div class="chart-half-two">
       <div class="chart-1">
@@ -142,14 +130,14 @@
           <span>故障数量占比</span>
         </div>
         <!-- <pie-chart :value="listData2"/> -->
-        <echarts :report-object="listData2" :height="chartTwoHeight"/>
+        <echarts ref="chartTwo" :report-object="listData2" :height="chartTwoHeight"/>
       </div>
       <div class="chart-2">
         <div class="chart-title">
           <span>挖机开采量总和统计</span>
         </div>
         <!-- <scatter-chart :value="listData3"/> -->
-        <echarts :report-object="listData3" :height="chartTwoHeight"/>
+        <echarts ref="chartThree" :report-object="listData3" :height="chartTwoHeight"/>
       </div>
     </div>
   </div>
@@ -210,19 +198,23 @@ export default {
     this.searchData.endTime = new Date()
   },
   mounted() {
-    this.getList()
-    if (this.sidebar.opened) {
-      this.$store.dispatch('ToggleSideBar')
-    }
     this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
     this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 48.6 + ''
     this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
-    console.log(this.searchDivHeight)
     window.onresize = () => {
       this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
       this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 44.6 + ''
       this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
     }
+    if (this.sidebar.opened) {
+      this.$store.dispatch('ToggleSideBar')
+    }
+    this.getList()
+    setTimeout(() => {
+      this.$refs.chartOne.chart.resize()
+      this.$refs.chartTwo.chart.resize()
+      this.$refs.chartThree.chart.resize()
+    }, 200)
   },
   methods: {
     // 屏幕的宽度设置echarts的fontSize
@@ -274,18 +266,13 @@ export default {
             type: 'cross',
             crossStyle: {
               color: '#999'
+            },
+            label: {
+              fontSize: this.getSize()
             }
           },
           textStyle: {
             fontSize: this.getSize()
-          }
-        },
-        toolbox: {
-          feature: {
-            // dataView: { show: true, readOnly: false },
-            // magicType: { show: true, type: ['line', 'bar'] },
-            // restore: { show: true },
-            // saveAsImage: { show: true }
           }
         },
         grid: {

@@ -1,5 +1,5 @@
 <style lang="scss" scoped>
-.taskProgress {
+#taskProgress {
   font-family: PingFang-SC-Medium;
   box-sizing: border-box;
   position: relative;
@@ -46,8 +46,8 @@
         &:first-child {
           margin-right: 6px;
         }
-        &:last-child {
-          margin-right: 0;
+        &:nth-child(2){
+          margin-right: 2vw;
         }
         img {
           width: 16px;
@@ -91,7 +91,7 @@
 </style>
 
 <template>
-  <div class="taskProgress">
+  <div id="taskProgress">
     <!-- 头部 -->
     <div class="task-header clearfix">
       <!-- 菜单 -->
@@ -102,6 +102,9 @@
       <ul class="shortcut-bar fr">
         <li class="user-name">root</li>
         <li class="avator"><img src="../../../../static/images/taskProgress/avator.png"></li>
+        <el-button type="text" style="position:absolute; right: 1.2vw; top: 1.2vw;font-size: .7vw;color:#0febff" @click="screenfull">
+          {{ !isScreenfull ? $t('app.fullScreen') : '' }}
+        </el-button>
         <!-- <li class="logout" @click="modalShow = true"><img src="../../../../static/images/taskProgress/logout.png"></li> -->
       </ul>
     </div>
@@ -129,6 +132,7 @@ import carOnlineRateChart from './leftPanel/carOnlineRateChart'
 // 右侧模块
 import rightPanel from './rightPanel/rightPanel'
 import { mapGetters } from 'vuex'
+import screenfull from 'screenfull'
 
 export default {
   components: {
@@ -141,6 +145,7 @@ export default {
     return {
       modalShow: false,
       user: {},
+      isScreenfull: false,
       navHum: null,
       sysList: [
         { home: 'a', menu: '设备分布监控统计' }
@@ -164,9 +169,36 @@ export default {
     if (this.sidebar.opened) {
       this.$store.dispatch('ToggleSideBar')
     }
-    // this.rem()
+    window.onresize = () => {
+      // 全屏下监控是否按键了ESC
+      if (!this.checkFull()) {
+        // 全屏下按键esc后要执行的动作
+        this.isScreenfull = false
+      }
+    }
   },
   methods: {
+    /**
+     * 全屏事件
+     */
+    screenfull() {
+      const taskProgress = document.getElementById('taskProgress')
+      if (screenfull.enabled) {
+        screenfull.request(taskProgress)
+        this.isScreenfull = !this.isScreenfull
+      }
+    },
+    /**
+     * 是否全屏并按键ESC键的方法
+     */
+    checkFull() {
+      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
+      // to fix : false || undefined == undefined
+      if (isFull === undefined) {
+        isFull = false
+      }
+      return isFull
+    },
     rem() {
       const doc = document
       const win = window

@@ -30,12 +30,7 @@
             <el-col :span="6">
               <div class="total-child">
                 <div class="split-line"/>
-                <el-popover
-                  :open-delay="500"
-                  :width = "getWidth()"
-                  placement="bottom"
-                  trigger="hover"
-                  popper-class="popover-body">
+                <div :style="{width: getWidth() + 'px',opacity: popOpacity1}" class="popover-body">
                   <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
                     <ul>
                       <li>
@@ -54,19 +49,14 @@
                       </li>
                     </ul>
                   </el-scrollbar>
-                  <countTo slot="reference" :start-val="0" :end-val="3" :duration="2000"/>
-                </el-popover>
-                <div class="total-child-title">亚健康设备数</div>
+                </div>
+                <countTo slot="reference" :start-val="0" :end-val="3" :duration="2000"/>
+                <div class="total-child-title" @mouseover="popOver1" @mouseout="popOut1">亚健康设备数</div>
               </div>
             </el-col>
             <el-col :span="6">
               <div class="total-child">
-                <el-popover
-                  :open-delay="500"
-                  :width="getWidth()"
-                  placement="bottom"
-                  trigger="hover"
-                  popper-class="popover-body">
+                <div :style="{width: getWidth() + 'px',opacity: popOpacity2}" class="popover-body">
                   <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
                     <ul>
                       <li>
@@ -85,9 +75,9 @@
                       </li>
                     </ul>
                   </el-scrollbar>
-                  <countTo slot="reference" :start-val="0" :end-val="1" :duration="2000"/>
-                </el-popover>
-                <div class="total-child-title">问题设备数</div>
+                </div>
+                <countTo slot="reference" :start-val="0" :end-val="1" :duration="2000"/>
+                <div class="total-child-title" @mouseover="popOver2" @mouseout="popOut2">问题设备数</div>
               </div>
             </el-col>
           </el-row>
@@ -316,7 +306,9 @@ export default {
       ],
       deviceErrorList2: [
         { deviceNo: '91270313', type: '发动机停车', time: '2019-05-28 13:26' }
-      ]
+      ],
+      popOpacity2: 0,
+      popOpacity1: 0
     }
   },
   computed: {
@@ -341,6 +333,18 @@ export default {
     getWidth() {
       const winWidth = document.documentElement.clientWidth
       return winWidth / 1082 * 200
+    },
+    popOver1() {
+      this.popOpacity1 = 1
+    },
+    popOut1() {
+      this.popOpacity1 = 0
+    },
+    popOver2() {
+      this.popOpacity2 = 1
+    },
+    popOut2() {
+      this.popOpacity2 = 0
     },
     /**
      * 全屏事件
@@ -462,23 +466,30 @@ export default {
     color: white;
     overflow: hidden;
     height: 200px;
+    border-radius: 8px;
     font-size: 13px!important;
+    position: absolute;
+    top: 5.5vw;
+    left: 2.6vw;
+    z-index: 999;
     ul {
       padding-left: 0;
     }
     ul li {
       list-style: none;
-    }
-    .title{
-      display: -webkit-box;
-      width: 100%;
-      font-size: .7vw;
-      div {
-        width: 30%;
-        text-align: center;
-      }
-      div:last-child {
-        width: 40%
+      .title{
+        display: -webkit-box;
+        width: 100%;
+        font-size: .7vw!important;
+        color: #fff!important;
+        height: 2.5vh!important;
+        div {
+          width: 30%;
+          text-align: center;
+        }
+        div:last-child {
+          width: 40%
+        }
       }
     }
     background: #1e57d6db!important;

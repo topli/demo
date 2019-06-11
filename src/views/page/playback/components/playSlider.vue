@@ -273,6 +273,7 @@ export default {
     // 播放
     channel() {
       this.isPlay = !this.isPlay
+      if (this.index === this.videoData.length - 1) this.index = 0
       if (this.isPlay) {
         this.timeOut()
       } else {

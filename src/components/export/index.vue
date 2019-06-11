@@ -44,11 +44,13 @@ export default {
         this.onSub()
       }, 2000)
     },
-    handleDownload(propObject) {
+    handleDownload(obj) {
+      const propObject = JSON.parse(JSON.stringify(obj))
       this.downloadLoading = true
       import('@/libs/utils/exportExcel').then(excel => {
         const tHeader = []
         propObject.columnsTitle.forEach(item => {
+          if (item.unit) item.title = item.title + '(' + item.unit + ')'
           tHeader.push(item.title)
         })
         const localData = JSON.parse(getStorage('localData'))
