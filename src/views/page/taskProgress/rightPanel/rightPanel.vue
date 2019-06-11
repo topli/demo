@@ -60,13 +60,13 @@
       left: 0;
       z-index: 999;
       .title {
-        padding-left: 22px;
-        font-size: 11px;
+        padding-left: 1.2vw;
+        font-size: .7vw;
         font-weight: bold;
         color: #0febff;
         background: url("../../../../../static/images/taskProgress/hd_arrow.png") left center
           no-repeat;
-        background-size: auto 9px;
+        background-size: auto 0.5vw;
       }
       // ul.total {
       //   display: none;
@@ -94,7 +94,7 @@
       position: absolute;
       left: 0;
       bottom: -10px;
-      font-size: 11px;
+      font-size: .7vw;
       padding-left: 0;
       li {
         display: flex;
@@ -148,14 +148,16 @@
     z-index: 1;
     transition: all 0.5s;
     .hd {
-      height: 9%;
+      height: 2.5vh;
+      line-height: 2.5vh;
       padding-right:3%;
-      font-size: 11px;
+      font-size: 0.6vw;
       font-weight: bold;
       color: rgba(61, 230, 177, 1);
       text-align: right;
       .img {
         transform: rotate(180deg);
+        width: 0.8vw;
       }
     }
     .bd {
@@ -192,7 +194,7 @@
   margin-top: 4%;
   padding: 0 5.76%;
   color: #0febff;
-  font-size: 380%;
+  font-size: 2.5vw;
   font-weight: 600;
   border: 1px solid #0febff;
   background-color: rgba(0, 122, 135, 0.33);
@@ -282,7 +284,7 @@
 </template>
 
 <script>
-// import { on } from '@/libs/nav'
+import { on } from '@/libs/utils/index'
 import echarts from 'echarts'
 import citymap from './citymap'
 import axios from 'axios'
@@ -383,6 +385,11 @@ export default {
     this.dom && this.dom.clear()
   },
   methods: {
+    // 屏幕的宽度设置echarts的fontSize
+    getSize() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 8
+    },
     // 头部全国车辆总数
     hts() {
       const $Q = document.querySelector.bind(document)
@@ -432,7 +439,7 @@ export default {
       echarts.registerMap('china', data)
       // 绘制地图
       this.renderMap('china', this.mapdata)
-      // on(window, 'resize', this.resize)
+      on(window, 'resize', this.resize)
       // 绑定点击事件
       this.mapDom.on('click', this.selectProvinces)
 
@@ -472,6 +479,11 @@ export default {
           type: 'map',
           name: map,
           mapType: map,
+          tooltip: {
+            textStyle: {
+              fontSize: this.getSize()
+            }
+          },
           nameMap: {
             china: '中国'
           },
@@ -492,7 +504,7 @@ export default {
               show: true,
               textStyle: {
                 color: 'rgba(255, 255, 255, 0.8)',
-                fontSize: 13
+                fontSize: this.getSize()
               }
             }
             // emphasis: {
@@ -639,7 +651,8 @@ export default {
               icon: `image://${require('../../../../../static/images/taskProgress/legend_icon_1.png')}`,
               // 设置文本为红色
               textStyle: {
-                color: 'rgba(255, 255, 255, 1)'
+                color: 'rgba(255, 255, 255, 1)',
+                fontSize: this.getSize()
               }
             },
             {
@@ -648,7 +661,8 @@ export default {
               icon: `image://${require('../../../../../static/images/taskProgress/legend_icon_2.png')}`,
               // 设置文本为红色
               textStyle: {
-                color: 'rgba(255, 255, 255, 1)'
+                color: 'rgba(255, 255, 255, 1)',
+                fontSize: this.getSize()
               }
             }
           ]
@@ -658,12 +672,20 @@ export default {
           boundaryGap: true,
           splitLine: { show: false }, // 去掉网格
           axisTick: { show: false }, // 隐藏坐标轴刻度线
-          data: this.xData
+          data: this.xData,
+          axisLabel: {
+            textStyle: {
+              fontSize: this.getSize()
+            }
+          }
         },
         yAxis: [
           {
             name: '（数量）',
             type: 'value',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             position: 'left',
             splitLine: { show: false }, // 去掉网格
             axisTick: { show: false }, // 隐藏坐标轴刻度线
@@ -672,15 +694,24 @@ export default {
               show: false
             },
             axisLabel: {
-              formatter: '{value}'
+              formatter: '{value}',
+              textStyle: {
+                fontSize: this.getSize()
+              }
             }
           },
           {
             name: '里程（万）',
             type: 'value',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             position: 'right',
             axisLabel: {
-              formatter: '{value}'
+              formatter: '{value}',
+              textStyle: {
+                fontSize: this.getSize()
+              }
             },
             splitLine: { show: false }, // 去掉网格
             axisTick: { show: false }, // 隐藏坐标轴刻度线
@@ -726,7 +757,7 @@ export default {
       }
       this.dom = echarts.init(this.$refs.chart)
       this.dom.setOption(option)
-      // on(window, 'resize', this.resize)
+      on(window, 'resize', this.resize)
     },
     // 折叠底部图表
     flod() {

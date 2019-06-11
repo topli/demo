@@ -52,7 +52,7 @@
   .chart-title {
     padding: 10px;
     span {
-      font-size: 14px;
+      font-size: 0.9vw;
       font-weight: 700;
       display: inline-block;
       width: 100%;
@@ -156,6 +156,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+// import { on } from '@/libs/utils/index'
 // import date from 'mixins/date'
 // import remote from 'mixins/remote'
 // import searchDate from 'mixins/searchDate'
@@ -220,9 +221,15 @@ export default {
     window.onresize = () => {
       this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
       this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 44.6 + ''
+      this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
     }
   },
   methods: {
+    // 屏幕的宽度设置echarts的fontSize
+    getSize() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 8.5
+    },
     // 日期格式
     changeTime(type) {
       console.log(type)
@@ -268,6 +275,9 @@ export default {
             crossStyle: {
               color: '#999'
             }
+          },
+          textStyle: {
+            fontSize: this.getSize()
           }
         },
         toolbox: {
@@ -279,7 +289,7 @@ export default {
           }
         },
         grid: {
-          top: '10%',
+          top: '13%',
           left: '4%',
           bottom: '4%',
           containLabel: true
@@ -288,7 +298,10 @@ export default {
           data: ['当月总方量', '当月累计油耗'],
           orient: 'vertical',
           right: '0%',
-          top: '8%'
+          top: '8%',
+          textStyle: {
+            fontSize: this.getSize()
+          }
         },
         xAxis: [
           {
@@ -296,6 +309,11 @@ export default {
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
+            },
+            axisLabel: {
+              textStyle: {
+                fontSize: this.getSize()
+              }
             }
           }
         ],
@@ -303,9 +321,17 @@ export default {
           {
             type: 'value',
             name: '(方量)',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             min: 0,
             max: 200,
-            interval: 40
+            interval: 40,
+            axisLabel: {
+              textStyle: {
+                fontSize: this.getSize()
+              }
+            }
             // axisLabel: {
             //   formatter: '{value} 元'
             // }
@@ -313,11 +339,15 @@ export default {
           {
             type: 'value',
             name: '(油耗L)',
+            nameTextStyle: {
+              fontSize: this.getSize()
+            },
             min: 0,
             max: 50,
             interval: 10,
             axisLabel: {
-              formatter: '{value} '
+              formatter: '{value} ',
+              fontSize: this.getSize()
             }
           }
         ],
@@ -345,13 +375,19 @@ export default {
         color: ['#6cbfff', '#b55454', '#6f9fa7', '#c1883a', '#23ccda'],
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b}: {c} ({d}%)'
+          formatter: '{a} <br/>{b}: {c} ({d}%)',
+          textStyle: {
+            fontSize: this.getSize()
+          }
         },
         legend: {
           orient: 'vertical',
           left: '75%',
           top: '18%',
-          data: ['平朔安太堡露天矿', '杨庄煤矿', '山西煤矿']
+          data: ['平朔安太堡露天矿', '杨庄煤矿', '山西煤矿'],
+          textStyle: {
+            fontSize: this.getSize()
+          }
         },
         series: [
           {
@@ -371,7 +407,10 @@ export default {
               normal: {
                 show: true,
                 position: 'inside',
-                formatter: '{d}%'
+                formatter: '{d}%',
+                textStyle: {
+                  fontSize: this.getSize()
+                }
               },
               emphasis: {
                 show: true,
@@ -394,89 +433,56 @@ export default {
           }
         ]
       }
-      // scatter
-      var data = [
-        [
-          [28604, 77, 17096869, 'Australia', 1990],
-          [31163, 77.4, 27662440, 'Canada', 1990],
-          [1516, 68, 1154605773, 'China', 1990],
-          [13670, 74.7, 10582082, 'Cuba', 1990],
-          [28599, 75, 4986705, 'Finland', 1990],
-          [29476, 77.1, 56943299, 'France', 1990],
-          [31476, 75.4, 78958237, 'Germany', 1990],
-          [28666, 78.1, 254830, 'Iceland', 1990],
-          [1777, 57.7, 870601776, 'India', 1990],
-          [29550, 79.1, 122249285, 'Japan', 1990],
-          [2076, 67.9, 20194354, 'North Korea', 1990],
-          [12087, 72, 42972254, 'South Korea', 1990],
-          [24021, 75.4, 3397534, 'New Zealand', 1990],
-          [43296, 76.8, 4240375, 'Norway', 1990],
-          [10088, 70.8, 38195258, 'Poland', 1990],
-          [19349, 69.6, 147568552, 'Russia', 1990],
-          [10670, 67.3, 53994605, 'Turkey', 1990],
-          [26424, 75.7, 57110117, 'United Kingdom', 1990],
-          [37062, 75.4, 252847810, 'United States', 1990]
-        ]
-      ]
       this.listData3 = {
-        color: '#59a1d9',
-        borderRadius: 15,
-        title: {
-          // text: '1990、2018年各国家人均寿命与GDP'
-          borderRadius: 5
-        },
-        grid: {
-          top: '7%',
-          left: '9%',
-          bottom: '9%',
-          containLabel: true
-        },
-        legend: {
-          right: 10
-          // data: ['2015']
-        },
+        interval: 0,
         xAxis: {
-          splitLine: {
-            lineStyle: {
-              type: 'dashed'
-            }
-          }
+          name: '方量',
+          splitLine: { show: false }
         },
         yAxis: {
-          splitLine: {
-            lineStyle: {
-              type: 'dashed'
+          data: ['山西煤矿', '杨庄煤矿', '平朔安太堡露天矿'],
+          axisLabel: {
+            show: true,
+            textStyle: {
+              fontSize: this.getSize()
             }
-          },
-          scale: true
+          }
         },
-        series: [
-          {
-            // name: '2015',
-            data: data[0],
-            type: 'scatter',
-            symbolSize: function(data) {
-              return Math.sqrt(data[2]) / 5e2
-            },
-            label: {
-              emphasis: {
-                show: true,
-                formatter: function(param) {
-                  return param.data[3]
-                },
-                position: 'top'
+        series: [{
+          type: 'bar',
+          data: [101, 125, 112],
+          barWidth: '45%',
+          itemStyle: {
+            normal: {
+              color: function(params) {
+                var colorList = ['#bf9000', '#00b050', '#c00000']
+                return colorList[params.dataIndex]
               }
             },
-            itemStyle: {
-              normal: {
-                shadowBlur: 10,
-                shadowColor: 'rgba(25, 100, 150, 0.5)',
-                shadowOffsetY: 5,
-                color: '#59a1d9'
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          },
+          label: {
+            normal: {
+              show: true,
+              textStyle: {
+                fontSize: this.getSize()
               }
             }
           }
-        ]
+        }],
+        grid: {
+          // left: '0%',
+          // right: '10%',
+          x: 40,
+          y: 20,
+          x2: 70,
+          y2: 30,
+          containLabel: true
+        }
       }
     }
   }

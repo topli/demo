@@ -101,17 +101,6 @@ export default {
       }
       for (let i = 0; i < num; i++) {
         const dateStr = parseTime(new Date().getTime() + 86400000 * i, '{y}-{m}-{d}')
-        // this.columnsTitle.push({
-        //   key: dateStr,
-        //   title: dateStr,
-        //   width: '120',
-        //   dictType: 'taskType',
-        //   render: (h, params) => {
-        //     const f = params.row['_f_' + dateStr]
-        //     if (!f) return
-        //     return h('el-tag', { props: { color: f.color }, style: { color: 'white' }}, f.label)
-        //   }
-        // })
         const dateCol = {
           key: dateStr,
           title: dateStr,

@@ -76,11 +76,7 @@ export default {
         }
       ],
       fileType: 'currentTaskReport',
-      fileName: this.$t('route.' + this.$route.name),
-      searchData: {
-        pageNo: 1,
-        pageSize: 10
-      }
+      fileName: this.$t('route.' + this.$route.name)
     }
   },
   methods: {

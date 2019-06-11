@@ -49,12 +49,8 @@ export default {
           title: this.$t('enclosure.status'),
           filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
           width: '120',
-          render: (h, params) => {
-            return h('el-tag', {
-              props: { color: params.row.status ? '#52c08e' : '#EE3B3B', type: 'text' },
-              style: { color: 'white' }
-            },
-            params.row.status ? '启用' : '禁用')
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
           }
         },
         {

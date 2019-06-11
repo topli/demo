@@ -22,12 +22,12 @@
       overflow: hidden;
       float: left;
       a {
-        line-height: 25px;
+        line-height: 4vh;
         color: #0febff;
         text-align: center;
         font-weight: 700;
         width: 100%;
-        font-size: 16px;
+        font-size: 0.8vw;
         cursor: default;
       }
     }
@@ -35,8 +35,8 @@
       float: right;
       display: flex;
       font-size: 0;
-      margin-top: 10px;
-      margin-right: 15px;
+      margin-top: 1vw;
+      margin-right: 1vw;
       align-items: center;
       li {
         float: left;
@@ -56,12 +56,12 @@
       }
       .user-name {
         color: #0febff;
-        font-size: 11px;
+        font-size: .8vw;
       }
       .avator img {
         display: block;
         border: 0;
-        width: 80%;
+        width: 1vw;
         height: 80%;
       }
     }

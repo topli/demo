@@ -3,7 +3,7 @@
     <div class="map-search">
       <el-input :placeholder="$t('device.number')" v-model="deviceNumber"/>
     </div>
-    <div id="map" style="height: 500px;width: 100%;"/>
+    <div id="map" style="height: 55vh;width: 100%;"/>
     <div class="device-info">
       <el-row style="margin-bottom: 10px;">
         <el-col :span="24">
