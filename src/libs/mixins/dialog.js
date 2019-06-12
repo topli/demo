@@ -2,7 +2,7 @@
  *  混合列表模板
  */
 import importTemplate from '@/components/Import/index'
-import exportTemplate from '@/components/export/index'
+import exportTemplate from '@/components/Export/index'
 
 export default {
   data() {
