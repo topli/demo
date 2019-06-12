@@ -12,14 +12,13 @@
 </template>
 
 <script>
+/**
+ * ps: unExport is true the columns is not Export
+ */
 import { getStorage } from '@/libs/utils'
 import Vue from 'vue'
 export default {
   props: {
-    id: {
-      type: Number,
-      default: null
-    },
     propObject: {
       type: Object,
       default: null
@@ -27,8 +26,20 @@ export default {
   },
   data() {
     return {
-      radio: '1'
+      radio: '1',
+      searchData: {},
+      columnsTitle: [],
+      fileType: ''
     }
+  },
+  mounted() {
+    this.searchData = this.propObject.searchData ? JSON.parse(JSON.stringify(this.propObject.searchData)) : {}
+    this.columnsTitle = this.propObject.columnsTitle ? JSON.parse(JSON.stringify(this.propObject.columnsTitle)) : []
+    this.fileType = this.propObject.fileType ? JSON.parse(JSON.stringify(this.propObject.fileType)) : ''
+    this.fileName = this.propObject.fileName ? JSON.parse(JSON.stringify(this.propObject.fileName)) : ''
+    this.columnsTitle = this.columnsTitle.filter(item => {
+      return !item.unExport
+    })
   },
   methods: {
     submit() {
@@ -39,37 +50,37 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       })
       setTimeout(() => {
-        this.handleDownload(this.propObject)
+        this.handleDownload()
         loading.close()
         this.onSub()
       }, 2000)
     },
-    handleDownload(propObject) {
+    handleDownload() {
       this.downloadLoading = true
       import('@/libs/utils/exportExcel').then(excel => {
         const tHeader = []
-        propObject.columnsTitle.forEach(item => {
+        this.columnsTitle.forEach((item, i) => {
           tHeader.push(item.title)
         })
         const localData = JSON.parse(getStorage('localData'))
-        let list = localData[propObject.fileType].list
-        if (propObject.searchData.pageNo && propObject.searchData.pageSize) {
-          list = list.slice((propObject.searchData.pageNo - 1) * propObject.searchData.pageSize, (propObject.searchData.pageNo * propObject.searchData.pageSize) > list.length ? list.length : propObject.searchData.pageNo * propObject.searchData.pageSize)
+        let list = localData[this.fileType].list
+        if (this.searchData.pageNo && this.searchData.pageSize) {
+          list = list.slice((this.searchData.pageNo - 1) * this.searchData.pageSize, (this.searchData.pageNo * this.searchData.pageSize) > list.length ? list.length : this.searchData.pageNo * this.searchData.pageSize)
         }
         const data = this.formatJson(list)
         excel.export_json_to_excel({
           header: tHeader,
           data,
-          filename: this.propObject.fileName,
+          filename: this.fileName,
           autoWidth: true,
           bookType: 'xlsx'
         })
         this.downloadLoading = false
       })
     },
-    formatJson(list) {
+    formatJson(list, col) {
       return list.map(l => {
-        return this.propObject.columnsTitle.map(c => {
+        return this.columnsTitle.map(c => {
           if (c.filters) {
             let v = null
             const type = c.filters.split('|').slice(0, 1)
