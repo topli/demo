@@ -465,7 +465,7 @@ export default {
   .popover-body{
     color: white;
     overflow: hidden;
-    height: 200px;
+    min-height: 15vh;
     border-radius: 8px;
     font-size: 13px!important;
     position: absolute;

@@ -51,6 +51,7 @@
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
 import { getList } from './service'
+import { setStorage, getStorage } from '@/libs/utils'
 
 export default {
   mixins: [list, dialog],
@@ -85,6 +86,22 @@ export default {
       primary2: '',
       primary3: '',
       fileName: this.$t('route.' + this.$route.name),
+      dayList: [
+        { deviceNo: '91376494', workTime: '124H', currentDriver: '张秀英', workNum: '2', workAmount: '65421', status: true },
+        { deviceNo: '41055218', workTime: '621H', currentDriver: '余平', workNum: '10', workAmount: '451245', status: true },
+        { deviceNo: '91232187', workTime: '454H', currentDriver: '贾刚', workNum: '8', workAmount: '37744', status: true },
+        { deviceNo: '91270313', workTime: '312H', currentDriver: '石敏', workNum: '5', workAmount: '12773', status: true },
+        { deviceNo: '41080622', workTime: '754H', currentDriver: '吕勇', workNum: '5', workAmount: '456457', status: true },
+        { deviceNo: '41086687', workTime: '271H', currentDriver: '高涛', workNum: '6', workAmount: '45112', status: true },
+        { deviceNo: '91207390', workTime: '254H', currentDriver: '沈明', workNum: '1', workAmount: '89454', status: false },
+        { deviceNo: '41234559', workTime: '341H', currentDriver: '方静', workNum: '5', workAmount: '44561', status: true },
+        { deviceNo: '41108584', workTime: '85H', currentDriver: '石洋', workNum: '2', workAmount: '2783', status: false },
+        { deviceNo: '41086595', workTime: '544H', currentDriver: '孙军', workNum: '7', workAmount: '12345', status: true },
+        { deviceNo: '34537390', workTime: '254H', currentDriver: '力达林', workNum: '1', workAmount: '34454', status: false },
+        { deviceNo: '41212559', workTime: '3551H', currentDriver: '程志杰', workNum: '5', workAmount: '42261', status: false },
+        { deviceNo: '41121584', workTime: '35H', currentDriver: '何志强', workNum: '2', workAmount: '12383', status: true },
+        { deviceNo: '12386595', workTime: '614H', currentDriver: '刘静', workNum: '7', workAmount: '85645', status: true }
+      ],
       monthList: [
         { deviceNo: '91376494', workTime: '600H', currentDriver: '张秀英', workNum: '30', workAmount: '165421', status: true },
         { deviceNo: '41055218', workTime: '1200H', currentDriver: '余平', workNum: '40', workAmount: '4151245', status: true },
@@ -145,6 +162,9 @@ export default {
         this.primary1 = 'primary'
         this.primary2 = ''
         this.primary3 = ''
+        const localData = JSON.parse(getStorage('localData', localData))
+        localData.currentTaskReport.list = this.dayList
+        setStorage('localData', localData)
         this._getList()
       } else if (item === 'month') {
         this.primary2 = 'primary'
@@ -153,6 +173,7 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.list = this.monthList
+          this.setStorage(this.monthList)
         }, 1000)
       } else {
         this.primary3 = 'primary'
@@ -161,8 +182,14 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.list = this.yearsList
+          this.setStorage(this.yearsList)
         }, 1000)
       }
+    },
+    setStorage(list) {
+      const localData = JSON.parse(getStorage('localData', localData))
+      localData.currentTaskReport.list = this.list
+      setStorage('localData', localData)
     }
   }
 }
