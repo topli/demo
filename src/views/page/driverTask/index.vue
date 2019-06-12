@@ -12,9 +12,9 @@
       <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/>
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
       <el-button-group style="float: right">
-        <el-button size="mini" @click="showType = 'day'">{{ $t('app.day') }}</el-button>
-        <el-button size="mini" @click="showType = 'week'">{{ $t('app.week') }}</el-button>
-        <el-button size="mini" @click="showType = 'month'">{{ $t('app.month') }}</el-button>
+        <el-button :type="primary1" size="mini" @click="showType = 'day'">{{ $t('app.day') }}</el-button>
+        <el-button :type="primary2" size="mini" @click="showType = 'week'">{{ $t('app.week') }}</el-button>
+        <el-button :type="primary3" size="mini" @click="showType = 'month'">{{ $t('app.month') }}</el-button>
       </el-button-group>
     </div>
     <div class="table">
@@ -66,7 +66,10 @@ export default {
       ],
       showType: 'week', // day week month
       fileType: 'driverTask',
-      nameList: []
+      nameList: [],
+      primary1: '',
+      primary2: 'primary',
+      primary3: ''
     }
   },
   watch: {
@@ -89,12 +92,21 @@ export default {
       switch (this.showType) {
         case 'day':
           num = 1
+          this.primary1 = 'primary'
+          this.primary2 = ''
+          this.primary3 = ''
           break
         case 'week':
           num = 7
+          this.primary1 = ''
+          this.primary2 = 'primary'
+          this.primary3 = ''
           break
         case 'month':
           num = 30
+          this.primary1 = ''
+          this.primary2 = ''
+          this.primary3 = 'primary'
           break
         default:
           break

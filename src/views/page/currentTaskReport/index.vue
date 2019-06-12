@@ -20,9 +20,9 @@
       <!-- <icon-btn :content="$t('app.import')" auth-code="import" icon="import" @click="importFun"/> -->
       <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/>
       <el-button-group style="float: right">
-        <el-button size="mini" @click="showType('day')">{{ $t('currentTaskReport.day') }}</el-button>
-        <el-button size="mini" @click="showType('month')">{{ $t('currentTaskReport.month') }}</el-button>
-        <el-button size="mini" @click="showType('years')">{{ $t('currentTaskReport.years') }}</el-button>
+        <el-button :type="primary1" size="mini" @click="showType('day')">{{ $t('currentTaskReport.day') }}</el-button>
+        <el-button :type="primary2" size="mini" @click="showType('month')">{{ $t('currentTaskReport.month') }}</el-button>
+        <el-button :type="primary3" size="mini" @click="showType('years')">{{ $t('currentTaskReport.years') }}</el-button>
       </el-button-group>
     </div>
     <div class="table">
@@ -81,6 +81,9 @@ export default {
         }
       ],
       fileType: 'currentTaskReport',
+      primary1: 'primary',
+      primary2: '',
+      primary3: '',
       fileName: this.$t('route.' + this.$route.name),
       monthList: [
         { deviceNo: '91376494', workTime: '600H', currentDriver: '张秀英', workNum: '30', workAmount: '165421', status: true },
@@ -135,16 +138,26 @@ export default {
         })
       }, 1000)
     },
+    // 按年月日查询
     showType(item) {
       this.loading = true
       if (item === 'day') {
+        this.primary1 = 'primary'
+        this.primary2 = ''
+        this.primary3 = ''
         this._getList()
       } else if (item === 'month') {
+        this.primary2 = 'primary'
+        this.primary1 = ''
+        this.primary3 = ''
         setTimeout(() => {
           this.loading = false
           this.list = this.monthList
         }, 1000)
       } else {
+        this.primary3 = 'primary'
+        this.primary1 = ''
+        this.primary2 = ''
         setTimeout(() => {
           this.loading = false
           this.list = this.yearsList
