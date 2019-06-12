@@ -638,6 +638,9 @@ export default {
             ${params[0].seriesName}: ${params[0].value}辆<br>
             ${params[1].seriesName}: ${params[1].value}万km`
             return content
+          },
+          textStyle: {
+            fontSize: this.getSize()
           }
         },
         legend: {
@@ -724,8 +727,8 @@ export default {
           {
             name: '数量',
             type: 'bar',
-            // barWidth: 18,
-            barMaxWidth: 14,
+            barWidth: this.getBarWidth(),
+            // barMaxWidth: 14,
             itemStyle: {
               normal: {
                 color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
@@ -740,6 +743,7 @@ export default {
           {
             name: '里程',
             type: 'bar',
+            barWidth: this.getBarWidth(),
             itemStyle: {
               normal: {
                 color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
@@ -749,7 +753,7 @@ export default {
                 ])
               }
             },
-            barMaxWidth: 14,
+            // barMaxWidth: 14,
             data: this.yDataMileage,
             yAxisIndex: 1
           }
@@ -771,6 +775,10 @@ export default {
       setTimeout(() => {
         this.mapDom.resize()
       }, 400)
+    },
+    getBarWidth() {
+      const winWidth = document.documentElement.clientWidth
+      return winWidth / 1082 * 7.3
     },
     // 重置尺寸
     resize() {

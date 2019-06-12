@@ -360,7 +360,7 @@ export default {
      * 是否全屏并按键ESC键的方法
      */
     checkFull() {
-      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
+      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen || document.fullscreen
       // to fix : false || undefined == undefined
       if (isFull === undefined) {
         isFull = false

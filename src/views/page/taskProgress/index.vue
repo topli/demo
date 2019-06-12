@@ -103,7 +103,7 @@
         <li class="user-name">root</li>
         <li class="avator"><img src="../../../../static/images/taskProgress/avator.png"></li>
         <el-button type="text" style="position:absolute; right: 1.2vw; top: 1.2vw;font-size: .7vw;color:#0febff" @click="screenfull">
-          {{ !isScreenfull ? $t('app.fullScreen') : '' }}
+          {{ showFullScreenText }}
         </el-button>
         <!-- <li class="logout" @click="modalShow = true"><img src="../../../../static/images/taskProgress/logout.png"></li> -->
       </ul>
@@ -156,7 +156,13 @@ export default {
     // ...mapGetters(['sysList', 'getCurrentUser'])
     ...mapGetters([
       'sidebar'
-    ])
+    ]),
+    showFullScreenText() {
+      if (!this.isScreenfull) {
+        return this.$t('app.fullScreen')
+      }
+      return ''
+    }
   },
   created() {
 
@@ -184,15 +190,15 @@ export default {
     screenfull() {
       const taskProgress = document.getElementById('taskProgress')
       if (screenfull.enabled) {
-        screenfull.request(taskProgress)
         this.isScreenfull = !this.isScreenfull
+        screenfull.request(taskProgress)
       }
     },
     /**
      * 是否全屏并按键ESC键的方法
      */
     checkFull() {
-      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
+      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen || document.fullscreen
       // to fix : false || undefined == undefined
       if (isFull === undefined) {
         isFull = false

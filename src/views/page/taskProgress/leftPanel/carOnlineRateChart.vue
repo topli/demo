@@ -162,6 +162,9 @@ export default {
             ${params[0].seriesName}: ${params[0].value[1]}%<br>
             ${params[1].seriesName}: ${params[1].value[1]}万`
             return content
+          },
+          textStyle: {
+            fontSize: this.getSize()
           }
         },
         grid: {
