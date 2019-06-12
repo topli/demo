@@ -39,6 +39,7 @@
 
 <script>
 import add from './add'
+import info from './info'
 import review from './review'
 import dispatch from './dispatch'
 import list from '@/libs/mixins/list'
@@ -53,7 +54,10 @@ export default {
         {
           key: 'no',
           title: this.$t('tasks.no'),
-          width: '160'
+          width: '160',
+          render: (h, params, val) => {
+            return h('a', { style: { color: '#409eff' }, on: { click: (e) => { this.clickInfo(e, params.row) } }}, val)
+          }
         },
         {
           key: 'name',
@@ -187,6 +191,15 @@ export default {
           // todo 刷新列表
           this._getList()
         }
+      })
+    },
+    clickInfo(e, row) {
+      console.log(row)
+      this.$dialogBox({
+        title: this.$t('app.info'),
+        components: info,
+        width: 750,
+        props: { data: row }
       })
     },
     deleteItem(row) {

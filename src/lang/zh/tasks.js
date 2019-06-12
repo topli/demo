@@ -23,6 +23,7 @@ export default {
     examine: '审核结果',
     pushDate: '发布时间',
     devices: '设备',
-    progress: '完成进度'
+    progress: '完成进度',
+    device: '设备'
   }
 }
