@@ -6,6 +6,9 @@
       :height="tableHeight"
       :border="border"
       :stripe="stripe"
+      :tree-props="treeProps"
+      row-class-name="animated fadeIn"
+      row-key="id"
       style="width: 100%"
       @selection-change="handleSelectionChange"
       @sort-change="sortChange"
@@ -35,14 +38,17 @@
           :filter-method="col.filterMethod"
           :sortable="col.sortable"
           :sort-method="col.sortMethod"
-          show-overflow-tooltip
           filter-placement="bottom">
           <template slot-scope="scope">
             <render-column
+              v-if="col.render || col.filters"
               :render-content="col.render"
               :scope="scope"
               :prop="col.key"
               :filters="col.filters"/>
+            <span v-else>
+              {{ scope.row[col.key] }}
+            </span>
           </template>
         </el-table-column>
       </template>
@@ -62,7 +68,9 @@ export default {
     loading: { type: Boolean, default: false },
     sortChange: { type: Function, default: function() {} },
     border: { type: Boolean, default: true },
-    stripe: { type: Boolean, default: true }
+    stripe: { type: Boolean, default: true },
+    height: { type: [String, Number], default: 0 },
+    treeProps: { type: Object, default: function() {} }
   },
   data() {
     return {
@@ -85,6 +93,10 @@ export default {
     window.removeEventListener('resize', this.setTableHeight)
   },
   methods: {
+    test(scope) {
+      console.log(scope)
+      console.log('test')
+    },
     label(col) {
       return col.title + (col.unit ? '(' + col.unit + ')' : '')
     },
@@ -101,7 +113,7 @@ export default {
       // this.$el.offsetTop 表格距离父级窗口的距离
       // 70 分页部分高度
       this.$nextTick(() => {
-        this.tableHeight = document.body.clientHeight - 50 - this.$el.offsetTop - 70
+        this.tableHeight = this.height || document.body.clientHeight - 50 - this.$el.offsetTop - 70
       })
     }
   }

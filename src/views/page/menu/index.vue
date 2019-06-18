@@ -16,7 +16,14 @@
       <!-- <icon-btn :content="$t('app.export')" auth-code="export" icon="export" @click="exportFun"/> -->
     </div>
     <div class="table">
-      <tree-table :data="data" :columns="columns" border/>
+      <t-for-col
+        :data="data"
+        :columns-title="columns"
+        :loading="loading"
+        :stripe="false"
+        :tree-props="{children: 'child', hasChildren: 'hasChildren'}"
+        @select-change="handleSelectionChange"/>
+        <!-- <tree-table :data="data" :columns="columns" border/> -->
     </div>
     <!-- <div class="pages">
       <el-pagination
@@ -162,7 +169,7 @@ export default {
       })
     },
     deleteItem(row) {
-      this.confirm((success) => {
+      this.disablesConfirm((success) => {
         delData(row).then((res) => {
           if (res.code === 200) {
             this.$message({

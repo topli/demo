@@ -8,33 +8,6 @@
         <el-form-item>
           <el-input v-model="searchForm.deviceType" :placeholder="$t('alarmSet.deviceType')" clearable/>
         </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('alarmSet.status')" filterable clearable data-type="status"/>
-        </el-form-item>
-        <!-- <el-form-item>
-          <el-input v-model="searchForm.fuel" :placeholder="$t('alarmSet.fuel')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="searchForm.temperature" :placeholder="$t('alarmSet.temperature')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="searchForm.pressure" :placeholder="$t('alarmSet.pressure')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="searchForm.range" :placeholder="$t('alarmSet.range')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="searchForm.loadingCapacity" :placeholder="$t('alarmSet.loadingCapacity')" clearable/>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="searchForm.speed" :placeholder="$t('alarmSet.speed')" clearable/>
-        </el-form-item> -->
-        <!-- <el-form-item>
-          <select-remote v-model="searchForm.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
-        </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
-        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">
@@ -182,7 +155,6 @@ export default {
     },
     _getList() {
       this.loading = true
-      console.log(this.searchData)
       getList(this.searchData).then(res => {
         setTimeout(() => {
           this.loading = false
@@ -225,7 +197,7 @@ export default {
       })
     },
     deleteItem(row) {
-      this.confirm((success) => {
+      this.disablesConfirm((success) => {
         delData(row).then((res) => {
           console.log(res)
           if (res.code === 200) {

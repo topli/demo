@@ -5,9 +5,9 @@
         <el-form-item>
           <el-input v-model="searchForm.user" :placeholder="$t('enclosure.name')" clearable/>
         </el-form-item>
-        <el-form-item>
+        <!-- <el-form-item>
           <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">
@@ -42,7 +42,7 @@
 import add from './add'
 import list from '@/libs/mixins/list'
 import dialog from '@/libs/mixins/dialog'
-import { getList, delData } from './service'
+import { getList, editData } from './service'
 
 export default {
   mixins: [list, dialog],
@@ -108,7 +108,7 @@ export default {
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'disables', t: 'app.disables', handler: this.disablesItem, color: '#F24D5D' }
             ]))
           }
         }
@@ -141,7 +141,6 @@ export default {
       }, 1000)
     },
     editData(row) {
-      console.log(row)
       this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange, id: row.id }})
     },
     addData() {
@@ -156,10 +155,10 @@ export default {
         }
       })
     },
-    deleteItem(row) {
-      this.confirm((success) => {
-        delData(row).then((res) => {
-          console.log(res)
+    disablesItem(row) {
+      this.disablesConfirm((success) => {
+        row.status = false
+        editData(row).then((res) => {
           if (res.code === 200) {
             this.$message({
               type: 'success',

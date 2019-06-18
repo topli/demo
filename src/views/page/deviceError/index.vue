@@ -5,12 +5,6 @@
         <el-form-item>
           <el-input v-model="searchForm.user" :placeholder="$t('deviceError.alarmType')" clearable/>
         </el-form-item>
-        <!-- <el-form-item>
-          <el-select v-model="searchForm.region" :placeholder="$t('user.region')" clearable>
-            <el-option label="区域一" value="shanghai"/>
-            <el-option label="区域二" value="beijing"/>
-          </el-select>
-        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">

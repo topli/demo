@@ -294,8 +294,8 @@ export default {
     renderContent(h, { node, data, store }) {
       return (
         <span class='custom-tree-node'>
-          <svg-icon icon-class={node.icon}/>
-          <span style='margin-left:5px;'>{node.label}</span>
+          <svg-icon icon-class={data.icon}/>
+          <span style='margin-left:5px;'>{data.label}</span>
         </span>
       )
     },

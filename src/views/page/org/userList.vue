@@ -8,9 +8,6 @@
         <el-form-item>
           <select-remote v-model="searchForm.sex" :placeholder="$t('user.sex')" filterable clearable data-type="sex"/>
         </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
-        </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">

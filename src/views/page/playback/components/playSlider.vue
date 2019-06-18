@@ -246,7 +246,6 @@ export default {
   },
   created() {},
   mounted() {
-    console.log(this.videoData)
   },
   // 销毁组件时 清除定时任务
   beforeDestroy() {

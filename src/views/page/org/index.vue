@@ -30,7 +30,7 @@
   </div>
 </template>
 <script>
-import { deepClone, confirm } from '@/libs/utils'
+import { deepClone, deleteConfirm } from '@/libs/utils'
 import { getList, editData } from './service'
 import userList from './userList.vue'
 import deviceList from './deviceList.vue'
@@ -155,7 +155,7 @@ export default {
       const parent = item.node.parent
       const children = parent.data.children || parent.data
       const index = children.findIndex(d => d.id === item.data.id)
-      confirm.call(this, () => {
+      deleteConfirm.call(this, () => {
         // todo 调用后台删除菜单api
         children.splice(index, 1)
         this.treeData = Object.assign([], this.treeData)
@@ -185,7 +185,7 @@ export default {
           h('span', [
             this.renderIconBtn(h, { node, data, store }, { icon: 'add', content: this.$t('app.add') }, this.append),
             this.renderIconBtn(h, { node, data, store }, { icon: 'edit', content: this.$t('app.modify') }, this.edit, data.type === 'org'),
-            this.renderIconBtn(h, { node, data, store }, { icon: 'disables', content: this.$t('app.disables') }, this.remove, data.type === 'org')
+            this.renderIconBtn(h, { node, data, store }, { icon: 'delete', content: this.$t('app.delete') }, this.remove, data.type === 'org')
           ])
         ])
     },

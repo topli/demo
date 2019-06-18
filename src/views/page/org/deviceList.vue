@@ -3,7 +3,7 @@
     <search-tem class="list-search" @on-search="onSearch">
       <el-form :inline="true" :model="searchForm">
         <el-form-item>
-          <el-input v-model="searchForm.status" :placeholder="$t('device.status')" clearable/>
+          <el-input v-model="searchForm.number" :placeholder="$t('device.number')" clearable/>
         </el-form-item>
       </el-form>
     </search-tem>

@@ -5,9 +5,9 @@
         <el-form-item>
           <el-input v-model="searchForm.name" :placeholder="$t('enclosure.name')" clearable/>
         </el-form-item>
-        <el-form-item>
+        <!-- <el-form-item>
           <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
     </search-tem>
     <div class="btns">
@@ -149,7 +149,7 @@ export default {
     //   })
     // },
     // deleteItem(row) {
-    //   this.confirm((success) => {
+    //   this.disablesConfirm((success) => {
     //     delData(row).then((res) => {
     //       console.log(res)
     //       if (res.code === 200) {

@@ -135,12 +135,29 @@ export function getQueryString(url) {
   return args
 }
 /**
- * confirm
+ * disablesConfirm
  * @param {*} submitFun
  * @param {*} cancelFun
  */
-export function confirm(submitFun, cancelFun) {
+export function disablesConfirm(submitFun, cancelFun) {
   this.$confirm(this.$t('app.disablesTips'), this.$t('app.disables'), {
+    confirmButtonText: this.$t('app.submit'),
+    cancelButtonText: this.$t('app.cancel'),
+    type: 'warning',
+    confirmButtonClass: 'show-del-submit'
+  }).then(() => {
+    submitFun && submitFun()
+  }).catch(() => {
+    cancelFun && cancelFun()
+  })
+}
+/**
+ * disablesConfirm
+ * @param {*} submitFun
+ * @param {*} cancelFun
+ */
+export function deleteConfirm(submitFun, cancelFun) {
+  this.$confirm(this.$t('app.delTips'), this.$t('app.delete'), {
     confirmButtonText: this.$t('app.submit'),
     cancelButtonText: this.$t('app.cancel'),
     type: 'warning',

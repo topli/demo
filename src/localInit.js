@@ -229,7 +229,7 @@ const data = {
       { id: 2, status: true, name: '北京通州区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区X201(任港路)', scope: '300' },
       { id: 3, status: true, name: '北京海淀区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '海淀区', address: '北京市海淀区S50(北五环路)', scope: '300' },
       { id: 4, status: true, name: '北京市门头沟区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '头沟区', address: '北京市门头沟区大峪南路15号楼', scope: '200' },
-      { id: 4, status: false, name: '北京市房山区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '房山区', address: '北京市房山区凯旋大街', scope: '200' }
+      { id: 5, status: false, name: '北京市房山区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '房山区', address: '北京市房山区凯旋大街', scope: '200' }
     ]
   },
   deviceError: {
@@ -238,7 +238,7 @@ const data = {
       { id: 2, status: 1, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '韩雪', createTime: new Date() },
       { id: 3, status: 1, alarmType: '温度过高', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '陈启', createTime: new Date() },
       { id: 4, status: 1, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区三一重工三一产业园', principal: '王志', createTime: new Date() },
-      { id: 4, status: 0, alarmType: '燃油不足', deviceStatus: true, handleStatus: 'false', deviceAddress: '北京市昌平区二拔子工业区东路三一重工，三一产业园', principal: '张红', createTime: new Date() }
+      { id: 5, status: 0, alarmType: '燃油不足', deviceStatus: true, handleStatus: 'false', deviceAddress: '北京市昌平区二拔子工业区东路三一重工，三一产业园', principal: '张红', createTime: new Date() }
     ]
   },
   realWorking: {
@@ -387,7 +387,7 @@ const data = {
         status: true,
         child: [
           {
-            id: 22,
+            id: 61,
             name: '当前任务进度统计',
             order: 1,
             type: 2,
@@ -454,6 +454,7 @@ const data = {
             order: 1,
             type: 1,
             status: true,
+
             child: [
               {
                 id: 3,
@@ -493,6 +494,7 @@ const data = {
             order: 2,
             type: 1,
             status: true,
+
             child: [
               {
                 id: 8,
@@ -523,6 +525,7 @@ const data = {
         name: '系统设置',
         order: 5,
         type: 1,
+        status: true,
         child: [
           {
             id: 20,
@@ -564,21 +567,21 @@ const data = {
       { id: 2, gpsNo: '41055218', useStatus: '使用中', orgName: '北京总公司', model: '装载机', number: '120301070002A', status: true, usePerson: '余平', createTime: new Date(), available: true },
       { id: 3, gpsNo: '91232187', useStatus: '闲置中', orgName: '北京总公司', model: '运输车', number: '120301070003A', status: true, usePerson: '贾刚', createTime: new Date(), available: true },
       { id: 4, gpsNo: '41108585', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070004A', status: true, usePerson: '陈超', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '91376514', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070005A', status: true, usePerson: '黄伟', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41086687', useStatus: '闲置中', orgName: '山西分公司', model: '挖掘机', number: '120301070006A', status: true, usePerson: '萧杰', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41086686', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070007A', status: true, usePerson: '白杰', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '91297925', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070008A', status: true, usePerson: '顾勇', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41086595', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070009A', status: true, usePerson: '孙军', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41080622', useStatus: '使用中', orgName: '山西分公司', model: '挖掘机', number: '120301070010A', status: true, usePerson: '秦敏', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '41086687', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070011A', status: true, usePerson: '高涛', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41080622', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070012A', status: true, usePerson: '吕勇', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41086595', useStatus: '报废', orgName: '山西分公司', model: '运输车', number: '120301070013A', status: false, usePerson: '梁磊', createTime: new Date(), available: false },
-      { id: 2, gpsNo: '91270313', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070014A', status: true, usePerson: '石敏', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '41086679', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070015A', status: true, usePerson: '熊静', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '91207317', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070016A', status: true, usePerson: '吕平', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '41108584', useStatus: '报废', orgName: '山西分公司', model: '装载机', number: '120301070017A', status: false, usePerson: '石洋', createTime: new Date(), available: false },
-      { id: 3, gpsNo: '41108559', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070018A', status: true, usePerson: '方静', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '91207390', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '1120301070019A', status: true, usePerson: '沈明', createTime: new Date(), available: true }
+      { id: 5, gpsNo: '91376514', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070005A', status: true, usePerson: '黄伟', createTime: new Date(), available: true },
+      { id: 6, gpsNo: '41086687', useStatus: '闲置中', orgName: '山西分公司', model: '挖掘机', number: '120301070006A', status: true, usePerson: '萧杰', createTime: new Date(), available: true },
+      { id: 7, gpsNo: '41086686', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070007A', status: true, usePerson: '白杰', createTime: new Date(), available: true },
+      { id: 8, gpsNo: '91297925', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070008A', status: true, usePerson: '顾勇', createTime: new Date(), available: true },
+      { id: 9, gpsNo: '41086595', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070009A', status: true, usePerson: '孙军', createTime: new Date(), available: true },
+      { id: 10, gpsNo: '41080622', useStatus: '使用中', orgName: '山西分公司', model: '挖掘机', number: '120301070010A', status: true, usePerson: '秦敏', createTime: new Date(), available: true },
+      { id: 11, gpsNo: '41086687', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070011A', status: true, usePerson: '高涛', createTime: new Date(), available: true },
+      { id: 12, gpsNo: '41080622', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070012A', status: true, usePerson: '吕勇', createTime: new Date(), available: true },
+      { id: 13, gpsNo: '41086595', useStatus: '报废', orgName: '山西分公司', model: '运输车', number: '120301070013A', status: false, usePerson: '梁磊', createTime: new Date(), available: false },
+      { id: 14, gpsNo: '91270313', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070014A', status: true, usePerson: '石敏', createTime: new Date(), available: true },
+      { id: 15, gpsNo: '41086679', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070015A', status: true, usePerson: '熊静', createTime: new Date(), available: true },
+      { id: 16, gpsNo: '91207317', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070016A', status: true, usePerson: '吕平', createTime: new Date(), available: true },
+      { id: 17, gpsNo: '41108584', useStatus: '报废', orgName: '山西分公司', model: '装载机', number: '120301070017A', status: false, usePerson: '石洋', createTime: new Date(), available: false },
+      { id: 18, gpsNo: '41108559', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070018A', status: true, usePerson: '方静', createTime: new Date(), available: true },
+      { id: 19, gpsNo: '91207390', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '1120301070019A', status: true, usePerson: '沈明', createTime: new Date(), available: true }
     ]
   },
   driverTask: {

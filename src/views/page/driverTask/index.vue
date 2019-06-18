@@ -181,7 +181,7 @@ export default {
       })
     },
     deleteItem(row) {
-      this.confirm((success) => {
+      this.disablesConfirm((success) => {
         delData(row).then((res) => {
           console.log(res)
           if (res.code === 200) {

@@ -209,8 +209,8 @@ export default {
     renderContent(h, { node, data, store }) {
       return (
         <span class='custom-tree-node'>
-          <svg-icon icon-class={node.icon}/>
-          <span style='margin-left:5px;'>{node.label}</span>
+          <svg-icon icon-class={data.icon}/>
+          <span style='margin-left:5px;'>{data.label}</span>
         </span>
       )
     },
@@ -219,10 +219,8 @@ export default {
     },
     toggleShowLeft() {
       this.showLeft = !this.showLeft
-      console.log(this.showLeft)
     },
     playLines(index) {
-      console.log(index)
       this.marker.setPosition(this.lines[index].point)
       this.marker.setRotation(this.lines[index].rotation)
     }
