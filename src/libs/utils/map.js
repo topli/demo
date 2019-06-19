@@ -86,22 +86,6 @@ export const setZoom = (map, points) => {
     map.centerAndZoom(new BMap.Point(103.388611, 35.563611), 5)
   }
 }
-// export const getDetailAddress = (gpsDetail, fun, err) => {
-//   const url = `https://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location=${gpsDetail.lat},${gpsDetail.lng}&output=json&pois=1&ak=${window._baiduKey}`
-//   $.ajax({
-//     url: url,
-//     dataType: 'jsonp',
-//     xhrFields: {
-//       withCredentials: true // 设置运行跨域操作
-//     },
-//     success: data => {
-//       fun && fun(data)
-//     },
-//     error: error => {
-//       err && err(error)
-//     }
-//   })
-// }
 /**
  * 通过经纬度获取详细地址
  * */
@@ -131,9 +115,27 @@ export const getAddress = function(point, data) {
     document.body.appendChild(jsNode)
   })
 }
+/**
+ * 地址转换   type：true  location is string   type: false location is BMap.Point
+ */
+export const geo = (location, type = true) => {
+  return new Promise((resolve, reject) => {
+    const geo = new BMap.Geocoder()
+    if (type) {
+      geo.getPoint(location, (res) => {
+        resolve(res)
+      })
+    } else {
+      geo.getLocation(location, (res) => {
+        resolve(res)
+      })
+    }
+  })
+}
 export default {
   getPoint,
   getPoints,
   setZoom,
-  getAddress
+  getAddress,
+  geo
 }
