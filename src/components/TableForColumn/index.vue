@@ -7,7 +7,6 @@
       :border="border"
       :stripe="stripe"
       :tree-props="treeProps"
-      row-class-name="animated fadeIn"
       row-key="id"
       style="width: 100%"
       @selection-change="handleSelectionChange"
@@ -93,10 +92,6 @@ export default {
     window.removeEventListener('resize', this.setTableHeight)
   },
   methods: {
-    test(scope) {
-      console.log(scope)
-      console.log('test')
-    },
     label(col) {
       return col.title + (col.unit ? '(' + col.unit + ')' : '')
     },
@@ -120,5 +115,26 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style>
+/*动画效果*/
+@-webkit-keyframes fadeIn {
+	0% {
+    opacity: 1; /*初始状态 透明度为0*/
+	}
+	20%{
+		opacity: .7;
+	}
+	50% {
+		opacity: .5; /*中间状态 透明度为0.5*/
+	}
+	70%{
+		opacity: .2;
+	}
+	100% {
+		opacity: 0; /*结尾状态 透明度为1*/
+	}
+}
+[class*="el-table__row--level"]{
+  animation: fadeIn 1s ease
+}
 </style>

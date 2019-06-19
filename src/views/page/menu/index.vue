@@ -5,9 +5,6 @@
         <el-form-item>
           <el-input v-model="searchForm.name" :placeholder="$t('menu.name')" clearable/>
         </el-form-item>
-        <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('user.status')" filterable clearable data-type="status"/>
-        </el-form-item>
       </el-form>
     </search-tem>
     <div class="btns">

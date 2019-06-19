@@ -71,7 +71,6 @@ export default {
       }
     },
     _initCharts() {
-      console.log('a')
       this.chart = echarts.init(this.$el)
       this.chart.setOption(this.reportObject)
     }

@@ -60,7 +60,7 @@ const data = {
                 parentId: 2,
                 parentName: '山西分公司'
               }, {
-                id: 6,
+                id: 7,
                 orgName: '设备管理部',
                 state: true,
                 code: 'ZBM2',
@@ -71,49 +71,6 @@ const data = {
               }
             ]
           }
-          // {
-          //   id: 3,
-          //   orgName: '分公司1',
-          //   state: true,
-          //   code: 'BM1',
-          //   linkman: '张三',
-          //   phone: '13211111111',
-          //   parentId: 9999,
-          //   parentName: '顶级机构',
-          //   parentType: 'org'
-          // },
-          // {
-          //   id: 2,
-          //   orgName: '分公司2',
-          //   state: true,
-          //   code: 'BM2',
-          //   linkman: '李四',
-          //   phone: '1322222222',
-          //   parentId: 9999,
-          //   parentName: '顶级机构',
-          //   parentType: 'org',
-          //   children: [
-          //     {
-          //       id: 5,
-          //       orgName: '财务',
-          //       state: true,
-          //       code: 'ZBM1',
-          //       linkman: '王五',
-          //       phone: '1313333333',
-          //       parentId: 2,
-          //       parentName: '部门2'
-          //     }, {
-          //       id: 6,
-          //       orgName: '调度',
-          //       state: true,
-          //       code: 'ZBM2',
-          //       linkman: '赵六',
-          //       phone: '1511111111',
-          //       parentId: 2,
-          //       parentName: '部门2'
-          //     }
-          //   ]
-          // }
         ]
       }]
   },

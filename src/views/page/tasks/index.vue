@@ -137,7 +137,7 @@ export default {
               { icon: 'review', t: 'app.review', handler: this.reviewData, color: '#3091f6', hide: hide || hide2 },
               { icon: 'push', t: 'app.dispatch', handler: this.pushData, color: '#64d9d6', hide: hide || hide1 },
               { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'disables', t: 'app.disables', handler: this.deleteItem, color: '#F24D5D' }
+              { icon: 'delete', t: 'app.delete', handler: this.deleteItem, color: '#F24D5D' }
             ]))
           }
         }
@@ -203,12 +203,12 @@ export default {
       })
     },
     deleteItem(row) {
-      this.disablesConfirm((success) => {
+      this.deleteConfirm((success) => {
         delData(row).then((res) => {
           if (res.code === 200) {
             this.$message({
               type: 'success',
-              message: this.$t('app.disables') + this.$t('app.success')
+              message: this.$t('app.delete') + this.$t('app.success')
             })
           } else {
             this.$message({

@@ -3,7 +3,6 @@ import IconBtn from './IconBtn'
 import SearchTem from './SearchTem'
 import TableForColumn from './TableForColumn'
 import OrgTree from './OrgTree'
-import TreeTable from './TreeTable'
 import SelectRemote from './SelectRemote'
 import Echarts from './Echarts'
 import TaskCol from './TaskCol'
@@ -19,7 +18,6 @@ const install = function(Vue, options = {}) {
   Vue.component('SearchTem', SearchTem)
   Vue.component('TForCol', TableForColumn)
   Vue.component('OrgTree', OrgTree)
-  Vue.component('TreeTable', TreeTable)
   Vue.component('SelectRemote', SelectRemote)
   Vue.component('Echarts', Echarts)
   Vue.component('TaskCol', TaskCol)

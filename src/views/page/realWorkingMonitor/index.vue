@@ -553,7 +553,6 @@ export default {
         }
       })
       this.barReport.push(...data)
-      console.log(this.barReport)
     }
   }
 }

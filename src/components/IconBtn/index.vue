@@ -83,7 +83,7 @@ export default {
 
 .newIconBtn {
   background: #E8EAE8;
-  margin-left: 5px;
+  margin-right: 5px;
   display: inline-block;
   margin-bottom: 0;
   font-weight: 400;

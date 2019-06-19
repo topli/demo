@@ -7,10 +7,10 @@
         </el-form-item>
         <br>
         <el-form-item :label="$t('alarmSet.equipmentNumber')" prop="equipmentNumber">
-          <el-input :disabled="form.id" v-model="form.equipmentNumber" />
+          <el-input :disabled="!!form.id" v-model="form.equipmentNumber" />
         </el-form-item>
         <el-form-item :label="$t('alarmSet.deviceType')">
-          <el-select v-model="form.deviceType" :disabled="form.id" :placeholder="$t('alarmSet.select')" style="width:184px;">
+          <el-select v-model="form.deviceType" :disabled="!!form.id" :placeholder="$t('alarmSet.select')" style="width:184px;">
             <el-option
               v-for="item in deviceType"
               :key="item.value"
