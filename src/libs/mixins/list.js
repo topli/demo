@@ -3,7 +3,7 @@
  */
 import { mapActions, mapGetters } from 'vuex'
 import { iconBtn } from '@/libs/utils/table'
-import { disablesConfirm, deleteConfirm } from '@/libs/utils'
+import { disablesConfirm, deleteConfirm, unbindConfirm } from '@/libs/utils'
 import '@/styles/list-tem.scss' // 列表样式
 
 export default {
@@ -38,6 +38,7 @@ export default {
     iconBtn, // 创建操作按钮方法
     disablesConfirm, // 禁用提示框
     deleteConfirm, // 删除提示框
+    unbindConfirm, // 解绑提示框
     handleSelectionChange(selection) {
       this.multipleSelection = selection
     },

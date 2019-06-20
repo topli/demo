@@ -19,10 +19,10 @@
           <el-input v-model="form.order"/>
         </el-form-item>
         <el-form-item :label="$t('menu.path')">
-          <el-input v-model="form.path"/>
+          <el-input v-model="form.path" disabled/>
         </el-form-item>
         <el-form-item :label="$t('menu.identification')">
-          <el-input v-model="form.identification"/>
+          <el-input v-model="form.identification" disabled/>
         </el-form-item>
         <el-form-item :label="$t('menu.status')">
           <el-switch

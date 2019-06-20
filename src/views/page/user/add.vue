@@ -5,7 +5,7 @@
         <el-form-item :label="$t('user.username')" prop="username">
           <el-input v-model="form.username"/>
         </el-form-item>
-        <el-form-item :label="$t('user.age')">
+        <el-form-item :label="$t('user.age')" prop="age">
           <el-input v-model.number="form.age"/>
         </el-form-item>
         <el-form-item :label="$t('user.sex')">
@@ -57,7 +57,7 @@ export default {
         ],
         age: [
           { required: true, message: this.$t('user.ageError') },
-          { type: 'number', message: this.$t('user.ageNumberError') }
+          { type: 'number', min: 0, max: 120, message: this.$t('user.ageNumberError') }
         ]
       }
     }

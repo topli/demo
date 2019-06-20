@@ -152,12 +152,29 @@ export function disablesConfirm(submitFun, cancelFun) {
   })
 }
 /**
- * disablesConfirm
+ * deleteConfirm
  * @param {*} submitFun
  * @param {*} cancelFun
  */
 export function deleteConfirm(submitFun, cancelFun) {
   this.$confirm(this.$t('app.delTips'), this.$t('app.delete'), {
+    confirmButtonText: this.$t('app.submit'),
+    cancelButtonText: this.$t('app.cancel'),
+    type: 'warning',
+    confirmButtonClass: 'show-del-submit'
+  }).then(() => {
+    submitFun && submitFun()
+  }).catch(() => {
+    cancelFun && cancelFun()
+  })
+}
+/**
+ * deleteConfirm
+ * @param {*} submitFun
+ * @param {*} cancelFun
+ */
+export function unbindConfirm(submitFun, cancelFun) {
+  this.$confirm(this.$t('app.unbind'), this.$t('app.unbind'), {
     confirmButtonText: this.$t('app.submit'),
     cancelButtonText: this.$t('app.cancel'),
     type: 'warning',

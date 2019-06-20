@@ -257,10 +257,7 @@ export default {
           name: '℃',
           min: 0,
           max: 125,
-          interval: 25,
-          axisLabel: {
-            formatter: ''
-          }
+          interval: 25
         }
       ],
       series: [
@@ -323,10 +320,7 @@ export default {
           name: 'V',
           min: 0,
           max: 1000,
-          interval: 100,
-          axisLabel: {
-            formatter: ''
-          }
+          interval: 100
         }
       ],
       series: [

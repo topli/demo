@@ -29,7 +29,7 @@
 <script>
 import Clickoutside from 'element-ui/src/utils/clickoutside'
 import { valueEquals } from 'element-ui/src/utils/util'
-
+import { getStorage } from '@/libs/utils'
 export default {
   directives: { Clickoutside },
   props: {
@@ -38,6 +38,10 @@ export default {
       default: ''
     },
     value: {
+      type: [Object, String, Array, Number],
+      default: function() {}
+    },
+    label: {
       type: [String, Array],
       default: () => []
     },
@@ -55,100 +59,8 @@ export default {
     }
   },
   data() {
-    const data = [
-      {
-        id: 9999,
-        orgName: '北京总公司',
-        type: 'org',
-        children: [
-          {
-            id: 1,
-            orgName: '山西分公司',
-            state: true,
-            code: 'BM1',
-            linkman: '张三',
-            phone: '13211111111',
-            parentId: 9999,
-            parentName: '顶级机构',
-            parentType: 'org',
-            children: [
-              {
-                id: 5,
-                orgName: '财务部',
-                state: true,
-                code: 'ZBM1',
-                linkman: '于敏',
-                phone: '13345842125',
-                parentId: 2,
-                parentName: '山西分公司'
-              }, {
-                id: 6,
-                orgName: '调度部',
-                state: true,
-                code: 'ZBM2',
-                linkman: '吴磊',
-                phone: '18621521782',
-                parentId: 2,
-                parentName: '山西分公司'
-              }, {
-                id: 7,
-                orgName: '设备管理部',
-                state: true,
-                code: 'ZBM2',
-                linkman: '潘奕',
-                phone: '15156498213',
-                parentId: 2,
-                parentName: '山西分公司'
-              }
-            ]
-          }
-          // {
-          //   id: 3,
-          //   orgName: '分公司1',
-          //   state: true,
-          //   code: 'BM1',
-          //   linkman: '张三',
-          //   phone: '13211111111',
-          //   parentId: 9999,
-          //   parentName: '顶级机构',
-          //   parentType: 'org'
-          // },
-          // {
-          //   id: 2,
-          //   orgName: '分公司2',
-          //   state: true,
-          //   code: 'BM2',
-          //   linkman: '李四',
-          //   phone: '1322222222',
-          //   parentId: 9999,
-          //   parentName: '顶级机构',
-          //   parentType: 'org',
-          //   children: [
-          //     {
-          //       id: 5,
-          //       orgName: '财务',
-          //       state: true,
-          //       code: 'ZBM1',
-          //       linkman: '王五',
-          //       phone: '1313333333',
-          //       parentId: 2,
-          //       parentName: '部门2'
-          //     }, {
-          //       id: 6,
-          //       orgName: '调度',
-          //       state: true,
-          //       code: 'ZBM2',
-          //       linkman: '赵六',
-          //       phone: '1511111111',
-          //       parentId: 2,
-          //       parentName: '部门2'
-          //     }
-          //   ]
-          // }
-        ]
-      }]
     return {
-      data: data,
+      data: [],
       visible: false,
       filterText: '',
       defaultProps: {
@@ -201,7 +113,14 @@ export default {
   created() {
   },
   mounted() {
+    if (this.value) {
+      this.checkedKeys = [this.value]
+    }
+    if (this.label) {
+      this.checkedStr = this.label.toString()
+    }
     this.clientWidth = document.getElementById('org-tree').clientWidth + 'px'
+    this.data = JSON.parse(getStorage('localData')).org.list
   },
   methods: {
     setElScrollTop() {
@@ -227,6 +146,7 @@ export default {
       })
       console.log(inputValue)
       this.$emit('input', inputValue)
+      this.$emit('getTreeNode', this.$refs.tree.getCheckedNodes())
       this.checkedStr = inputStr.toString()
     },
     filterTree(value, data) {

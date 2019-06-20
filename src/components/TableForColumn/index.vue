@@ -20,6 +20,7 @@
         width="55"/>
       <el-table-column
         v-if="index"
+        :label="$t('app.index')"
         type="index"
         align="center"
         width="70"/>

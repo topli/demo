@@ -200,7 +200,7 @@ export default {
         })
       })
     },
-    rowDblclick(row, e, columns) {
+    rowDblclick(row, columns, e) {
       const editData = {
         deviceNo: row.deviceNo,
         driverName: row.driverName,

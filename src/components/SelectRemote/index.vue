@@ -2,15 +2,17 @@
   <div class="select-remote">
     <el-select
       v-if="remote"
-      v-model="value"
+      v-model="selectValue"
       :loading="loading"
       :remote-method="remoteMethod"
       :placeholder="placeholder"
       :filterable="filterable"
       :clearable="clearable"
       :multiple="multiple"
+      :collapse-tags="multiple"
       remote
-      reserve-keyword>
+      reserve-keyword
+      @focus.once="getRemoteData">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -25,6 +27,7 @@
       :filterable="filterable"
       :clearable="clearable"
       :multiple="multiple"
+      :collapse-tags="multiple"
       reserve-keyword>
       <el-option
         v-for="item in options"
@@ -73,12 +76,18 @@ export default {
       default: () => {
         return () => {}
       }
+    },
+    propsDefalut: {
+      type: Object,
+      default: () => {
+        return { value: 'value', label: 'label' }
+      }
     }
   },
   data() {
     return {
       options: [],
-      selectValue: 0,
+      selectValue: null,
       loading: false
     }
   },
@@ -87,10 +96,12 @@ export default {
   },
   watch: {
     value: function(val) {
+      if (!val) return
       this.selectValue = this.value
       this.$emit('input', val)
     },
     selectValue: function(val) {
+      if (!val) return
       this.$emit('input', val)
     },
     dictData: function() {
@@ -98,10 +109,29 @@ export default {
     }
   },
   mounted() {
-    this.getOptions()
-    this.selectValue = this.value ? this.value + '' : ''
+    this.initData()
   },
   methods: {
+    initData() {
+      if (!this.remote) {
+        this.getOptions()
+      }
+      if (this.multiple) {
+        let value = []
+        if (this.value) {
+          if (typeof this.value === 'string') {
+            value = this.value.split(',')
+          } else {
+            value = this.value
+          }
+        } else {
+          value = []
+        }
+        this.selectValue = value || null
+      } else {
+        this.selectValue = this.value ? this.value + '' : null
+      }
+    },
     getOptions() {
       let data = []
       // 本地数据中查询字典值
@@ -112,18 +142,26 @@ export default {
     },
     remoteMethod(query) {
       if (query !== '') {
-        this.loading = true
-        setTimeout(() => {
-          this.loading = false
-          this.remoteQuery(query).then((res) => {})
-          this.options4 = this.list.filter(item => {
-            return item.label.toLowerCase()
-              .indexOf(query.toLowerCase()) > -1
-          })
-        }, 200)
+        this.getRemoteData(query)
       } else {
-        this.options4 = []
+        this.options = []
       }
+    },
+    getRemoteData(query) {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+        this.remoteQuery(query).then((res) => {
+          this.options = res.data.list && res.data.list.map(item => {
+            return {
+              value: item[this.propsDefalut.value],
+              label: item[this.propsDefalut.label]
+            }
+          })
+        }).catch(() => {
+          this.options = []
+        })
+      }, 200)
     }
   }
 }

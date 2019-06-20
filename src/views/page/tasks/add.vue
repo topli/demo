@@ -2,13 +2,13 @@
   <div v-loading="loading" class="aou-template">
     <div class="aou-body">
       <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="120px">
-        <el-form-item :label="$t('tasks.name')">
+        <el-form-item :label="$t('tasks.name')" prop="name">
           <el-input v-model="form.name" clearable/>
         </el-form-item>
         <el-form-item :label="$t('tasks.org')">
-          <org-tree v-model="form.org" clearable/>
+          <org-tree v-model="form.orgId" :label="form.orgName" clearable @getTreeNode="getTree"/>
         </el-form-item>
-        <el-form-item :label="$t('tasks.level')">
+        <el-form-item :label="$t('tasks.level')" prop="level">
           <select-remote v-model="form.level" filterable clearable data-type="taskLevel"/>
         </el-form-item>
         <el-form-item :label="$t('tasks.enclosure')" prop="enclosure">
@@ -71,6 +71,7 @@
 
 <script>
 import { addData, editData } from './service'
+import { parseTime } from '@/libs/utils'
 export default {
   props: {
     data: { type: Object, default: null }
@@ -80,6 +81,33 @@ export default {
       form: this.data ? Object.assign({}, this.data) : {},
       loading: false,
       rules: {
+        name: [
+          { required: true, message: this.$t('tasks.nameRequiredError') }
+        ],
+        level: [
+          { required: true, message: this.$t('tasks.levelRequiredError') }
+        ],
+        enclosure: [
+          { required: true, message: this.$t('tasks.enclosureRequiredError') }
+        ],
+        goods: [
+          { required: true, message: this.$t('tasks.goodsRequiredError') }
+        ],
+        receiving: [
+          { required: true, message: this.$t('tasks.receivingRequiredError') }
+        ],
+        receivingMode: [
+          { required: true, message: this.$t('tasks.receivingModeRequiredError') }
+        ],
+        receivingPerson: [
+          { required: true, message: this.$t('tasks.receivingPersonRequiredError') }
+        ],
+        receivingPhone: [
+          { required: true, message: this.$t('tasks.receivingPhoneRequiredError') }
+        ],
+        expiryDate: [
+          { required: true, message: this.$t('tasks.expiryDateRequiredError') }
+        ]
       },
       deviceList: [
         { deviceType: 1, number: 1 }
@@ -89,7 +117,6 @@ export default {
   computed: {
   },
   mounted() {
-    // console.log(this.data)
     // if (this.data.no) {
     //   this.deviceList = this.form.deviceList || []
     // }
@@ -112,6 +139,7 @@ export default {
       this.loading = true
       this.form.createTime = new Date()
       this.form.id = Math.random() * 1000
+      this.form.no = 'BJ' + parseTime(new Date(), '{y}{m}{d}{h}{i}')
       addData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
@@ -152,6 +180,10 @@ export default {
         return
       }
       this.deviceList.splice(index, 1)
+    },
+    getTree(treeNode) {
+      if (!treeNode.length) return
+      this.form.orgName = treeNode[0].orgName
     }
   }
 }

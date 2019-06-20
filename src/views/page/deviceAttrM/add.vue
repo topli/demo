@@ -2,27 +2,26 @@
   <div v-loading="loading" class="aou-template">
     <div class="aou-body">
       <el-form ref="form" :inline="true" :model="form" :rules="rules" label-width="120px">
-        <el-form-item :label="$t('device.status')">
-          <el-input v-model="form.status"/>
-        </el-form-item>
-        <el-form-item :label="$t('device.model')">
-          <!-- <el-input v-model.number="form.model"/> -->
-          <select-remote v-model="form.deviceType" filterable clearable data-type="deviceType"/>
-        </el-form-item>
         <el-form-item :label="$t('device.number')" prop="number">
           <el-input v-model="form.number"/>
         </el-form-item>
-        <el-form-item :label="$t('device.useStatus')" prop="useStatus">
-          <el-input v-model="form.useStatus"/>
+        <el-form-item :label="$t('device.model')">
+          <select-remote v-model="form.model" filterable clearable data-type="deviceType"/>
         </el-form-item>
         <el-form-item :label="$t('device.usePerson')" prop="usePerson">
           <el-input v-model="form.usePerson"/>
         </el-form-item>
-        <el-form-item :label="$t('device.available')" prop="available">
-          <el-switch v-model="form.available"/>
-        </el-form-item>
         <el-form-item :label="$t('device.orgName')">
-          <org-tree v-model="form.orgName" multiple clearable/>
+          <org-tree v-model="form.orgId" :label="form.orgName" clearable @getTreeNode="getTree"/>
+        </el-form-item>
+        <el-form-item :label="$t('device.useStatus')" prop="useStatus">
+          <select-remote v-model="form.useStatus" filterable clearable data-type="isUse"/>
+        </el-form-item>
+        <el-form-item :label="$t('device.available')" prop="available">
+          <select-remote v-model="form.available" filterable clearable data-type="available"/>
+        </el-form-item>
+        <el-form-item :label="$t('device.status')">
+          <select-remote v-model="form.status" filterable clearable data-type="status"/>
         </el-form-item>
       </el-form>
     </div>
@@ -44,10 +43,17 @@ export default {
       form: this.data ? Object.assign({}, this.data) : {},
       loading: false,
       rules: {
+        number: [
+          { required: true, message: this.$t('device.numberRequiredError') }
+        ]
       }
     }
   },
   computed: {
+  },
+  created() {
+  },
+  mounted() {
   },
   methods: {
     // 提交按钮
@@ -67,6 +73,7 @@ export default {
       this.loading = true
       this.form.createTime = new Date()
       this.form.id = Math.random() * 1000
+      console.log(this.form)
       addData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
@@ -96,6 +103,10 @@ export default {
           console.log(error)
         }, 300)
       })
+    },
+    getTree(treeNode) {
+      if (!treeNode.length) return
+      this.$set(this.form, 'orgName', treeNode[0].orgName)
     }
   }
 }

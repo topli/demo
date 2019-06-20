@@ -91,6 +91,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SE21392</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">挖掘机</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg1.png') no-repeat;background-size: 100% 100%"/>
@@ -101,6 +102,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SE21291</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">运输车</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg2.png') no-repeat;background-size: 100% 100%"/>
@@ -111,6 +113,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SE20597</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">挖掘机</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg3.png') no-repeat;background-size: 100% 100%"/>
@@ -121,6 +124,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">AC11302</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">推土机</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg4.png') no-repeat;background-size: 100% 100%"/>
@@ -131,6 +135,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SU25298</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">挖掘机</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg5.png') no-repeat;background-size: 100% 100%"/>
@@ -141,6 +146,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: red">AD20577</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">运输车</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg6.png') no-repeat;background-size: 100% 100%"/>
@@ -157,6 +163,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SE56468</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">运输车</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg7.png') no-repeat;background-size: 100% 100%"/>
@@ -167,6 +174,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SE21881</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">推土机</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg8.png') no-repeat;background-size: 100% 100%"/>
@@ -177,6 +185,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SE36541</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">挖掘机</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg9.png') no-repeat;background-size: 100% 100%"/>
@@ -187,6 +196,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">AC98721</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">运输车</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg10.png') no-repeat;background-size: 100% 100%"/>
@@ -197,6 +207,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">SU15248</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">运输车</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg11.png') no-repeat;background-size: 100% 100%"/>
@@ -207,6 +218,7 @@
                     <div class="device-info">
                       <div class="device-info-title">
                         <span>设备编号:</span> <span style="color: white">AD93157</span>
+                        <span style="margin-left: 20px">设备类型:</span> <span style="color: white">推土机</span>
                       </div>
                       <div class="device-info-body">
                         <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg12.png') no-repeat;background-size: 100% 100%"/>

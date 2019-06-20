@@ -61,7 +61,11 @@ export default {
         {
           key: 'model',
           title: this.$t('device.model'),
-          width: '120'
+          width: '120',
+          filters: 'deviceType',
+          render: (h, params, val) => {
+            return h('span', val.label)
+          }
         },
         {
           key: 'number',
@@ -82,7 +86,11 @@ export default {
         {
           key: 'useStatus',
           title: this.$t('device.useStatus'),
-          width: '80'
+          filters: 'isUse',
+          width: '80',
+          render: (h, params, filterVal) => {
+            return h('span', filterVal.label)
+          }
         },
         {
           key: 'usePerson',

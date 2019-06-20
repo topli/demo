@@ -103,7 +103,7 @@ export default {
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
               // { icon: 'edit', t: 'app.modify', handler: this.editData, color: '#F6BD30' },
-              { icon: 'unbind', t: 'app.unbind', handler: this.deleteItem, color: '#ff7c4a' }
+              { icon: 'unbind', t: 'app.unbind', handler: this.unbindItem, color: '#ff7c4a' }
             ]))
           }
         }
@@ -131,43 +131,16 @@ export default {
           if (item.id === id) this.dialogData = item
         })
       }, 1000)
+    },
+    unbindItem(data) {
+      this.unbindConfirm(() => {
+        this.list = this.list.filter(item => {
+          return item.id !== data.id
+        })
+        this.totalElement = this.list.length
+        this.$Message(this.$t('app.unbind') + this.$t('app.success'))
+      })
     }
-    // editData(row) {
-    //   console.log(row)
-    //   this.$router.push({ name: 'enclosureEdit', query: { name: row.adress, scope: row.enclosureRange }})
-    // },
-    // addData() {
-    //   this.$dialogBox({
-    //     title: this.$t('app.add'),
-    //     components: add,
-    //     width: 650,
-    //     onSub: (el) => {
-    //       // 新增完成后执行操作
-    //       // todo 刷新列表
-    //       this._getList()
-    //     }
-    //   })
-    // },
-    // deleteItem(row) {
-    //   this.disablesConfirm((success) => {
-    //     delData(row).then((res) => {
-    //       console.log(res)
-    //       if (res.code === 200) {
-    //         this.$message({
-    //           type: 'success',
-    //           message: this.$t('app.disables') + this.$t('app.success')
-    //         })
-    //       } else {
-    //         this.$message({
-    //           type: 'error',
-    //           message: res.message
-    //         })
-    //         return
-    //       }
-    //       this._getList()
-    //     })
-    //   })
-    // }
   }
 }
 </script>

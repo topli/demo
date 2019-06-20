@@ -24,6 +24,15 @@ export default {
     pushDate: '发布时间',
     devices: '设备',
     progress: '完成进度',
-    device: '设备'
+    device: '设备',
+    nameRequiredError: '任务名称不能为空',
+    levelRequiredError: '优先级别不能为空',
+    enclosureRequiredError: '电子围栏不能为空',
+    goodsRequiredError: '运输物品名称不能为空',
+    receivingRequiredError: '接收方不能为空',
+    receivingModeRequiredError: '接收方式不能为空',
+    receivingPersonRequiredError: '接收方联系人不能为空',
+    receivingPhoneRequiredError: '接收方联系方式不能为空',
+    expiryDateRequiredError: '任务时间段不能为空'
   }
 }

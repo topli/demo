@@ -84,45 +84,6 @@ export default {
       this.form.icon = text
       this.handleClose()
     },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          const handle = (array, data) => {
-            array && array.forEach((d, i) => {
-              if (data.id) {
-                if (d.id === data.id) {
-                  Object.keys(data).forEach((k) => {
-                    if (d[k] !== data[k] && k !== 'children') {
-                      d[k] = data[k]
-                    }
-                  })
-                } else {
-                  handle(d.children, data)
-                }
-              } else {
-                if (data.parentId === d.id) {
-                  if (!d.children) {
-                    this.$set(d, 'children', [])
-                  }
-                  d.children.push(data)
-                } else {
-                  handle(d.children, data)
-                }
-              }
-            })
-          }
-          handle(this.treeData, this.form)
-          editData({ list: this.treeData }).then((res) => {
-            if (res.code === 200) {
-              this.$message.success((this.form.id ? this.$t('app.modify') : this.$t('app.add')) + this.$t('app.success'))
-            }
-          })
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
     resetForm(formName) {
       this.$refs[formName].resetFields()
     },
@@ -139,13 +100,24 @@ export default {
         onSub: (el) => {
           // 新增完成后执行操作
           // todo 刷新列表
-          // this._getList()
+          this.getData()
         }
       })
     },
     edit(item) {
       // todo 右侧显示修改页面
       this.form = deepClone(item.data)
+      this.$dialogBox({
+        title: this.$t('app.modify'),
+        components: addOrg,
+        width: 700,
+        props: { data: this.form },
+        onSub: (el) => {
+          // 新增完成后执行操作
+          // todo 刷新列表
+          this.getData()
+        }
+      })
     },
     remove(item) {
       if (item.data && item.data.children && item.data.children.length > 0) {

@@ -37,6 +37,7 @@ export default {
     modifyValue: '报警阈值设置',
     addValue: '新增报警阈值',
     dealWith: '处理',
-    info: '详情'
+    info: '详情',
+    index: '序号'
   }
 }

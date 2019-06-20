@@ -85,7 +85,7 @@ export default {
           fixed: 'right',
           render: (h, params) => {
             return h('div', this.iconBtn(h, params, [
-              { icon: 'unbind', t: 'app.unbind', handler: this.deleteItem, color: '#ff7c4a' }
+              { icon: 'unbind', t: 'app.unbind', handler: this.unbindItem, color: '#ff7c4a' }
             ]))
           }
         }
@@ -95,7 +95,6 @@ export default {
   methods: {
     _getList() {
       this.loading = true
-      console.log(this.searchData)
       getList(this.searchData).then(res => {
         setTimeout(() => {
           this.loading = false
@@ -122,6 +121,15 @@ export default {
           // todo 刷新列表
           this._getList()
         }
+      })
+    },
+    unbindItem(data) {
+      this.unbindConfirm(() => {
+        this.list = this.list.filter(item => {
+          return item.id !== data.id
+        })
+        this.totalElement = this.list.length
+        this.$Message(this.$t('app.unbind') + this.$t('app.success'))
       })
     }
   }

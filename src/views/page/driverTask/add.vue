@@ -42,7 +42,6 @@ export default {
   computed: {
   },
   created() {
-    console.log(this.data)
   },
   methods: {
     // 提交按钮
@@ -65,7 +64,7 @@ export default {
       addData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
-          this.$message.success(this.$t('app.add') + this.$t('app.success'))
+          this.$message.success(this.$t('app.modify') + this.$t('app.success'))
           // 执行操作后隐藏弹出框
           this.onSub()
         }, 1000)

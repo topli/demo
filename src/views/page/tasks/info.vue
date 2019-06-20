@@ -10,7 +10,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('tasks.org')">
-              <span>{{ form.org }}</span>
+              <span>{{ form.orgName }}</span>
             </el-form-item>
           </el-col>
         </el-row>
@@ -89,13 +89,18 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-row>
+        <!-- <el-row>
           <el-col :span="24">
             <el-form-item :label="$t('tasks.device')" prop="deviceTypeNum">
-              <span>{{ form.deviceList }}</span>
+              <template v-for="(item, i) in form.deviceList">
+                <div :key="i">
+                  设备类型<span>{{ item.deviceType }}</span>
+                  设备数量<span>{{ item.number }}</span>
+                </div>
+              </template>
             </el-form-item>
           </el-col>
-        </el-row>
+        </el-row> -->
       </el-form>
     </div>
   </div>
@@ -125,14 +130,7 @@ export default {
   methods: {
     init() {
       this.form.expiryDate = this.form.expiryDate[0].slice(0, 10) + ' 至 ' + this.form.expiryDate[1].slice(0, 10)
-      this.form.deviceList = this.form.devices.split(',')
-      this.form.newDevice = this.form.deviceTypeNum.slice(0, 3)
-      const arr = []
-      this.form.deviceList.forEach(n => {
-        n = this.form.newDevice + '-' + n
-        arr.push(n)
-      })
-      this.form.deviceList = arr.join(',')
+      // this.form.newDevice = this.form.deviceTypeNum.slice(0, 3)
     }
   }
 }

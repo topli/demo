@@ -177,6 +177,11 @@ const data = {
       isWork: [
         { id: 40, value: 'true', label: '是', color: '#67C23A' },
         { id: 41, value: 'false', label: '否', color: '#F56C6C' }
+      ],
+      isUse: [
+        { id: 42, value: '1', label: '使用中', color: '#67C23A' },
+        { id: 43, value: '2', label: '闲置中', color: '#F56C6C' },
+        { id: 43, value: '3', label: '报废', color: '#F56C6C' }
       ]
     }
   },
@@ -520,25 +525,25 @@ const data = {
   },
   device: {
     list: [
-      { id: 1, gpsNo: '91376494', useStatus: '使用中', orgName: '北京总公司', model: '挖掘机', number: '120301070001A', status: true, usePerson: '张秀英', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '41055218', useStatus: '使用中', orgName: '北京总公司', model: '装载机', number: '120301070002A', status: true, usePerson: '余平', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '91232187', useStatus: '闲置中', orgName: '北京总公司', model: '运输车', number: '120301070003A', status: true, usePerson: '贾刚', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41108585', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070004A', status: true, usePerson: '陈超', createTime: new Date(), available: true },
-      { id: 5, gpsNo: '91376514', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070005A', status: true, usePerson: '黄伟', createTime: new Date(), available: true },
-      { id: 6, gpsNo: '41086687', useStatus: '闲置中', orgName: '山西分公司', model: '挖掘机', number: '120301070006A', status: true, usePerson: '萧杰', createTime: new Date(), available: true },
-      { id: 7, gpsNo: '41086686', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070007A', status: true, usePerson: '白杰', createTime: new Date(), available: true },
-      { id: 8, gpsNo: '91297925', useStatus: '使用中', orgName: '北京总公司', model: '运输车', number: '120301070008A', status: true, usePerson: '顾勇', createTime: new Date(), available: true },
-      { id: 9, gpsNo: '41086595', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070009A', status: true, usePerson: '孙军', createTime: new Date(), available: true },
-      { id: 10, gpsNo: '41080622', useStatus: '使用中', orgName: '山西分公司', model: '挖掘机', number: '120301070010A', status: true, usePerson: '秦敏', createTime: new Date(), available: true },
-      { id: 11, gpsNo: '41086687', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070011A', status: true, usePerson: '高涛', createTime: new Date(), available: true },
-      { id: 12, gpsNo: '41080622', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070012A', status: true, usePerson: '吕勇', createTime: new Date(), available: true },
-      { id: 13, gpsNo: '41086595', useStatus: '报废', orgName: '山西分公司', model: '运输车', number: '120301070013A', status: false, usePerson: '梁磊', createTime: new Date(), available: false },
-      { id: 14, gpsNo: '91270313', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '120301070014A', status: true, usePerson: '石敏', createTime: new Date(), available: true },
-      { id: 15, gpsNo: '41086679', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070015A', status: true, usePerson: '熊静', createTime: new Date(), available: true },
-      { id: 16, gpsNo: '91207317', useStatus: '使用中', orgName: '山西分公司', model: '运输车', number: '120301070016A', status: true, usePerson: '吕平', createTime: new Date(), available: true },
-      { id: 17, gpsNo: '41108584', useStatus: '报废', orgName: '山西分公司', model: '装载机', number: '120301070017A', status: false, usePerson: '石洋', createTime: new Date(), available: false },
-      { id: 18, gpsNo: '41108559', useStatus: '闲置中', orgName: '山西分公司', model: '运输车', number: '120301070018A', status: true, usePerson: '方静', createTime: new Date(), available: true },
-      { id: 19, gpsNo: '91207390', useStatus: '使用中', orgName: '山西分公司', model: '装载机', number: '1120301070019A', status: true, usePerson: '沈明', createTime: new Date(), available: true }
+      { id: 1, gpsNo: '91376494', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '1', number: '120301070001A', status: true, usePerson: '张秀英', createTime: new Date(), available: true },
+      { id: 2, gpsNo: '41055218', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '3', number: '120301070002A', status: true, usePerson: '余平', createTime: new Date(), available: true },
+      { id: 3, gpsNo: '91232187', useStatus: '2', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070003A', status: true, usePerson: '贾刚', createTime: new Date(), available: true },
+      { id: 4, gpsNo: '41108585', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070004A', status: true, usePerson: '陈超', createTime: new Date(), available: true },
+      { id: 5, gpsNo: '91376514', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070005A', status: true, usePerson: '黄伟', createTime: new Date(), available: true },
+      { id: 6, gpsNo: '41086687', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '1', number: '120301070006A', status: true, usePerson: '萧杰', createTime: new Date(), available: true },
+      { id: 7, gpsNo: '41086686', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070007A', status: true, usePerson: '白杰', createTime: new Date(), available: true },
+      { id: 8, gpsNo: '91297925', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070008A', status: true, usePerson: '顾勇', createTime: new Date(), available: true },
+      { id: 9, gpsNo: '41086595', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070009A', status: true, usePerson: '孙军', createTime: new Date(), available: true },
+      { id: 10, gpsNo: '41080622', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '1', number: '120301070010A', status: true, usePerson: '秦敏', createTime: new Date(), available: true },
+      { id: 11, gpsNo: '41086687', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070011A', status: true, usePerson: '高涛', createTime: new Date(), available: true },
+      { id: 12, gpsNo: '41080622', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070012A', status: true, usePerson: '吕勇', createTime: new Date(), available: true },
+      { id: 13, gpsNo: '41086595', useStatus: '3', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070013A', status: false, usePerson: '梁磊', createTime: new Date(), available: false },
+      { id: 14, gpsNo: '91270313', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070014A', status: true, usePerson: '石敏', createTime: new Date(), available: true },
+      { id: 15, gpsNo: '41086679', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070015A', status: true, usePerson: '熊静', createTime: new Date(), available: true },
+      { id: 16, gpsNo: '91207317', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070016A', status: true, usePerson: '吕平', createTime: new Date(), available: true },
+      { id: 17, gpsNo: '41108584', useStatus: '3', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070017A', status: false, usePerson: '石洋', createTime: new Date(), available: false },
+      { id: 18, gpsNo: '41108559', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070018A', status: true, usePerson: '方静', createTime: new Date(), available: true },
+      { id: 19, gpsNo: '91207390', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '1120301070019A', status: true, usePerson: '沈明', createTime: new Date(), available: true }
     ]
   },
   driverTask: {
@@ -557,9 +562,9 @@ const data = {
   },
   tasks: {
     list: [
-      { no: 'BJ201905231529', goods: '碎石', totalQuqntity: '1.5', dispatchNo: 'ZGBJLT012019060601', devices: '91376494(张秀英),41055218(余平),91232187(贾刚)', workTime: '24H', progress: 60, name: '工程1', status: '待审核', executor: '石洋', line: '光谷-江夏', describe: '挖掘', org: '北京总公司', enclosure: '朝阳区附近', level: 1, receiving: '武汉分公司', receivingMode: '货运', receivingPerson: '盛志平', receivingPhone: '13298903465', isRemind: 1, expiryDate: ['2019-06-03T16:00:00.000Z', '2019-06-04T16:00:00.000Z'], deviceTypeNum: '挖掘机（3台）' },
-      { no: 'BJ201905231530', goods: '煤矿', totalQuqntity: '1.0', dispatchNo: 'ZGBJLT022019060602', devices: '91270313(石敏),41080622(吕勇),41086687(高涛)', workTime: '35H', progress: 80, name: '工程2', status: '已调度', executor: '白杰', line: '天安门-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 2, receiving: '武汉分公司', receivingMode: '货运', receivingPerson: '宋春梅', receivingPhone: '13344554565', isRemind: 2, expiryDate: ['2019-06-09T16:00:00.000Z', '2019-06-12T16:00:00.000Z'], deviceTypeNum: '运输车（3台）' },
-      { no: 'BJ201905231531', goods: '渣土', totalQuqntity: '2.0', dispatchNo: 'ZGBJLT032019060603', devices: '91207390(沈明),41108559(方静),41108584(石洋)', workTime: '31H', progress: 89, name: '工程3', status: '未调度', executor: '贾刚', line: '朝阳区-中关村', describe: '运输', org: '山西分公司', enclosure: '中关村附近', level: 3, receiving: '武汉分公司', receivingMode: '货运', receivingPerson: '李世杰', receivingPhone: '13232903465', isRemind: 1, expiryDate: ['2019-06-11T16:00:00.000Z', '2019-06-15T16:00:00.000Z'], deviceTypeNum: '运输车（3台）' }
+      { id: 1, no: 'BJ201905231529', goods: '碎石', totalQuqntity: '1.5', dispatchNo: 'ZGBJLT012019060601', devices: '91376494(张秀英),41055218(余平),91232187(贾刚)', workTime: '24H', progress: 60, name: '工程1', status: '待审核', executor: '石洋', line: '光谷-江夏', describe: '挖掘', orgId: '9999', orgName: '北京总公司', enclosure: '朝阳区附近', level: 1, receiving: '武汉分公司', receivingMode: '货运', receivingPerson: '盛志平', receivingPhone: '13298903465', isRemind: 1, expiryDate: ['2019-06-03T16:00:00.000Z', '2019-06-04T16:00:00.000Z'], deviceTypeNum: '挖掘机（3台）' },
+      { id: 2, no: 'BJ201905231530', goods: '煤矿', totalQuqntity: '1.0', dispatchNo: 'ZGBJLT022019060602', devices: '91270313(石敏),41080622(吕勇),41086687(高涛)', workTime: '35H', progress: 80, name: '工程2', status: '已调度', executor: '白杰', line: '天安门-中关村', describe: '运输', orgId: '1', orgName: '北京总公司', enclosure: '中关村附近', level: 2, receiving: '武汉分公司', receivingMode: '货运', receivingPerson: '宋春梅', receivingPhone: '13344554565', isRemind: 2, expiryDate: ['2019-06-09T16:00:00.000Z', '2019-06-12T16:00:00.000Z'], deviceTypeNum: '运输车（3台）' },
+      { id: 3, no: 'BJ201905231531', goods: '渣土', totalQuqntity: '2.0', dispatchNo: 'ZGBJLT032019060603', devices: '91207390(沈明),41108559(方静),41108584(石洋)', workTime: '31H', progress: 89, name: '工程3', status: '未调度', executor: '贾刚', line: '朝阳区-中关村', describe: '运输', orgId: '1', orgName: '北京总公司', enclosure: '中关村附近', level: 3, receiving: '武汉分公司', receivingMode: '货运', receivingPerson: '李世杰', receivingPhone: '13232903465', isRemind: 1, expiryDate: ['2019-06-11T16:00:00.000Z', '2019-06-15T16:00:00.000Z'], deviceTypeNum: '运输车（3台）' }
     ]
   },
   currentTaskReport: {
@@ -582,14 +587,14 @@ const data = {
   },
   alarmSet: {
     list: [
-      { id: 1, equipmentNumber: '120301070001A', deviceType: '装载机', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 2, equipmentNumber: '120301070002A', deviceType: '装载机', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 3, equipmentNumber: '120301070003A', deviceType: '装载机', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 4, equipmentNumber: '120301070004A', deviceType: '矿车', fuel: '10', temperature: '80', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 5, equipmentNumber: '120301070005A', deviceType: '矿车', fuel: '10', temperature: '80', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 6, equipmentNumber: '120301070006A', deviceType: '矿车', fuel: '10', temperature: '90', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 7, equipmentNumber: '120301070007A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true },
-      { id: 8, equipmentNumber: '120301070008A', deviceType: '挖掘机', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true }
+      { id: 1, equipmentNumber: '120301070001A', deviceType: '1', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 2, equipmentNumber: '120301070002A', deviceType: '1', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 3, equipmentNumber: '120301070003A', deviceType: '1', fuel: '20', temperature: '70', pressure: '140', range: '1000', beyondRange: '60', workingTime: 10, loadingCapacity: '2000', speed: 80, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 4, equipmentNumber: '120301070004A', deviceType: '2', fuel: '10', temperature: '80', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 5, equipmentNumber: '120301070005A', deviceType: '2', fuel: '10', temperature: '80', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 6, equipmentNumber: '120301070006A', deviceType: '2', fuel: '10', temperature: '90', pressure: '200', range: '1000', beyondRange: '60', workingTime: 15, loadingCapacity: '1500', speed: 60, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 7, equipmentNumber: '120301070007A', deviceType: '3', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true },
+      { id: 8, equipmentNumber: '120301070008A', deviceType: '3', fuel: '30', temperature: '90', pressure: '230', range: '1000', beyondRange: '60', workingTime: 12, loadingCapacity: '2200', speed: 70, beyondSpeed: 60, createTime: new Date(), status: true }
     ]
   },
   deviceErrorReport: {

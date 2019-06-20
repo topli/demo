@@ -4,6 +4,7 @@ export default {
     status: '状态',
     model: '型号',
     number: '设备编号',
+    numberRequiredError: '设备编号不能为空',
     createTime: '出厂日期',
     useStatus: '使用状况',
     usePerson: '关联人员',

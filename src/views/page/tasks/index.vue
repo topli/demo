@@ -6,7 +6,7 @@
           <el-input v-model="searchForm.name" :placeholder="$t('tasks.name')" clearable/>
         </el-form-item>
         <el-form-item>
-          <select-remote v-model="searchForm.status" :placeholder="$t('tasks.status')" filterable clearable data-type="taskStatus"/>
+          <select-remote v-model="searchForm.tasksStatus" :placeholder="$t('tasks.status')" filterable clearable data-type="taskStatus"/>
         </el-form-item>
       </el-form>
     </search-tem>
@@ -103,7 +103,7 @@ export default {
           title: this.$t('tasks.describe')
         },
         {
-          key: 'org',
+          key: 'orgName',
           title: this.$t('tasks.org'),
           minWidth: 160
         },
