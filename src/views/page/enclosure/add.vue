@@ -3,74 +3,48 @@
     <div class="mapContent">
       <el-button class="backBtn" @click="$router.go(-1)">返回</el-button>
       <div class="l-searchAddress">
-        <input id="suggestId" v-model="addressOption" class="search-input" placeholder="请输入地址回车搜索..." value="百度" @keyup.enter="searchAddress()">
-        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"/>
+        <input id="suggestId" v-model="addressOption" class="search-input" placeholder="请输入城市/区县名称搜索..." value="百度">
       </div>
       <div v-if="!addMarkerModal" class="l-addMarkerBtns">
         <el-button-group>
-          <el-button :class="{buttonCur: isMarker}" type="ghost" icon="el-icon-location" class="button" @click="addMarker(1)"/>
-          <el-button :class="{buttonCur: isWeilan}" type="ghost" icon="el-icon-menu" class="button" @click="addMarker(2)"/>
+          <el-button :class="{buttonCur: isMarker}" type="ghost" icon="el-icon-location" class="button" @click="setDrawingManager('marker')"/>
+          <el-button :class="{buttonCur: isWeilan}" type="ghost" icon="el-icon-menu" class="button" @click="setDrawingManager('polygon')"/>
           <!-- <el-button type="ghost" icon="el-icon-circle-plus" class="button" @click="addMarker(3)"/> -->
         </el-button-group>
       </div>
       <div v-if="addMarkerModal" class="add_modal">
         <div class="content">
-          <el-form ref="form" :model="formData" label-width="60">
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="省份" prop="province" class="l-form-input form-mini" style="width:180px;">
-                  <el-select ref="province" :disabled="prDisabled" v-model="formData.province" placeholder="请输入搜索">
-                    <el-option v-for="(item, index) in provinceList" :key="index" :value="item">{{ item }}</el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="城市" prop="city" class="l-form-input form-mini" style="width:180px;">
-                  <el-select ref="city" v-model="formData.city" placeholder="请输入搜索" @change="changeSelect">
-                    <el-option v-for="(item, index) in cityList" :key="index" :value="item" :label="item"/>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-            <el-row style="">
-              <el-col :span="24">
-                <!-- <el-form-item label="区县" prop="districts" style="margin-bottom:0px;margin-top:-10px;":rules="{required: true, message: '请选择区县', trigger: 'blur, change'}">
-                <RadioGroup v-model="formData.districts" @on-change="checkChildArea(formData.districts)">
-                  <Radio v-for="item in areaList" :key="item.id" :label="item.name">{{item.name}}</Radio>
-                </RadioGroup>
-              </el-form-item> -->
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="名称" prop="name" class="l-form-input form-mini">
-                  <el-input ref="name" v-model="formData.name" placeholder="名称"/>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="所属组织" prop="org" class="l-form-input form-mini">
-                  <el-select ref="monitoringType" v-model="formData.org" placeholder="所属组织" @change="changeSelect">
-                    <el-option v-for="(item, index) in monitoringTypeArray" :value="item.name" :key="index" :label="item.name"/>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="类型" prop="labelState" class="l-form-input form-mini">
-                  <el-select ref="labelState" v-model="formData.labelState" placeholder="类型" @change="changeSelect">
-                    <el-option v-for="(item, index) in typeArray" :value="item" :key="index">{{ item }}</el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="12">
-                <el-form-item label="范围" prop="scope" class="l-form-input form-mini">
-                  <el-select ref="scope" v-model="formData.scope" placeholder="范围" @change="changeScope">
-                    <el-option v-for="(item, index) in scopeArray" :value="item.value" :key="index">{{ item.label }}</el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-            </el-row>
+          <el-form ref="form" :model="formData" :rules="rules" inline label-width="60">
+            <el-form-item label="名称" prop="name">
+              <el-input ref="name" v-model="formData.name" placeholder="名称"/>
+            </el-form-item>
+            <el-form-item label="所属组织" prop="org">
+              <el-select ref="monitoringType" v-model="formData.org" placeholder="所属组织">
+                <el-option v-for="(item, index) in monitoringTypeArray" :value="item.name" :key="index" :label="item.name"/>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="类型" prop="labelState">
+              <el-select ref="labelState" v-model="formData.labelState" disabled placeholder="类型">
+                <el-option v-for="(item, index) in typeArray" :value="item.value" :label="item.label" :key="index"/>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="范围" prop="scope">
+              <el-select ref="scope" v-model="formData.scope" :disabled="!formData.scope" placeholder="范围" @change="changeScope">
+                <el-option v-for="(item, index) in scopeArray" :value="item.value" :label="item.label" :key="index"/>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="省份" prop="province">
+              <el-input v-model="formData.province" disabled/>
+            </el-form-item>
+            <el-form-item label="城市" prop="city">
+              <el-input v-model="formData.city" disabled/>
+            </el-form-item>
+            <el-form-item label="区">
+              <el-input v-model="formData.district" disabled/>
+            </el-form-item>
+            <el-form-item label="中心点地址">
+              <el-input v-model="formData.address" disabled/>
+            </el-form-item>
           </el-form>
           <div style="float: right;">
             <el-button :loading="actionLoading" type="primary" size="small" @click="addMarkerInfo('form')">确定</el-button>
@@ -93,13 +67,33 @@ export default {
     return {
       map: null,
       formData: {
-        province: null,
-        city: '',
-        name: null,
+        name: '',
+        org: '',
         labelState: 1,
-        monitoringType: null,
-        scope: 500
+        monitoringType: '',
+        scope: 500,
+        province: '',
+        city: '',
+        district: '',
+        address: ''
       },
+      rules: {
+        name: [
+          { required: true, message: this.$t('user.usernameError') }
+        ],
+        org: [
+          { required: true, message: this.$t('org.orgNameRequired') }
+        ]
+      },
+      styleOptions: {
+        strokeColor: '#A90329',
+        fillColor: '#A90329',
+        strokeWeight: 3,
+        strokeOpacity: 0.8,
+        fillOpacity: 0.7,
+        strokeStyle: 'solid'
+      },
+      circle: null,
       prDisabled: true,
       provinceList: [],
       cityList: [],
@@ -112,286 +106,74 @@ export default {
       isMarker: false,
       isWeilan: false,
       drawingManager: null,
-      drawPoints: '' // 多边形点
+      drawPoints: '', // 多边形点
+      marker: null
     }
   },
   created() {
     this.initJson()
   },
   mounted() {
-    this.init()
+    this.initMap()
+    this.initMapTool()
+    this.initData()
   },
   methods: {
-    changeSelect() {
-      this.$forceUpdate()
-    },
-    cancel() {
-      const id = this.$route.query.id
-      this.addMarkerModal = false
-      this.isMarker = false
-      this.isWeilan = false
-      this.clearMap()
-      if (id) this.$router.go(-1)
-    },
-    // 新增 1-标注 2-围栏 3区县
-    addMarker(type) {
-      this.drawType = type
-      this.formData = {}
-      if (type === 1) {
-        this.isMarker = !this.isMarker
-        this.isWeilan = false
-        if (this.isMarker) {
-          this.drawingManager.open()
-          this.drawingManager.setDrawingMode('marker')
-        }
-      } else if (type === 2) {
-        this.isWeilan = !this.isWeilan
-        this.isMarker = false
-        if (this.isWeilan) {
-          this.drawingManager.open()
-          this.drawingManager.setDrawingMode('polygon')
-        }
-      } else if (type === 3) {
-        this.addMarkerModal = true
-        this.formData.monitoringType = 1
-        this.formData.color = '#A90329'
-        this.colorType = 1
-      }
-    },
-    async selectYs(type) {
-      let iconUrl = ''
-      this.colorType = type
-      if (type === 0) {
-        type = 1
-      }
-      if (type === 1) {
-        this.formData.color = '#A90329'
-      }
-      if (type === 2) {
-        this.formData.color = '#C79121'
-      }
-      if (type === 3) {
-        this.formData.color = '#57889c'
-      }
-      if (type === 4) {
-        this.formData.color = '#AC5287'
-      }
-      if (type === 5) {
-        this.formData.color = '#356E35'
-      }
-      iconUrl = '/static/images/bz0' + type + '.png'
-      this.clearMap()
-      if (this.drawType * 1 === 1) {
-        const iconSize = new BMap.Size(26, 48)
-        const myIcon = new BMap.Icon(iconUrl, iconSize, {
-          anchor: new BMap.Size(13, 48)
-        })
-        const markers = new BMap.Marker(this.newMarker, { icon: myIcon })
-        if (this.formData.scope > 1000) {
-          this.map.centerAndZoom(this.newMarker, 12)
-        } else if (this.formData.scope > 300) {
-          this.map.centerAndZoom(this.newMarker, 15)
-        } else {
-          this.map.centerAndZoom(this.newMarker, 16)
-        }
-        this.map.addOverlay(markers)
-        // 创建圆对象
-        this.circle = new BMap.Circle(this.newMarker, this.formData.scope, {
-          strokeColor: this.formData.color,
-          strokeWeight: 3,
-          fillColor: this.formData.color,
-          fillOpacity: 0.2
-        })
-        this.map.addOverlay(this.circle)
-        await this.showDraggingInfo(markers)
-        if (this.newMarker && this.newMarker.lat && this.newMarker.lng) {
-          mapTool.getAddress(this.newMarker).then((res) => {
-          })
-        }
-      } else {
-        const polygon = new BMap.Polygon(this.drawPoints, { strokeColor: this.formData.color, fillColor: this.formData.color, strokeWeight: 3, strokeOpacity: 0.8, fillOpacity: 0.7 })
-        this.map.addOverlay(polygon)
-        this.showDraggingInfoFang(polygon)
-        polygon.enableEditing()
-        let mPoint = ''
-        // 计算中心点
-        const points = this.drawPoints
-        let x = points[0] && points[0].lat
-        let y = points[0] && points[0].lng
-        if (!x || !y) return
-        points.forEach(i => {
-          if (!i.lat || !i.lng) return
-          x = (x * 1 + i.lat * 1) * 0.5
-          y = (y * 1 + i.lng * 1) * 0.5
-        })
-        if (!x || !y) return
-        mPoint = new BMap.Point(y, x)
-        if (this.formData.id) this.map.centerAndZoom(mPoint, 12)
-        const iconSize = new BMap.Size(20, 24)
-        const iconWLUrl = '/static/images/weilanTips.png'
-        const myIcon = new BMap.Icon(iconWLUrl, iconSize, {
-          anchor: new BMap.Size(10, 24)
-        })
-        const markers = new BMap.Marker(mPoint, { icon: myIcon })
-        this.map.addOverlay(markers)
-        if (!x || !y) return
-        if (x && y) {
-          mapTool.getAddress({ lng: x, lat: y }).then((res) => {
-            console.log(res)
-          })
-        }
-      }
-    },
-    changeScope() {
-      this.selectYs(this.colorType)
-    },
-    // 拖拽 -圆
-    showDraggingInfo(markers) {
-      const _this = this
-      markers.addEventListener('dragend', function(e) {
-        const __this = _this
-        const gc = new BMap.Geocoder()
-        // 画图 标签
-        gc.getLocation(e.point, function(rs) {
-          if (!e.point.lng && !e.point.lat) return
-          __this.map.removeOverlay(markers.getLabel()) // 删除之前的label
-          __this.newMarker = new BMap.Point(e.point.lng, e.point.lat)
-          __this.formData.point = e.point.lng + ',' + e.point.lat
-          __this.$set(__this.formData, 'province', rs.addressComponents.province)
-          __this.formData.city = rs.addressComponents.city
-          // 创建圆对象
-          __this.map.removeOverlay(__this.circle) // 删除之前的circle
-          const ___this = __this
-          __this.circle = new BMap.Circle(__this.newMarker, __this.formData.scope, {
-            strokeColor: ___this.formData.color,
-            strokeWeight: 3,
-            fillColor: ___this.formData.color,
-            fillOpacity: 0.2
-          })
-          ___this.map.addOverlay(__this.circle)
-          mapTool.getAddress(e.point).then((res) => {
-            const labelgg = new BMap.Label(res.result.formatted_address, { offset: new BMap.Size(0, -20) })
-            markers.setLabel(labelgg)
-          })
-        })
-      })
-      markers.enableDragging()
-    },
-    // 拖拽 -方
-    showDraggingInfoFang(polygon) {
-      const _this = this
-      polygon.addEventListener('lineupdate', (e) => {
-        _this.drawPoints = polygon.getPath()
-        const a = []
-        _this.drawPoints.forEach(item => {
-          a.push(item.lng + ',' + item.lat)
-        })
-        _this.formData.point = a.join(';')
-      })
-    },
-    addMarkerInfo(name) {
-      const id = this.$route.query.id
-      if (!this.formData.name) {
-        this.$notify({ title: '请输入名称', type: 'warning' })
-        return
-      }
-      if (!this.formData.scope) {
-        this.$notify({ title: '请选择范围', type: 'warning' })
-        return
-      }
-      this.formData.createTime = '2019-05-23 11:31:58'
-      // this.formData.org = '仓库'
-      this.formData.status = true
-      if (id) {
-        editData(this.formData).then(() => {
-          setTimeout(() => {
-            this.$message.success(this.$t('app.modify') + this.$t('app.success'))
-            this.$router.push({ name: 'enclosure' })
-          }, 1000)
-        }).catch(error => {
-          setTimeout(() => {
-            console.log(error)
-          }, 300)
-        })
-      } else {
-        addData(this.formData).then(() => {
-          setTimeout(() => {
-            this.$message.success(this.$t('app.add') + this.$t('app.success'))
-            this.$router.push({ name: 'enclosure' })
-          }, 1000)
-        }).catch(error => {
-          setTimeout(() => {
-            console.log(error)
-          }, 300)
-        })
-      }
-    },
-    // 初始化地图
-    async init() {
+    initMap() {
       this.map = new BMap.Map('map', { enableMapClick: false })
       this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 15) // 初始化北京地图
-      this.sCity = '北京' // 选择城市
-      this.map.setCurrentCity('北京')
       this.map.enableScrollWheelZoom(true)
+    },
+    initMapTool() {
       this.map.addControl(new BMap.NavigationControl({
         offset: new BMap.Size(5, 80)
       })) // 平移控件
       const ac = new BMap.Autocomplete({ 'input': 'suggestId', 'location': this.map }) // 建立一个自动完成的对象
-      const _this = this
-      ac.addEventListener('onhighlight', function(e) { // 鼠标放在下拉列表上的事件
-        let str = ''
-        let _value = e.fromitem.value
-        let value = ''
-        if (e.fromitem.index > -1) {
-          value = _value.province + _value.city + _value.district + _value.street + _value.business
-        }
-        str = 'FromItem<br />index = ' + e.fromitem.index + '<br />value = ' + value
-        value = ''
-        if (e.toitem.index > -1) {
-          _value = e.toitem.value
-          value = _value.province + _value.city + _value.district + _value.street + _value.business
-        }
-        str += '<br />ToItem<br />index = ' + e.toitem.index + '<br />value = ' + value
-        _this.getId('searchResultPanel').innerHTML = str
-        //         _this.clearMap();    // 清除地图上所有覆盖物
+      ac.addEventListener('onconfirm', (e) => { // 鼠标点击下拉列表后的事件
+        this.addressOption = e.item.value.business
+        mapTool.geo(e.item.value.business).then((res) => {
+          // this.map.panTo(res, { noAnimation: false })
+          this.map.setViewport({ center: res, zoom: 12 })
+        })
       })
-      let myValue
-      ac.addEventListener('onconfirm', function(e) { // 鼠标点击下拉列表后的事件
-        const _value = e.item.value
-        myValue = _value.province + _value.city + _value.district + _value.street + _value.business
-        _this.getId('searchResultPanel').innerHTML = 'onconfirm<br />index = ' + e.item.index + '<br />myValue = ' + myValue
-        _this.setPlace(myValue)
-        _this.clearMap() // 清除地图上所有覆盖物
-      })
-      this.myGeo = new BMap.Geocoder()
-      const styleOptions = {
-        strokeColor: '#A90329',
-        fillColor: '#A90329',
-        strokeWeight: 3,
-        strokeOpacity: 0.8,
-        fillOpacity: 0.7,
-        strokeStyle: 'solid'
-      }
-      // 编辑
-      this.formData.id = this.$route.query.id
-      if (this.formData.id !== undefined && this.formData.id !== '') {
+    },
+    initData() {
+      const id = this.$route.query.id
+      if (id) {
         getList().then(res => {
           this.list = res.data.list
           this.list.forEach(item => {
-            if (Number(item.id) === Number(this.formData.id)) {
+            if (Number(item.id) === Number(id)) {
               this.formData = item
             }
           })
           this.addMarkerModal = true
-          this.setCircle()
+          if (this.formData.labelState === 1) {
+            const point = this.formData.paths.split(',')
+            const BPoint = new BMap.Point(point[0], point[1])
+            this.map.setViewport({ center: BPoint, zoom: this.getZoom(this.formData.scope) })
+            this.createMarker(BPoint)
+            this.createCircle()
+          } else if (this.formData.labelState === 2) {
+            const points = this.formData.paths.split(';').map(item => {
+              const p = item.split(',')
+              return new BMap.Point(p[0], p[1])
+            })
+            this.map.setViewport(points)
+            this.createPolygon(points)
+          }
         })
-        if (this.formData.color) {
-          styleOptions.strokeColor = this.formData.color
-          styleOptions.fillColor = this.formData.color
-        }
-      } else {
-        this.colorType = 1
       }
+    },
+    getZoom(distance) {
+      const zoom = ['50', '100', '200', '500', '1000', '2000', '5000', '10000', '20000', '25000', '50000', '100000', '200000', '500000', '1000000', '2000000'] // 级别18到3。
+      for (let i = 0, zoomLen = zoom.length; i < zoomLen; i++) {
+        if (zoom[i] - distance > 0) {
+          return 18 - i + 2 // 之所以会多3，是因为地图范围常常是比例尺距离的10倍以上。所以级别会增加3。
+        }
+      }
+    },
+    setDrawingManager(type) {
       this.drawingManager = new BMapLib.DrawingManager(this.map, {
         isOpen: false, // 是否开启绘制模式
         enableDrawingTool: false, // 是否显示工具栏
@@ -400,199 +182,189 @@ export default {
           offset: new BMap.Size(15, 35) // 偏离值
         },
         // drawingTypes: 'rectangle',
-        circleOptions: styleOptions, // 圆的样式
-        polylineOptions: styleOptions, // 线的样式
-        polygonOptions: styleOptions, // 多边形的样式
-        rectangleOptions: styleOptions // 矩形的样式
+        circleOptions: this.styleOptions, // 圆的样式
+        polylineOptions: this.styleOptions, // 线的样式
+        polygonOptions: this.styleOptions, // 多边形的样式
+        rectangleOptions: this.styleOptions // 矩形的样式
       })
-      const overlays = []
-      this.drawingManager.addEventListener('overlaycomplete', function(e) {
-        if (_this.drawType === 1) {
-          const marker = e.overlay.point
-          _this.clearMap()
-          if (!marker.lng || !marker.lat) return
-          _this.newMarker = new BMap.Point(marker.lng, marker.lat)
-          const iconSize = new BMap.Size(26, 48)
-          const myIcon = new BMap.Icon('/static/images/bz01.png', iconSize, {
-            anchor: new BMap.Size(13, 48)
-          })
-          const markers = new BMap.Marker(_this.newMarker, { icon: myIcon })
-          _this.map.addOverlay(markers)
-          _this.formData.point = marker.lng + ',' + marker.lat
-          if (marker.lat && marker.lng) {
-            mapTool.getAddress(marker).then((res) => {
-              const labelgg = new BMap.Label(res.result.formatted_address, { offset: new BMap.Size(0, -20) })
-              markers.setLabel(labelgg)
-            })
+      this.drawingManager.open()
+      this.drawingManager.setDrawingMode(type)
+      this.drawingManager.addEventListener('markercomplete', (overlay) => {
+        this.formData.labelState = 1
+        this.setFormAddress(overlay.point)
+        this.addMarkerModal = true
+        this.createMarker(overlay.point)
+        this.createCircle()
+        this.drawingManager.close()
+      })
+      this.drawingManager.addEventListener('polygoncomplete', (overlay) => {
+        this.formData.labelState = 2
+        this.formData.scope = null
+        this.setFormAddress(overlay.getPath())
+        this.addMarkerModal = true
+        this.createPolygon(overlay.getPath())
+        this.drawingManager.close()
+      })
+    },
+    createMarker(point, editable = true) {
+      this.clearMap()
+      this.marker = new BMap.Marker(point)
+      this.map.addOverlay(this.marker)
+      if (editable) {
+        this.marker.enableDragging()
+        this.marker.addEventListener('dragend', (e) => {
+          this.circle.setCenter(e.point)
+          this.setFormAddress(e.point)
+        })
+      }
+    },
+    createPolygon(points, editable = true) {
+      this.clearMap()
+      this.polygon = new BMap.Polygon(points, this.styleOptions)
+      this.map.addOverlay(this.polygon)
+      if (editable) {
+        this.polygon.enableEditing()
+        this.polygon.addEventListener('lineupdate', (e) => {
+          this.setFormAddress(e.target.getPath())
+        })
+      }
+    },
+    cancel() {
+      if (this.$route.query.id) {
+        this.$router.go(-1)
+      }
+      this.formData = {
+        name: '',
+        org: '',
+        labelState: 1,
+        monitoringType: '',
+        scope: 500,
+        province: '',
+        city: '',
+        district: '',
+        address: ''
+      }
+      this.addMarkerModal = false
+      this.clearMap()
+    },
+    createCircle() {
+      if (this.circle) {
+        this.map.removeOverlay(this.circle)
+      }
+      this.circle = new BMap.Circle(this.marker.getPosition(), this.formData.scope, this.styleOptions)
+      this.map.addOverlay(this.circle)
+    },
+    changeScope() {
+      this.createCircle()
+      this.map.setViewport({ center: this.marker.getPosition(), zoom: this.getZoom(this.formData.scope) })
+    },
+    setFormAddress(points) {
+      this.getAddressInfo(points).then((res) => {
+        this.formData.province = res.addressComponents.province
+        this.formData.city = res.addressComponents.city
+        this.formData.district = res.addressComponents.district
+        this.formData.address = res.address
+      })
+    },
+    getAddressInfo(points) {
+      return new Promise((resolve, reject) => {
+        let point = null
+        let type = true
+        if (typeof points === 'object') {
+          if (Array.isArray(points)) {
+            // 计算中心点
+            point = this.calcCenter(points)
+            type = false
+          } else {
+            point = points
+            type = false
           }
-          _this.myGeo.getLocation(_this.newMarker, function(rs) {
-            _this.formData.address = rs.address
-            _this.$set(_this.formData, 'province', rs.addressComponents.province)
-            _this.formData.city = rs.addressComponents.city
-            const labelgg = new BMap.Label(_this.formData.address, { offset: new BMap.Size(0, -20) })
-            markers.setLabel(labelgg)
-          })
-          _this.showDraggingInfo(markers)
+        } else if (typeof points === 'string') {
+          point = points
+          type = true
         }
-        if (_this.drawType === 2) {
-          overlays.push(e.overlay)
-          const path = e.overlay.getPath()
-          _this.drawPoints = path
-          _this.clearMap()
-          const polygon = new BMap.Polygon(path, { strokeColor: '#A90329', fillColor: '#A90329', strokeWeight: 3, strokeOpacity: 0.8, fillOpacity: 0.7 }) // 创建多边形
-          _this.map.addOverlay(polygon) // 增加多边形
-          _this.showDraggingInfoFang(polygon)
-          polygon.enableEditing()
-          const a = []
-          path.forEach(item => {
-            a.push(item.lng + ',' + item.lat)
-          })
-          _this.formData.point = a.join(';')
-          // 计算中心点
-          let mPoint = ''
-          const points = _this.drawPoints
-          let x = points[0] && points[0].lng
-          let y = points[0] && points[0].lat
-          if (!x && !y) return
-          points.forEach(i => {
-            // 获取中心点
-            x = (x * 1 + i.lng * 1) * 0.5
-            y = (y * 1 + i.lat * 1) * 0.5
-          })
-          mPoint = new BMap.Point(x, y)
-          const iconUrl = '/static/images/weilanTips.png'
-          const iconSize = new BMap.Size(20, 24)
-          const myIcon = new BMap.Icon(iconUrl, iconSize, {
-            anchor: new BMap.Size(10, 24)
-          })
-          const markers = new BMap.Marker(mPoint, { icon: myIcon })
-          _this.map.addOverlay(markers)
-          if (x && y) {
-            mapTool.getAddress({ lng: x, lat: y }).then((res) => {
-              console.log(res, 2)
-            })
+        mapTool.geo(point, type).then((res) => {
+          resolve(res)
+        })
+      })
+    },
+    calcCenter(points) {
+      if (points.length > 0) {
+        let maxLng = points[0].lng
+        let minLng = points[0].lng
+        let maxLat = points[0].lat
+        let minLat = points[0].lat
+        let res
+        for (let i = points.length - 1; i >= 0; i--) {
+          res = points[i]
+          if (res.lng > maxLng) maxLng = res.lng
+          if (res.lng < minLng) minLng = res.lng
+          if (res.lat > maxLat) maxLat = res.lat
+          if (res.lat < minLat) minLat = res.lat
+        }
+        const cenLng = (parseFloat(maxLng) + parseFloat(minLng)) / 2
+        const cenLat = (parseFloat(maxLat) + parseFloat(minLat)) / 2
+        return new BMap.Point(cenLng, cenLat)
+      }
+    },
+    edit() {
+      editData(this.formData).then(() => {
+        setTimeout(() => {
+          this.actionLoading = false
+          this.$message.success(this.$t('app.modify') + this.$t('app.success'))
+          this.$router.push({ name: 'enclosure' })
+        }, 1000)
+      }).catch(error => {
+        setTimeout(() => {
+          console.log(error)
+        }, 300)
+      })
+    },
+    add() {
+      this.formData.id = Math.round(Math.random() * 1000000)
+      this.formData.createTime = new Date().getTime()
+      this.formData.status = true
+      addData(this.formData).then(() => {
+        setTimeout(() => {
+          this.actionLoading = false
+          this.$message.success(this.$t('app.add') + this.$t('app.success'))
+          this.$router.push({ name: 'enclosure' })
+        }, 1000)
+      }).catch(error => {
+        setTimeout(() => {
+          console.log(error)
+        }, 300)
+      })
+    },
+    addMarkerInfo(name) {
+      this.actionLoading = true
+      this.$refs['form'].validate((valid) => {
+        if (valid) { // 验证通过
+          if (this.formData.labelState === 1) {
+            const point = this.marker.getPosition()
+            this.formData.paths = point.lng + ',' + point.lat
+          } else {
+            this.formData.paths = this.polygon.getPath().map(item => { return item.lng + ',' + item.lat }).join(';')
           }
-          _this.myGeo.getLocation(mPoint, function(rs) {
-            _this.$set(_this.formData, 'province', rs.addressComponents.province)
-            _this.formData.city = rs.addressComponents.city
-            //               let labelgg = new BMap.Label(_this.formData.address, {offset: new BMap.Size(0, -20)});
-            //               markers.setLabel(labelgg);
-          })
+          if (this.formData.id) {
+            this.edit()
+          } else {
+            this.add()
+          }
         }
-        _this.addMarkerModal = true
-        _this.formData.monitoringType = 1
-        _this.formData.color = '#A90329'
-        _this.colorType = 1
-        _this.drawingManager.close() // 关闭绘画
-        if (!_this.formData.id) _this.formData.labelState = '进出围栏'
       })
     },
     // 清除地图
     clearMap() {
       this.map.clearOverlays()
     },
-    // 处理搜索地址的问题
-    getId(id) {
-      return document.getElementById(id)
-    },
-    // 通过地址获取经纬度，然后画圆或矩形
-    setCircle() {
-      this.myGeo.getPoint(this.formData.address, (point) => {
-        if (point) {
-          this.modifyInit(point)
-        }
-      }, '')
-    },
-    async modifyInit(point) {
-      // 站点，私有，围栏
-      if (this.formData.site === 1) {
-        this.isSite = true
-      } else {
-        this.isSite = false
-      }
-      if (this.formData.paling === 1) {
-        this.isPeling = true
-      } else {
-        this.isPeling = false
-      }
-      // 0私有 1共享
-      if (this.formData.privatization === 0) {
-        this.isPrivatization = true
-      } else {
-        this.isPrivatization = false
-      }
-      // 1关注 2非关注
-      if (this.formData.attention === 1) {
-        this.isAttention = true
-      } else {
-        this.isAttention = false
-      }
-      this.formData.scopeType = '圆形'
-      // 绘制点
-      if (this.formData.scopeType === '圆形') {
-        this.drawType = 1
-        this.newMarker = new BMap.Point(point.lng, point.lat)
-      }
-      if (this.formData.scopeType !== '圆形') {
-        this.drawType = 2
-        if (this.formData.scopeType === '区县') this.drawType = 3
-        const pos = this.formData.point.split(';') // 后台接口由于解析地址，把’|‘改成了’;‘;
-        const arr = []
-        let point
-        pos.forEach(item => {
-          let aa = []
-          aa = item.split(',')
-          point = new BMap.Point(aa[0], aa[1])
-          arr.push(point)
-        })
-        this.drawPoints = arr
-      }
-      // }, 1000)
-      if (this.formData.color === '#A90329') this.colorType = 1 // 红
-      if (this.formData.color === '#C79121') this.colorType = 2 // 黄
-      if (this.formData.color === '#57889c') this.colorType = 3 // 蓝
-      if (this.formData.color === '#AC5287') this.colorType = 4 // 紫
-      if (this.formData.color === '#356E35') this.colorType = 5 // 绿
-      if (!this.formData.color) this.colorType = 1
-      await this.selectYs(this.colorType)
-    },
-    setPlace(myValue) {
-      this.map.clearOverlays() // 清除地图上所有覆盖物
-      const _this = this
-      function myFun() {
-        const pp = local.getResults().getPoi(0).point // 获取第一个智能搜索的结果
-        _this.map.centerAndZoom(pp, 18)
-        _this.map.addOverlay(new BMap.Marker(pp)) // 添加标注
-      }
-      const local = new BMap.LocalSearch(this.map, { // 智能搜索
-        onSearchComplete: myFun
-      })
-      local.search(myValue)
-    },
-    searchAddress() {
-      if (this.addressOption) {
-        const _this = this
-        this.myGeo.getPoint(this.addressOption, function(point) {
-          if (point) {
-            _this.map.centerAndZoom(point, 11)
-            //               _this.map.addOverlay(new BMap.Marker(point));
-          } else {
-            _this.$Notice.error({
-              title: '您选择地址没有解析到结果'
-            })
-          }
-          this.clearMap() // 清除地图上所有覆盖物
-        }, '')
-      } else {
-        this.$Notice.error({
-          title: '请填写搜索地址'
-        })
-      }
-    },
     initJson() {
       this.provinceList = ['北京', '天津', '上海', '重庆', '河北', '山西', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '海南', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '内蒙古', '广西', '西藏', '宁夏', '新疆维吾尔自治区', '香港', '澳门', '台湾']
       this.cityList = ['东城区', '西城区', '崇文区', '宣武区', '朝阳区', '海淀区', '丰台区', '石景山区', '房山区', '通州区', '顺义区', '杭州', '宁波', '温州', '嘉兴', '湖州', '绍兴', '金华', '衢州', '舟山', '台州', '丽水', '长沙', '株洲', '湘潭', '衡阳', '邵阳', '岳阳', '常德', '张家界', '益阳', '郴州', '永州', '怀化', '娄底', '湘西', '兰州', '嘉峪关', '金昌', '白银', '天水', '武威', '酒泉', '张掖', '庆阳', '平凉', '定西', '陇南', '临夏', '甘南', '广州', '深圳', '珠海', '汕头', '韶关', '佛山', '江门', '湛江', '茂名', '肇庆', '惠州', '梅州', '汕尾', '河源', '阳江', '清远', '东莞']
-      this.typeArray = ['进出围栏']
+      this.typeArray = [
+        { label: '站点', value: 1 },
+        { label: '围栏', value: 2 }
+      ]
       this.scopeArray = [
         { label: '100米', value: 100 },
         { label: '200米', value: 200 },
@@ -625,6 +397,12 @@ export default {
       display: none
     }
   }
+  .add_modal {
+    .el-form-item {
+      width: 45%;
+      margin-bottom: 5px!important
+    }
+  }
 </style>
 <style lang="scss" scoped>
 .mapContent {
@@ -654,12 +432,6 @@ export default {
     .content{
       padding:10px;
       font-size: 12px !important;
-      .l-form-input{
-        width:180px;
-        line-height: 20px;
-        border-radius: 0 !important;
-        margin-bottom: 8px;
-      }
       .ys_block{
         width:20px;
         height:20px;
