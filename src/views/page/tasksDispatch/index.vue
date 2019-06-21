@@ -98,7 +98,7 @@ export default {
           title: this.$t('tasks.describe')
         },
         {
-          key: 'org',
+          key: 'orgName',
           title: this.$t('tasks.org'),
           minWidth: 160
         }

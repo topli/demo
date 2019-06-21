@@ -20,7 +20,7 @@
       padding-top: 16px;
       width: 100%;
       height: 100%;
-      display: -webkit-inline-box;
+      display: inline-box;
       &-left {
         position: absolute;
         left:0;
@@ -40,7 +40,7 @@
     .text-bg{
       display: inline-block;
       color: #ffffff;
-      background-color: #1715159c;
+      background-color: rgba(23, 21, 21, 0.6);
       border-radius: 10px;
       padding: 5px 10px;
     }
@@ -50,9 +50,9 @@
     .speeds-option {
       cursor: pointer;
       color: #ffffff;
-      background-color: #1715159c;
+      background-color: rgba(23, 21, 21, 0.6);
       padding: 3px 5px;
-      border: 1px solid #1715159c;
+      border: 1px solid rgba(23, 21, 21, 0.6);
     }
     .check-speed {
       color: #00b7ee;
@@ -126,7 +126,7 @@
           <div><span>{{ endTip }}1</span></div>
         </div> -->
         <div class="text-bg">
-          <div style="display: -webkit-inline-box">
+          <div style="display: flex">
             <div v-for="(item, i) in speedArray" :key="i" :class="{ 'check-speed': currentSpeed === item.value }" class="speeds-option" @click="changeSpeed(item.value)">{{ item.name }}</div>
           </div>
         </div>

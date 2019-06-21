@@ -10,14 +10,7 @@
           <el-input :disabled="!!form.id" v-model="form.equipmentNumber" />
         </el-form-item>
         <el-form-item :label="$t('alarmSet.deviceType')">
-          <el-select v-model="form.deviceType" :disabled="!!form.id" :placeholder="$t('alarmSet.select')" style="width:184px;">
-            <el-option
-              v-for="item in deviceType"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"/>
-          </el-select>
-          <!-- <select-remote v-model="form.deviceType" filterable clearable disabled data-type="deviceType"/> -->
+          <select-remote v-model="form.deviceType" filterable clearable disabled data-type="deviceType"/>
         </el-form-item>
         <el-form-item :label="$t('alarmSet.fuel') + '(L)'" prop="fuel">
           <el-input v-model.number="form.fuel"/>

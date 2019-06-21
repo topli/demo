@@ -152,7 +152,7 @@ export default {
     padding: 5px 0;
     .pulse-container {
       width: 20px;
-      display: -webkit-inline-flex;
+      display: inline-flex;
       justify-content: space-between;
       align-items: center;
       .pulse-bubble-1 {
