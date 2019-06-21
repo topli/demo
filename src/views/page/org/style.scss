@@ -45,6 +45,7 @@
   .tree-block {
     min-width: 400px;
     padding:8px 10px 24px;
+    position: absolute;
     // min-height: calc(100vh - 70px);
     // border: 1px solid #97a8be;
     // border-radius: 4px;
@@ -55,6 +56,8 @@
     line-height:4
   }
   .table-block {
+    position: absolute;
+    left: 450px;
     width: calc(100% - 450px);
     border-left:1px solid #eff2f6
   }

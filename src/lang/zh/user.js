@@ -13,6 +13,6 @@ export default {
     status: '状态',
     usernameError: '姓名不能为空',
     ageError: '年龄不能为空',
-    ageNumberError: '请输入0-120之间数字'
+    ageNumberError: '请输入大于0的整数'
   }
 }

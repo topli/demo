@@ -57,7 +57,7 @@ export default {
         ],
         age: [
           { required: true, message: this.$t('user.ageError') },
-          { type: 'number', min: 0, max: 120, message: this.$t('user.ageNumberError') }
+          { type: 'number', min: 1, message: this.$t('user.ageNumberError') }
         ]
       }
     }

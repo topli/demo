@@ -98,6 +98,7 @@
 <script>
 // import hyVideoFlv from './videoFlv'
 import screenfull from 'screenfull'
+import utils from '@/libs/utils'
 
 export default {
   name: 'SplitScreenVideo',
@@ -162,23 +163,17 @@ export default {
       })
     }, 100)
     this.pageInte()
-    window.onresize = () => {
-      // 全屏下监控是否按键了ESC
-      if (!this.checkFull()) {
-        // 全屏下按键esc后要执行的动作
-        const screenHeight = document.getElementsByClassName('screen-video')[0].offsetHeight - 41
-        this.playList.forEach(item => {
-          this.$set(item, 'height', (screenHeight / Math.sqrt(this.splitNum)))
-        })
-      }
-    }
+    utils.on(window, 'resize', this.resize)
+  },
+  beforeDestroy() {
+    utils.off(window, 'resize', this.resize)
   },
   methods: {
     /**
      * 是否全屏并按键ESC键的方法
      */
     checkFull() {
-      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
+      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen || document.fullscreen
       // to fix : false || undefined == undefined
       if (isFull === undefined) {
         isFull = false
@@ -362,6 +357,17 @@ export default {
       this.playList[index].label = index
       this.playList[index].span = span
       this.playList[index].height = height[0]
+    },
+    resize() {
+      console.log('resize')
+      // 全屏下监控是否按键了ESC
+      if (!this.checkFull()) {
+        // 全屏下按键esc后要执行的动作
+        const screenHeight = document.getElementsByClassName('screen-video')[0].offsetHeight - 41
+        this.playList.forEach(item => {
+          this.$set(item, 'height', (screenHeight / Math.sqrt(this.splitNum)))
+        })
+      }
     }
   }
 }

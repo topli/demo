@@ -75,7 +75,7 @@ export default {
           filters: 'sex',
           width: '80',
           render: (h, params, val) => {
-            return h('el-tag', { props: { color: val.color }, style: { color: 'white' }}, val.label)
+            return h('span', val.label)
           }
         },
         {

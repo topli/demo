@@ -69,7 +69,7 @@ export default {
       addData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
-          this.$message.success('成功')
+          this.$message.success(this.$t('app.add') + this.$t('app.success'))
           this.$store.dispatch('SetDictData')
           // 执行操作后隐藏弹出框
           this.onSub()
@@ -86,7 +86,7 @@ export default {
       editData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
-          this.$message.success('成功')
+          this.$message.success(this.$t('app.modify') + this.$t('app.success'))
           this.$store.dispatch('SetDictData')
           // 执行操作后隐藏弹出框
           this.onSub()

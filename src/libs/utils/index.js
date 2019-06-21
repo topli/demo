@@ -209,6 +209,7 @@ export function deepClone(source) {
  * @description 绑定事件 on(element, event, handler)
  */
 export const on = (function() {
+  console.log(1)
   if (document.addEventListener) {
     return function(element, event, handler) {
       if (element && event && handler) {
@@ -223,3 +224,24 @@ export const on = (function() {
     }
   }
 })()
+
+/* istanbul ignore next */
+export const off = (function() {
+  if (document.removeEventListener) {
+    return function(element, event, handler) {
+      if (element && event) {
+        element.removeEventListener(event, handler, false)
+      }
+    }
+  } else {
+    return function(element, event, handler) {
+      if (element && event) {
+        element.detachEvent('on' + event, handler)
+      }
+    }
+  }
+})()
+export default {
+  on,
+  off
+}

@@ -22,11 +22,15 @@ export default {
     const dictData = localData['dict'].data
     const body = JSON.parse(param.body)
     let index = null
-    dictData[body.group] && dictData[body.group].find((item, i) => {
-      index = i
-      return item.id === body.id
-    })
-    dictData[body.group][index] = body
+    if (dictData[body.group]) {
+      dictData[body.group].find((item, i) => {
+        index = i
+        return item.id === body.id
+      })
+      dictData[body.group][index] = body
+    } else {
+      dictData[body.group] = [body]
+    }
     setStorage('localData', localData)
     return data
   },

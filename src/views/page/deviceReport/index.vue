@@ -30,18 +30,18 @@
             <el-col :span="6">
               <div class="total-child">
                 <div class="split-line"/>
-                <div :style="{width: getWidth() + 'px',opacity: popOpacity1}" class="popover-body">
+                <div :style="{width: getWidth() + 'px',opacity: popOpacity1, minWidth: '260px'}" class="popover-body">
                   <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%;padding-bottom: 10px">
                     <ul>
                       <li>
-                        <div class="title">
+                        <div class="header">
                           <div v-for="(t, i) in titles" :key="i">{{ t }}</div>
                         </div>
                       </li>
                     </ul>
                     <ul>
                       <li v-for="(device, i) in deviceErrorList" :key="i">
-                        <div class="title">
+                        <div class="header">
                           <div>{{ device.deviceNo }}</div>
                           <div>{{ device.type }}</div>
                           <div>{{ device.time }}</div>
@@ -56,18 +56,18 @@
             </el-col>
             <el-col :span="6">
               <div class="total-child">
-                <div :style="{width: getWidth() + 'px',opacity: popOpacity2}" class="popover-body">
+                <div :style="{width: getWidth() + 'px',opacity: popOpacity2, minWidth: '260px'}" class="popover-body">
                   <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%;padding-bottom: 10px">
                     <ul>
                       <li>
-                        <div class="title">
+                        <div class="header">
                           <div v-for="(t, i) in titles" :key="i">{{ t }}</div>
                         </div>
                       </li>
                     </ul>
                     <ul>
                       <li v-for="(device, i) in deviceErrorList2" :key="i">
-                        <div class="title">
+                        <div class="header">
                           <div>{{ device.deviceNo }}</div>
                           <div>{{ device.type }}</div>
                           <div>{{ device.time }}</div>
@@ -482,7 +482,7 @@ export default {
     font-size: 13px!important;
     position: absolute;
     top: 5.5vw;
-    left: 2.6vw;
+    left: 2vw;
     z-index: 999;
     padding: 10px;
     ul {
@@ -491,8 +491,8 @@ export default {
     ul li {
       list-style: none;
       padding: 2px 0;
-      .title{
-        display: -webkit-box;
+      .header{
+        display: flex;
         width: 100%;
         font-size: .7vw!important;
         color: #fff!important;
@@ -506,13 +506,13 @@ export default {
         }
       }
     }
-    background: #1e57d6db!important;
-    border: 1px solid #1e57d6db;
+    background: rgba(30, 87, 214, 0.8) !important;
+    border: 1px solid rgba(30, 87, 214, 0.8);
     .popper__arrow{
-      border-bottom-color: #1e57d6db!important;
+      border-bottom-color: rgba(30, 87, 214, 0.8)!important;
     }
     .popper__arrow::after{
-      border-bottom-color: #1e57d6db!important;
+      border-bottom-color: rgba(30, 87, 214, 0.8)!important;
     }
     .el-scrollbar__wrap{
       overflow-x: hidden

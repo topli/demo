@@ -33,7 +33,7 @@
           <select-remote v-model="form.linkType" filterable clearable data-type="linkType"/>
         </el-form-item>
         <el-form-item :label="$t('menu.remark')" style="width: 100%">
-          <el-input v-model="form.remark" type="textarea" style="width: 100%"/>
+          <el-input v-model="form.remark" :autosize="{ minRows: 2}" type="textarea"/>
         </el-form-item>
       </el-form>
     </div>
