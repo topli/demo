@@ -31,7 +31,7 @@
               <div class="total-child">
                 <div class="split-line"/>
                 <div :style="{width: getWidth() + 'px',opacity: popOpacity1}" class="popover-body">
-                  <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
+                  <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%;padding-bottom: 10px">
                     <ul>
                       <li>
                         <div class="title">
@@ -57,7 +57,7 @@
             <el-col :span="6">
               <div class="total-child">
                 <div :style="{width: getWidth() + 'px',opacity: popOpacity2}" class="popover-body">
-                  <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%">
+                  <el-scrollbar wrap-class="scrollbar-wrapper" style="width:100%;height:100%;padding-bottom: 10px">
                     <ul>
                       <li>
                         <div class="title">
@@ -484,11 +484,13 @@ export default {
     top: 5.5vw;
     left: 2.6vw;
     z-index: 999;
+    padding: 10px;
     ul {
       padding-left: 0;
     }
     ul li {
       list-style: none;
+      padding: 2px 0;
       .title{
         display: -webkit-box;
         width: 100%;

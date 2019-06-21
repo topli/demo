@@ -52,6 +52,11 @@ export default {
   computed: {
   },
   created() {
+    if (!this.form.id) {
+      this.form.useStatus = '2'
+      this.form.status = 'true'
+      this.form.available = 'true'
+    }
   },
   mounted() {
   },

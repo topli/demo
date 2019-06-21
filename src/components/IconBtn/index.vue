@@ -5,8 +5,10 @@
       v-btn-auth="authCode"
       style="display: inline-block">
       <el-tooltip
+        v-model="mouseSelect"
         :content="content"
         :open-delay="500"
+        :manual="true"
         placement="top">
         <div
           :class="classs"

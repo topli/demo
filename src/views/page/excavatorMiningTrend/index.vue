@@ -1,171 +1,76 @@
 <style lang="scss" scoped>
-.tem-div {
-  height: calc(100vh - 50px);
-  padding: 10px;
-  background: #eee;
-  display: flex;
-  flex-direction: column;
-  .search-div {
-    padding: 10px 15px;
-    height: 72px;
-    widows: 100%;
-    background: #fff;
-    border-radius: 4px;
-    .item1 {
-      width: 220px;
-    }
-    .item2,.item3 {
-      margin-right: 5px;
-    }
-    .search-button {
-      position: absolute;
-      top: 37px;
-      right: 65px;
-    }
-  }
-  .chart-half {
-    background: #fff;
-    margin-top: 10px;
-    border-radius: 4px;
-    min-height: 305px;
-    flex: 1;
-  }
-  .chart-half-two {
-    // background: #fff;
-    margin-top: 10px;
-    display: flex;
-    min-height: 255px;
-    flex: 1;
-    .chart-1 {
-      flex: 1;
-      background: #fff;
-      margin-right: 5px;
-       border-radius: 4px;
-    }
-    .chart-2 {
-      flex: 1;
-      background: #fff;
-      margin-left: 5px;
-      border-radius: 4px;
-    }
-  }
-  .chart-title {
-    padding: 10px;
-    span {
-      font-size: 0.9vw;
-      font-weight: 700;
-      display: inline-block;
-      width: 100%;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 10px;
-    }
-  }
-}
-
 </style>
 <template>
-  <div class="tem-div">
-    <div :style="{height: searchDivHeight+ 'px'}" class="search-div">
-      <el-form
-        label-position="left"
-        inline
-        class="clear"
-        style="padding-top: 20px;padding-right: 140px"
-      >
+  <div class="list-template">
+    <search-tem class="list-search" @on-search="onSearch">
+      <el-form label-position="left" inline>
         <el-form-item class="item1" label-width="80px" label="日期范围">
           <el-radio-group v-model="timeType" @change="changeTime(timeType)">
             <el-radio-button v-for="ti in timeList" :key="ti.value" :label="ti.value">{{ ti.label }}</el-radio-button>
           </el-radio-group>
         </el-form-item>
-        <el-form-item class="item2" label="">
+        <el-form-item>
           <el-date-picker
-            :type="dateType"
-            v-model="searchData.startTime"
-            :options="reportDate"
-            :clearable="false"
-            :editable="false"
-            placement="bottom-end"
-            placeholder="开始时间"
-          />
+            v-model="searchData.dataRange"
+            type="daterange"
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"/>
         </el-form-item>
-        <el-form-item class="item3">
-          -
-        </el-form-item>
-        <el-form-item class="item4" label="">
-          <el-date-picker
-            :type="dateType"
-            v-model="searchData.endTime"
-            :options="reportDate"
-            :clearable="false"
-            :editable="false"
-            placement="bottom-end"
-            placeholder="结束时间"
-          />
-        </el-form-item>
-        <el-form-item class="item6" label-width="44px" label="省市">
+        <el-form-item>
           <el-select
             v-model="searchData.status"
             placeholder="省市"
             style="width: 200px"
             filterable
             transfer
-            clearable
-          >
+            clearable>
             <el-option v-for="(option, index) in cityList" :value="option.value" :key="index">{{ option.label }}</el-option>
           </el-select>
         </el-form-item>
       </el-form>
-      <el-button :loading="actionLoading" class="search-button" type="primary" icon="ios-search" @click="getList">查询</el-button>
-    </div>
-    <div class="chart-half">
-      <div class="chart-title">
-        <span>全矿总量及油耗统计</span>
-      </div>
-      <!-- <bar-chart :value="listData1"/> -->
-      <echarts ref="chartOne" :report-object="listData1" :height="chartOneHeight" width="96%"/>
-    </div>
-    <div class="chart-half-two">
-      <div class="chart-1">
-        <div class="chart-title">
-          <span>故障数量占比</span>
-        </div>
-        <!-- <pie-chart :value="listData2"/> -->
-        <echarts ref="chartTwo" :report-object="listData2" :height="chartTwoHeight"/>
-      </div>
-      <div class="chart-2">
-        <div class="chart-title">
-          <span>挖机开采量总和统计</span>
-        </div>
-        <!-- <scatter-chart :value="listData3"/> -->
-        <echarts ref="chartThree" :report-object="listData3" :height="chartTwoHeight"/>
-      </div>
-    </div>
+    </search-tem>
+    <el-row :gutter="10">
+      <el-col :span="24" style="margin-bottom: 10px">
+        <el-card>
+          <div slot="header">
+            <span style="font-weight: 700;font-size:14px">设备总数分布</span>
+          </div>
+          <echarts :report-object="listData1" height="300"/>
+        </el-card>
+      </el-col>
+      <el-col :span="10">
+        <el-card>
+          <div slot="header">
+            <span style="font-weight: 700;font-size:14px">故障数量占比</span>
+          </div>
+          <echarts :report-object="listData2" height="200"/>
+        </el-card>
+      </el-col>
+      <el-col :span="14">
+        <el-card>
+          <div slot="header">
+            <span style="font-weight: 700;font-size:14px">挖机开采量总和统计</span>
+          </div>
+          <echarts :report-object="listData3" height="200"/>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
-// import { on } from '@/libs/utils/index'
-// import date from 'mixins/date'
-// import remote from 'mixins/remote'
-// import searchDate from 'mixins/searchDate'
-// import BarChart from 'common/echarts/bar'
-// import PieChart from 'common/echarts/pie'
-// import ScatterChart from 'common/echarts/scatter'
+import list from '@/libs/mixins/list'
 export default {
-  // components: { BarChart, PieChart, ScatterChart },
-  // mixins: [remote, date, searchDate],
+  mixins: [list],
   data() {
     return {
       searchData: {
-        startTime: '',
-        endTime: '',
+        dataRange: [],
         type: '',
         status: ''
       },
-      typeList: [],
       cityList: [],
-      actionLoading: false,
-      //
       listData1: {},
       listData2: {},
       listData3: {},
@@ -175,15 +80,7 @@ export default {
         { label: '月', value: 2 },
         { label: '年', value: 3 }
       ],
-      dateType: 'date',
-      chartOneHeight: '252',
-      chartTwoHeight: '206',
-      searchDivHeight: '72',
-      reportDate: {
-        disabledDate(date) {
-          return date && date.valueOf() > Date.now()
-        }
-      }
+      dateType: 'date'
     }
   },
   computed: {
@@ -192,39 +89,15 @@ export default {
     ])
   },
   created() {
-    this.searchData.startTime = new Date(
-      +new Date() - 15 * 24 * 60 * 60 * 1000
-    )
-    this.searchData.endTime = new Date()
   },
   mounted() {
-    this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
-    this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 48.6 + ''
-    this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
-    window.onresize = () => {
-      this.chartOneHeight = document.getElementsByClassName('chart-half')[0].clientHeight - 54 + ''
-      this.chartTwoHeight = document.getElementsByClassName('chart-half-two')[0].clientHeight - 44.6 + ''
-      this.searchDivHeight = document.getElementsByClassName('el-form')[0].clientHeight + 20 + ''
-    }
-    if (this.sidebar.opened) {
-      this.$store.dispatch('ToggleSideBar')
-    }
-    this.getList()
-    setTimeout(() => {
-      this.$refs.chartOne.chart.resize()
-      this.$refs.chartTwo.chart.resize()
-      this.$refs.chartThree.chart.resize()
-    }, 200)
   },
   methods: {
-    // 屏幕的宽度设置echarts的fontSize
-    getSize() {
-      const winWidth = document.documentElement.clientWidth
-      return winWidth / 1082 * 8.5
+    _getList() {
+      this.getList()
     },
     // 日期格式
     changeTime(type) {
-      console.log(type)
       let year = new Date().getFullYear()
       let month = new Date().getMonth()
       switch (type) {
@@ -237,19 +110,15 @@ export default {
           break
         case 2:
           this.dateType = 'month'
-          console.log(this.searchData.startTime, this.searchData.endTime)
-          console.log(year, month)
           this.searchData.endTime = '' + year
           if (month < 6) {
             year = year - 1
             month = month + 12 - 6
           }
           this.searchData.startTime = '' + year
-          console.log(this.searchData.startTime, this.searchData.endTime)
           break
         case 3:
           this.dateType = 'year'
-          console.log(this.searchData.startTime, this.searchData.endTime)
           this.searchData.startTime = '2016'
           this.searchData.endTime = '' + year
           break
@@ -266,18 +135,13 @@ export default {
             type: 'cross',
             crossStyle: {
               color: '#999'
-            },
-            label: {
-              fontSize: this.getSize()
             }
-          },
-          textStyle: {
-            fontSize: this.getSize()
           }
         },
         grid: {
           top: '13%',
           left: '4%',
+          right: '130px',
           bottom: '4%',
           containLabel: true
         },
@@ -285,10 +149,7 @@ export default {
           data: ['当月总方量', '当月累计油耗'],
           orient: 'vertical',
           right: '0%',
-          top: '8%',
-          textStyle: {
-            fontSize: this.getSize()
-          }
+          top: '8%'
         },
         xAxis: [
           {
@@ -296,11 +157,6 @@ export default {
             data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
             axisPointer: {
               type: 'shadow'
-            },
-            axisLabel: {
-              textStyle: {
-                fontSize: this.getSize()
-              }
             }
           }
         ],
@@ -308,17 +164,9 @@ export default {
           {
             type: 'value',
             name: '(方量)',
-            nameTextStyle: {
-              fontSize: this.getSize()
-            },
             min: 0,
             max: 200,
-            interval: 40,
-            axisLabel: {
-              textStyle: {
-                fontSize: this.getSize()
-              }
-            }
+            interval: 40
             // axisLabel: {
             //   formatter: '{value} 元'
             // }
@@ -326,15 +174,11 @@ export default {
           {
             type: 'value',
             name: '(油耗L)',
-            nameTextStyle: {
-              fontSize: this.getSize()
-            },
             min: 0,
             max: 50,
             interval: 10,
             axisLabel: {
-              formatter: '{value} ',
-              fontSize: this.getSize()
+              formatter: '{value} '
             }
           }
         ],
@@ -360,25 +204,38 @@ export default {
       // pie
       this.listData2 = {
         color: ['#6cbfff', '#b55454', '#6f9fa7', '#c1883a', '#23ccda'],
-        tooltip: {
-          trigger: 'item',
-          formatter: '{a} <br/>{b}: {c} ({d}%)',
-          textStyle: {
-            fontSize: this.getSize()
-          }
-        },
         legend: {
           orient: 'vertical',
-          left: '75%',
           top: '18%',
+          right: 0,
+          width: '20px',
           data: ['平朔安太堡露天矿', '杨庄煤矿', '山西煤矿'],
-          textStyle: {
-            fontSize: this.getSize()
+          formatter: (name) => {
+            let num = 10
+            if (document.body.clientWidth < 1100) {
+              num = 6
+            }
+            if (document.body.clientWidth < 1000) {
+              num = 5
+            }
+            if (document.body.clientWidth < 900) {
+              num = 4
+            }
+            if (document.body.clientWidth < 800) {
+              num = 3
+            }
+            if (document.body.clientWidth < 730) {
+              num = 2
+            }
+            const result = []
+            for (let i = 0, len = name.length; i < len; i += num) {
+              result.push(name.slice(i, i + num))
+            }
+            return result.join('\n')
           }
         },
         series: [
           {
-            name: '故障数量',
             type: 'pie',
             radius: ['50%', '80%'],
             center: ['35%', '50%'],
@@ -394,10 +251,7 @@ export default {
               normal: {
                 show: true,
                 position: 'inside',
-                formatter: '{d}%',
-                textStyle: {
-                  fontSize: this.getSize()
-                }
+                formatter: '{d}%'
               },
               emphasis: {
                 show: true,
@@ -405,11 +259,6 @@ export default {
                   fontSize: '30',
                   fontWeight: 'bold'
                 }
-              }
-            },
-            labelLine: {
-              normal: {
-                show: true
               }
             },
             data: [
@@ -429,10 +278,7 @@ export default {
         yAxis: {
           data: ['山西煤矿', '杨庄煤矿', '平朔安太堡露天矿'],
           axisLabel: {
-            show: true,
-            textStyle: {
-              fontSize: this.getSize()
-            }
+            show: true
           }
         },
         series: [{
@@ -454,10 +300,7 @@ export default {
           },
           label: {
             normal: {
-              show: true,
-              textStyle: {
-                fontSize: this.getSize()
-              }
+              show: true
             }
           }
         }],
