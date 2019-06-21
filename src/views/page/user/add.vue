@@ -82,6 +82,8 @@ export default {
       this.loading = true
       this.form.createTime = new Date()
       this.form.id = Math.random() * 1000
+      this.form.isWork = !!this.form.isWork
+      this.form.status = !!this.form.status
       addData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false

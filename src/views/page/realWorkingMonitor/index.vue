@@ -223,7 +223,7 @@ export default {
         feature: {
           magicType: { show: true, type: ['line', 'bar'] }
         },
-        padding: 20
+        padding: [20, 40]
       },
       dataZoom: [{
         type: 'inside'
@@ -286,7 +286,7 @@ export default {
         feature: {
           magicType: { show: true, type: ['line', 'bar'] }
         },
-        padding: 20
+        padding: [20, 40]
       },
       dataZoom: [{
         type: 'inside'

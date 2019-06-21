@@ -81,6 +81,11 @@ export default {
   },
   computed: {
   },
+  created() {
+    if (!this.form.id) {
+      this.form.status = false
+    }
+  },
   methods: {
     // 提交按钮
     submit() {

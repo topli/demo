@@ -66,6 +66,8 @@ export default {
       this.loading = true
       this.form.createTime = new Date()
       this.form.id = Math.random() * 1000
+      this.form.status = !!this.form.status
+      this.form.color = this.form.color ? this.form.color : 'rgba(0, 123, 255, 1)'
       addData(this.form).then(() => {
         setTimeout(() => {
           this.loading = false
