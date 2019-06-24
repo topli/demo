@@ -22,7 +22,7 @@
           {{ form.describe }}
         </el-form-item>
         <el-form-item :label="$t('tasks.org')">
-          {{ form.org }}
+          {{ form.orgName }}
         </el-form-item>
       </el-form>
       <div class="dispatch-wait">
