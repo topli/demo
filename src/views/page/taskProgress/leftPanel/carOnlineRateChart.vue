@@ -55,7 +55,9 @@ export default {
     }
   },
   mounted() {
-    // this.initChart();
+    // 监听侧边栏的变化
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    sidebarElm.addEventListener('transitionend', this.resize)
   },
   created() {
     setTimeout(() => {

@@ -81,6 +81,7 @@
           color: #0febff;
           justify-content: space-between;
           align-items: baseline;
+          height: 5.7vh;
           border-bottom: 1px solid #0febff;
           // margin: 0.06rem 0;
           padding-bottom: 3.3%;
@@ -95,6 +96,9 @@
           .unit {
             font-size: 0.7vw;
             line-height: 2vh;
+            position: absolute;
+            right: 0;
+            bottom: 1.1vh;
           }
         }
         .vice-info {

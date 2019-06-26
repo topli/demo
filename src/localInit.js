@@ -181,17 +181,21 @@ const data = {
       isUse: [
         { id: 42, value: '1', label: '使用中', color: '#67C23A' },
         { id: 43, value: '2', label: '闲置中', color: '#F56C6C' },
-        { id: 43, value: '3', label: '报废', color: '#F56C6C' }
+        { id: 44, value: '3', label: '报废', color: '#F56C6C' }
+      ],
+      labelState: [
+        { id: 45, value: '1', label: '进出围栏', color: '#67C23A' },
+        { id: 46, value: '2', label: '站点', color: '#F56C6C' }
       ]
     }
   },
   enclosure: {
     list: [
-      { id: 1, status: true, name: '北京通州区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区潮白河大堤路,阳光百曌重庆汽车服务有限公司西北263米', scope: '100' },
-      { id: 2, status: true, name: '北京通州区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区X201(任港路)', scope: '300' },
-      { id: 3, status: true, name: '北京海淀区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '海淀区', address: '北京市海淀区S50(北五环路)', scope: '300' },
-      { id: 4, status: true, name: '北京市门头沟区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '头沟区', address: '北京市门头沟区大峪南路15号楼', scope: '200' },
-      { id: 5, status: false, name: '北京市房山区运力围栏', labelState: '进出围栏', createTime: new Date(), org: '北京总公司', province: '北京市', city: '房山区', address: '北京市房山区凯旋大街', scope: '200' }
+      { id: 1, status: true, name: '北京通州区运力围栏', labelState: 1, createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区潮白河大堤路,阳光百曌重庆汽车服务有限公司西北263米', scope: '100' },
+      { id: 2, status: true, name: '北京通州区运力围栏', labelState: 1, createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区X201(任港路)', scope: '300' },
+      { id: 3, status: true, name: '北京海淀区运力围栏', labelState: 1, createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '海淀区', address: '北京市海淀区S50(北五环路)', scope: '300' },
+      { id: 4, status: true, name: '北京市门头沟区运力围栏', labelState: 1, createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '头沟区', address: '北京市门头沟区大峪南路15号楼', scope: '200' },
+      { id: 5, status: false, name: '北京市房山区运力围栏', labelState: 1, createTime: new Date(), org: '北京总公司', province: '北京市', city: '房山区', address: '北京市房山区凯旋大街', scope: '200' }
     ]
   },
   deviceError: {
@@ -525,25 +529,25 @@ const data = {
   },
   device: {
     list: [
-      { id: 1, gpsNo: '91376494', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '1', number: '120301070001A', status: true, usePerson: '张秀英', createTime: new Date(), available: true },
-      { id: 2, gpsNo: '41055218', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '3', number: '120301070002A', status: true, usePerson: '余平', createTime: new Date(), available: true },
-      { id: 3, gpsNo: '91232187', useStatus: '2', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070003A', status: true, usePerson: '贾刚', createTime: new Date(), available: true },
-      { id: 4, gpsNo: '41108585', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070004A', status: true, usePerson: '陈超', createTime: new Date(), available: true },
-      { id: 5, gpsNo: '91376514', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070005A', status: true, usePerson: '黄伟', createTime: new Date(), available: true },
-      { id: 6, gpsNo: '41086687', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '1', number: '120301070006A', status: true, usePerson: '萧杰', createTime: new Date(), available: true },
-      { id: 7, gpsNo: '41086686', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070007A', status: true, usePerson: '白杰', createTime: new Date(), available: true },
-      { id: 8, gpsNo: '91297925', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070008A', status: true, usePerson: '顾勇', createTime: new Date(), available: true },
-      { id: 9, gpsNo: '41086595', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070009A', status: true, usePerson: '孙军', createTime: new Date(), available: true },
-      { id: 10, gpsNo: '41080622', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '1', number: '120301070010A', status: true, usePerson: '秦敏', createTime: new Date(), available: true },
-      { id: 11, gpsNo: '41086687', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070011A', status: true, usePerson: '高涛', createTime: new Date(), available: true },
-      { id: 12, gpsNo: '41080622', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070012A', status: true, usePerson: '吕勇', createTime: new Date(), available: true },
-      { id: 13, gpsNo: '41086595', useStatus: '3', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070013A', status: false, usePerson: '梁磊', createTime: new Date(), available: false },
-      { id: 14, gpsNo: '91270313', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070014A', status: true, usePerson: '石敏', createTime: new Date(), available: true },
-      { id: 15, gpsNo: '41086679', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070015A', status: true, usePerson: '熊静', createTime: new Date(), available: true },
-      { id: 16, gpsNo: '91207317', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070016A', status: true, usePerson: '吕平', createTime: new Date(), available: true },
-      { id: 17, gpsNo: '41108584', useStatus: '3', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070017A', status: false, usePerson: '石洋', createTime: new Date(), available: false },
-      { id: 18, gpsNo: '41108559', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070018A', status: true, usePerson: '方静', createTime: new Date(), available: true },
-      { id: 19, gpsNo: '91207390', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '1120301070019A', status: true, usePerson: '沈明', createTime: new Date(), available: true }
+      { id: 1, gpsNo: '91376494', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '1', number: '120301070001A', status: 'true', usePerson: '张秀英', createTime: new Date(), available: 'true' },
+      { id: 2, gpsNo: '41055218', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '3', number: '120301070002A', status: 'true', usePerson: '余平', createTime: new Date(), available: 'true' },
+      { id: 3, gpsNo: '91232187', useStatus: '2', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070003A', status: 'true', usePerson: '贾刚', createTime: new Date(), available: 'true' },
+      { id: 4, gpsNo: '41108585', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070004A', status: 'true', usePerson: '陈超', createTime: new Date(), available: 'true' },
+      { id: 5, gpsNo: '91376514', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070005A', status: 'true', usePerson: '黄伟', createTime: new Date(), available: 'true' },
+      { id: 6, gpsNo: '41086687', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '1', number: '120301070006A', status: 'true', usePerson: '萧杰', createTime: new Date(), available: 'true' },
+      { id: 7, gpsNo: '41086686', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070007A', status: 'true', usePerson: '白杰', createTime: new Date(), available: 'true' },
+      { id: 8, gpsNo: '91297925', useStatus: '1', orgName: '北京总公司', orgId: '9999', model: '2', number: '120301070008A', status: 'true', usePerson: '顾勇', createTime: new Date(), available: 'true' },
+      { id: 9, gpsNo: '41086595', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070009A', status: 'true', usePerson: '孙军', createTime: new Date(), available: 'true' },
+      { id: 10, gpsNo: '41080622', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '1', number: '120301070010A', status: 'true', usePerson: '秦敏', createTime: new Date(), available: 'true' },
+      { id: 11, gpsNo: '41086687', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070011A', status: 'true', usePerson: '高涛', createTime: new Date(), available: 'true' },
+      { id: 12, gpsNo: '41080622', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070012A', status: 'true', usePerson: '吕勇', createTime: new Date(), available: 'true' },
+      { id: 13, gpsNo: '41086595', useStatus: '3', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070013A', status: 'false', usePerson: '梁磊', createTime: new Date(), available: 'false' },
+      { id: 14, gpsNo: '91270313', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070014A', status: 'true', usePerson: '石敏', createTime: new Date(), available: 'true' },
+      { id: 15, gpsNo: '41086679', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070015A', status: 'true', usePerson: '熊静', createTime: new Date(), available: 'true' },
+      { id: 16, gpsNo: '91207317', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070016A', status: 'true', usePerson: '吕平', createTime: new Date(), available: 'true' },
+      { id: 17, gpsNo: '41108584', useStatus: '3', orgName: '山西分公司', orgId: '1', model: '3', number: '120301070017A', status: 'false', usePerson: '石洋', createTime: new Date(), available: 'false' },
+      { id: 18, gpsNo: '41108559', useStatus: '2', orgName: '山西分公司', orgId: '1', model: '2', number: '120301070018A', status: 'true', usePerson: '方静', createTime: new Date(), available: 'true' },
+      { id: 19, gpsNo: '91207390', useStatus: '1', orgName: '山西分公司', orgId: '1', model: '3', number: '1120301070019A', status: 'true', usePerson: '沈明', createTime: new Date(), available: 'true' }
     ]
   },
   driverTask: {

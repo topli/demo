@@ -71,6 +71,7 @@
 <script>
 import echarts from 'echarts'
 import { on } from '@/libs/utils/index'
+
 export default {
   name: 'CarModelEnergyChart',
   data() {
@@ -98,7 +99,16 @@ export default {
       dom: {} // 车型能耗排行dom
     }
   },
+  computed: {
+
+  },
+  watch: {
+
+  },
   mounted() {
+    // 监听侧边栏的变化
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    sidebarElm.addEventListener('transitionend', this.resize)
   },
   created() {
     setTimeout(() => {
@@ -140,7 +150,7 @@ export default {
         },
         grid: {
           top: '6%',
-          left: '25%',
+          left: '28%',
           right: '6%',
           bottom: '4%',
           containLabel: true

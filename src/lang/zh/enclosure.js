@@ -9,6 +9,8 @@ export default {
     scope: '围栏范围',
     status: '状态',
     createTime: '创建时间',
-    rangeUnit: '米'
+    rangeUnit: '米',
+    nameError: '名称不能为空',
+    orgNameRequired: '所属组织不能为空'
   }
 }

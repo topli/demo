@@ -79,10 +79,10 @@ export default {
       },
       rules: {
         name: [
-          { required: true, message: this.$t('user.usernameError') }
+          { required: true, message: this.$t('enclosure.nameError') }
         ],
         org: [
-          { required: true, message: this.$t('org.orgNameRequired') }
+          { required: true, message: this.$t('enclosure.orgNameRequired') }
         ]
       },
       styleOptions: {
@@ -351,6 +351,8 @@ export default {
           } else {
             this.add()
           }
+        } else {
+          this.actionLoading = false
         }
       })
     },
@@ -362,8 +364,8 @@ export default {
       this.provinceList = ['北京', '天津', '上海', '重庆', '河北', '山西', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '海南', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '内蒙古', '广西', '西藏', '宁夏', '新疆维吾尔自治区', '香港', '澳门', '台湾']
       this.cityList = ['东城区', '西城区', '崇文区', '宣武区', '朝阳区', '海淀区', '丰台区', '石景山区', '房山区', '通州区', '顺义区', '杭州', '宁波', '温州', '嘉兴', '湖州', '绍兴', '金华', '衢州', '舟山', '台州', '丽水', '长沙', '株洲', '湘潭', '衡阳', '邵阳', '岳阳', '常德', '张家界', '益阳', '郴州', '永州', '怀化', '娄底', '湘西', '兰州', '嘉峪关', '金昌', '白银', '天水', '武威', '酒泉', '张掖', '庆阳', '平凉', '定西', '陇南', '临夏', '甘南', '广州', '深圳', '珠海', '汕头', '韶关', '佛山', '江门', '湛江', '茂名', '肇庆', '惠州', '梅州', '汕尾', '河源', '阳江', '清远', '东莞']
       this.typeArray = [
-        { label: '站点', value: 1 },
-        { label: '围栏', value: 2 }
+        { label: '站点', value: 2 },
+        { label: '围栏', value: 1 }
       ]
       this.scopeArray = [
         { label: '100米', value: 100 },
