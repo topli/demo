@@ -413,7 +413,6 @@ export default {
           width: 100%;
           height: 5.2vw;
           text-align: center;
-          display: -webkit-box;
           -webkit-box-pack:center;
           -webkit-box-orient:vertical;
           span {

@@ -58,7 +58,11 @@ export default {
         {
           key: 'deviceType',
           title: this.$t('alarmSet.deviceType'),
-          align: 'center'
+          align: 'center',
+          filters: 'deviceType',
+          render: (h, params, val) => {
+            return h('span', val.label)
+          }
         },
         {
           key: 'status',

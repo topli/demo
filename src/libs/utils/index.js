@@ -209,7 +209,6 @@ export function deepClone(source) {
  * @description 绑定事件 on(element, event, handler)
  */
 export const on = (function() {
-  console.log(1)
   if (document.addEventListener) {
     return function(element, event, handler) {
       if (element && event && handler) {

@@ -37,7 +37,7 @@
 .org-tree {
   overflow: auto;
   .custom-tree-container {
-    display: -webkit-box;
+    display: flex;
     font-size: 14px;
     padding-right: 8px;
     min-width: 600px;
