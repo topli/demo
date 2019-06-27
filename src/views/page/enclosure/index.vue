@@ -73,7 +73,7 @@ export default {
           }
         },
         {
-          key: 'org',
+          key: 'orgName',
           title: this.$t('enclosure.org'),
           width: '150'
         },

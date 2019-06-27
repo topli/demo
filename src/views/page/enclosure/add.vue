@@ -19,9 +19,7 @@
               <el-input ref="name" v-model="formData.name" placeholder="名称"/>
             </el-form-item>
             <el-form-item label="所属组织" prop="org">
-              <el-select ref="monitoringType" v-model="formData.org" placeholder="所属组织">
-                <el-option v-for="(item, index) in monitoringTypeArray" :value="item.name" :key="index" :label="item.name"/>
-              </el-select>
+              <org-tree v-model="formData.orgId" :label="formData.orgName" clearable @getTreeNode="getTree"/>
             </el-form-item>
             <el-form-item label="类型" prop="labelState">
               <el-select ref="labelState" v-model="formData.labelState" disabled placeholder="类型">
@@ -68,8 +66,9 @@ export default {
       map: null,
       formData: {
         name: '',
-        org: '',
+        // orgId: '1',
         labelState: 1,
+        orgName: null,
         monitoringType: '',
         scope: 500,
         province: '',
@@ -81,7 +80,7 @@ export default {
         name: [
           { required: true, message: this.$t('enclosure.nameError') }
         ],
-        org: [
+        orgId: [
           { required: true, message: this.$t('enclosure.orgNameRequired') }
         ]
       },
@@ -119,6 +118,10 @@ export default {
     this.initData()
   },
   methods: {
+    getTree(treeNode) {
+      if (!treeNode.length) return
+      this.formData.orgName = treeNode[0].orgName
+    },
     initMap() {
       this.map = new BMap.Map('map', { enableMapClick: false })
       this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 15) // 初始化北京地图
@@ -148,20 +151,38 @@ export default {
             }
           })
           this.addMarkerModal = true
-          if (this.formData.labelState === 1) {
-            const point = this.formData.paths.split(',')
-            const BPoint = new BMap.Point(point[0], point[1])
-            this.map.setViewport({ center: BPoint, zoom: this.getZoom(this.formData.scope) })
-            this.createMarker(BPoint)
-            this.createCircle()
-          } else if (this.formData.labelState === 2) {
-            const points = this.formData.paths.split(';').map(item => {
+          let points = this.formData.paths ? this.formData.paths.split(';') : []
+          if (points.length > 1) {
+            points = points.map(item => {
               const p = item.split(',')
               return new BMap.Point(p[0], p[1])
             })
             this.map.setViewport(points)
             this.createPolygon(points)
+          } else if (points.length === 1) {
+            const point = points[0].split(',')
+            const BPoint = new BMap.Point(point[0], point[1])
+            this.map.setViewport({ center: BPoint, zoom: this.getZoom(this.formData.scope) })
+            this.createMarker(BPoint)
+            this.createCircle()
+          } else {
+            // todo 提示信息
+            console.log('坐标错误')
           }
+          // if (this.formData.labelState === 1) {
+          //   const point = this.formData.paths.split(',')
+          //   const BPoint = new BMap.Point(point[0], point[1])
+          //   this.map.setViewport({ center: BPoint, zoom: this.getZoom(this.formData.scope) })
+          //   this.createMarker(BPoint)
+          //   this.createCircle()
+          // } else if (this.formData.labelState === 2) {
+          //   const points = this.formData.paths.split(';').map(item => {
+          //     const p = item.split(',')
+          //     return new BMap.Point(p[0], p[1])
+          //   })
+          //   this.map.setViewport(points)
+          //   this.createPolygon(points)
+          // }
         })
       }
     },
@@ -340,12 +361,19 @@ export default {
       this.actionLoading = true
       this.$refs['form'].validate((valid) => {
         if (valid) { // 验证通过
-          if (this.formData.labelState === 1) {
-            const point = this.marker.getPosition()
+          let point = null
+          if (this.marker) {
+            point = this.marker.getPosition()
             this.formData.paths = point.lng + ',' + point.lat
           } else {
             this.formData.paths = this.polygon.getPath().map(item => { return item.lng + ',' + item.lat }).join(';')
           }
+          // if (this.formData.labelState === 1) {
+          //   const point = this.marker.getPosition()
+          //   this.formData.paths = point.lng + ',' + point.lat
+          // } else {
+          //   this.formData.paths = this.polygon.getPath().map(item => { return item.lng + ',' + item.lat }).join(';')
+          // }
           if (this.formData.id) {
             this.edit()
           } else {
@@ -359,13 +387,13 @@ export default {
     // 清除地图
     clearMap() {
       this.map.clearOverlays()
+      this.marker = null
     },
     initJson() {
       this.provinceList = ['北京', '天津', '上海', '重庆', '河北', '山西', '辽宁', '吉林', '黑龙江', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '海南', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '内蒙古', '广西', '西藏', '宁夏', '新疆维吾尔自治区', '香港', '澳门', '台湾']
       this.cityList = ['东城区', '西城区', '崇文区', '宣武区', '朝阳区', '海淀区', '丰台区', '石景山区', '房山区', '通州区', '顺义区', '杭州', '宁波', '温州', '嘉兴', '湖州', '绍兴', '金华', '衢州', '舟山', '台州', '丽水', '长沙', '株洲', '湘潭', '衡阳', '邵阳', '岳阳', '常德', '张家界', '益阳', '郴州', '永州', '怀化', '娄底', '湘西', '兰州', '嘉峪关', '金昌', '白银', '天水', '武威', '酒泉', '张掖', '庆阳', '平凉', '定西', '陇南', '临夏', '甘南', '广州', '深圳', '珠海', '汕头', '韶关', '佛山', '江门', '湛江', '茂名', '肇庆', '惠州', '梅州', '汕尾', '河源', '阳江', '清远', '东莞']
       this.typeArray = [
-        { label: '站点', value: 2 },
-        { label: '围栏', value: 1 }
+        { label: '进出围栏', value: 1 }
       ]
       this.scopeArray = [
         { label: '100米', value: 100 },

@@ -191,11 +191,11 @@ const data = {
   },
   enclosure: {
     list: [
-      { id: 1, status: true, name: '北京通州区运力围栏', labelState: 1, createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区潮白河大堤路,阳光百曌重庆汽车服务有限公司西北263米', scope: '100' },
-      { id: 2, status: true, name: '北京通州区运力围栏', labelState: 1, createTime: new Date(), org: '北京总公司', province: '北京市', city: '通州区', address: '北京市通州区X201(任港路)', scope: '300' },
-      { id: 3, status: true, name: '北京海淀区运力围栏', labelState: 1, createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '海淀区', address: '北京市海淀区S50(北五环路)', scope: '300' },
-      { id: 4, status: true, name: '北京市门头沟区运力围栏', labelState: 1, createTime: new Date(), org: '北京昌平分公司', province: '北京市', city: '头沟区', address: '北京市门头沟区大峪南路15号楼', scope: '200' },
-      { id: 5, status: false, name: '北京市房山区运力围栏', labelState: 1, createTime: new Date(), org: '北京总公司', province: '北京市', city: '房山区', address: '北京市房山区凯旋大街', scope: '200' }
+      { id: 1, status: true, name: '北京通州区运力围栏', paths: '116.691011,39.886127', labelState: 1, createTime: new Date(), orgId: '9999', orgName: '北京总公司', province: '北京市', city: '通州区', district: '通州区', address: '北京市通州区潮白河大堤路,阳光百曌重庆汽车服务有限公司西北263米', scope: '100' },
+      { id: 2, status: true, name: '北京通州区运力围栏', paths: '116.680838,39.909833', labelState: 1, createTime: new Date(), orgId: '9999', orgName: '北京总公司', province: '北京市', city: '通州区', district: '通州区', address: '北京市通州区X201(任港路)', scope: '300' },
+      { id: 3, status: true, name: '北京海淀区运力围栏', paths: '116.299541,39.971794', labelState: 1, createTime: new Date(), orgId: '1', orgName: '山西分公司', province: '北京市', city: '海淀区', district: '海淀区', address: '北京市海淀区S50(北五环路)', scope: '300' },
+      { id: 4, status: true, name: '北京市门大兴运力围栏', paths: '116.367935,39.714898', labelState: 1, createTime: new Date(), orgId: '9999', orgName: '北京总公司', province: '北京市', city: '头沟区', district: '头沟区', address: '北京市门头沟区大峪南路15号楼', scope: '200' },
+      { id: 5, status: false, name: '北京市房山区运力围栏', paths: '116.034461,39.695945', labelState: 1, createTime: new Date(), orgId: '9999', orgName: '北京总公司', province: '北京市', city: '房山区', district: '房山区', address: '北京市房山区凯旋大街', scope: '200' }
     ]
   },
   deviceError: {

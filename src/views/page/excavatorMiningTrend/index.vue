@@ -37,7 +37,7 @@
       <el-col :span="24" style="margin-bottom: 10px">
         <el-card class="chart-half">
           <div slot="header">
-            <span style="font-weight: 700;font-size:0.6vw;font-family: weiruanyahei">全矿总量及油耗统计</span>
+            <span style="font-weight: 700;font-size:0.8vw;font-family: weiruanyahei">全矿总量及油耗统计</span>
           </div>
           <echarts ref="chartOne" :report-object="listData1" :height="chartOneHeight"/>
         </el-card>
@@ -45,7 +45,7 @@
       <el-col :span="10">
         <el-card class="chart-half-two">
           <div slot="header">
-            <span style="font-weight: 700;font-size:0.6vw;font-family: weiruanyahei">故障数量占比</span>
+            <span style="font-weight: 700;font-size:0.8vw;font-family: weiruanyahei">故障数量占比</span>
           </div>
           <echarts ref="chartTwo" :report-object="listData2" :height="chartTwoHeight"/>
         </el-card>
@@ -53,7 +53,7 @@
       <el-col :span="14">
         <el-card class="chart-half-two">
           <div slot="header">
-            <span style="font-weight: 700;font-size:0.6vw;font-family: weiruanyahei">挖机开采量总和统计</span>
+            <span style="font-weight: 700;font-size:0.8vw;font-family: weiruanyahei">挖机开采量总和统计</span>
           </div>
           <echarts ref="chartThree" :report-object="listData3" :height="chartTwoHeight"/>
         </el-card>
@@ -118,12 +118,27 @@ export default {
       return winWidth / 1082 * 8.2
     },
     getHeightOne() {
-      const winWidth = document.documentElement.clientHeight
-      return winWidth / 1082 * 400
+      const winWidth = document.documentElement.clientWidth
+      if (winWidth <= 1366) {
+        return winWidth / 1082 * 180
+      } else if (winWidth > 1366 && winWidth <= 1930) {
+        return winWidth / 1082 * 220
+      } else if (winWidth > 1930) {
+        return winWidth / 1082 * 275
+      } else {
+        return winWidth / 1082 * 220
+      }
     },
     getHeightTwo() {
-      const winWidth = document.documentElement.clientHeight
-      return winWidth / 1082 * 300
+      const winWidth = document.documentElement.clientWidth
+      console.log(winWidth)
+      if (winWidth <= 1366 || winWidth > 1366 && winWidth <= 1930) {
+        return winWidth / 1082 * 150
+      } else if (winWidth > 1930) {
+        return winWidth / 1082 * 200
+      } else {
+        return winWidth / 1082 * 140
+      }
     },
     // 日期格式
     changeTime(type) {
@@ -174,7 +189,7 @@ export default {
           }
         },
         grid: {
-          top: '13%',
+          top: '15%',
           left: '4%',
           bottom: '4%',
           containLabel: true
@@ -182,8 +197,8 @@ export default {
         legend: {
           data: ['当月总方量', '当月累计油耗'],
           orient: 'vertical',
-          right: '1%',
-          top: '8%',
+          left: '90.5%',
+          top: '12%',
           textStyle: {
             fontSize: this.getSize()
           }
@@ -208,7 +223,7 @@ export default {
             name: '(方量)',
             nameTextStyle: {
               fontSize: this.getSize(),
-              padding: this.getSize()
+              padding: this.getSize() * 0.5
             },
             min: 0,
             max: 200,
@@ -227,7 +242,7 @@ export default {
             name: '(油耗L)',
             nameTextStyle: {
               fontSize: this.getSize(),
-              padding: this.getSize()
+              padding: this.getSize() * 0.5
             },
             min: 0,
             max: 50,
