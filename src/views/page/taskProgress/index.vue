@@ -198,7 +198,7 @@ export default {
      * 是否全屏并按键ESC键的方法
      */
     checkFull() {
-      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen || document.fullscreen
+      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen || document.fullscreen || document.msFullscreenEnabled
       // to fix : false || undefined == undefined
       if (isFull === undefined) {
         isFull = false

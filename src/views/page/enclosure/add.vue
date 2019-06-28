@@ -211,7 +211,7 @@ export default {
       this.drawingManager.open()
       this.drawingManager.setDrawingMode(type)
       this.drawingManager.addEventListener('markercomplete', (overlay) => {
-        this.formData.labelState = 1
+        // this.formData.labelState = 1
         this.setFormAddress(overlay.point)
         this.addMarkerModal = true
         this.createMarker(overlay.point)
@@ -219,7 +219,7 @@ export default {
         this.drawingManager.close()
       })
       this.drawingManager.addEventListener('polygoncomplete', (overlay) => {
-        this.formData.labelState = 2
+        // this.formData.labelState = 2
         this.formData.scope = null
         this.setFormAddress(overlay.getPath())
         this.addMarkerModal = true

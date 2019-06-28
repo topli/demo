@@ -378,6 +378,10 @@ export default {
         this.hts()
       })
     }, 1500)
+
+    // 监听侧边栏的变化
+    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
+    sidebarElm.addEventListener('transitionend', this.resize)
   },
   created() {},
   beforeDestroy() {
@@ -761,7 +765,6 @@ export default {
       }
       this.dom = echarts.init(this.$refs.chart)
       this.dom.setOption(option)
-      on(window, 'resize', this.resize)
     },
     // 折叠底部图表
     flod() {
