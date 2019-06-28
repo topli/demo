@@ -45,7 +45,7 @@
 
 <script>
 import echarts from 'echarts'
-import { on } from '@/libs/utils/index'
+import { on } from '@/libs/utils/dom'
 export default {
   name: 'CarOnlineRateChart',
   data() {

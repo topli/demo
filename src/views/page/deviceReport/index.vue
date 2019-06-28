@@ -2,7 +2,7 @@
   <div id="deviceReport" class="device-report">
     <div style="width:100%;position:relative">
       <el-button type="text" style="position:absolute; right: 20px; top: 10px;font-size: .7vw" @click="screenfull">
-        {{ !isScreenfull ? $t('app.fullScreen') : '' }}
+        {{ !isFullscreen ? $t('app.fullScreen') : '' }}
       </el-button>
       <div class="title">
         <span>设备健康监控大屏</span>
@@ -228,72 +228,6 @@
                 </el-row>
               </div>
             </el-carousel-item>
-          <!-- <el-carousel-item :key="3">
-            <div class="device-list">
-              <el-row :gutter="10">
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE56468</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg7.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE21881</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg8.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SE36541</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg9.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">AC98721</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg10.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">SU15248</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg11.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :span="8">
-                  <div class="device-info">
-                    <div class="device-info-title">
-                      <span>设备编号:</span> <span style="color: white">AD93157</span>
-                    </div>
-                    <div class="device-info-body">
-                      <div style="height: 100%; width: 100%;background:url('/static/images/deviceReport/rbg12.png') no-repeat;background-size: 100% 100%"/>
-                    </div>
-                  </div>
-                </el-col>
-              </el-row>
-            </div>
-          </el-carousel-item> -->
           </el-carousel>
         </div>
       </div>
@@ -303,13 +237,14 @@
 <script>
 import { mapGetters } from 'vuex'
 import countTo from 'vue-count-to'
-import screenfull from 'screenfull'
+// import screenfull from 'screenfull'
+import { screenfullEl } from '@/libs/utils/dom'
 export default {
   components: { countTo },
   data() {
     return {
       pageName: this.$t('route.' + this.$route.meta.title),
-      isScreenfull: false,
+      isFullscreen: false,
       titles: ['设备编号', '故障类型', '故障时间'],
       deviceErrorList: [
         { deviceNo: '91376494', type: '燃油不足', time: '2019-05-28 14:15' },
@@ -329,13 +264,6 @@ export default {
     ])
   },
   mounted() {
-    window.onresize = () => {
-      // 全屏下监控是否按键了ESC
-      if (!this.checkFull()) {
-        // 全屏下按键esc后要执行的动作
-        this.isScreenfull = false
-      }
-    }
     if (this.sidebar.opened) {
       this.$store.dispatch('ToggleSideBar')
     }
@@ -362,22 +290,7 @@ export default {
      * 全屏事件
      */
     screenfull() {
-      const deviceReport = document.getElementById('deviceReport')
-      if (screenfull.enabled) {
-        screenfull.request(deviceReport)
-        this.isScreenfull = !this.isScreenfull
-      }
-    },
-    /**
-     * 是否全屏并按键ESC键的方法
-     */
-    checkFull() {
-      var isFull = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen || document.fullscreen || document.msFullscreenEnabled
-      // to fix : false || undefined == undefined
-      if (isFull === undefined) {
-        isFull = false
-      }
-      return isFull
+      screenfullEl.call(this, 'deviceReport')
     }
   }
 }

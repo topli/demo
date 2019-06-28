@@ -98,7 +98,7 @@
 <script>
 // import hyVideoFlv from './videoFlv'
 import screenfull from 'screenfull'
-import utils from '@/libs/utils'
+import { on, off } from '@/libs/utils/dom'
 
 export default {
   name: 'SplitScreenVideo',
@@ -163,10 +163,10 @@ export default {
       })
     }, 100)
     this.pageInte()
-    utils.on(window, 'resize', this.resize)
+    on(window, 'resize', this.resize)
   },
   beforeDestroy() {
-    utils.off(window, 'resize', this.resize)
+    off(window, 'resize', this.resize)
   },
   methods: {
     /**
