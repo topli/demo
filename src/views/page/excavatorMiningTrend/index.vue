@@ -275,6 +275,13 @@ export default {
       // pie
       this.listData2 = {
         color: ['#6cbfff', '#b55454', '#6f9fa7', '#c1883a', '#23ccda'],
+        tooltip: {
+          trigger: 'item',
+          formatter: '{b}: {c} ({d}%)',
+          textStyle: {
+            fontSize: this.getSize()
+          }
+        },
         legend: {
           orient: 'vertical',
           top: '18%',

@@ -12,11 +12,11 @@ import echarts from 'echarts'
 export default {
   props: {
     width: {
-      type: String,
+      type: [String, Number],
       default: '100%'
     },
     height: {
-      type: String,
+      type: [String, Number],
       default: '150'
     },
     reportObject: {
