@@ -4,7 +4,7 @@
   }
 </style>
 <template>
-  <div :style="{height:height + 'px',width:width}"/>
+  <div :style="style"/>
 </template>
 
 <script>
@@ -32,6 +32,12 @@ export default {
     }
   },
   computed: {
+    style() {
+      return {
+        width: isNaN(Number(this.width)) ? this.width : this.width + 'px',
+        height: isNaN(Number(this.height)) ? this.height : this.height + 'px'
+      }
+    }
   },
   watch: {
     reportObject: {
