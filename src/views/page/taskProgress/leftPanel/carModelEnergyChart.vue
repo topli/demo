@@ -64,13 +64,14 @@
       <div v-else class="car-type">
         <a v-for="item in carType" :key="item.id" :class="item.id === curCarType ? 'cur': ''" @click="clickCarType(item)">{{ item.name }}</a>
       </div>
-      <div ref="chart" class="bd-chart"/>
+      <!-- <div ref="chart" class="bd-chart"/> -->
+      <echarts :report-object="dataObj" :height="getSize()*12"/>
     </div>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
-import { on } from '@/libs/utils/index'
+// import { on } from '@/libs/utils/index'
 
 export default {
   name: 'CarModelEnergyChart',
@@ -96,7 +97,8 @@ export default {
       curCarType: 1,
       // yData: ["ERX5", "E550", "E950", "EI5", "Marve", "EMG6"],
       yData: ['120301070001A', '120301070002A', '120301070003A', '120301070004A', '120301070005A'],
-      dom: {} // 车型能耗排行dom
+      dom: {}, // 车型能耗排行dom
+      dataObj: {}
     }
   },
   computed: {
@@ -119,7 +121,7 @@ export default {
     }, 1500)
   },
   beforeDestroy() {
-    this.dom.clear()
+    // this.dom.clear()
   },
   methods: {
     // 屏幕的宽度设置echarts的fontSize
@@ -144,7 +146,8 @@ export default {
     },
     initChart() {
       // 绘制图表
-      const option = {
+      // const option ={
+      this.dataObj = {
         textStyle: {
           color: 'rgba(255, 255, 255, 0.8)'
         },
@@ -197,80 +200,11 @@ export default {
             show: false // 隐藏坐标轴刻度线
           },
           axisLabel: {
-            // formatter: function(value, index) {
-            //   return (
-            //     '{num' + index + '| ' + ++index + ' }{value|' + value + '}'
-            //   )
-            // },
             textStyle: {
               align: 'left',
               padding: [0, 0, 0, -(this.getSize()) * 10],
               fontSize: this.getSize()
             }
-            // rich: {
-            //   value: {
-            //     padding: [0, 0, 2, 8]
-            //   },
-            //   num0: {
-            //     width: 42,
-            //     height: 42,
-            //     lineHeight: 14,
-            //     fontSize: 30,
-            //     align: 'center',
-            //     borderRadius: 2,
-            //     backgroundColor: 'rgba(255, 126, 0, 1)'
-            //   },
-            //   num1: {
-            //     width: 22,
-            //     height: 22,
-            //     lineHeight: 12,
-            //     fontSize: this.getSize(),
-            //     align: 'center',
-            //     verticalAlign: 'middle',
-            //     borderRadius: 2,
-            //     backgroundColor: 'rgba(221, 201, 32, 1)'
-            //   },
-            //   num2: {
-            //     width: 12,
-            //     height: 12,
-            //     lineHeight: 12,
-            //     fontSize: this.getSize(),
-            //     align: 'center',
-            //     verticalAlign: 'middle',
-            //     borderRadius: 2,
-            //     backgroundColor: 'rgba(83, 146, 255, 1)'
-            //   },
-            //   num3: {
-            //     width: 12,
-            //     height: 12,
-            //     lineHeight: 12,
-            //     fontSize: this.getSize(),
-            //     align: 'center',
-            //     verticalAlign: 'middle',
-            //     borderRadius: 2,
-            //     backgroundColor: 'rgba(0, 189, 207, 1)'
-            //   },
-            //   num4: {
-            //     width: 12,
-            //     height: 12,
-            //     lineHeight: 12,
-            //     fontSize: this.getSize(),
-            //     align: 'center',
-            //     verticalAlign: 'middle',
-            //     borderRadius: 2,
-            //     backgroundColor: 'rgba(0, 189, 207, 1)'
-            //   },
-            //   num5: {
-            //     width: 12,
-            //     height: 12,
-            //     lineHeight: 12,
-            //     fontSize: this.getSize(),
-            //     align: 'center',
-            //     verticalAlign: 'middle',
-            //     borderRadius: 2,
-            //     backgroundColor: 'rgba(0, 189, 207, 1)'
-            //   }
-            // }
           },
           zlevel: 1
         },
@@ -330,14 +264,14 @@ export default {
           }
         ]
       }
-      this.dom = echarts.init(this.$refs.chart)
-      this.dom.setOption(option)
-      on(window, 'resize', this.resize)
-    },
-    // 重置尺寸
-    resize() {
-      this.dom.resize()
+      // this.dom = echarts.init(this.$refs.chart)
+      // this.dom.setOption(option)
+      // on(window, 'resize', this.resize)
     }
+    // 重置尺寸
+    // resize() {
+    //   this.dom.resize()
+    // }
   }
 }
 </script>
