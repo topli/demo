@@ -361,7 +361,8 @@ export default {
     getGauge(item) {
       return {
         tooltip: {
-          formatter: `{a} : {c} ${item.unit || ''}`
+          formatter: `{a} : {c} ${item.unit || ''}`,
+          position: 'bottom'
         },
         series: [
           {

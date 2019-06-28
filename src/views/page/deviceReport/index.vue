@@ -387,7 +387,7 @@ export default {
   .device-report{
     color: beige;
     width: 100%;
-    height: calc(100vh - 50px);
+    // height: calc(100vh - 50px);
     background: url('#{$image-url}/bg.png') no-repeat;
     background-size: 100% 100%;
     overflow: auto;
