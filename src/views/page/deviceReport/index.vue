@@ -237,7 +237,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import countTo from 'vue-count-to'
-// import screenfull from 'screenfull'
 import { screenfullEl } from '@/libs/utils/dom'
 export default {
   components: { countTo },
