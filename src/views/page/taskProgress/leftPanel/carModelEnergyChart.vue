@@ -48,9 +48,6 @@
         }
       }
     }
-    .bd-chart {
-      height: 76%;
-    }
   }
 }
 </style>
@@ -64,14 +61,12 @@
       <div v-else class="car-type">
         <a v-for="item in carType" :key="item.id" :class="item.id === curCarType ? 'cur': ''" @click="clickCarType(item)">{{ item.name }}</a>
       </div>
-      <!-- <div ref="chart" class="bd-chart"/> -->
-      <echarts :report-object="dataObj" :height="getSize()*12"/>
+      <echarts :report-object="dataObj" height="76%"/>
     </div>
   </div>
 </template>
 <script>
 import echarts from 'echarts'
-// import { on } from '@/libs/utils/index'
 
 export default {
   name: 'CarModelEnergyChart',
@@ -121,7 +116,6 @@ export default {
     }, 1500)
   },
   beforeDestroy() {
-    // this.dom.clear()
   },
   methods: {
     // 屏幕的宽度设置echarts的fontSize
@@ -146,7 +140,6 @@ export default {
     },
     initChart() {
       // 绘制图表
-      // const option ={
       this.dataObj = {
         textStyle: {
           color: 'rgba(255, 255, 255, 0.8)'
@@ -264,14 +257,7 @@ export default {
           }
         ]
       }
-      // this.dom = echarts.init(this.$refs.chart)
-      // this.dom.setOption(option)
-      // on(window, 'resize', this.resize)
     }
-    // 重置尺寸
-    // resize() {
-    //   this.dom.resize()
-    // }
   }
 }
 </script>

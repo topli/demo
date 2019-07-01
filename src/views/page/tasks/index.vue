@@ -56,7 +56,7 @@ export default {
           title: this.$t('tasks.no'),
           width: '160',
           render: (h, params, val) => {
-            return h('a', { style: { color: '#409eff' }, on: { click: (e) => { this.clickInfo(e, params.row) } }}, val)
+            return h('a', { style: { color: '#409eff' }, on: { click: (e) => { this.clickInfo(e, params.row) } }}, val.label)
           }
         },
         {
@@ -151,7 +151,6 @@ export default {
   methods: {
     _getList() {
       this.loading = true
-      console.log(this.searchData)
       getList(this.searchData).then(res => {
         setTimeout(() => {
           this.loading = false
@@ -194,7 +193,6 @@ export default {
       })
     },
     clickInfo(e, row) {
-      console.log(row)
       this.$dialogBox({
         title: this.$t('app.info'),
         components: info,

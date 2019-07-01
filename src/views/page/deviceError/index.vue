@@ -54,16 +54,13 @@ export default {
       ],
       columnsTitle: [
         {
-          key: 'status',
+          key: 'alertStatus',
           title: this.$t('deviceError.status'),
-          filters: 'status', // 带过滤器的项 取值是时前面加上 _f_
+          filters: 'alertStatus', // 带过滤器的项 取值是时前面加上 _f_
           width: '90',
-          render: (h, params) => {
-            return h('el-tag', {
-              props: { color: params.row.status ? '#F4A460' : '#EE3B3B', type: 'text' },
-              style: { color: 'white' }
-            },
-            params.row.status ? '预警' : '报警')
+          render: (h, params, val) => {
+            // return h('el-tag', { props: { color: params.row.status ? '#F4A460' : '#EE3B3B', type: 'text' }, style: { color: 'white' }}, val.label)
+            return h('el-tag', { props: { color: val.color, type: 'text' }, style: { color: 'white' }}, val.label)
           }
         },
         {
@@ -75,23 +72,18 @@ export default {
           key: 'deviceStatus',
           title: this.$t('deviceError.deviceStatus'),
           minWidth: '90',
-          render: (h, params) => {
-            return h('el-tag', {
-              props: { color: params.row.deviceStatus ? '#409eff' : '#999', type: 'text' },
-              style: { color: 'white' }
-            },
-            params.row.deviceStatus ? '在线' : '离线')
+          filters: 'deviceStatus',
+          render: (h, params, val) => {
+            return h('el-tag', { props: { color: val.color, type: 'text' }, style: { color: 'white' }}, val.label)
           }
         },
         {
           key: 'handleStatus',
           title: this.$t('deviceError.handleStatus'),
           minWidth: '120',
-          render: (h, params) => {
-            return h('span', {
-
-            },
-            params.row.handleStatus === 'true' ? '已处理' : '未处理')
+          filters: 'handleStatus',
+          render: (h, params, val) => {
+            return h('span', val.label)
           }
         },
         {

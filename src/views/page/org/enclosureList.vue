@@ -61,10 +61,14 @@ export default {
         {
           key: 'labelState',
           title: this.$t('enclosure.labelState'),
-          width: '120'
+          width: '120',
+          filters: 'labelState',
+          render: (h, params, val) => {
+            return h('span', val.label)
+          }
         },
         {
-          key: 'org',
+          key: 'orgName',
           title: this.$t('enclosure.org'),
           width: '150'
         },

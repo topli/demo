@@ -186,6 +186,14 @@ const data = {
       labelState: [
         { id: 45, value: '1', label: '进出围栏', color: '#67C23A' },
         { id: 46, value: '2', label: '站点', color: '#F56C6C' }
+      ],
+      deviceStatus: [
+        { id: 47, value: 'true', label: '在线', color: '#409eff' },
+        { id: 48, value: 'false', label: '离线', color: '#999' }
+      ],
+      alertStatus: [
+        { id: 49, value: 'true', label: '报警', color: '#EE3B3B' },
+        { id: 50, value: 'false', label: '预警', color: '#F4A460' }
       ]
     }
   },
@@ -200,11 +208,11 @@ const data = {
   },
   deviceError: {
     list: [
-      { id: 1, status: 0, alarmType: '燃油不足', deviceStatus: false, handleStatus: 'true', deviceAddress: '北京市昌平区二拔子工业区东路三一重工三一产业园', principal: '刘明', createTime: new Date() },
-      { id: 2, status: 1, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '韩雪', createTime: new Date() },
-      { id: 3, status: 1, alarmType: '温度过高', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '陈启', createTime: new Date() },
-      { id: 4, status: 1, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区三一重工三一产业园', principal: '王志', createTime: new Date() },
-      { id: 5, status: 0, alarmType: '燃油不足', deviceStatus: true, handleStatus: 'false', deviceAddress: '北京市昌平区二拔子工业区东路三一重工，三一产业园', principal: '张红', createTime: new Date() }
+      { id: 1, alertStatus: false, alarmType: '燃油不足', deviceStatus: false, handleStatus: 'true', deviceAddress: '北京市昌平区二拔子工业区东路三一重工三一产业园', principal: '刘明', createTime: new Date() },
+      { id: 2, alertStatus: true, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '韩雪', createTime: new Date() },
+      { id: 3, alertStatus: true, alarmType: '温度过高', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区北清路二号', principal: '陈启', createTime: new Date() },
+      { id: 4, alertStatus: true, alarmType: '胎压不足', deviceStatus: true, handleStatus: 'true', deviceAddress: '北京市昌平区三一重工三一产业园', principal: '王志', createTime: new Date() },
+      { id: 5, alertStatus: false, alarmType: '燃油不足', deviceStatus: true, handleStatus: 'false', deviceAddress: '北京市昌平区二拔子工业区东路三一重工，三一产业园', principal: '张红', createTime: new Date() }
     ]
   },
   realWorking: {

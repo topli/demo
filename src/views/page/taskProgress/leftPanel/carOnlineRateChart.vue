@@ -25,9 +25,6 @@
   .bd {
     position: relative;
     height: 100%;
-    .chart {
-      height: 88%;
-    }
   }
 }
 </style>
@@ -38,26 +35,20 @@
       <div v-if="spinShow" fix class="spin">
         <div class="loader"><img src="../../../../../static/images/taskProgress/loading-black.gif"></div>
       </div>
-      <div v-else ref="chart" class="chart"/>
+      <echarts :report-object="option" height="88%"/>
     </div>
   </div>
 </template>
 
 <script>
-import echarts from 'echarts'
-import { on } from '@/libs/utils/dom'
 export default {
   name: 'CarOnlineRateChart',
   data() {
     return {
       spinShow: true,
-      dom: {} // 车型能耗排行dom
+      dom: {}, // 车型能耗排行dom
+      option: {}
     }
-  },
-  mounted() {
-    // 监听侧边栏的变化
-    const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
-    sidebarElm.addEventListener('transitionend', this.resize)
   },
   created() {
     setTimeout(() => {
@@ -67,9 +58,6 @@ export default {
       })
     }, 2500)
   },
-  beforeDestroy() {
-    this.dom.clear()
-  },
   methods: {
     // 屏幕的宽度设置echarts的fontSize
     getSize() {
@@ -78,16 +66,6 @@ export default {
     },
     // 车型能耗排行
     initChart() {
-      // 设置X轴数据
-      // 线查询当前1个小时的每隔5分钟的数据
-      // let now = new Date();
-      //   nowHour = now.getHours();
-      // nowMinu = now.getMinutes();
-      // let xData = [];
-      // while (nowMinu < 0) {
-      //   xData.push(nowHour);
-      // }
-      // console.log(now);
       // 绘制图表
       const seriesData = [
         {
@@ -153,7 +131,7 @@ export default {
           value: ['2019-06-02 14:00', 52]
         }
       ]
-      const option = {
+      this.option = {
         tooltip: {
           trigger: 'axis',
           backgroundColor: 'rgba(0, 26, 33, 0.68)',
@@ -287,26 +265,6 @@ export default {
           }
         ]
       }
-      this.dom = echarts.init(this.$refs.chart)
-      this.dom.setOption(option)
-      on(window, 'resize', this.resize)
-      // 模拟动态添加
-      // setInterval(() => {
-      //   let nowData = new Date().getTime() + 1 * 60 * 1000;
-      //   let newData = {
-      //     value: [
-      //       this._hyTool.DateFormat(new Date(nowData), "yyyy-MM-dd hh:mm"),
-      //       Math.round(Math.random() * 60)
-      //     ]
-      //   };
-      //   seriesData.insert(0, newData);
-      //   seriesData.splice(seriesData.length - 1, seriesData.length);
-      //   this.dom.setOption(option);
-      // }, 5000);
-    },
-    // 重置尺寸
-    resize() {
-      this.dom.resize()
     }
   }
 }
