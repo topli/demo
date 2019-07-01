@@ -284,7 +284,7 @@
 </template>
 
 <script>
-import { on } from '@/libs/utils/index'
+import { on } from '@/libs/utils/dom'
 import echarts from 'echarts'
 import citymap from './citymap'
 import axios from 'axios'

@@ -253,7 +253,7 @@
 
 <script>
 import { Flip } from 'number-flip'
-import { on } from '@/libs/utils/index'
+import { on } from '@/libs/utils/dom'
 export default {
   name: 'DataBoard',
   data() {

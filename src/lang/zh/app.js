@@ -38,6 +38,7 @@ export default {
     addValue: '新增报警阈值',
     dealWith: '处理',
     info: '详情',
-    index: '序号'
+    index: '序号',
+    fullScreenSupport: '当前浏览器版本不支持，请升级最新版！'
   }
 }
