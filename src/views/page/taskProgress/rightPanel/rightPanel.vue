@@ -198,9 +198,6 @@
   font-weight: 600;
   border: 1px solid #0febff;
   background-color: rgba(0, 122, 135, 0.33);
-  > div {
-    // height: 20% !important;
-  }
   /deep/ .ctnr {
     position: relative;
     margin-right: 5%;
