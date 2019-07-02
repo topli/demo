@@ -56,7 +56,7 @@ export default {
   },
   data() {
     return {
-      form: this.data ? Object.assign({}, this.data) : {},
+      form: this.data ? Object.assign({}, this.data) : { status: false },
       loading: false,
       deviceType: [
         {
@@ -82,9 +82,9 @@ export default {
   computed: {
   },
   created() {
-    if (!this.form.id) {
-      this.form.status = false
-    }
+    // if (!this.form.id) {
+    //   this.form.status = false
+    // }
   },
   methods: {
     // 提交按钮
